@@ -1,3 +1,5 @@
+# CASINO HEIST : Where blockchain vulnerabilities meet the thrill of the heist! 
+![Logo](./casino-heist.png)
 # Casino Heist
 
 The problem?
