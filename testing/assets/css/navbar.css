@@ -1,0 +1,118 @@
+.navbar {
+    height: 100vh; /* Full viewport height */
+    background-color: #1b1b1b;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 60px;
+    position: fixed;
+    top: 0; /* Ensure it starts at the top */
+    left: 0; /* Fixed to the left */
+}
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column; /* Stack the items vertically */
+    width: 100%;
+  }
+
+  .nav-item {
+    width: 100%; 
+    position: relative;
+    /* z-index: 0;Ensure that each item takes full width */
+  }
+
+  .nav-link {
+    color: #fff;
+    /* font-size: 1.2rem; */
+    padding: 15px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background-color 0.3s, color 0.3s;
+    width: 85%;
+  }
+
+  .nav-link.active {
+    background-color: #ff4c4c;
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .nav-link:hover {
+    background-color: #ff4c4c;
+    color: #fff;
+    border-radius: 10px;
+    opacity: 30%;
+  }
+
+  .nav-icon {
+    font-size: 1.5rem;
+    /* margin-right: 10px; */
+  }
+
+  .navbar-footer {
+    margin-top: auto;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search-bar {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .search-bar input {
+    background-color: #292929;
+    border: none;
+    color: #fff;
+  }
+
+  .search-bar input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .main-content {
+    margin-left: 270px; /* Leave space for the fixed navbar */
+    padding: 20px;
+  }
+
+  .rounded-circle {
+    position: relative;
+    width: 100%;
+  }
+
+  .hover-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    padding: 5px;
+    background-color: #ff4c4c;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover .hover-text {
+    display: block;
+  }
+
+  /* Space between logo and the navbar items */
+  .navbar-brand {
+      /* color: #fff; */
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    margin-bottom: 30px; /* Adjust the space as needed */
+  }
