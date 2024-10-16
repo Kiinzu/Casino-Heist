@@ -149,7 +149,7 @@ const Guide = () => {
                     }
                   }
                 }}
-                className="react-markdown-loader"
+                className="react-markdown-loader" /* React Component for Markdown */
               />
             </>
           ) : (

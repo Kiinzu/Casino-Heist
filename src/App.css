@@ -574,6 +574,12 @@ main {
   white-space: pre-line;
 } */
 
+/* .react-markdown-loader em{
+  color: #ef8383;
+  background-color: white;
+  border-radius: 3px;
+} */
+
 .react-markdown-loader h2{
   color: rgb(219, 215, 215);
   padding: 10px 0px 0px 0px;
