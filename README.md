@@ -23,32 +23,73 @@ To address this challenge, we proudly present **"Casino Heist"**, a Playground b
 
 ## (Minimum) Recommended Specification
 **Localhost**
-- Operating System: 
-- vCPU: 
-- RAM: 
-- HDD:
+- Operating System: Ubuntu 22.04 or Windows 10/11
+- vCPU: 2 cores
+- RAM: 8 GB
+- HDD: 40 GB of free space
 
 **Website**
-- Operating System: 
-- vCPU: 
-- RAM: 
-- HDD:
+- Operating System: Ubuntu 22.04 or Windows 10/11
+- vCPU: 2 cores
+- RAM: 8 GB
+- HDD: 40 GB of free space
 
 Harus bagi 2 - Local Only dan FULL Website + Soal
 
 ## Requirements
-We do it for you! (install.sh)
+- Email
+- Node.js
+- Npm
+- Python 3.x
+- Port 80
+- Docker
+- Docker Compose v2
+
+**Don't Worry, We do it for you! (install.sh)**
 
 ## Deployment and Usage
-
 ### Local Deployment (Challenge Only)
 local di pc sendiri docker sih
+To deploy Casino Heist:
+1. Clone this repository
+```bash
+git clone https://github.com/Kiinzu/react-casino-heist/
+cd react-casino-heist
+```
+2. Run the Setup Script:
+```bash
+./install.sh
+```
+3. Follow the setup instructions (Read the [Documentation](https://www.google.com) for details)
 
 ### VPS Deployment (Challenge and Web)
+1. Use SSH to connect to your VPS. Replace your_username and your_ip_address with your actual username and IP address:
+```bash
+ssh your_username@your_ip_address
+```
+2. Install Docker (If Docker isn't already installed use this command)
+```bash
+sudo apt update
+sudo apt install -y docker.io docker-compose
+```
+3. Clone this repository
+```bash
+git clone https://github.com/Kiinzu/react-casino-heist/
+cd react-casino-heist
+```
+4. Run the Setup Script:
+```bash
+./install.sh
+```
+5. Open Required Ports
 buat public di VPS ato any cloud
 
+You can read the **Full Documentation** [here](https://www.google.com)
+
 ## Main Feature
-- Killing ur brain
+- Challenges
+- Walkthrough
+- Ethernaut Launcher
 
 ## How to Contribute
 - 
