@@ -21,7 +21,7 @@ Today: DONE
 - Login / Logout / Signup 
 
 16 Oktober
-- Sugi 
+- Desc for Challenge
 
 
 Challenge -> (Description + Mitigation).md -> Handson
