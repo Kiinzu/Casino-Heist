@@ -87,9 +87,9 @@ buat public di VPS ato any cloud
 You can read the **Full Documentation** [here](https://www.google.com)
 
 ## Main Feature
-- Challenges
-- Walkthrough
-- Ethernaut Launcher
+- **Challenges**: We provide a wide range of challenges, from basic to VIP level, based on OWASP Top 10 Smart Contract vulnerabilities.
+- **Walkthrough**: Need help? We've got you covered with detailed walkthroughs explaining the challenge objectives and exploitation methods.
+- **Ethernaut Launcher**: Experience our Private Blockchain infrastructure, developed by ParadigmXYZ, with our exclusive Ethernaut launcher.
 
 ## How to Contribute
 - 
