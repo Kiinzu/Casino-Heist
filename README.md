@@ -5,7 +5,7 @@
 
 Are you a Blockchain Developer, Auditor, Enthusiast, or just starting your journey into the world of blockchain?🧐
 
-**You’re in the right place🥳🎉**
+**You’re in the right place🎉**
 
 We are aware of the blockchain trilemma, where we have to sacrifice one aspect between decentralization, security, or scalability in order to optimize the other two. Typically, the aspect that is sacrificed is security.
 
@@ -58,4 +58,4 @@ buat public di VPS ato any cloud
 - [fefethecyberclown](github.com/fefethecyberclown)
 
 ## Feedback
-if you have any feedback, please contact us directly on our discord server!
+If you have any feedback, please contact us directly on our [Discord Server](https://www.discord.com)!
