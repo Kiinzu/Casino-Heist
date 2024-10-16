@@ -10,8 +10,8 @@ const Signup = () => {
     confirmPassword: '',
   });
 
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState(null); // Store success or error message
+  const [isError, setIsError] = useState(false); // Track if the message is an error
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleInputChange = (e) => {
@@ -21,20 +21,16 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Basic client-side validation before sending the request
+
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      showMessage('Passwords do not match', true);
       return;
     }
 
-    // Send POST request to backend /register route
     fetch('http://127.0.0.1:5000/register', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData), // Convert formData to JSON
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
     })
       .then((response) => {
         if (!response.ok) {
@@ -44,29 +40,37 @@ const Signup = () => {
       })
       .then((data) => {
         if (data.error) {
-          setError(data.error);
+          showMessage(data.error, true);
         } else {
-          setMessage(data.message);
-          setTimeout(() => {
-            // Redirect to login page after a short delay
-            navigate('/login');
-          }, 2000); // Delay for 2 seconds
+          showMessage('Registration successful!', false);
+          setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
         }
       })
       .catch((error) => {
-        setError('An error occurred. Please try again.');
+        showMessage('An error occurred. Please try again.', true);
         console.error('Error:', error);
       });
   };
 
+  const showMessage = (msg, isError) => {
+    setMessage(msg);
+    setIsError(isError);
+
+    // Auto-hide the message after 3 seconds
+    setTimeout(() => setMessage(null), 3000);
+  };
+
   return (
-    <div className='signup-main'>
+    <div className="signup-main">
+      {message && (
+        <div className={`message-box ${isError ? 'error' : 'success'}`}>
+          {message}
+        </div>
+      )}
+
       <div className="signup-container">
         <h1>Play Casino Heist Now</h1>
         <p>Outsmart the odds, crack the code—your blockchain skills are the key to escape!</p>
-
-        {message && <p className="signup-success">{message}</p>}
-        {error && <p className="signup-error">{error}</p>}
 
         <form className="signup-form" onSubmit={handleSubmit}>
           <label>

@@ -55,7 +55,7 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     &nbsp;  
     There you can see that we deploy a new contract which address is stored on the variable **brief**, that is the **Briefing.sol** contract, that's the contract that we want to interact with. To get its Address, we can use the command below:&nbsp;  
     &nbsp;  
-    ```
+    ```text
     cast call -r $RPC_URL $SetupADDR "brief()"
     ```
     &nbsp;  
@@ -63,7 +63,7 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     &nbsp; 
     Now that we have the address of **Briefing Contract**, we can then interact with anything inside it, like its Functions and Variables, let's try calling a variable and see its value, let's call **completedCall**,&nbsp; 
     &nbsp; 
-    ```
+    ```text
     cast call -r $RP_URL $BriefADDR "completedCall()"
     ```
     &nbsp; 
@@ -75,26 +75,26 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     Now let's solve 4 of the 5 functions to complete the **Briefing**, first we are going to solve the **verifyCall()** since it is required by all the function below it, since it doesn't require any input, we can just simply call the function&nbsp; 
     &nbsp; 
 
-    ```
+    ```text
     cast send -r $RPC_URL --private-key $PK $BriefADDR "verifyCall()"
     ```
     &nbsp; 
     The 2nd objective is the **putSomething(uint256,string,address)**, in this function we are required to provide a correct answer, for the first one we need to put **1337** as you can see in the **require()** built-in function, the second value that we need is a string of **"Casino Heist Player"**, unlike in some programming language, solidity cannot compare a literal string, rather it can only compare the value of an hash like **keccak256** The last thing we need is the address of **_player** which in this case is compared to the **msg.sender**, we can actually use a smart contract for this since there is no validation against it, but let's use our own address which is the **wallet** for this challenge.&nbsp; 
     &nbsp; 
 
-    ```
+    ```text
     cast send -r $RPC_URL --private-key $PK $BriefADDR "putSomething(uint256,string,address)" 1337 "Casino Heist Player" $WalletADDR
     ```
     &nbsp; 
     The 3rd objective is  **firstDeposit()**, this function doesn't require any input, rather it required you to send **5 Ether** to it, there is also a validation which validate the **msg.sender == tx.origin** this is a validation that force the sender to be from an EOA account, since the interactor and the origin must be the same. The next validation is the **msg.value**, this special global variable will refer to the amount of ether you send in the transaction. Now that we understand the code a bit better, let's try to solve it&nbsp; 
     &nbsp; 
-    ```
+    ```text
     cast send -r $RPC_URL --private-key $PK $BriefADDR "firstDeposit()" --value 5ether
     ```
     &nbsp; 
     The 4th objective that we are going to cover in this section is sending an ether by triggering the special function **receive() external payable{}**. In Solidity 0.8.0, a Smart Contract can receive an ether by implementing the special function of either **receive()** or **fallback()**, they might look alike but we will dive to it deeper in the following challenges. So now how do we send the Ether without specifying the function since both **receive()** and **fallback()** are not callable? The Answer is easy, we don't.&nbsp; 
     &nbsp; 
-    ```
+    ```text
     cast send -r $RPC_URL --private-key $PK $BriefADDR --value 1ether
     ```
     &nbsp; 
@@ -118,7 +118,7 @@ examples:
 
 Let's take a look at this example of code
 
-```
+```solidity
 pragma solidity ^0.8.25;
 
     contract StorageExample{
@@ -134,7 +134,7 @@ pragma solidity ^0.8.25;
 &nbsp; 
 The translation for the code above is as follows&nbsp; 
 &nbsp; 
-```
+```text
 SLOT 1| number_one (32 bytes)
 SLOT 2| number_two (4 bytes) | bytes_one (4 bytes) | address (20 bytes) | solved (1 bytes) | empty (3 bytes)
 SLOT 3| number_three (32 bytes)
@@ -163,7 +163,7 @@ So, how can we get the location for **secretPhrase**? You have to count it! Just
 - **solc**
     We can use solc to figure out the contract by providing the contract and using the **--storage-layout** command,&nbsp; 
     &nbsp; 
-    ```
+    ```text
     solc --storage-layout
     ```
     &nbsp; 
@@ -173,7 +173,7 @@ So, how can we get the location for **secretPhrase**? You have to count it! Just
 
 We are going you to do this on your own and figure out the storage slot, after you have figured out the SLOT, this command will help you to fetch that storage value&nbsp; 
 &nbsp; 
-```
+```text
 cast storage -r $RPC_URL $BriefADDR $StorageSLOT
 ```
 &nbsp; 
