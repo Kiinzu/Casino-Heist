@@ -16,9 +16,9 @@ import blackjackMarkdown from '../assets/Properties/blockchain-master-of-blackja
 import votingfrenzyMarkdown from '../assets/Properties/blockchain-voting-frenzy/text.md';
 import vvvipmemberMarkdown from '../assets/Properties/blockchain-vvvip-member/text.md';
 import injubankMarkdown from '../assets/Properties/blockchain-inju-bank/text.md';
-import executeMarkdown from '../assets/Properties/blockchain-execute/text.md';
+import silentDealerMarkdown from '../assets/Properties/blockchain-silent-dealer/text.md';
 import singularentityMarkdown from '../assets/Properties/blockchain-singular-entity/text.md';
-import erc20Markdown from '../assets/Properties/blockchain-erc20/text.md';
+import unlimitedCreditMarkdown from '../assets/Properties/blockchain-unlimited-credit-line/text.md';
 import symbolofnobleMarkdown from '../assets/Properties/blockchain-symbol-of-noble/text.md';
 import doubleordelegateMarkdown from '../assets/Properties/blockchain-double-or-delegate/text.md';
 import injusgambitMarkdown from '../assets/Properties/blockchain-injus-gambit/text.md';
@@ -35,9 +35,9 @@ import blackjackArt from '../assets/Properties/blockchain-master-of-blackjack/ar
 import votingfrenzyArt from '../assets/Properties/blockchain-voting-frenzy/art.png';
 import vvvipmemberArt from '../assets/Properties/blockchain-vvvip-member/art.png';
 import injubankArt from '../assets/Properties/blockchain-inju-bank/art.png';
-import executeArt from '../assets/Properties/blockchain-execute/art.png';
+import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.png';
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
-import erc20Art from '../assets/Properties/blockchain-erc20/art.png';
+import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
 import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
@@ -80,9 +80,9 @@ const Guide = () => {
             'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyArt],
             'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberArt],
             'blockchain-inju-bank': [injubankMarkdown, injubankArt],
-            'blockchain-execute': [executeMarkdown, executeArt],
+            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerArt],
             'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
-            'blockchain-erc20': [erc20Markdown, erc20Art],
+            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
             'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateArt],
             'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
