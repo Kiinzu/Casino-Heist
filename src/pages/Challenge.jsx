@@ -13,9 +13,9 @@ import blackjackArt from '../assets/Properties/blockchain-master-of-blackjack/ar
 import votingfrenzyArt from '../assets/Properties/blockchain-voting-frenzy/art.png';
 import vvvipmemberArt from '../assets/Properties/blockchain-vvvip-member/art.png';
 import injubankArt from '../assets/Properties/blockchain-inju-bank/art.png';
-import executeArt from '../assets/Properties/blockchain-execute/art.png';
+import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.png';
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
-import erc20Art from '../assets/Properties/blockchain-erc20/art.png';
+import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
 import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
@@ -38,9 +38,9 @@ const Challenge = () => {
     'blockchain-voting-frenzy': votingfrenzyArt,
     'blockchain-vvvip-member': vvvipmemberArt,
     'blockchain-inju-bank': injubankArt,
-    'blockchain-execute': executeArt,
+    'blockchain-silent-dealer': silentDealerArt,
     'blockchain-singular-entity': singularentityArt,
-    'blockchain-erc20': erc20Art,
+    'blockchain-unlimited-credit-line': unlimitedCreditArt,
     'blockchain-symbol-of-noble': symbolofnobleArt,
     'blockchain-double-or-delegate': doubleordelegateArt,
     'blockchain-injus-gambit': injusgambitArt,
