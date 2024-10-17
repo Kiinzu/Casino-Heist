@@ -37,7 +37,7 @@ A way of communicating in the blockchain is through transaction, we can categori
     - **msg.sender**&nbsp;  
         This variable allow a smart contract to recognize who is currently interacting with it, for example let's say we have 2 Smart Contract called **SCA** and **SCB**. When SCA send a Transaction to SCB, SCB recognize SCA as the **msg.sender**.&nbsp;  
         &nbsp;  
-    - **tx.origin**&nbsp;  
+    - *tx.origin*   
         This variable allow a smart contract to recognize the **origin** or the **initiator** of the transaction, let's see the example that use 2 Smart Contract (SCA & SCB) and an EOA **C**.&nbsp;  
         &nbsp;  
         In SCA exist a function that will send a call a function in SCB- let's call it **function callB()**, when **C** trigger the function **callB()** from Smart Contract A, SCB will be called and it will have the following value, for **msg.sender** since the current interaction is between SCA (sender) and SCB (receiver), SCA will be the **msg.sender**. As for the origin, SCA won't interact will SCB unless the function **callB** is called, the true caller or origin of the transaction is actually and EOA, **C**, thus in this case the **tx.origin** is **C**&nbsp;  

@@ -11,12 +11,13 @@ import Heist from './pages/Heist';
 import Guide from './pages/Guide';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <div>
-      <Header />
       <BrowserRouter>
+      <Header />
         <Sidebar> 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -30,10 +31,12 @@ function App() {
             {/* Signup - Login */}
             <Route path="/signup" element={<Signup />}/>
             <Route path="/login" element={<Login />}/>
+            {/* Navigate to Dashboard Upon successful Login */}
+            <Route path="/dashboard" element={<Dashboard />}/>
           </Routes>
         </Sidebar>
-      </BrowserRouter>
       <Footer />
+      </BrowserRouter>
     </div>
   );
 }

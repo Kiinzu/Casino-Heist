@@ -466,8 +466,8 @@ main {
 
 /* Challenge icons inside the box */
 .challenge-icon {
-  max-width: 60px; /* Icon width */
-  max-height: 60px; /* Icon height */
+  max-width: 100px; /* Icon width */
+  max-height: 100px; /* Icon height */
 }
 
 /* INDIVIDUAL CHALLENGE PAGES THAT RENDERED WITH HEIST COMPONENT */
@@ -608,11 +608,11 @@ main {
   white-space: pre-line;
 } */
 
-/* .react-markdown-loader em{
+.react-markdown-loader em{
   color: #ef8383;
   background-color: white;
   border-radius: 3px;
-} */
+}
 
 .react-markdown-loader h2{
   color: rgb(219, 215, 215);
@@ -652,7 +652,7 @@ main {
   justify-content: center;
   padding: 0px 20px 20px 20px;
   margin-top: 0;
-  background-color: green;
+  background-color: #1c1e22;
   position: relative;
   height: 100%;
   min-height: 100vh;
