@@ -96,7 +96,7 @@ const Challenge = () => {
                 alt={challenge.challengeName}
                 className="challenge-icon"
               />
-              {/* <p>{challenge.challengeName}</p> */}
+              <p className='challenge-tag'>{challenge.challengeTag}</p>
             </div>
           ))
         ) : (

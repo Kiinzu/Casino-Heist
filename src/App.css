@@ -411,6 +411,7 @@ main {
   max-width: 400px; /* Fill the column space */
   height: 200px; /* Adjust the height to create a rectangle shape */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -425,6 +426,7 @@ main {
   max-width: 400px; /* Fill the column space */
   height: 200px; /* Adjust the height to create a rectangle shape */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -439,12 +441,22 @@ main {
   max-width: 400px; /* Fill the column space */
   height: 200px; /* Adjust the height to create a rectangle shape */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.challenge-tag{
+  transition: transform 0.3s ease;
+  margin-top: 10px;
+  font-size: 11px;
+  padding: 4px 8px; 
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(48, 47, 47, 0.5);
+  border-radius: 5px;
+}
 
 /* Box hover effect */
 .challenge-box:hover {
@@ -452,32 +464,63 @@ main {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Box-specific hover effects */
+/* 
+  Basic Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
 .challenge-box-basic:hover {
   background-image: linear-gradient(160deg, #1b4275 0%, #16f0bd 100%);
 }
 
-/* scale challenge-icon too if the box is hovered */
 .challenge-box-basic:hover .challenge-icon {
   transform: scale(1.2); /* Zoom effect on icon */
 }
+
+.challenge-box-basic:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 
+  Common Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
 
 .challenge-box-common:hover {
   background-image: linear-gradient(160deg, #1b4275 0%, #865df5 100%);
 }
 
-/* scale challenge-icon too if the box is hovered */
 .challenge-box-common:hover .challenge-icon {
   transform: scale(1.2); /* Zoom effect on icon */
 }
+
+.challenge-box-common:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 
+  VIP Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
 
 .challenge-box-vip:hover {
   background-image: linear-gradient(160deg, #1b4275 0%, #f4df76 100%);
 }
 
-/* scale challenge-icon too if the box is hovered */
 .challenge-box-vip:hover .challenge-icon {
   transform: scale(1.2); /* Zoom effect on icon */
+}
+
+.challenge-box-vip:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Challenge icon */
@@ -780,4 +823,246 @@ main {
 
 .logout-button:hover {
   background-color: #d32f2f;
+}
+
+/* WALKTHROUGH CSS*/
+/* Walkthrough Container */
+.walkthrough-container {
+  padding: 20px 80px; /* top/bottom left/right*/
+  background-color: #1c1e22;
+  color: white;
+  text-align: center;
+  height: auto;
+  min-height: 100%;
+  margin-bottom: 120px;
+}
+
+/* Walkthrough Grid Layout */
+.walkthrough-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) ; /* 3 columns per row */
+  row-gap: 25px; /* Space between grid items */
+  column-gap: 25px;
+  justify-items: center;
+  min-width: auto;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Heading of challenge container */
+.walkthrough-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 120px;
+  margin-top: 80px;
+}
+
+/* Walkthrough Box Styling */
+.walkthrough-box {
+  position: relative;
+  background-color: #865df5;
+  background-image: linear-gradient(160deg, #865df5 0%, #1b4275 99%, #ffffff 100%);  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Walkthrough Icon Styling */
+.walkthrough-icon {
+  max-width: 100px;
+  max-height: 100px;
+  transition: transform 0.3s ease;
+}
+
+/* Walkthrough Corner Icon */
+.walkthrough-corner-icon {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 45px;
+  height: 40px;
+  filter: invert(0.8) brightness(0.8);
+  transition: transform 0.7s ease;
+}
+
+/* Hover Effect on Walkthrough Box */
+.walkthrough-box:hover {
+  background-image: linear-gradient(160deg, #6138d2 0%, #3c6cab 85%, #ffffff 100%);
+}
+
+.walkthrough-box:hover .walkthrough-corner-icon{
+  transform: scale(1.2) rotateY(360deg);
+  filter: invert(1);
+}
+
+.walkthrough-box:hover .walkthrough-icon{
+  transform: scale(1.2);
+}
+
+/* PROFILE CSS */
+/* Profile Container: Full page with proper layout control */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Push content to the top */
+  background-color: #2c2c2c;
+  min-height: 100vh; /* Full height of the screen */
+  padding: 20px;
+  color: #d2b48c;
+  width: 100%;
+  min-width: auto;
+  max-width: 18
+  00px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+}
+
+/* Header Section: Adjust to ensure it stays inside the container */
+.profile-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 90%;
+  max-width: 600px;
+  padding-top: 100px; /* Extra space for the avatar */
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  box-sizing: border-box;
+}
+
+/* Avatar Wrapper: Centered within the header */
+.profile-avatar-wrapper {
+  position: absolute;
+  top: -75px; /* Adjusted to sit at the top of the header */
+  left: 50%; /* Center horizontally within the header */
+  transform: translateX(-50%); /* Adjust to perfect center */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circle avatar */
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Avatar Image: Centered inside the wrapper */
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* background-color: black; */
+  filter: invert(1) brightness(2);
+}
+
+/* Edit Button: Positioned within the avatar */
+.profile-avatar-edit {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(230, 208, 84);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+  z-index: 9999;
+  /* border: 3px dotted black; */
+}
+
+.profile-avatar-edit img{
+  width: 25px;
+  height: 25px;
+  position: flex;
+  margin-left: 6px;
+  margin-top: 5px;
+  transition: transform 0.5s ease;
+}
+
+.profile-avatar-edit:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.profile-avatar-edit:hover img{
+  transform: scale(1.1) rotateY(360deg); /* Slight zoom effect */
+}
+
+/* Avatar Selector positioned above the header */
+.profile-avatar-selector {
+  position: absolute;
+  bottom: 90%; /* Position it above the header */
+  left: 80%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust for perfect centering */
+  display: grid;
+  grid-template-columns: repeat(4, 40px); /* 4 columns of 50px */
+  gap: 2px; /* Space between avatars */
+  background-color: #a67c52; /* Background to match the design */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Avatar options */
+.profile-avatar-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Zoom effect on hover */
+.profile-avatar-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* White Box Section (Info Box) */
+/* INFO ON HOW MANY CHALLENGE IS SOLVED USING WHAT */
+.profile-white-box {
+  background-color: white;
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  margin-top: 40px; /* Ensure it stays below the header */
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+/* Table Inside the Info Box */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.profile-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.profile-table td {
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  font-weight: bold;
 }

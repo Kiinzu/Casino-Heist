@@ -43,7 +43,7 @@ const Header = () => {
   }, [location]); // Run this effect whenever the location changes
 
   const handleProfileClick = () => {
-    navigate('/dashboard'); // Redirect to the dashboard on profile click
+    navigate('/profile'); // Redirect to the profile on click
   };
 
   const handleLogout = () => {

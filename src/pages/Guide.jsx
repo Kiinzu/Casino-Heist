@@ -5,25 +5,21 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Pr
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
 import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
 
-// Import all markdown files explicitly
-import briefingMarkdown from '../assets/Properties/blockchain-briefing/text.md';
-import gearingupMarkdown from '../assets/Properties/blockchain-gearing-up/text.md';
-import cheapglitchMarkdown from '../assets/Properties/blockchain-cheap-glitch/text.md';
-import entrypointMarkdown from '../assets/Properties/blockchain-entry-point/text.md';
-import barMarkdown from '../assets/Properties/blockchain-bar/text.md';
-import rouletteMarkdown from '../assets/Properties/blockchain-roulette/text.md';
-import blackjackMarkdown from '../assets/Properties/blockchain-master-of-blackjack/text.md';
-import votingfrenzyMarkdown from '../assets/Properties/blockchain-voting-frenzy/text.md';
-import vvvipmemberMarkdown from '../assets/Properties/blockchain-vvvip-member/text.md';
-import injubankMarkdown from '../assets/Properties/blockchain-inju-bank/text.md';
-import silentDealerMarkdown from '../assets/Properties/blockchain-silent-dealer/text.md';
-import singularentityMarkdown from '../assets/Properties/blockchain-singular-entity/text.md';
-import unlimitedCreditMarkdown from '../assets/Properties/blockchain-unlimited-credit-line/text.md';
-import symbolofnobleMarkdown from '../assets/Properties/blockchain-symbol-of-noble/text.md';
-import doubleordelegateMarkdown from '../assets/Properties/blockchain-double-or-delegate/text.md';
-import injusgambitMarkdown from '../assets/Properties/blockchain-injus-gambit/text.md';
-import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-bankbuster/text.md';
-import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
+// Import all walkthrough
+import cheapglitchWalkthrough from '../assets/Properties/blockchain-cheap-glitch/walkthrough.md';
+import entrypointWalkthrough from '../assets/Properties/blockchain-entry-point/walkthrough.md';
+import barWalkthrough from '../assets/Properties/blockchain-bar/walkthrough.md';
+import rouletteWalkthrough from '../assets/Properties/blockchain-roulette/walkthrough.md';
+import blackjackWalkthrough from '../assets/Properties/blockchain-master-of-blackjack/walkthrough.md';
+import votingfrenzyWalkthrough from '../assets/Properties/blockchain-voting-frenzy/walkthrough.md';
+import vvvipmemberWalkthrough from '../assets/Properties/blockchain-vvvip-member/walkthrough.md';
+import injubankWalkthrough from '../assets/Properties/blockchain-inju-bank/walkthrough.md';
+import silentDealerWalkthrough from '../assets/Properties/blockchain-silent-dealer/walkthrough.md';
+import singularentityWalkthrough from '../assets/Properties/blockchain-singular-entity/walkthrough.md';
+import unlimitedCreditWalkthrough from '../assets/Properties/blockchain-unlimited-credit-line/walkthrough.md';
+import symbolofnobleWalkthrough from '../assets/Properties/blockchain-symbol-of-noble/walkthrough.md';
+import doubleordelegateWalkthrough from '../assets/Properties/blockchain-double-or-delegate/walkthrough.md';
+
 
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
 import gearingupArt from '../assets/Properties/blockchain-gearing-up/art.png';
@@ -70,24 +66,24 @@ const Guide = () => {
           setData(selectedChallenge); // Store the challenge data
           // Map challenge codes to the corresponding markdown file
           const markdownMap = {
-            'blockchain-briefing': [briefingMarkdown, briefingArt],
-            'blockchain-gearing-up': [gearingupMarkdown, gearingupArt],
-            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchArt],
-            'blockchain-entry-point': [entrypointMarkdown, entrypointArt],
-            'blockchain-bar': [barMarkdown, barArt],
-            'blockchain-roulette': [rouletteMarkdown, rouletteArt],
-            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackArt],
-            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyArt],
-            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberArt],
-            'blockchain-inju-bank': [injubankMarkdown, injubankArt],
-            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerArt],
-            'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
-            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
-            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
-            'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateArt],
-            'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
-            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, casinobankbusterArt],
-            'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
+            'blockchain-briefing': [briefingWalkthrough, briefingArt],
+            'blockchain-gearing-up': [gearingupWalkthrough, gearingupArt],
+            'blockchain-cheap-glitch': [cheapglitchWalkthrough, cheapglitchArt],
+            'blockchain-entry-point': [entrypointWalkthrough, entrypointArt],
+            'blockchain-bar': [barWalkthrough, barArt],
+            'blockchain-roulette': [rouletteWalkthrough, rouletteArt],
+            'blockchain-master-of-blackjack': [blackjackWalkthrough, blackjackArt],
+            'blockchain-voting-frenzy': [votingfrenzyWalkthrough, votingfrenzyArt],
+            'blockchain-vvvip-member': [vvvipmemberWalkthrough, vvvipmemberArt],
+            'blockchain-inju-bank': [injubankWalkthrough, injubankArt],
+            'blockchain-silent-dealer': [silentDealerWalkthrough, silentDealerArt],
+            'blockchain-singular-entity': [singularentityWalkthrough, singularentityArt],
+            'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
+            'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
+            'blockchain-double-or-delegate': [doubleordelegateWalkthrough, doubleordelegateArt],
+            'blockchain-injus-gambit': [injusgambitWalkthrough, injusgambitArt],
+            'blockchain-casino-bankbuster': [casinobankbusterWalkthrough, casinobankbusterArt],
+            'blockchain-executive-problems': [executiveproblemsWalkthrough, executiveproblemsArt],
           };
 
           // Set the markdown content for the selected challenge

@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Pr
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
 import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
 
-// Import all markdown files explicitly
+// Import all markdown files 
 import briefingMarkdown from '../assets/Properties/blockchain-briefing/text.md';
 import gearingupMarkdown from '../assets/Properties/blockchain-gearing-up/text.md';
 import cheapglitchMarkdown from '../assets/Properties/blockchain-cheap-glitch/text.md';
@@ -25,6 +25,22 @@ import injusgambitMarkdown from '../assets/Properties/blockchain-injus-gambit/te
 import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-bankbuster/text.md';
 import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
 
+// import all mitigation files
+import cheapglitchMitigation from '../assets/Properties/blockchain-cheap-glitch/mitigation.md';
+import entrypointMitigation from '../assets/Properties/blockchain-entry-point/mitigation.md';
+import barMitigation from '../assets/Properties/blockchain-bar/mitigation.md';
+import rouletteMitigation from '../assets/Properties/blockchain-roulette/mitigation.md';
+import blackjackMitigation from '../assets/Properties/blockchain-master-of-blackjack/mitigation.md';
+import votingfrenzyMitigation from '../assets/Properties/blockchain-voting-frenzy/mitigation.md';
+import vvvipmemberMitigation from '../assets/Properties/blockchain-vvvip-member/mitigation.md';
+import injubankMitigation from '../assets/Properties/blockchain-inju-bank/mitigation.md';
+import silentDealerMitigation from '../assets/Properties/blockchain-silent-dealer/mitigation.md';
+import singularentityMitigation from '../assets/Properties/blockchain-singular-entity/mitigation.md';
+import unlimitedCreditMitigation from '../assets/Properties/blockchain-unlimited-credit-line/mitigation.md';
+import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-noble/mitigation.md';
+import doubleordelegateMitigation from '../assets/Properties/blockchain-double-or-delegate/mitigation.md';
+
+// import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
 import gearingupArt from '../assets/Properties/blockchain-gearing-up/art.png';
 import cheapglitchArt from '../assets/Properties/blockchain-cheap-glitch/art.png';
@@ -45,20 +61,16 @@ import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbust
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
 
 const Heist = () => {
-  const { challengeCode } = useParams(); // Get the challengeCode from the URL
-  const [post, setPost] = useState(''); // State to store the markdown content
+  const { challengeCode } = useParams();
+  const [tag, setTag] = useState('');
+  const [post, setPost] = useState('');
+  const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
-  const [data, setData] = useState(null); // State to store challenge data
+  const [data, setData] = useState(null);
 
-  // Fetch the challenge data from the server and filter the appropriate challenge
   useEffect(() => {
     fetch('http://127.0.0.1:5000/Challenge')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not OK');
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((challenges) => {
         const selectedChallenge = challenges.find(
           (challenge) => challenge.challengeCode === challengeCode
@@ -68,36 +80,33 @@ const Heist = () => {
           setData(selectedChallenge);
 
           const markdownMap = {
-            'blockchain-briefing': [briefingMarkdown, briefingArt],
-            'blockchain-gearing-up': [gearingupMarkdown, gearingupArt],
-            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchArt],
-            'blockchain-entry-point': [entrypointMarkdown, entrypointArt],
-            'blockchain-bar': [barMarkdown, barArt],
-            'blockchain-roulette': [rouletteMarkdown, rouletteArt],
-            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackArt],
-            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyArt],
-            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberArt],
-            'blockchain-inju-bank': [injubankMarkdown, injubankArt],
-            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerArt],
-            'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
-            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
-            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
-            'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateArt],
-            'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
-            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, casinobankbusterArt],
-            'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
+            'blockchain-briefing': [briefingMarkdown, '', briefingArt],
+            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt],
+            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt],
+            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt],
+            'blockchain-bar': [barMarkdown, barMitigation, barArt],
+            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt],
+            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt],
+            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt],
+            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt],
+            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt],
+            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt],
+            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt],
+            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt],
+            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt],
+            'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateMitigation, doubleordelegateArt],
+            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt],
+            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt],
+            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt],
           };
 
-          if (challengeCode in markdownMap) {
-            const [markdown, art] = markdownMap[challengeCode];
-            setPost(markdown);
-            setImage(art);
-          }
-        } else {
-          console.error('Challenge data not found');
+          const [story, mitigation, art] = markdownMap[challengeCode] || [];
+          setPost(story);
+          setMitigation(mitigation);
+          setImage(art);
         }
       })
-      .catch((error) => console.error('Error fetching challenges:', error));
+      .catch(console.error);
   }, [challengeCode]);
 
   const renderBoxes = () => {
@@ -149,27 +158,22 @@ const Heist = () => {
         <div className="heist-code-block">
           <code>// Code block content goes here...</code>
         </div>
-        <button className="heist-copy-button">Copy Code</button>
       </div>
     );
 
     const mitigationBox = (
       <div className="heist-code-container" key="mitigation">
         <h2>Mitigation</h2>
-        <div className="heist-code-block">
-          <code>// Mitigation content goes here...</code>
-        </div>
+        <ReactMarkdown children={mitigation} remarkPlugins={[remarkGfm]} />
       </div>
     );
 
-    // Render boxes based on challenge difficulty
     switch (challengeDifficulty) {
       case 'basic':
+      case 'vip':
         return [storyBox, codeBox];
       case 'common':
         return [storyBox, codeBox, mitigationBox];
-      case 'vip':
-        return [storyBox, codeBox];
       default:
         return [];
     }
@@ -187,3 +191,148 @@ const Heist = () => {
 };
 
 export default Heist;
+
+
+// const Heist = () => {
+//   const { challengeCode } = useParams(); // Get the challengeCode from the URL
+//   const [post, setPost] = useState(''); // State to store the markdown content
+//   const [image, setImage] = useState('');
+//   const [data, setData] = useState(null); // State to store challenge data
+
+//   // Fetch the challenge data from the server and filter the appropriate challenge
+//   useEffect(() => {
+//     fetch('http://127.0.0.1:5000/Challenge')
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error('Network response was not OK');
+//         }
+//         return response.json();
+//       })
+//       .then((challenges) => {
+//         const selectedChallenge = challenges.find(
+//           (challenge) => challenge.challengeCode === challengeCode
+//         );
+
+//         if (selectedChallenge) {
+//           setData(selectedChallenge);
+
+//           const markdownMap = {
+//             'blockchain-briefing': [briefingMarkdown, briefingArt],
+//             'blockchain-gearing-up': [gearingupMarkdown, gearingupArt],
+//             'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchArt],
+//             'blockchain-entry-point': [entrypointMarkdown, entrypointArt],
+//             'blockchain-bar': [barMarkdown, barArt],
+//             'blockchain-roulette': [rouletteMarkdown, rouletteArt],
+//             'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackArt],
+//             'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyArt],
+//             'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberArt],
+//             'blockchain-inju-bank': [injubankMarkdown, injubankArt],
+//             'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerArt],
+//             'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
+//             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
+//             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
+//             'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateArt],
+//             'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
+//             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, casinobankbusterArt],
+//             'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
+//           };
+
+//           if (challengeCode in markdownMap) {
+//             const [markdown, art] = markdownMap[challengeCode];
+//             setPost(markdown);
+//             setImage(art);
+//           }
+//         } else {
+//           console.error('Challenge data not found');
+//         }
+//       })
+//       .catch((error) => console.error('Error fetching challenges:', error));
+//   }, [challengeCode]);
+
+//   const renderBoxes = () => {
+//     if (!data) return null;
+
+//     const { challengeDifficulty } = data;
+
+//     const storyBox = (
+//       <div className="heist-description-container" key="story">
+//         <h2>Story</h2>
+//         <ReactMarkdown
+//           children={post}
+//           remarkPlugins={[remarkGfm]}
+//           components={{
+//             code({ node, inline, className, children, ...props }) {
+//               if (inline) {
+//                 return (
+//                   <code className="react-markdown-inline-code" {...props}>
+//                     {children}
+//                   </code>
+//                 );
+//               } else {
+//                 const match = /language-(\w+)/.exec(className || '');
+//                 return match ? (
+//                   <SyntaxHighlighter
+//                     style={vscDarkPlus}
+//                     language={match[1]}
+//                     PreTag="div"
+//                     {...props}
+//                   >
+//                     {String(children).replace(/\n$/, '')}
+//                   </SyntaxHighlighter>
+//                 ) : (
+//                   <code className={className} {...props}>
+//                     {children}
+//                   </code>
+//                 );
+//               }
+//             },
+//           }}
+//           className="react-markdown-loader"
+//         />
+//       </div>
+//     );
+
+//     const codeBox = (
+//       <div className="heist-code-container" key="code">
+//         <h2>Code</h2>
+//         <div className="heist-code-block">
+//           <code>// Code block content goes here...</code>
+//         </div>
+//         <button className="heist-copy-button">Copy Code</button>
+//       </div>
+//     );
+
+//     const mitigationBox = (
+//       <div className="heist-code-container" key="mitigation">
+//         <h2>Mitigation</h2>
+//         <div className="heist-code-block">
+//           <code>// Mitigation content goes here...</code>
+//         </div>
+//       </div>
+//     );
+
+//     // Render boxes based on challenge difficulty
+//     switch (challengeDifficulty) {
+//       case 'basic':
+//         return [storyBox, codeBox];
+//       case 'common':
+//         return [storyBox, codeBox, mitigationBox];
+//       case 'vip':
+//         return [storyBox, codeBox];
+//       default:
+//         return [];
+//     }
+//   };
+
+//   return (
+//     <div className="heist-container">
+//       {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
+//       <div className="heist-challenge-image">
+//         <img src={image} alt="Challenge" />
+//       </div>
+//       {renderBoxes()}
+//     </div>
+//   );
+// };
+
+// export default Heist;
