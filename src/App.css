@@ -765,3 +765,19 @@ main {
 .signup-footer .login-link:hover {
   text-decoration: underline;
 }
+
+/* DASHBOARD FOR PROFILE */
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}

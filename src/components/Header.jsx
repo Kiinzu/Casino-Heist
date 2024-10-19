@@ -46,6 +46,12 @@ const Header = () => {
     navigate('/dashboard'); // Redirect to the dashboard on profile click
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from localStorage
+    setIsLoggedIn(false); // Update login state
+    navigate('/'); // Redirect to home or login page
+  };
+
   return (
     <header className="header-container">
       <div className="logo-section">
@@ -53,9 +59,14 @@ const Header = () => {
       </div>
       <div className="auth-buttons">
         {isLoggedIn ? (
-          <button className="profile-btn" onClick={handleProfileClick}>
-            Profile
-          </button>
+          <>
+            <button className="profile-btn" onClick={handleProfileClick}>
+              Profile
+            </button>
+            {/* <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button> */}
+          </>
         ) : (
           <>
             <a href="/login">
