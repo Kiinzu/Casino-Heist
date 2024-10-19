@@ -13,6 +13,7 @@ NOTE: You may name the folder however you like!
 
 after running the command now you'd have a folder structure as such
 ```text
+heist-exploit
 ├── README.md
 ├── foundry.toml
 ├── lib
