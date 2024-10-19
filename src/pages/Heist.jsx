@@ -58,17 +58,15 @@ const Heist = () => {
           throw new Error('Network response was not OK');
         }
         return response.json();
-        console.log(response.json);
       })
       .then((challenges) => {
-        // Find the specific challenge based on the challengeCode
         const selectedChallenge = challenges.find(
           (challenge) => challenge.challengeCode === challengeCode
         );
 
         if (selectedChallenge) {
-          setData(selectedChallenge); // Store the challenge data
-          // Map challenge codes to the corresponding markdown file
+          setData(selectedChallenge);
+
           const markdownMap = {
             'blockchain-briefing': [briefingMarkdown, briefingArt],
             'blockchain-gearing-up': [gearingupMarkdown, gearingupArt],
@@ -90,91 +88,100 @@ const Heist = () => {
             'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
           };
 
-          // Set the markdown content for the selected challenge
           if (challengeCode in markdownMap) {
-            const [markdown, art] = markdownMap[challengeCode]
+            const [markdown, art] = markdownMap[challengeCode];
             setPost(markdown);
-            setImage(art)
-          } else {
-            console.error('Markdown file not found for challengeCode:', challengeCode);
+            setImage(art);
           }
         } else {
-          console.error('Challenge data not found for challengeCode:', challengeCode);
+          console.error('Challenge data not found');
         }
       })
       .catch((error) => console.error('Error fetching challenges:', error));
   }, [challengeCode]);
 
+  const renderBoxes = () => {
+    if (!data) return null;
+
+    const { challengeDifficulty } = data;
+
+    const storyBox = (
+      <div className="heist-description-container" key="story">
+        <h2>Story</h2>
+        <ReactMarkdown
+          children={post}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              if (inline) {
+                return (
+                  <code className="react-markdown-inline-code" {...props}>
+                    {children}
+                  </code>
+                );
+              } else {
+                const match = /language-(\w+)/.exec(className || '');
+                return match ? (
+                  <SyntaxHighlighter
+                    style={vscDarkPlus}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, '')}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              }
+            },
+          }}
+          className="react-markdown-loader"
+        />
+      </div>
+    );
+
+    const codeBox = (
+      <div className="heist-code-container" key="code">
+        <h2>Code</h2>
+        <div className="heist-code-block">
+          <code>// Code block content goes here...</code>
+        </div>
+        <button className="heist-copy-button">Copy Code</button>
+      </div>
+    );
+
+    const mitigationBox = (
+      <div className="heist-code-container" key="mitigation">
+        <h2>Mitigation</h2>
+        <div className="heist-code-block">
+          <code>// Mitigation content goes here...</code>
+        </div>
+      </div>
+    );
+
+    // Render boxes based on challenge difficulty
+    switch (challengeDifficulty) {
+      case 'basic':
+        return [storyBox, codeBox];
+      case 'common':
+        return [storyBox, codeBox, mitigationBox];
+      case 'vip':
+        return [storyBox, codeBox];
+      default:
+        return [];
+    }
+  };
+
   return (
     <div className="heist-container">
-        {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
-
-        <div className="heist-challenge-image">
-          <img src={image} alt="Challenge" />
-        </div>
-
-        <div className="heist-description-container">
-          <h2>Story</h2>
-          {data ? (
-            <>
-              {/* ReactMarkdown with Syntax Highlighting for Code Blocks */}
-              <ReactMarkdown
-                children={post}
-                remarkPlugins={[remarkGfm]} // Enables GitHub-flavored markdown
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    // Check if it's an inline code or a code block
-                    if (inline) {
-                      return (
-                        <code className="react-markdown-inline-code" {...props}>
-                          {children}
-                        </code>
-                      );
-                    } else {
-                      const match = /language-(\w+)/.exec(className || '');
-                      return match ? (
-                        <SyntaxHighlighter
-                          style={vscDarkPlus} // Use the theme of your choice
-                          language={match[1]}
-                          PreTag="div"
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
-                      ) : (
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      );
-                    }
-                  }
-                }}
-                className="react-markdown-loader"
-              />
-            </>
-          ) : (
-            <p>Loading challenge details...</p>
-          )}
-        </div>
-
-        <div className="heist-code-container">
-          <h2>Code</h2>
-          <div className="heist-code-block">
-            <code>
-              // Code block content goes here...
-            </code>
-          </div>
-          <button className="heist-copy-button">Copy Code</button>
-        </div>
-
-        <div className="heist-code-container">
-          <h2>Code</h2>
-          <div className="heist-code-block">
-            <code>
-              // Code block content goes here...
-            </code>
-          </div>
-        </div>
+      {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
+      <div className="heist-challenge-image">
+        <img src={image} alt="Challenge" />
+      </div>
+      {renderBoxes()}
     </div>
   );
 };
