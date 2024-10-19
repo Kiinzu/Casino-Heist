@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // If you need navigation
+import { useNavigate } from 'react-router-dom'; // For navigation
 import '../App.css'; // Import your CSS
 
 // Import preloaded avatar images
@@ -11,17 +11,49 @@ import avatar5 from '../assets/images/discord-logo.png';
 import avatar6 from '../assets/images/discord-logo.png';
 import avatar7 from '../assets/images/discord-logo.png';
 import avatar8 from '../assets/images/discord-logo.png';
-import changeAvatar from "../assets/images/profile-change.png";
+import changeAvatar from '../assets/images/profile-change.png';
 
 const Profile = () => {
     const [profileImage, setProfileImage] = useState(avatar1); // Default avatar image
     const [showSelector, setShowSelector] = useState(false); // Toggle avatar selection
     const [challenges, setChallenges] = useState([]); // Store challenge data
+    const [loading, setLoading] = useState(true); // Track loading state
     const selectorRef = useRef(null); // Ref to detect clicks outside the selector
+    const navigate = useNavigate(); // Initialize navigate for redirection
 
-    const avatarOptions = [
-        avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8
-    ];
+    const avatarOptions = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
+
+    // Check if the token exists and validate it with the backend
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login'); // Redirect to login if no token found
+            return;
+        }
+
+        fetch('http://127.0.0.1:5000/validate-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Token validation failed');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log('Token is valid:', data);
+                setLoading(false); // Stop loading if token is valid
+            })
+            .catch((error) => {
+                console.error('Error validating token:', error);
+                localStorage.removeItem('token'); // Clear invalid token
+                navigate('/login'); // Redirect to login
+            });
+    }, [navigate]);
 
     // Fetch challenges from the backend
     useEffect(() => {
@@ -70,6 +102,10 @@ const Profile = () => {
                 return 'UNKNOWN STATUS';
         }
     };
+
+    if (loading) {
+        return <div>Loading...</div>; // Display loading indicator while validating token
+    }
 
     return (
         <div className="profile-container">
