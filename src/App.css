@@ -42,6 +42,32 @@
   padding:0;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #3a373e #2d2d2d; /* Thumb and track colors */
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 1px; /* Thin scrollbar */
+  height: 1px; /* Thin horizontal scrollbar */
+}
+
+/* Track (scrollbar background) */
+*::-webkit-scrollbar-track {
+  background: #2d2d2d; /* Dark track background */
+  border-radius: 10px; /* Rounded track corners */
+}
+
+/* Thumb (draggable part) */
+*::-webkit-scrollbar-thumb {
+  background-color: #ff4d4d; /* Bright red thumb */
+  border-radius: 10px; /* Rounded thumb corners */
+  border: 2px solid #2d2d2d; /* Adds space between thumb and track */
+}
+
+/* Hover effect */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #ff6666; /* Lighter red on hover */
 }
 
 /* SIDEBAR */
@@ -544,6 +570,7 @@ main {
   min-height: 100ch;
   background-color: rgb(41, 40, 40);
   padding: 80px 20px 20px 20px;
+  background-image: url("./assets/images/background.jpg");
 }
 
 .heist-challenge-image {
@@ -637,33 +664,6 @@ main {
   background-color: #e85555;
 }
 
-/* SPECIAL CLASSES */
-
-.message-box {
-  position: absolute;
-  top: 20px;
-  width: 80%;
-  max-width: 400px;
-  background-color: white;
-  /* margin-top: 5%; */
-  padding: 15px 20px 20px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
-  text-align: center;
-  z-index: 1000;
-}
-
-.message-box.success {
-  border-left: 6px solid green;
-  color: #155724;
-}
-
-.message-box.error {
-  border-left: 6px solid red;
-  color: #721c24;
-}
-
 /* .react-markdown-loader p code{
   white-space: pre-line;
 } */
@@ -686,6 +686,110 @@ main {
   padding: 2px 4px;
   border-radius: 4px;
   font-size: 0.95em;
+}
+
+.heist-code-container {
+  /* background-color: #8b5e3c; */
+  /* padding: 20px; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: flex-end;
+  gap: 20px;
+}
+.heist-code-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-height: 150px;
+}
+
+.heist-description {
+  background-color: #232326;
+  flex-grow: 1;
+  min-width: 830px;
+  min-height: 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.heist-download {
+  background-color: #232326;
+  width: 150px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+  border-radius: 6px;
+}
+
+.heist-download img{
+  filter: invert(1) brightness(2);
+  max-width: 100%;
+  max-height: 100px;
+  height: 100%;
+}
+
+.heist-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+}
+
+.heist-input-flag {
+  flex-grow: 1;
+  background-color: #232326;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  min-width: 600px;
+  min-height: 35px;
+}
+
+.heist-input-flag::placeholder{
+  color: #ffffff; /* Placeholder text color */
+  font-style: italic; /* Italicize placeholder text */
+  font-size: 16px; /* Font size for placeholder */
+  opacity: 0.7;}
+
+.heist-submit-button {
+  background-color: #232326;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 200px;
+  min-height: 55px;
+}
+
+.heist-submit-button p {
+  color: rgb(255, 255, 255);
+}
+
+.heist-hints {
+  display: flex;
+  gap: 5px;
+  background-color: #232326;
+  padding: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+}
+
+.heist-hint-box {
+  width: 35px;
+  height: 35px;
+  background-color: #865df5;
+  border: 2px solid #865df5 ;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* SIGNUP PAGE */
@@ -1065,4 +1169,31 @@ main {
   border-bottom: 1px solid #ccc;
   color: #000;
   font-weight: bold;
+}
+
+/* SPECIAL CLASSES */
+
+.message-box {
+  position: absolute;
+  top: 20px;
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  /* margin-top: 5%; */
+  padding: 15px 20px 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+}
+
+.message-box.success {
+  border-left: 6px solid green;
+  color: #155724;
+}
+
+.message-box.error {
+  border-left: 6px solid red;
+  color: #721c24;
 }

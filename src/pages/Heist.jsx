@@ -60,6 +60,10 @@ import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png
 import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
 
+// Needed Logos
+import downloadLogo from "../assets/images/download.png";
+import backgroundImage from "../assets/images/background.jpg";
+
 const Heist = () => {
   const { challengeCode } = useParams();
   const [tag, setTag] = useState('');
@@ -67,6 +71,45 @@ const Heist = () => {
   const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
+  const [flag, setFlag] = useState('');
+
+  const handleDownload = () => {
+    const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'file.txt'; // Name of the file to be downloaded
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleHintClick = async (hintNumber) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/hint/${hintNumber}`, {
+        method: 'GET',
+      });
+      const result = await response.json();
+      alert(`Hint ${hintNumber}: ${result.message}`); // Display the hint in an alert or update UI
+    } catch (error) {
+      console.error('Error fetching hint:', error);
+    }
+  };
+
+  const handleFlagSubmit = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/verifyFlag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ flag }),
+      });
+      const result = await response.json();
+      alert(result.message); // Handle response (success/failure) as needed
+    } catch (error) {
+      console.error('Error submitting flag:', error);
+    }
+  };
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/Challenge')
@@ -155,11 +198,39 @@ const Heist = () => {
     const codeBox = (
       <div className="heist-code-container" key="code">
         <h2>Code</h2>
-        <div className="heist-code-block">
-          <code>// Code block content goes here...</code>
+        <div className="heist-code-content">
+          <div className="heist-description">
+            <p>// Code block content or description goes here...</p>
+          </div>
+          <div className="heist-download" onClick={handleDownload}>
+            <img src={downloadLogo} alt="Download" />
+            <p>Download</p>
+          </div>
+        </div>
+        <div className="heist-input-container">
+          <input
+            type="text"
+            className="heist-input-flag"
+            placeholder="heist here!"
+            value={flag}
+            onChange={(e) => setFlag(e.target.value)}
+          />
+          <button className="heist-submit-button" onClick={handleFlagSubmit}>
+            <p>Submit Flag</p>
+          </button>
+          <div className="heist-hints">
+            {[1, 2, 3].map((hint) => (
+              <div
+                key={hint}
+                className="heist-hint-box"
+                onClick={() => handleHintClick(hint)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
+    
 
     const mitigationBox = (
       <div className="heist-code-container" key="mitigation">

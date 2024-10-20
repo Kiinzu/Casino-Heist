@@ -46,10 +46,30 @@ const Header = () => {
     navigate('/profile'); // Redirect to the profile on click
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove token from localStorage
-    setIsLoggedIn(false); // Update login state
-    navigate('/'); // Redirect to home or login page
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  
+    try {
+      const response = await fetch('http://127.0.0.1:5000/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+  
+      if (response.ok) {
+        console.log('Logged out successfully');
+      } else {
+        console.error('Failed to log out:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    } finally {
+      localStorage.removeItem('token');
+      setIsLoggedIn(false); // Update login state
+      navigate('/'); // Redirect to home or login page
+    }
   };
 
   return (
@@ -63,9 +83,9 @@ const Header = () => {
             <button className="profile-btn" onClick={handleProfileClick}>
               Profile
             </button>
-            {/* <button className="logout-btn" onClick={handleLogout}>
+            <button className="logout-btn" onClick={handleLogout}>
               Logout
-            </button> */}
+            </button>
           </>
         ) : (
           <>

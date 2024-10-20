@@ -11,7 +11,7 @@ import avatar5 from '../assets/images/discord-logo.png';
 import avatar6 from '../assets/images/discord-logo.png';
 import avatar7 from '../assets/images/discord-logo.png';
 import avatar8 from '../assets/images/discord-logo.png';
-import changeAvatar from '../assets/images/profile-change.png';
+import changeAvatar from '../assets/images/change-profile.png';
 
 const Profile = () => {
     const [profileImage, setProfileImage] = useState(avatar1); // Default avatar image

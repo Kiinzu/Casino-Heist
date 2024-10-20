@@ -1,1 +1,3 @@
+At Inju Casino, wealth wasn’t just admired—it was the only key to the inner circle, a private enclave reserved for the richest of the rich, known as the Capitol Club. Membership required not only vast fortune but also impeccable status—at least, that’s what everyone thought. Unbeknownst to the elites, a cunning individual discovered a **Cheap Glitch**—an unwanted guest in the capitol’s smart contracts. With precision manipulation of the system, they inflated their balance beyond recognition. Before anyone could notice, the glitch-wielder stood among the most powerful members, sipping champagne and exchanging glances with billionaires, a wolf disguised in golden silk.
+
 # THIS IS JUST A PLACE HOLDER
