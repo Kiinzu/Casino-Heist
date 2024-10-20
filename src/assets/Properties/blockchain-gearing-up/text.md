@@ -159,7 +159,7 @@ as usual, the first check always check whether the `msg.sender` is an EOA or not
     While making your constructor payable only give the contract ability to receive Ether upon deployment, adding `receive()` or `fallback()` allow your contract to be receive Ether at any given moment. However we need to understand the difference between them
 
     ```text
-                 send Ether
+                                send Ether
                     |
             msg.data is empty?
                /          \

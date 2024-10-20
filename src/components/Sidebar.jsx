@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import homeIcon from '../assets/images/home.png';
 import challengeIcon from '../assets/images/challenge.png';
 import walkthroughIcon from '../assets/images/walkthrough.png';
-import settingIcon from '../assets/images/setting.png';
+import profileIcon from '../assets/images/profile.png';
 
 const Sidebar = ({children}) => {
     const menuItem = [
@@ -24,14 +24,14 @@ const Sidebar = ({children}) => {
             icon: walkthroughIcon
         },
         {
-            path:"/setting",
-            name:"setting",
-            icon: settingIcon
+            path:"/profile",
+            name:"profile",
+            icon: profileIcon
         }
     ];
 
     return (
-        <div className="container">
+        <div className="sidebar-container">
             <div className="sidebar">
                 {menuItem.map((item, index) => (
                     <NavLink 

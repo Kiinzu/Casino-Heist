@@ -71,7 +71,7 @@
 }
 
 /* SIDEBAR */
-.container {
+.sidebar-container {
   display: flex;
 }
 
@@ -96,14 +96,15 @@ main {
   gap: 15px;
   align-items: center;
   transition: all 0.5s;
-  margin-top: 15px;
+  /* margin-top: 5px; */
 }
 
 .link:hover {
-  background: #f63628aa;
-  opacity: 65%;
+  background: rgba(231, 35, 35, 0.3);
   color: #f4fd90ac;
-  transition: all 0.2s;
+  transition: all 0.5s;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
 }
 
 .icon-container {
@@ -115,7 +116,7 @@ main {
   margin-left: 15px;
   padding: 10px 5px;
   filter: invert(1) brightness(2);
-  transition: filter 0.3s ease;
+  transition: filter 0.5s ease;
 }
 
 .sidebar-icon:hover {
@@ -133,9 +134,11 @@ main {
   color: #ff6b6b; /* Text color matching the icon */
   /* padding: 5px 10px; */
   border-radius: 5px;
+  padding: 5px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9999t;
 }
 
 .link:hover .item-hover-text {
@@ -278,6 +281,7 @@ main {
   padding: 20px;
   background-color: #1c1e22;
   color: white;
+  background-image: url("./assets/images/background.jpg");
 }
 
 .home-hero-section {
@@ -292,6 +296,7 @@ main {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  margin-top: 80px;
 }
 
 .home-hero-content{
@@ -394,6 +399,7 @@ main {
   height: auto;
   min-height: 100%;
   margin-bottom: 120px;
+  background-image: url("./assets/images/background.jpg");
 }
 
 /* Title styling */
@@ -732,8 +738,13 @@ main {
 .heist-download img{
   filter: invert(1) brightness(2);
   max-width: 100%;
-  max-height: 100px;
+  max-height: 50px;
   height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.heist-download:hover img{
+  transform: scale(1.2) rotateY(360deg);
 }
 
 .heist-input-container {
@@ -821,6 +832,7 @@ main {
   height: 100%;
   min-height: 100vh;
   max-height: auto;
+  background-image: url("./assets/images/background.jpg");
 }
 
 
@@ -939,6 +951,7 @@ main {
   height: auto;
   min-height: 100%;
   margin-bottom: 120px;
+  background-image: url("./assets/images/background.jpg");
 }
 
 /* Walkthrough Grid Layout */
@@ -1026,6 +1039,7 @@ main {
   box-sizing: border-box;
   position: relative;
   overflow: visible;
+  background-image: url("./assets/images/background.jpg");
 }
 
 /* Header Section: Adjust to ensure it stays inside the container */
