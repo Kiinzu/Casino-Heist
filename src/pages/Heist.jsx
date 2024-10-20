@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Prism or other themes
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
@@ -72,6 +72,7 @@ const Heist = () => {
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
   const [flag, setFlag] = useState('');
+  const navigate = useNavigate(); // Initialize navigate for redirection
 
   const handleDownload = () => {
     const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
@@ -110,6 +111,44 @@ const Heist = () => {
       console.error('Error submitting flag:', error);
     }
   };
+
+  const validateToken = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+  
+      if (!token) {
+        throw new Error('No token found'); // Redirect if the token is missing
+      }
+  
+      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Invalid token'); // Handle invalid token response
+      }
+  
+      console.log('Token is valid');
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      localStorage.removeItem('token'); // Clear token if invalid
+      navigate('/login'); // Redirect to login page
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login'); // If no token, redirect to login
+    } else {
+      validateToken(token); // Validate the token if present
+    }
+  }, [navigate]); // Run this effect once on mount
+
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/Challenge')

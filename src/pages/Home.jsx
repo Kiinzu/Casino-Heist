@@ -37,6 +37,24 @@ const Home = () => {
                     <p>Join the community to discuss the challenge and meet new friends!</p>
                 </div>
             </section>
+
+            <section className="home-features-section">
+                <div className="home-feature-card">
+                    <img src={learnFeature} alt="Hands On Icon" className="home-feature-icon" />
+                    <h3>HANDS ON</h3>
+                    <p>Register now to face the fun challenges and become a blockchain master!</p>
+                </div>
+                <div className="home-feature-card">
+                    <img src={ethereumFeature} alt="Cost Free Icon" className="home-feature-icon-special" />
+                    <h3>COST FREE</h3>
+                    <p>No need to topup or pay anything because we are open source and completely free!</p>
+                </div>
+                <div className="home-feature-card">
+                    <img src={communityFeature} alt="Community Icon" className="home-feature-icon" />
+                    <h3>JOIN THE COMMUNITY</h3>
+                    <p>Join the community to discuss the challenge and meet new friends!</p>
+                </div>
+            </section>
         </div>
     );
 };

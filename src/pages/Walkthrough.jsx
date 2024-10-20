@@ -4,8 +4,6 @@ import cornerIcon from "../assets/images/corner-icon.png";
 import '../App.css'; // Import the CSS file
 
 // Import all art assets
-import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
-import gearingupArt from '../assets/Properties/blockchain-gearing-up/art.png';
 import cheapglitchArt from '../assets/Properties/blockchain-cheap-glitch/art.png';
 import entrypointArt from '../assets/Properties/blockchain-entry-point/art.png';
 import barArt from '../assets/Properties/blockchain-bar/art.png';
@@ -19,9 +17,6 @@ import singularentityArt from '../assets/Properties/blockchain-singular-entity/a
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
 import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
-import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
-import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
-import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
 
 const Walkthrough = () => {
     const [challenges, setChallenges] = useState([]);
@@ -29,8 +24,6 @@ const Walkthrough = () => {
 
     // Map of challenge codes to corresponding images
     const challengeArtMap = {
-        'blockchain-briefing': briefingArt,
-        'blockchain-gearing-up': gearingupArt,
         'blockchain-cheap-glitch': cheapglitchArt,
         'blockchain-entry-point': entrypointArt,
         'blockchain-bar': barArt,
@@ -43,10 +36,7 @@ const Walkthrough = () => {
         'blockchain-singular-entity': singularentityArt,
         'blockchain-unlimited-credit-line': unlimitedCreditArt,
         'blockchain-symbol-of-noble': symbolofnobleArt,
-        'blockchain-double-or-delegate': doubleordelegateArt,
-        'blockchain-injus-gambit': injusgambitArt,
-        'blockchain-casino-bankbuster': casinobankbusterArt,
-        'blockchain-executive-problems': executiveproblemsArt,
+        'blockchain-double-or-delegate': doubleordelegateArt
     };
 
     // Fetch the challenges from the Flask API when the component mounts
@@ -75,26 +65,29 @@ const Walkthrough = () => {
             <h1>Walkthrough</h1>
             <div className="walkthrough-grid">
                 {challenges.length > 0 ? (
-                    challenges.map((challenge) => (
-                        <div
-                            className="walkthrough-box"
-                            key={challenge.challengeId}
-                            onClick={() => handleChallengeClick(challenge.challengeCode)}
-                            style={{ cursor: 'pointer' }}
-                        >
-                            <img
-                                src={challengeArtMap[challenge.challengeCode] || cornerIcon} // Use dynamic icon or fallback to cornerIcon
-                                alt={challenge.challengeName}
-                                className="walkthrough-icon"
-                            />
-                            <img
-                                src={cornerIcon}
-                                alt="corner icon"
-                                className="walkthrough-corner-icon"
-                            />
-                            {/* <p className="walkthrough-challenge-name">{challenge.challengeName}</p> */}
-                        </div>
-                    ))
+                    // Filter and display only "common" difficulty challenges
+                    challenges
+                        .filter((challenge) => challenge.challengeDifficulty === 'common')
+                        .map((challenge) => (
+                            <div
+                                className="walkthrough-box"
+                                key={challenge.challengeId}
+                                onClick={() => handleChallengeClick(challenge.challengeCode)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <img
+                                    src={challengeArtMap[challenge.challengeCode] || cornerIcon} // Use dynamic icon or fallback to cornerIcon
+                                    alt={challenge.challengeName}
+                                    className="walkthrough-icon"
+                                />
+                                <img
+                                    src={cornerIcon}
+                                    alt="corner icon"
+                                    className="walkthrough-corner-icon"
+                                />
+                                {/* <p className="walkthrough-challenge-name">{challenge.challengeName}</p> */}
+                            </div>
+                        ))
                 ) : (
                     <p>Loading challenges...</p>
                 )}

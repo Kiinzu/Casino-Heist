@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Prism or other themes
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
@@ -45,6 +45,45 @@ const Guide = () => {
   const [post, setPost] = useState(''); // State to store the markdown content
   const [image, setImage] = useState('');
   const [data, setData] = useState(null); // State to store challenge data
+  const navigate = useNavigate(); // Initialize navigate for redirection
+
+
+  const validateToken = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+  
+      if (!token) {
+        throw new Error('No token found'); // Redirect if the token is missing
+      }
+  
+      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Invalid token'); // Handle invalid token response
+      }
+  
+      console.log('Token is valid');
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      localStorage.removeItem('token'); // Clear token if invalid
+      navigate('/login'); // Redirect to login page
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login'); // If no token, redirect to login
+    } else {
+      validateToken(token); // Validate the token if present
+    }
+  }, [navigate]); // Run this effect once on mount
 
   // Fetch the challenge data from the server and filter the appropriate challenge
   useEffect(() => {
@@ -66,8 +105,6 @@ const Guide = () => {
           setData(selectedChallenge); // Store the challenge data
           // Map challenge codes to the corresponding markdown file
           const markdownMap = {
-            'blockchain-briefing': [briefingWalkthrough, briefingArt],
-            'blockchain-gearing-up': [gearingupWalkthrough, gearingupArt],
             'blockchain-cheap-glitch': [cheapglitchWalkthrough, cheapglitchArt],
             'blockchain-entry-point': [entrypointWalkthrough, entrypointArt],
             'blockchain-bar': [barWalkthrough, barArt],
@@ -81,16 +118,13 @@ const Guide = () => {
             'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
             'blockchain-double-or-delegate': [doubleordelegateWalkthrough, doubleordelegateArt],
-            'blockchain-injus-gambit': [injusgambitWalkthrough, injusgambitArt],
-            'blockchain-casino-bankbuster': [casinobankbusterWalkthrough, casinobankbusterArt],
-            'blockchain-executive-problems': [executiveproblemsWalkthrough, executiveproblemsArt],
           };
 
           // Set the markdown content for the selected challenge
           if (challengeCode in markdownMap) {
             const [markdown, art] = markdownMap[challengeCode]
             setPost(markdown);
-            setImage(art)
+            setImage(art);
           } else {
             console.error('Markdown file not found for challengeCode:', challengeCode);
           }
