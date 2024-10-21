@@ -77,7 +77,7 @@ const Header = () => {
   return (
     <header className="header-container">
       <div className="logo-section">
-        <img src={casinoheistLogo} alt="Casino-Heist-Logo" className="header-logo" />
+        <a href="/home"><img src={casinoheistLogo} alt="Casino-Heist-Logo" className="header-logo" /></a>
       </div>
       <div className="auth-buttons">
         {isLoggedIn ? (

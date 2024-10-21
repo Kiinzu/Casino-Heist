@@ -279,9 +279,10 @@ main {
   max-width: 100%;
   max-height: auto;
   padding: 20px;
-  background-color: #1c1e22;
+  /* background-color: #1c1e22; */
+  background-color: #000;
   color: white;
-  background-image: url("./assets/images/background.jpg");
+  /* background-image: url("./assets/images/background.jpg"); */
 }
 
 .home-hero-section {
