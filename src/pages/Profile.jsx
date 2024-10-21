@@ -35,8 +35,8 @@ const Profile = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`, 
             },
-            body: JSON.stringify({ token }),
         })
             .then((response) => {
                 if (!response.ok) {
