@@ -12,7 +12,7 @@ const Home = () => {
                 <div className="home-hero-content">
                     <h1>Casino Heist</h1>
                     <p>Outsmart the odds, crack the code—your blockchain skills are the key to escape!</p>
-                    <button className="home-play-now-btn">Play Now</button>
+                 <a href="/challenge"><button className="home-play-now-btn">Play Now</button></a>
                 </div>
                 <div className="home-hero-image">
                     <img src={casinoHeistLogo} alt="Casino Illustration" />

@@ -11,15 +11,16 @@ const Header = () => {
   // Function to validate token from the backend (if not valid, show login/signup)
   const validateToken = async (token) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+      const apiUrl = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
+      console.log(apiUrl);
+      const response = await fetch(`${apiUrl}/validate-token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ token }),
       });
-
+  
       if (response.ok) {
         setIsLoggedIn(true); // Mark user as logged in if the token is valid
       } else {
