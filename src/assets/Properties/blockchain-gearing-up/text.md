@@ -66,7 +66,7 @@ contract Exploit{
 
 You can see aboce, that we can put the address of `Setup` into the constructor and get the address of `Gearing Up` from calling the `GU()` variable from the Setup contract. If you don't want to do that, you can add another input of address in the constructor to add the `Gearing Up` address just like the setup.
 
-# Writting The Exploit
+## Writting The Exploit
 Now before writting the contract, let's analyze the code, what do we need to make the `Setup::isSolved()` returns true.
 
 1. `GearingUp::callOne()` must be `True`
@@ -77,7 +77,7 @@ Now before writting the contract, let's analyze the code, what do we need to mak
 
 The `Gearing Up` contract on deployed has 10 Ether, we can see that on the constructor that it required 10 Ether to be deployed. Now that we know what we've to do, let's start analyze-write the Exploit.
 
-## Calling a Function
+### Calling a Function
 We are going to make `GearingUp::callOne()` returns true first, let's see the code
 
 ```solidity
