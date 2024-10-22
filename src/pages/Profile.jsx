@@ -17,51 +17,124 @@ const Profile = () => {
     const [profileImage, setProfileImage] = useState(avatar1); // Default avatar image
     const [showSelector, setShowSelector] = useState(false); // Toggle avatar selection
     const [challenges, setChallenges] = useState([]); // Store challenge data
-    const [loading, setLoading] = useState(true); // Track loading state
+    const [data, setData] = useState([]);
     const selectorRef = useRef(null); // Ref to detect clicks outside the selector
     const navigate = useNavigate(); // Initialize navigate for redirection
 
     const avatarOptions = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
 
     // Check if the token exists and validate it with the backend
+    const validateToken = async () => {
+        try {
+          const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      
+          if (!token) {
+            throw new Error('No token found'); // Redirect if the token is missing
+          }
+      
+          const response = await fetch('http://127.0.0.1:5000/validate-token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`, // Add the token to the Authorization header
+            },
+          });
+      
+          if (!response.ok) {
+            throw new Error('Invalid token'); // Handle invalid token response
+          }
+
+          console.log('Token is valid');
+        } catch (error) {
+          console.error('Token validation failed:', error);
+          localStorage.removeItem('token'); // Clear token if invalid
+          navigate('/login'); // Redirect to login page
+        }
+      };
+
+    const fetchAllData = async (token) => {
+        // const token = localStorage.getItem('token');
+        try {
+          const response = await fetch(`http://127.0.0.1:5000/profile`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const result = await response.json();
+          setData(result);
+          setChallenges(result.challenge_completions);
+        } catch (error) {
+          console.error('Error fetching hint:', error);
+        }
+      };
+
+    // Fetch challenges from the backend
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token'); // Fetching token from the localStorage
+    //     fetch('http://127.0.0.1:5000/profile', {
+    //         method: 'GET',
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //     })
+    //         .then((response) => {
+    //             if(!response.ok){
+    //                 throw new Error('adasdasdasdasdasd');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) =>{
+    //             // console.log(data);
+    //             // console.log(data.challenge_completions);
+    //             setChallenges(data.challenge_completions);
+    //         })
+    //         .catch((error) => {
+    //             console.log('ini error mas');
+    //         })
+        
+    // }, []);
+
+    // const handleImageSelect = (e, image) => {
+    //     e.stopPropagation(); // Prevent event propagation
+    //     setProfileImage(image); // Set the selected image as profile image
+    //     setShowSelector(false); // Close the selector
+
+    //     const token = localStorage.getItem('token');
+    //     fetch('http://127.0.0.1:5000/avatarSelect', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${token}`, 
+    //         },
+    //         body: JSON.stringify({ avatar: image }), // Code
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Failed to save avatar');
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log(data.message); // Handle success message
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error); // Handle error
+    //     });
+    // };
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
-            navigate('/login'); // Redirect to login if no token found
-            return;
+            navigate('/login'); // If no token, redirect to login
+        } else {
+            validateToken(token); // Validate the token if present
+            fetchAllData(token);
+            // console.log(challenges)
         }
-
-        fetch('http://127.0.0.1:5000/validate-token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`, 
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Token validation failed');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log('Token is valid:', data);
-                setLoading(false); // Stop loading if token is valid
-            })
-            .catch((error) => {
-                console.error('Error validating token:', error);
-                localStorage.removeItem('token'); // Clear invalid token
-                navigate('/login'); // Redirect to login
-            });
-    }, [navigate]);
-
-    // Fetch challenges from the backend
-    useEffect(() => {
-        fetch('http://127.0.0.1:5000/Challenge')
-            .then((response) => response.json())
-            .then((data) => setChallenges(data))
-            .catch((error) => console.error('Error fetching challenges:', error));
-    }, []);
+      }, []); // Run this effect once on mount
 
     // Handle image selection and close the selector
     const handleImageSelect = (e, image) => {
@@ -85,7 +158,7 @@ const Profile = () => {
     }, []);
 
     const getHeistStatus = (challenge) => {
-        switch (challenge.challengeCompletion) {
+        switch (challenge.completion_status) {
             case 0:
                 return 'HEIST NOT STARTED';
             case 1:
@@ -103,9 +176,6 @@ const Profile = () => {
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>; // Display loading indicator while validating token
-    }
 
     return (
         <div className="profile-container">
@@ -120,8 +190,8 @@ const Profile = () => {
                         <img src={changeAvatar} alt="Change Avatar" />
                     </div>
                 </div>
-                <h2>Kiinzu</h2>
-                <p>RICHARD TAN</p>
+                <h2>{data.username}</h2>
+                <p>{data.email}</p>
 
                 {/* Avatar Selector */}
                 {showSelector && (
@@ -153,7 +223,7 @@ const Profile = () => {
                         <tbody>
                             {challenges.map((challenge) => (
                                 <tr key={challenge.challengeId}>
-                                    <td>{challenge.challengeName.toUpperCase()}</td>
+                                    <td>{challenge.challengeName}</td>
                                     <td>|</td>
                                     <td>{getHeistStatus(challenge)}</td>
                                 </tr>
