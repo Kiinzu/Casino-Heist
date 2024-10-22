@@ -24,6 +24,8 @@ import doubleornothingMarkdown from '../assets/Properties/blockchain-double-or-n
 import injusgambitMarkdown from '../assets/Properties/blockchain-injus-gambit/text.md';
 import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-bankbuster/text.md';
 import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
+import casinovaultMarkdown from "../assets/Properties/blockchain-casino-vault/text.md";
+
 
 // import all mitigation files
 import cheapglitchMitigation from '../assets/Properties/blockchain-cheap-glitch/mitigation.md';
@@ -38,7 +40,7 @@ import silentDealerMitigation from '../assets/Properties/blockchain-silent-deale
 import singularentityMitigation from '../assets/Properties/blockchain-singular-entity/mitigation.md';
 import unlimitedCreditMitigation from '../assets/Properties/blockchain-unlimited-credit-line/mitigation.md';
 import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-noble/mitigation.md';
-import doubleornothingMitigation from '../assets/Properties/blockchain-double-or-nothing/mitigation.md';
+import casinovaultMitigation from "../assets/Properties/blockchain-casino-vault/mitigation.md";
 
 // import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
@@ -55,10 +57,11 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
+import casinovaultArt from "../assets/Properties/blockchain-casino-vault/art.png";
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
 import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
+import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
 
 // Needed Logos
 import downloadLogo from "../assets/images/download.png";
@@ -176,10 +179,11 @@ const Heist = () => {
             'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt],
             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt],
-            'blockchain-double-or-nothing': [doubleornothingMarkdown, doubleornothingMitigation, doubleornothingArt],
+            'blockchain-casino-vault': [casinobankbusterMarkdown, casinovaultMitigation, casinovaultArt],
             'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt],
             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt],
             'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt],
+            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt],
           };
 
           const [story, mitigation, art] = markdownMap[challengeCode] || [];

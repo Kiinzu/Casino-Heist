@@ -18,11 +18,9 @@ import silentDealerWalkthrough from '../assets/Properties/blockchain-silent-deal
 import singularentityWalkthrough from '../assets/Properties/blockchain-singular-entity/walkthrough.md';
 import unlimitedCreditWalkthrough from '../assets/Properties/blockchain-unlimited-credit-line/walkthrough.md';
 import symbolofnobleWalkthrough from '../assets/Properties/blockchain-symbol-of-noble/walkthrough.md';
-import doubleornothingWalkthrough from '../assets/Properties/blockchain-double-or-nothing/walkthrough.md';
+import casinovaultWalkthrough from "../assets/Properties/blockchain-casino-vault/walkthrough.md";
 
 
-import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
-import gearingupArt from '../assets/Properties/blockchain-gearing-up/art.png';
 import cheapglitchArt from '../assets/Properties/blockchain-cheap-glitch/art.png';
 import entrypointArt from '../assets/Properties/blockchain-entry-point/art.png';
 import barArt from '../assets/Properties/blockchain-bar/art.png';
@@ -35,10 +33,7 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
-import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
-import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
-import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
+import casinovaultArt from "../assets/Properties/blockchain-casino-vault/art.png";
 
 const Guide = () => {
   const { challengeCode } = useParams(); // Get the challengeCode from the URL
@@ -117,7 +112,7 @@ const Guide = () => {
             'blockchain-singular-entity': [singularentityWalkthrough, singularentityArt],
             'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
-            'blockchain-double-or-nothing': [doubleornothingWalkthrough, doubleornothingArt],
+            'blockchain-casino-vault': [casinovaultWalkthrough, casinovaultArt],
           };
 
           // Set the markdown content for the selected challenge
