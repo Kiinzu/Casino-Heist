@@ -160,7 +160,8 @@ main {
   justify-content: flex-end;
   gap: 50px;
   padding: 20px 40px;
-  background-color: #141c29;
+  /* background-color: #141c29; */
+  background-color: #000;
   color: #ffffff;
   width: 100%; /* Full width */
   min-width: 100vw;
@@ -1214,4 +1215,48 @@ main {
 .message-box.error {
   border-left: 6px solid red;
   color: #721c24;
+}
+
+/* Copyright.css */
+.copyright-container {
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  background-color: #000; /* Black background to match the theme */
+  color: #fff; /* White text */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+    z-index: 1000; 
+
+}
+
+/* Thin line above the copyright text */
+.thin-line {
+  border: none;
+  height: 1px;
+  background-color: #444; /* Slightly lighter than the background */
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.copyright-container p{
+  padding: 0px 0px 0px 10px;
+}
+
+.liner-container{
+  position: relative;
+  background-color: #000;
+  margin: 0;
+  margin-bottom: -5px;
+
+}
+
+.thin-line {
+  border: none;
+  height: 1px;
+  background-color: #444; /* Slightly lighter than the background */
+  margin: 0;
+  margin-bottom: 5px;
 }

@@ -4,6 +4,7 @@ import githubIcon from '../assets/images/github-logo.png';
 import discordIcon from '../assets/images/discord-logo.png';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear(); 
   return (
     <div className="footer-container">
       <div className="footer-section">
