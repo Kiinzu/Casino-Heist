@@ -7,8 +7,6 @@ Are you a Blockchain Developer, Auditor, Enthusiast, or just starting your journ
 
 **You’re in the right place🎉**
 
-We are aware of the blockchain trilemma, where we have to sacrifice one aspect between decentralization, security, or scalability in order to optimize the other two. Typically, the aspect that is sacrificed is security.
-
 The web3 and blockchain community in Indonesia is rapidly growing, with more individuals pursuing careers as Blockchain Engineers or Smart Contract Engineers. However, many developers face a significant knowledge gap in security, particularly regarding Solidity Smart Contracts. This presents a valuable opportunity for them to not only become Solidity developers but also to step into the role of Smart Contract Auditors.
 
 To address this challenge, we proudly present **"Casino Heist"**, a Playground built on Private Blockchain infrastructure from ParadigmXYZ, specifically designed to train Smart Contract Developers and Auditors. This interactive platform features a user-friendly web interface that educates users about vulnerabilities in Solidity Smart Contracts and offers guidance on how to mitigate these risks. Experience the thrill of our casino-themed challenges, where you can enjoy gambling without the risk of being caught! 
