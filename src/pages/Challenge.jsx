@@ -17,10 +17,13 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
+import casinovaultArt from '../assets/Properties/blockchain-casino-vault/art.png';
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
 import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
+import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
+
+import ethereumFeature from "../assets/images/ethereum-coins.png";
 
 const Challenge = () => {
   const [challenges, setChallenges] = useState([]);
@@ -42,7 +45,8 @@ const Challenge = () => {
     'blockchain-singular-entity': singularentityArt,
     'blockchain-unlimited-credit-line': unlimitedCreditArt,
     'blockchain-symbol-of-noble': symbolofnobleArt,
-    'blockchain-double-or-delegate': doubleordelegateArt,
+    'blockchain-casino-vault': casinovaultArt,
+    'blockchain-double-or-nothing': doubleornothingArt,
     'blockchain-injus-gambit': injusgambitArt,
     'blockchain-casino-bankbuster': casinobankbusterArt,
     'blockchain-executive-problems': executiveproblemsArt,

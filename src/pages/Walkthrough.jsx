@@ -16,7 +16,7 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
+import casinovaultArt from '../assets/Properties/blockchain-casino-vault/art.png';
 
 const Walkthrough = () => {
     const [challenges, setChallenges] = useState([]);
@@ -36,7 +36,7 @@ const Walkthrough = () => {
         'blockchain-singular-entity': singularentityArt,
         'blockchain-unlimited-credit-line': unlimitedCreditArt,
         'blockchain-symbol-of-noble': symbolofnobleArt,
-        'blockchain-double-or-delegate': doubleordelegateArt
+        'blockchain-casino-vault' : casinovaultArt
     };
 
     // Fetch the challenges from the Flask API when the component mounts

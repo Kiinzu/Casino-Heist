@@ -18,7 +18,7 @@ import silentDealerWalkthrough from '../assets/Properties/blockchain-silent-deal
 import singularentityWalkthrough from '../assets/Properties/blockchain-singular-entity/walkthrough.md';
 import unlimitedCreditWalkthrough from '../assets/Properties/blockchain-unlimited-credit-line/walkthrough.md';
 import symbolofnobleWalkthrough from '../assets/Properties/blockchain-symbol-of-noble/walkthrough.md';
-import doubleordelegateWalkthrough from '../assets/Properties/blockchain-double-or-delegate/walkthrough.md';
+import doubleornothingWalkthrough from '../assets/Properties/blockchain-double-or-nothing/walkthrough.md';
 
 
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
@@ -35,7 +35,7 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
+import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
 import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
@@ -117,7 +117,7 @@ const Guide = () => {
             'blockchain-singular-entity': [singularentityWalkthrough, singularentityArt],
             'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
-            'blockchain-double-or-delegate': [doubleordelegateWalkthrough, doubleordelegateArt],
+            'blockchain-double-or-nothing': [doubleornothingWalkthrough, doubleornothingArt],
           };
 
           // Set the markdown content for the selected challenge

@@ -20,7 +20,7 @@ import silentDealerMarkdown from '../assets/Properties/blockchain-silent-dealer/
 import singularentityMarkdown from '../assets/Properties/blockchain-singular-entity/text.md';
 import unlimitedCreditMarkdown from '../assets/Properties/blockchain-unlimited-credit-line/text.md';
 import symbolofnobleMarkdown from '../assets/Properties/blockchain-symbol-of-noble/text.md';
-import doubleordelegateMarkdown from '../assets/Properties/blockchain-double-or-delegate/text.md';
+import doubleornothingMarkdown from '../assets/Properties/blockchain-double-or-nothing/text.md';
 import injusgambitMarkdown from '../assets/Properties/blockchain-injus-gambit/text.md';
 import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-bankbuster/text.md';
 import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
@@ -38,7 +38,7 @@ import silentDealerMitigation from '../assets/Properties/blockchain-silent-deale
 import singularentityMitigation from '../assets/Properties/blockchain-singular-entity/mitigation.md';
 import unlimitedCreditMitigation from '../assets/Properties/blockchain-unlimited-credit-line/mitigation.md';
 import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-noble/mitigation.md';
-import doubleordelegateMitigation from '../assets/Properties/blockchain-double-or-delegate/mitigation.md';
+import doubleornothingMitigation from '../assets/Properties/blockchain-double-or-nothing/mitigation.md';
 
 // import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
@@ -55,7 +55,7 @@ import silentDealerArt from '../assets/Properties/blockchain-silent-dealer/art.p
 import singularentityArt from '../assets/Properties/blockchain-singular-entity/art.png';
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
-import doubleordelegateArt from '../assets/Properties/blockchain-double-or-delegate/art.png';
+import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothing/art.png';
 import injusgambitArt from '../assets/Properties/blockchain-injus-gambit/art.png';
 import casinobankbusterArt from '../assets/Properties/blockchain-casino-bankbuster/art.png';
 import executiveproblemsArt from '../assets/Properties/blockchain-executive-problems/art.png';
@@ -103,7 +103,7 @@ const Heist = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ flag }),
+        body: JSON.stringify({ flag, challengeCode })
       });
       const result = await response.json();
       alert(result.message); // Handle response (success/failure) as needed
@@ -176,7 +176,7 @@ const Heist = () => {
             'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt],
             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt],
-            'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateMitigation, doubleordelegateArt],
+            'blockchain-double-or-nothing': [doubleornothingMarkdown, doubleornothingMitigation, doubleornothingArt],
             'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt],
             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt],
             'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt],
@@ -341,7 +341,7 @@ export default Heist;
 //             'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
 //             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
 //             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
-//             'blockchain-double-or-delegate': [doubleordelegateMarkdown, doubleordelegateArt],
+//             'blockchain-double-or-nothing': [doubleornothingMarkdown, doubleornothingArt],
 //             'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
 //             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, casinobankbusterArt],
 //             'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
