@@ -100,11 +100,13 @@ const Heist = () => {
   };
 
   const handleFlagSubmit = async () => {
+    const token = localStorage.getItem('token'); // fetch token from localStorage
     try {
-      const response = await fetch('http://127.0.0.1:5000/verifyFlag', {
+      const response = await fetch('http://127.0.0.1:5000/verify-flag', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ flag, challengeCode })
       });

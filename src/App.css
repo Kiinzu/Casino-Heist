@@ -280,7 +280,7 @@ main {
   max-height: auto;
   padding: 20px;
   /* background-color: #1c1e22; */
-  background-color: #000;
+  /* background-color: #000; */
   color: white;
   /* background-image: url("./assets/images/background.jpg"); */
 }
@@ -346,7 +346,7 @@ main {
   max-width: 1200px;
   margin-bottom: 40px;
   gap: 20px;
-
+    /* background-image: url("./assets/images/background.jpg"); */
 }
 
 .home-feature-card {

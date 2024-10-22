@@ -43,10 +43,8 @@ const Guide = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
 
 
-  const validateToken = async () => {
+  const validateToken = async (token) => {
     try {
-      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-  
       if (!token) {
         throw new Error('No token found'); // Redirect if the token is missing
       }
@@ -71,12 +69,33 @@ const Guide = () => {
     }
   };
 
+  const walkthroughUsed = async (token) => {
+    try{
+      const response = await fetch('http://127.0.0.1:5000/update-walkthrough', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ challengeCode }),
+      });
+
+      if(!response.ok) {
+        throw new Error('Walkthrough Failed to Used');
+      }
+      console.log('Hint Sent');
+    } catch (error){
+      console.error('Error in aquiring Walkthrough');
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login'); // If no token, redirect to login
     } else {
       validateToken(token); // Validate the token if present
+      walkthroughUsed(token);
     }
   }, [navigate]); // Run this effect once on mount
 
