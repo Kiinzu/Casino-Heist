@@ -227,7 +227,7 @@ main {
 /* HEADER */
 .header-container {
   display: flex;
-  position: fixed;
+  /* position: fixed; */
   justify-content: space-between; /* Space between logo and buttons */
   align-items: center; /* Align items vertically */
   padding: 8px 0px;
