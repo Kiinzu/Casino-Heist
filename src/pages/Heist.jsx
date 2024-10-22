@@ -88,10 +88,17 @@ const Heist = () => {
   };
 
   const handleHintClick = async (hintNumber) => {
+    const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://127.0.0.1:5000/hint/${hintNumber}`, {
-        method: 'GET',
+      const response = await fetch(`http://127.0.0.1:5000/hint/${challengeCode}/${hintNumber}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       });
+      // console.log(result);
+      // console.log(token);
       const result = await response.json();
       alert(`Hint ${hintNumber}: ${result.message}`); // Display the hint in an alert or update UI
     } catch (error) {
@@ -245,7 +252,8 @@ const Heist = () => {
         <h2>Code</h2>
         <div className="heist-code-content">
           <div className="heist-description">
-            <p>// Code block content or description goes here...</p>
+            <p>LOREM IPSUM DUAR DUAR NMAX MEMEK</p>
+            <p>BUM BUM BUM PAW PAW PAW</p>
           </div>
           <div className="heist-download" onClick={handleDownload}>
             <img src={downloadLogo} alt="Download" />
