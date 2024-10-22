@@ -104,19 +104,19 @@ blum di implement?
 6. You should've a working Casino Heist Website now!
 
 ## Main Feature
-- **Private Blockchain** 
+- **Private Blockchain**  
     We use paradigmCTF infrastructure that is further customized by TCP1P community to make it looks better, to run a private blockchain.
-- **Seamless Onboarding**
+- **Seamless Onboarding**  
     Player doesn't need to setup any wallet of getting Ethers from faucet, making new users that aren't familiar with the setup can play without dealing with that complexities.
-- **Playground Experience**
+- **Playground Experience**  
     Many Cybersecurity Platform offer a gamified content, Casino Heist also built around the theme of gamified "Heist"
-- **Self-Paced & Guided**
+- **Self-Paced & Guided**  
     Got stuck on a problem? We got you! We provide you with hints and even the Walkthrough of the `common` category Challenges
-- **Real-Life Incident Simplified**
+- **Real-Life Incident Simplified**  
     We don't want player to just learn the basic, we got the `VIP` category challenge, which is a simplified version of a real-life hack.
-- **Open for Contribution**
+- **Open for Contribution**  
     Do you enjoy playing Casino Heist and want to contribtue? We have 2 ways of contribute to our Open-Source Playground! You can either write a walkthrough for the `common` challenge in your own way, or you can create your own Challenge and submit to us!
-- **Engage with the Community!**
+- **Engage with the Community!**  
     Casino Heist is created and backed by ENUMA ID, a community that gathered Smart Contract Security Enthusiast in Indonesia.
 
 ## How to Contribute
