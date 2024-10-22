@@ -82,7 +82,8 @@ main {
 
 .sidebar {
   padding-top: 100px;
-  background: #141c29;
+  /* background: #141c29; */
+  background-color: #000;
   color: #000;
   height: auto;
   min-height: 100vh;
@@ -226,10 +227,12 @@ main {
 /* HEADER */
 .header-container {
   display: flex;
+  position: fixed;
   justify-content: space-between; /* Space between logo and buttons */
   align-items: center; /* Align items vertically */
   padding: 8px 0px;
-  background-color: #141c29; /* Background color of the header */
+  /* background-color: #141c29; */
+  background-color: #000000;
   color: white;
   width: 100%; /* Full width header */
   min-width: 100vw;
