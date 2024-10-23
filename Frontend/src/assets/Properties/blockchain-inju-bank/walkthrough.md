@@ -116,7 +116,7 @@ forge create src/inju-bank/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private-key
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
 &nbsp;  
-After running the command, if you press the `Flag` button now you should get the flag. By the way if you are curious on like how the attack worked, here is a little flow of the Exploit. &nbsp;  
+After running the command, if you press the *Flag* button now you should get the flag. By the way if you are curious on like how the attack worked, here is a little flow of the Exploit. &nbsp;  
 &nbsp;  
 ```bash
 ├─ [123849] Exploit::attack()
