@@ -578,7 +578,8 @@ main {
   /* height: 100%;
   max-height: 100vw; */
   height: auto;
-  min-height: 100ch;
+  min-height: 100%;
+  max-height: 100%;
   background-color: rgb(41, 40, 40);
   padding: 80px 20px 20px 20px;
   background-image: url("./assets/images/background.jpg");
@@ -612,7 +613,6 @@ main {
 }
 
 /* Description & Code Section */
-
 .heist-description-container,
 .heist-code-container {
   width: 100%;
