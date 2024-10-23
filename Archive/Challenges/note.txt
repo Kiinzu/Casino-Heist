@@ -1,0 +1,33 @@
+Challenge Name 
+Format: blockchain-Name [theme]
+FOR EVERYCHALLENGE
+[] Has Writeup?
+[] Description Complete?
+[] Mitigation Ready?
+[] Challenge working OK? (Balance, solver, etc.)
+[] Docker Naming blockchain-name
+ 
+BASIC (30000)
+[running] 30001 [V] > blockchain-briefing [smart contract basic] ENUMA{Briefing_completed!_Now_Gearing_up!} 
+[running] 30002 [V] > blockchain-gearing_up [creating attack contract] ENUMA{Equipment_up_it_is_time_to_take_down_the_CASINO}
+
+COMMON (40000)
+[running] 40001 [] > blockchain-Cheap Glitch [Integer Overflow / Integer Underflow] ENUMA{1_WEI_is_enough_to_be_the_richest}
+[running] 40002 [] > blockchain-Entry Point [Division - Rounding Error] ENUMA{The_right_amount_from_a_rounding_error}
+[running] 40003 [] > blockchain-Bar [Access Control Vulnerability] ENUMA{wait_im_already_a_member?_whatttt}
+[running] 40004 [] > blockchain-Roulette [Insecure Randomness] ENUMA{predicted_and_lucky_two_different_word_same_output}
+[running] 40005 [] > blockchain-Master of BlackJack [Timestamp Dependence] ENUMA{beginner_luck_or_you_actually_timed_it}
+[running] 40006 [] > blockchain-Voting Frenzy[Logic Error] ENUMA{against_all_participants_from_1_to_ten}
+[running] 40007 [] > blockchain-VVVIP Member [Denial of Service] ENUMA{isnt_it_him_the_ULTIMATE_VVVIP_MEMBER}
+[running] 40008 [] > blockchain-INJU Bank [Reentrancy] 
+[running] 40009 [] > blockchain-Silent Dealer [Calling Problem (Call)]
+[running] 40010 [] > blockchain-Singular Identity [Hash Collission] ENUMA{Mimic_other_is_easy_with_encodePacked}
+[running] 40011 [] > blockchain-Unlimited Credit line [ERC20 Common Mistake]
+[running] 40012 [] > blockchain-Symbol of Noble [ERC721 Reentrancy] B
+[running] 40013 [] > blockchain-Casino Vault [Delegate Call] 
+
+VIP (50000)
+[running] 50001 [] > blockchain-injus_gambit [Insecure Randomness & Private Storage & ERC721] ENUMA{it_wasnt_that_hard_to_win_against_him_afterall}
+[running] 50002 [] > blockchain-casino-bankbuster [Read-Only Reentrancy] 
+[running] 50003 [] > blockchain-executive-problems [Calling] BLOM DIGANTI ENUMA{why_does_it_matter_when_you_have_calldata}
+[DOWN] 50004 [] > blockchain-Double or Delegate [Delegate Call] DOWN DLU
