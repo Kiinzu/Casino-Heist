@@ -620,7 +620,8 @@ main {
   max-width: 1000px;
   height: 100%;
   min-height: auto;
-  background-color: #2d4059;
+  /* background-color: #2d4059; */
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 40px;
   border-radius: 15px;
   margin-bottom: 20px; 
