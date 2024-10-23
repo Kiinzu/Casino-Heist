@@ -1084,11 +1084,11 @@ main {
 
 /* Avatar Image: Centered inside the wrapper */
 .profile-avatar {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   /* background-color: black; */
-  filter: invert(1) brightness(2);
+  /* filter: invert(1) brightness(2); */
 }
 
 /* Edit Button: Positioned within the avatar */

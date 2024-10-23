@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Prism or other themes
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
+import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
 import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
 
 // Import all markdown files 
@@ -208,7 +208,7 @@ const Heist = () => {
             'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt],
             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt],
             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt],
-            'blockchain-casino-vault': [casinobankbusterMarkdown, casinovaultMitigation, casinovaultArt],
+            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt],
             'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt],
             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt],
             'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt],
@@ -247,7 +247,7 @@ const Heist = () => {
                 const match = /language-(\w+)/.exec(className || '');
                 return match ? (
                   <SyntaxHighlighter
-                    style={vscDarkPlus}
+                    style={xonokai}
                     language={match[1]}
                     PreTag="div"
                     {...props}

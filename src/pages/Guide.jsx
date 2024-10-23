@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Prism or other themes
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
+import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
 import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
 
 // Import all walkthrough
@@ -178,7 +178,7 @@ const Guide = () => {
                       const match = /language-(\w+)/.exec(className || '');
                       return match ? (
                         <SyntaxHighlighter
-                          style={vscDarkPlus} // Use the theme of your choice
+                          style={xonokai} // Use the theme of your choice
                           language={match[1]}
                           PreTag="div"
                           {...props}
