@@ -396,15 +396,21 @@ def update_walkthrough():
 
     challenge_id = challenge['challengeId']
 
-    # Update the ChallengeCompletion table to set useWalkthrough to 1
-    cursor = db.execute('''
-        INSERT INTO ChallengeCompletion (userId, challengeId, useWalkthrough)
-        VALUES (?, ?, 1)
-        ON CONFLICT(userId, challengeId) DO UPDATE SET useWalkthrough = 1
-    ''', (user_id, challenge_id))
-    db.commit()
+    # Fetch the challengeCompletion value from the database
+    cursor = db.execute('SELECT challengeCompletion FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id))
+    result = cursor.fetchone()
 
-    return jsonify({'message': 'Walkthrough status updated successfully'}), 200
+    # Check if challengeCompletion is 0 before performing the update
+    if result is not None and result[0] == 0:
+        # Perform the update if challengeCompletion is 0
+        cursor = db.execute('''
+            INSERT INTO ChallengeCompletion (userId, challengeId, useWalkthrough)
+            VALUES (?, ?, 1)
+            ON CONFLICT(userId, challengeId) DO UPDATE SET useWalkthrough = 1
+        ''', (user_id, challenge_id))
+        db.commit()
+    else:
+        print("ChallengeCompletion is already 1, no update needed.")
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):
