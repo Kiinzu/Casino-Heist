@@ -76,6 +76,7 @@ const Profile = () => {
             }
             setData(result);
             setChallenges(result.challenge_completions);
+            console.log(result.challenge_completions)
         } catch (error) {
             console.error('Error fetching hint:', error);
         }

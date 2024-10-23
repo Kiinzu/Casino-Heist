@@ -488,7 +488,7 @@ def Profile():
             completion_data = completion_dict[challenge_id]
 
             # Calculate the completion status based on hint and walkthrough usage
-            completion_status = 1  # Initial value since it's always completed
+            completion_status = 0  # Initial value since it's always completed
             if completion_data['use_hint_one']:
                 completion_status += 1
             if completion_data['use_hint_two']:

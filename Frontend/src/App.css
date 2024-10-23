@@ -1254,10 +1254,9 @@ main {
   background-color: #000;
   margin: 0;
   margin-bottom: -5px;
-
 }
 
-.thin-line {
+.liner-container hr {
   border: none;
   height: 1px;
   background-color: #444; /* Slightly lighter than the background */
