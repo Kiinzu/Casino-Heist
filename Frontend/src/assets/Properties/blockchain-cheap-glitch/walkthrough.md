@@ -64,6 +64,6 @@ contract Calculate{
         return type(uint256).max - 10_000_000_000_000 ether + 2;
     }
 }
-```
+``` 
 &nbsp;  
 In solidity we can get the max value of a data type using *type(<datatype>).max* just like the code above, to get the max value of uint256. We simply calculate the distance between the max from the target and add 2 at the end, why 2? Notice that our balance start from *0*, meaning we need to *-1* so that our balance become the max number an uint256 can hold, then another *-1* to make sure we are below the *10_000_000_000_000 ether* mark, the function will return a large number that will make our balance *9_999_999_999_999 ether*. 
