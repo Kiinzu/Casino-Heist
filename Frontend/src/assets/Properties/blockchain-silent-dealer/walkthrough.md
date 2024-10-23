@@ -1,5 +1,6 @@
-Here we have 2 source code, one is `Setup.sol` and another one is `Dealer.sol`, in order to make `Setup.sol::isSolved()` returns true, we mush make the baalnce of `Dealer Contract` become 0 and the `owner` is no longer `Setup Contract`.
-
+Here we have 2 source code, one is *Setup.sol* and another one is *Dealer.sol*, in order to make *Setup.sol::isSolved()* returns true, we mush make the baalnce of *Dealer Contract* become 0 and the *owner* is no longer *Setup Contract*.
+&nbsp;  
+&nbsp;  
 ```solidity
 contract Setup{
     Dealer public dealer;
@@ -15,9 +16,10 @@ contract Setup{
 
 }
 ```
-
-based on the inital setup, we know that the current owner is `Setup Contract` and it has 50 Ether. Let's take a tour to the `Dealer Contract` now,
-
+&nbsp;  
+based on the inital setup, we know that the current owner is *Setup Contract* and it has 50 Ether. Let's take a tour to the *Dealer Contract* now,
+&nbsp;  
+&nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -88,25 +90,25 @@ contract Dealer{
     }
 }
 ```
+&nbsp;  
+We can see that it can receive ether with 2 functions, the *joinGame()* and *receive()*, the only difference is when we use joinGame, it require us to send at least 5 Ether, while the receive function has a logic when the amount is exactly 5 Ether only then it will be added to our balance, else it will be added to the rewardPool. &nbsp;  
+&nbsp;  
+The *bet()* function allow us to put our moneny on the line, while we have the freedom to choose how many money we want to spend, the *owner* seems to go all-in, kinda weird right. Turns out, the next function *startRiggedBet()* will actually make the owner always win since it transfered all the rewardPool to the owner, and after that the owner could call *endWholeGame()* and just get all the money there. &nbsp;  
+&nbsp;  
+We as a player also have an option, but that only available after we *bet()* some of our money, we can just *walkAway* with the money we have left and leave a message... oh well, we can leave a message that is being handled by *call()*, with that we can actually call *changeOwner()* and make ourselves the *owner*, thic could happened because if we parse a bytes that actually a function call, what's a function call? In Ethereum, they call a function by giving a 4 bytes or what often call function selector or signature, it's the first 4 bytes of *keccak256(functionName(args_type))*. &nbsp;  
+&nbsp;  
+So here is what are we going to do: &nbsp;  
+&nbsp;  
+1. We *joingGame()* with 5 Ether
+2. We *bet()* 3 Ether
+3. We *walkAway()*, current rewardPool is 53 Ether, but we transfering the money to *dealer* by providing his address effectively giving it 2 Ether (our leftAmount) and parse a message containing the call of *changeOwner(address)* with the address pointing to our Exploit Contract
+4. The current owner will be our Exploit Contract, we can just *startRiggedBet()*, taking all the rewardPool
+5. Transfer all money to our pocket by calling *endWholeGame()
 
-We can see that it can receive ether with 2 functions, the `joinGame()` and `receive()`, the only difference is when we use joinGame, it require us to send at least 5 Ether, while the receive function has a logic when the amount is exactly 5 Ether only then it will be added to our balance, else it will be added to the rewardPool.
-
-The `bet()` function allow us to put our moneny on the line, while we have the freedom to choose how many money we want to spend, the `owner` seems to go all-in, kinda weird right. Turns out, the next function `startRiggedBet()` will actually make the owner always win since it transfered all the rewardPool to the owner, and after that the owner could call `endWholeGame()` and just get all the money there.
-
-We as a player also have an option, but that only available after we `bet()` some of our money, we can just `walkAway` with the money we have left and leave a message... oh well, we can leave a message that is being handled by `call()`, with that we can actually call `changeOwner()` and make ourselves the `owner`, thic could happened because if we parse a bytes that actually a function call, what's a function call? In Ethereum, they call a function by giving a 4 bytes or what often call function selector or signature, it's the first 4 bytes of `keccak256(functionName(args_type))`. 
-
-So here is what are we going to do:
-
-1. We `joingGame()` with 5 Ether
-2. We `bet()` 3 Ether
-3. We `walkAway()`, current rewardPool is 53 Ether, but we transfering the money to `dealer` by providing his address effectively giving it 2 Ether (our leftAmount) and parse a message containing the call of `changeOwner(address)` with the address pointing to our Exploit Contract
-4. The current owner will be our Exploit Contract, we can just `startRiggedBet()`, taking all the rewardPool
-5. Transfer all money to our pocket by calling `endWholeGame()`
-
-The message that we are going to provide will be consisting the btyes of the `changeOwner()` selector and the address of our Exploit contract, it is constructed like this 
-
+&nbsp;  
+The message that we are going to provide will be consisting the btyes of the *changeOwner()* selector and the address of our Exploit contract, it is constructed like this &nbsp;  
+&nbsp;  
 ```test
-
 // Default Construction
 [4 bytes - selector] [32 bytes - Data/Args ] [can add more 32 bytes (SLOT) if needed]
 
@@ -115,9 +117,9 @@ The message that we are going to provide will be consisting the btyes of the `ch
 |selector| |   padding 12 bytes   | |     newOwner Address - 20 bytes      |
 |4 bytes | |-------------------------32 bytes / 1 SLOT---------------------|
 ```
-
-How do we get `0xa6f9dae1`? Well we can use the build in function of `abi.encodeWithSignature(funcName(args-type), args-value)`, in our contract to parse this. OKay now that we understand what we need to do and how to do it, here is the full exploit to finally solve the lab.
-
+&nbsp;  
+How do we get *0xa6f9dae1*? Well we can use the build in function of *abi.encodeWithSignature(funcName(args-type), args-value)*, in our contract to parse this. OKay now that we understand what we need to do and how to do it, here is the full exploit to finally solve the lab. &nbsp;  
+&nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -146,9 +148,9 @@ contract Exploit{
 
 }
 ```
-
-We just need to deploy the solver and give it 5 Ether to execute the `joinGame`, here is how you can do it.
-
+&nbsp;  
+We just need to deploy the solver and give it 5 Ether to execute the *joinGame*, here is how you can do it. &nbsp;  
+&nbsp;  
 ```bash
 // deploy the contract
 forge create src/silent-dealer/$EXPLOIT_SOL:$EXPLOIT_NAME -r $RPC --private-key $PK --constructor-args $SETUP_ADDR --value 5ether
@@ -156,5 +158,5 @@ forge create src/silent-dealer/$EXPLOIT_SOL:$EXPLOIT_NAME -r $RPC --private-key 
 // Launch the Exploit
 cast send -r $RPC --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
-
+&nbsp;  
 Now you should've solved the lab!
