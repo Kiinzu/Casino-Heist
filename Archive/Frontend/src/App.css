@@ -1,0 +1,1265 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  /* position: absolute; */
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+*{
+  margin:0;
+  padding:0;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #3a373e #2d2d2d; /* Thumb and track colors */
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 1px; /* Thin scrollbar */
+  height: 1px; /* Thin horizontal scrollbar */
+}
+
+/* Track (scrollbar background) */
+*::-webkit-scrollbar-track {
+  background: #2d2d2d; /* Dark track background */
+  border-radius: 10px; /* Rounded track corners */
+}
+
+/* Thumb (draggable part) */
+*::-webkit-scrollbar-thumb {
+  background-color: #ff4d4d; /* Bright red thumb */
+  border-radius: 10px; /* Rounded thumb corners */
+  border: 2px solid #2d2d2d; /* Adds space between thumb and track */
+}
+
+/* Hover effect */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #ff6666; /* Lighter red on hover */
+}
+
+/* SIDEBAR */
+.sidebar-container {
+  display: flex;
+}
+
+main {
+  width: 100%;
+  /* padding: 20px; */
+}
+
+.sidebar {
+  padding-top: 100px;
+  /* background: #141c29; */
+  background-color: #000;
+  color: #000;
+  height: auto;
+  min-height: 100vh;
+}
+
+.link {
+  position: relative; /* Required to position hover text */
+  display: flex;
+  color: #fff;
+  padding-right: 15px;
+  gap: 15px;
+  align-items: center;
+  transition: all 0.5s;
+  /* margin-top: 5px; */
+}
+
+.link:hover {
+  background: rgba(231, 35, 35, 0.3);
+  color: #f4fd90ac;
+  transition: all 0.5s;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
+}
+
+.icon-container {
+  position: relative;  /* To position the hover text below the icon */
+}
+
+.sidebar-icon {
+  width: 25px;
+  margin-left: 15px;
+  padding: 10px 5px;
+  filter: invert(1) brightness(2);
+  transition: filter 0.5s ease;
+}
+
+.sidebar-icon:hover {
+  filter: invert(1) brightness(3); /* Optional: highlight icon on hover */
+}
+
+.item-hover-text {
+  position: absolute;
+  /* bottom: -30px; */
+  /* left: 50%; */
+  left: 170%;
+  bottom: 20%;
+  /* transform: translateX(-50%); */
+  background-color: #3b0a0a;
+  color: #ff6b6b; /* Text color matching the icon */
+  /* padding: 5px 10px; */
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9999t;
+}
+
+.link:hover .item-hover-text {
+  opacity: 1;
+  visibility: visible;
+  /* transition: all 0.2s; */
+}
+
+.active {
+  background-color: #f63628aa;
+  color: #fff;
+}
+
+
+/* FOOTER CSS */
+.footer-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 50px;
+  padding: 20px 40px;
+  /* background-color: #141c29; */
+  background-color: #000;
+  color: #ffffff;
+  width: 100%; /* Full width */
+  min-width: 100vw;
+  position: relative; /* Stick the footer to the bottom */
+  bottom: 0;
+  left: 0; 
+  box-sizing: border-box;
+  z-index: 1000; 
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-section:last-child{
+  margin-right: 10%; /* Use to adjust the distance from right (last-child)*/
+}
+
+.footer-section h4 {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+  right: 0;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+  font-size: 15px;
+}
+
+.footer-section ul li a:hover {
+  color: #ff6b6b; /* Add hover color effect */
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  filter: invert(1) brightness(2);
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  filter: invert(69%) sepia(68%) saturate(2701%) hue-rotate(316deg) brightness(100%) contrast(102%);
+  transform: scale(1.2); /* Enlarge icon on hover */
+}
+
+/* HEADER */
+.header-container {
+  display: flex;
+  /* position: fixed; */
+  justify-content: space-between; /* Space between logo and buttons */
+  align-items: center; /* Align items vertically */
+  padding: 8px 0px;
+  /* background-color: #141c29; */
+  background-color: #000000;
+  color: white;
+  width: 100%; /* Full width header */
+  min-width: 100vw;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  width: 50px; /* Adjust size to fit your layout */
+  /* margin-left: 8px; */
+  padding: 0px 8px;
+  filter: invert(1) brightness(2);
+  /* height: auto; */
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px; /* Space between login and signup buttons */
+  margin-right: 15px;
+}
+
+.login-btn, .signup-btn {
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out;
+  border: 1px double rgb(255,255,255,0.45);
+}
+
+.login-btn:hover, .signup-btn:hover {
+  background-color: #ff6b6b; /* Change color on hover */
+  border-color: transparent;
+}
+
+/* HOME PAGE CSS */
+/* Container for the entire home page */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: auto;
+  padding: 20px;
+  /* background-color: #1c1e22; */
+  /* background-color: #000; */
+  color: white;
+  /* background-image: url("./assets/images/background.jpg"); */
+}
+
+.home-hero-section {
+  background-image: linear-gradient(to bottom right, #1b4275, #3b5363);
+  background-color: #2d4059;
+  /* padding: 40px; */
+  width: 100%;
+  min-width: auto;
+  max-width: 1200px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-top: 80px;
+}
+
+.home-hero-content{
+  padding: 40px;
+}
+
+.home-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.home-hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.home-play-now-btn {
+  background-color: transparent;
+  color: white;
+  padding: 12px 24px;
+  border: 0.1px double rgb(255,255,255,0.45);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color color 1s ease;
+}
+
+.home-play-now-btn:hover {
+  border: 0.1px double #ff6b6b;
+  color: #ff6b6b;
+}
+
+.home-hero-image img {
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+/* Features Section */
+.home-features-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+  gap: 20px;
+    /* background-image: url("./assets/images/background.jpg"); */
+}
+
+.home-feature-card {
+  background-image: linear-gradient(to bottom right, #1b4275, #3b5363);
+  background-color: #2d4059;
+  padding: 40px;
+  /* height: 150%; */
+  border-radius: 15px;
+  text-align: center;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.home-feature-icon {
+  max-width: 100px;
+  margin-bottom: 20px;
+  width: 100px;
+  filter: invert(1) brightness(1);
+}
+
+.home-feature-icon-special {
+  max-width: 100px;
+  margin-bottom: 20px;
+  width: 100px;
+}
+
+.home-feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.home-feature-card p {
+  font-size: 1rem;
+  color: #adb5bd;
+}
+
+
+/* CHALLENGE CONTAINER */
+/* Container for the challenge page */
+.challenge-container {
+  padding: 20px 80px; /* top/bottom left/right*/
+  background-color: #1c1e22;
+  color: white;
+  text-align: center;
+  height: auto;
+  min-height: 100%;
+  margin-bottom: 120px;
+  background-image: url("./assets/images/background.jpg");
+}
+
+/* Title styling */
+.challenge-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 120px;
+  margin-top: 80px;
+}
+
+/* Grid layout with 3 boxes per row */
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) ; /* 3 columns per row */
+  row-gap: 25px; /* Space between grid items */
+  column-gap: 25px;
+  justify-items: center;
+  min-width: auto;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Individual challenge box */
+.challenge-box {
+  background-color: #2d4059;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px; /* Fill the column space */
+  height: 200px; /* Adjust the height to create a rectangle shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-box-basic {
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #1b4275 0%, #45a095 100%);  border-radius: 15px;
+  width: 100%;
+  max-width: 400px; /* Fill the column space */
+  height: 200px; /* Adjust the height to create a rectangle shape */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-box-common {
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #1b4275 0%, #6448b9 100%);
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px; /* Fill the column space */
+  height: 200px; /* Adjust the height to create a rectangle shape */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-box-vip {
+  background-image: linear-gradient(160deg, #1b4275 0%, #c1c15f 100%);
+  background-color: #2d4059;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px; /* Fill the column space */
+  height: 200px; /* Adjust the height to create a rectangle shape */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-tag{
+  transition: transform 0.3s ease;
+  margin-top: 10px;
+  font-size: 11px;
+  padding: 4px 8px; 
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(48, 47, 47, 0.5);
+  border-radius: 5px;
+}
+
+/* Box hover effect */
+.challenge-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 
+  Basic Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
+.challenge-box-basic:hover {
+  background-image: linear-gradient(160deg, #1b4275 0%, #16f0bd 100%);
+}
+
+.challenge-box-basic:hover .challenge-icon {
+  transform: scale(1.2); /* Zoom effect on icon */
+}
+
+.challenge-box-basic:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 
+  Common Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
+
+.challenge-box-common:hover {
+  background-image: linear-gradient(160deg, #1b4275 0%, #865df5 100%);
+}
+
+.challenge-box-common:hover .challenge-icon {
+  transform: scale(1.2); /* Zoom effect on icon */
+}
+
+.challenge-box-common:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 
+  VIP Challenge Effect
+  1 - On Hover gradient
+  2 - On Hover scale and make the tag more clear
+*/
+
+.challenge-box-vip:hover {
+  background-image: linear-gradient(160deg, #1b4275 0%, #f4df76 100%);
+}
+
+.challenge-box-vip:hover .challenge-icon {
+  transform: scale(1.2); /* Zoom effect on icon */
+}
+
+.challenge-box-vip:hover .challenge-tag {
+  transform: scale(1.2); /* Zoom effect on icon */
+  background-color: rgba(48, 47, 47, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Challenge icon */
+.challenge-icon {
+  max-width: 100px; /* Icon width */
+  max-height: 100px; /* Icon height */
+  transition: transform 0.3s ease; 
+}
+
+/* INDIVIDUAL CHALLENGE PAGES THAT RENDERED WITH HEIST COMPONENT */
+.heist-container{
+  /* background-image: linear-gradient(160deg, #1b4275 0%, #45a095 100%); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
+  /* height: 100%;
+  max-height: 100vw; */
+  height: auto;
+  min-height: 100%;
+  max-height: 100%;
+  background-color: rgb(41, 40, 40);
+  padding: 80px 20px 20px 20px;
+  background-image: url("./assets/images/background.jpg");
+}
+
+.heist-challenge-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.heist-challenge-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Challenge Description */
+.heist-challenge-description {
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 100%;
+  padding: 0 20px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+/* Description & Code Section */
+.heist-description-container,
+.heist-code-container {
+  width: 100%;
+  min-width: auto;
+  max-width: 1000px;
+  height: 100%;
+  min-height: auto;
+  /* background-color: #2d4059; */
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  margin-bottom: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-wrap: break-word;
+  box-sizing: content-box;
+  text-align: justify;
+}
+
+.heist-description-container li{ 
+  margin-left: 20px;
+}
+
+.heist-description-container h2,
+.heist-code-container h2{
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #adb5bd;
+}
+
+.heist-description-container p {
+  font-size: 1rem;
+  color: #f8f9fa;
+}
+
+/* Code Block */
+.heist-code-block {
+  background-color: #1e293b;
+  color: #f1f1f1;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  min-height: 150px;
+}
+
+.heist-copy-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.heist-copy-button:hover {
+  background-color: #e85555;
+}
+
+/* .react-markdown-loader p code{
+  white-space: pre-line;
+} */
+
+.react-markdown-loader em{
+  color: #eee839;
+  background-color: rgb(83, 83, 83);
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 2px 5px 2px 5px;
+}
+
+.react-markdown-loader h2{
+  color: rgb(219, 215, 215);
+  padding: 10px 0px 0px 0px;
+}
+
+
+.react-markdown-inline-code{
+  background-color: #2d2d2d; /* Dark background for inline code */
+  color: #f8f8f2; /* Light text color */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+.heist-code-container {
+  /* background-color: #8b5e3c; */
+  /* padding: 20px; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: flex-end;
+  gap: 20px;
+}
+.heist-code-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-height: 150px;
+}
+
+.heist-description {
+  background-color: #232326;
+  flex-grow: 1;
+  min-width: 830px;
+  min-height: 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.heist-download {
+  background-color: #232326;
+  width: 150px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+  border-radius: 6px;
+}
+
+.heist-download img{
+  filter: invert(1) brightness(2);
+  max-width: 100%;
+  max-height: 50px;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.heist-download:hover img{
+  transform: scale(1.2) rotateY(360deg);
+}
+
+.heist-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+}
+
+.heist-input-flag {
+  flex-grow: 1;
+  background-color: #232326;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  min-width: 600px;
+  min-height: 35px;
+}
+
+.heist-input-flag::placeholder{
+  color: #ffffff; /* Placeholder text color */
+  font-style: italic; /* Italicize placeholder text */
+  font-size: 16px; /* Font size for placeholder */
+  opacity: 0.7;}
+
+.heist-submit-button {
+  background-color: #232326;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 200px;
+  min-height: 55px;
+}
+
+.heist-submit-button p {
+  color: rgb(255, 255, 255);
+}
+
+.heist-hints {
+  display: flex;
+  gap: 5px;
+  background-color: #232326;
+  padding: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+}
+
+.heist-hint-box {
+  width: 35px;
+  height: 35px;
+  background-color: #865df5;
+  border: 2px solid #865df5 ;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* SIGNUP PAGE */
+/* Container for the signup page */
+/* .signup-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensures the main container takes up the entire viewport height */
+  /* height: 100%; */
+  /* max-height: auto; */
+  /* background-image: linear-gradient(160deg, #1b4275 0%, #3b5363 100%); */
+  /* background: green;
+  padding: 40px;
+  padding-top: 0px; */
+/* }  */
+
+.signup-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 0px 20px 20px 20px;
+  margin-top: 0;
+  background-color: #1c1e22;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  max-height: auto;
+  background-image: url("./assets/images/background.jpg");
+}
+
+
+.signup-container {
+  background-image: linear-gradient(160deg, #1b4275 0%, #3b5363 100%);
+  border-radius: 15px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+.signup-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.signup-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Form styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* max-width: 450px; */
+  margin-bottom: 20px;
+}
+
+.signup-form label {
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  max-width: 480px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.signup-form input {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  background-color: #2d4059;
+  color: white;
+  font-size: 1rem;
+}
+
+.signup-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Signup button styling */
+.signup-button {
+  background-color: #f63628;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 0;
+  width: 100%;
+  max-width: 500px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #e02a1f;
+}
+
+/* Footer and login link */
+.signup-footer {
+  margin-top: 20px;
+}
+
+.signup-footer .login-link {
+  color: #f63628;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-footer .login-link:hover {
+  text-decoration: underline;
+}
+
+/* DASHBOARD FOR PROFILE */
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+/* WALKTHROUGH CSS*/
+/* Walkthrough Container */
+.walkthrough-container {
+  padding: 20px 80px; /* top/bottom left/right*/
+  background-color: #1c1e22;
+  color: white;
+  text-align: center;
+  height: auto;
+  min-height: 100%;
+  margin-bottom: 120px;
+  background-image: url("./assets/images/background.jpg");
+}
+
+/* Walkthrough Grid Layout */
+.walkthrough-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) ; /* 3 columns per row */
+  row-gap: 25px; /* Space between grid items */
+  column-gap: 25px;
+  justify-items: center;
+  min-width: auto;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Heading of challenge container */
+.walkthrough-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 120px;
+  margin-top: 80px;
+}
+
+/* Walkthrough Box Styling */
+.walkthrough-box {
+  position: relative;
+  background-color: #865df5;
+  background-image: linear-gradient(160deg, #865df5 0%, #1b4275 99%, #ffffff 100%);  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Walkthrough Icon Styling */
+.walkthrough-icon {
+  max-width: 100px;
+  max-height: 100px;
+  transition: transform 0.3s ease;
+}
+
+/* Walkthrough Corner Icon */
+.walkthrough-corner-icon {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 45px;
+  height: 40px;
+  filter: invert(0.8) brightness(0.8);
+  transition: transform 0.7s ease;
+}
+
+/* Hover Effect on Walkthrough Box */
+.walkthrough-box:hover {
+  background-image: linear-gradient(160deg, #6138d2 0%, #3c6cab 85%, #ffffff 100%);
+}
+
+.walkthrough-box:hover .walkthrough-corner-icon{
+  transform: scale(1.2) rotateY(360deg);
+  filter: invert(1);
+}
+
+.walkthrough-box:hover .walkthrough-icon{
+  transform: scale(1.2);
+}
+
+/* PROFILE CSS */
+/* Profile Container: Full page with proper layout control */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Push content to the top */
+  background-color: #2c2c2c;
+  min-height: 100vh; /* Full height of the screen */
+  padding: 20px;
+  color: #d2b48c;
+  width: 100%;
+  min-width: auto;
+  max-width: 18
+  00px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+  background-image: url("./assets/images/background.jpg");
+}
+
+/* Header Section: Adjust to ensure it stays inside the container */
+.profile-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 90%;
+  max-width: 600px;
+  padding-top: 100px; /* Extra space for the avatar */
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  box-sizing: border-box;
+}
+
+/* Avatar Wrapper: Centered within the header */
+.profile-avatar-wrapper {
+  position: absolute;
+  top: -75px; /* Adjusted to sit at the top of the header */
+  left: 50%; /* Center horizontally within the header */
+  transform: translateX(-50%); /* Adjust to perfect center */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circle avatar */
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Avatar Image: Centered inside the wrapper */
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* background-color: black; */
+  /* filter: invert(1) brightness(2); */
+}
+
+/* Edit Button: Positioned within the avatar */
+.profile-avatar-edit {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(230, 208, 84);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+  z-index: 9999;
+  /* border: 3px dotted black; */
+}
+
+.profile-avatar-edit img{
+  width: 25px;
+  height: 25px;
+  position: flex;
+  margin-left: 6px;
+  margin-top: 5px;
+  transition: transform 0.5s ease;
+}
+
+.profile-avatar-edit:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.profile-avatar-edit:hover img{
+  transform: scale(1.1) rotateY(360deg); /* Slight zoom effect */
+}
+
+/* Avatar Selector positioned above the header */
+.profile-avatar-selector {
+  position: absolute;
+  bottom: 90%; /* Position it above the header */
+  left: 80%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust for perfect centering */
+  display: grid;
+  grid-template-columns: repeat(4, 40px); /* 4 columns of 50px */
+  gap: 2px; /* Space between avatars */
+  background-color: #a67c52; /* Background to match the design */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Avatar options */
+.profile-avatar-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Zoom effect on hover */
+.profile-avatar-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* White Box Section (Info Box) */
+/* INFO ON HOW MANY CHALLENGE IS SOLVED USING WHAT */
+.profile-white-box {
+  background-color: white;
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  margin-top: 40px; /* Ensure it stays below the header */
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+/* Table Inside the Info Box */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.profile-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.profile-table td {
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  font-weight: bold;
+}
+
+/* SPECIAL CLASSES */
+
+.message-box {
+  position: absolute;
+  top: 20px;
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  /* margin-top: 5%; */
+  padding: 15px 20px 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+}
+
+.message-box.success {
+  border-left: 6px solid green;
+  color: #155724;
+}
+
+.message-box.error {
+  border-left: 6px solid red;
+  color: #721c24;
+}
+
+/* Copyright.css */
+.copyright-container {
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  background-color: #000; /* Black background to match the theme */
+  color: #fff; /* White text */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+    z-index: 1000; 
+
+}
+
+/* Thin line above the copyright text */
+.thin-line {
+  border: none;
+  height: 1px;
+  background-color: #444; /* Slightly lighter than the background */
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.copyright-container p{
+  padding: 0px 0px 0px 10px;
+}
+
+.liner-container{
+  position: relative;
+  background-color: #000;
+  margin: 0;
+  margin-bottom: -5px;
+
+}
+
+.thin-line {
+  border: none;
+  height: 1px;
+  background-color: #444; /* Slightly lighter than the background */
+  margin: 0;
+  margin-bottom: 5px;
+}

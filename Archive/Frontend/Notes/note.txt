@@ -1,0 +1,27 @@
+DEADLINE
+
+Today: DONE
+- Navbar
+
+13 Oktober DONE
+- Router (Home, Challenge, Walkthrough, Settings, Login) 
+- Logout
+- Header
+- Footer
+- Content (placeholder)
+
+14 Oktober 
+- Challenge rendering
+- MD -> HTML rendering
+#### Walkthrough
+- Walkthrough rendering
+- MD -> HTML rendering
+
+15 Oktober DONE
+- Login / Logout / Signup 
+
+16 Oktober
+- Desc for Challenge
+
+
+Challenge -> (Description + Mitigation).md -> Handson
