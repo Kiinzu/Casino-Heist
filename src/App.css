@@ -680,9 +680,11 @@ main {
 } */
 
 .react-markdown-loader em{
-  color: #ef8383;
-  background-color: white;
-  border-radius: 3px;
+  color: #eee839;
+  background-color: rgb(83, 83, 83);
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 2px 5px 2px 5px;
 }
 
 .react-markdown-loader h2{

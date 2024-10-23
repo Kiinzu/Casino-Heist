@@ -69,22 +69,79 @@ import backgroundImage from "../assets/images/background.jpg";
 
 const Heist = () => {
   const { challengeCode } = useParams();
-  const [tag, setTag] = useState('');
   const [post, setPost] = useState('');
   const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
   const [flag, setFlag] = useState('');
-  const navigate = useNavigate(); // Initialize navigate for redirection
+  const [solved, setSolved] = useState(false); // New state for tracking challenge status
+  const [flagResult, setFlagResult] = useState(''); // State for displaying flag result text
+  const navigate = useNavigate(); 
 
-  const handleDownload = () => {
-    const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = 'file.txt'; // Name of the file to be downloaded
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Fetch and validate token
+  const validateToken = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No token found');
+      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Invalid token');
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      localStorage.removeItem('token');
+      navigate('/login');
+    }
+  };
+
+  // Fetch challenge status
+  const checkChallengeStatus = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      console.log(challengeCode)
+      const response = await fetch(`http://127.0.0.1:5000/challenge-status/${challengeCode}`,{
+        method: 'GET',
+        headers:{
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      const result = await response.json();
+      console.log(result)
+      console.log(solved)
+      setSolved(result['isSolved'] === 1); // Set solved state based on response
+    } catch (error) {
+      console.error('Error fetching challenge status:', error);
+    }
+  };
+
+  // Submit flag with result displayed temporarily
+  const handleFlagSubmit = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('http://127.0.0.1:5000/verify-flag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ flag, challengeCode }),
+      });
+      const result = await response.json();
+      setFlagResult(result.message); // Show flag result message
+
+      // Hide message after 1 second
+      setTimeout(() => setFlagResult(''), 1000);
+
+      // Check challenge status after flag submission
+      checkChallengeStatus();
+    } catch (error) {
+      console.error('Error submitting flag:', error);
+    }
   };
 
   const handleHintClick = async (hintNumber) => {
@@ -97,70 +154,33 @@ const Heist = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      // console.log(result);
-      // console.log(token);
+
       const result = await response.json();
-      alert(`Hint ${hintNumber}: ${result.message}`); // Display the hint in an alert or update UI
-    } catch (error) {
+      alert(`Hint ${hintNumber}: ${result['hint']}`); // Display the hint in an alert or update UI
+    }catch (error) {
       console.error('Error fetching hint:', error);
     }
   };
 
-  const handleFlagSubmit = async () => {
-    const token = localStorage.getItem('token'); // fetch token from localStorage
-    try {
-      const response = await fetch('http://127.0.0.1:5000/verify-flag', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ flag, challengeCode })
-      });
-      const result = await response.json();
-      alert(result.message); // Handle response (success/failure) as needed
-    } catch (error) {
-      console.error('Error submitting flag:', error);
-    }
-  };
-
-  const validateToken = async () => {
-    try {
-      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-  
-      if (!token) {
-        throw new Error('No token found'); // Redirect if the token is missing
-      }
-  
-      const response = await fetch('http://127.0.0.1:5000/validate-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Add the token to the Authorization header
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error('Invalid token'); // Handle invalid token response
-      }
-  
-      console.log('Token is valid');
-    } catch (error) {
-      console.error('Token validation failed:', error);
-      localStorage.removeItem('token'); // Clear token if invalid
-      navigate('/login'); // Redirect to login page
-    }
+  const handleDownload = () => {
+    const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'file.txt'; // Name of the file to be downloaded
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/login'); // If no token, redirect to login
+      navigate('/login');
     } else {
-      validateToken(token); // Validate the token if present
+      validateToken();
+      checkChallengeStatus(); // Fetch challenge status on page load
     }
-  }, [navigate]); // Run this effect once on mount
-
+  }, [navigate]);
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/Challenge')
@@ -283,9 +303,8 @@ const Heist = () => {
         </div>
       </div>
     );
-    
 
-    const mitigationBox = (
+    const mitigationBox = solved && (
       <div className="heist-code-container" key="mitigation">
         <h2>Mitigation</h2>
         <ReactMarkdown children={mitigation} remarkPlugins={[remarkGfm]} />
@@ -315,148 +334,3 @@ const Heist = () => {
 };
 
 export default Heist;
-
-
-// const Heist = () => {
-//   const { challengeCode } = useParams(); // Get the challengeCode from the URL
-//   const [post, setPost] = useState(''); // State to store the markdown content
-//   const [image, setImage] = useState('');
-//   const [data, setData] = useState(null); // State to store challenge data
-
-//   // Fetch the challenge data from the server and filter the appropriate challenge
-//   useEffect(() => {
-//     fetch('http://127.0.0.1:5000/Challenge')
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error('Network response was not OK');
-//         }
-//         return response.json();
-//       })
-//       .then((challenges) => {
-//         const selectedChallenge = challenges.find(
-//           (challenge) => challenge.challengeCode === challengeCode
-//         );
-
-//         if (selectedChallenge) {
-//           setData(selectedChallenge);
-
-//           const markdownMap = {
-//             'blockchain-briefing': [briefingMarkdown, briefingArt],
-//             'blockchain-gearing-up': [gearingupMarkdown, gearingupArt],
-//             'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchArt],
-//             'blockchain-entry-point': [entrypointMarkdown, entrypointArt],
-//             'blockchain-bar': [barMarkdown, barArt],
-//             'blockchain-roulette': [rouletteMarkdown, rouletteArt],
-//             'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackArt],
-//             'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyArt],
-//             'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberArt],
-//             'blockchain-inju-bank': [injubankMarkdown, injubankArt],
-//             'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerArt],
-//             'blockchain-singular-entity': [singularentityMarkdown, singularentityArt],
-//             'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditArt],
-//             'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleArt],
-//             'blockchain-double-or-nothing': [doubleornothingMarkdown, doubleornothingArt],
-//             'blockchain-injus-gambit': [injusgambitMarkdown, injusgambitArt],
-//             'blockchain-casino-bankbuster': [casinobankbusterMarkdown, casinobankbusterArt],
-//             'blockchain-executive-problems': [executiveproblemsMarkdown, executiveproblemsArt],
-//           };
-
-//           if (challengeCode in markdownMap) {
-//             const [markdown, art] = markdownMap[challengeCode];
-//             setPost(markdown);
-//             setImage(art);
-//           }
-//         } else {
-//           console.error('Challenge data not found');
-//         }
-//       })
-//       .catch((error) => console.error('Error fetching challenges:', error));
-//   }, [challengeCode]);
-
-//   const renderBoxes = () => {
-//     if (!data) return null;
-
-//     const { challengeDifficulty } = data;
-
-//     const storyBox = (
-//       <div className="heist-description-container" key="story">
-//         <h2>Story</h2>
-//         <ReactMarkdown
-//           children={post}
-//           remarkPlugins={[remarkGfm]}
-//           components={{
-//             code({ node, inline, className, children, ...props }) {
-//               if (inline) {
-//                 return (
-//                   <code className="react-markdown-inline-code" {...props}>
-//                     {children}
-//                   </code>
-//                 );
-//               } else {
-//                 const match = /language-(\w+)/.exec(className || '');
-//                 return match ? (
-//                   <SyntaxHighlighter
-//                     style={vscDarkPlus}
-//                     language={match[1]}
-//                     PreTag="div"
-//                     {...props}
-//                   >
-//                     {String(children).replace(/\n$/, '')}
-//                   </SyntaxHighlighter>
-//                 ) : (
-//                   <code className={className} {...props}>
-//                     {children}
-//                   </code>
-//                 );
-//               }
-//             },
-//           }}
-//           className="react-markdown-loader"
-//         />
-//       </div>
-//     );
-
-//     const codeBox = (
-//       <div className="heist-code-container" key="code">
-//         <h2>Code</h2>
-//         <div className="heist-code-block">
-//           <code>// Code block content goes here...</code>
-//         </div>
-//         <button className="heist-copy-button">Copy Code</button>
-//       </div>
-//     );
-
-//     const mitigationBox = (
-//       <div className="heist-code-container" key="mitigation">
-//         <h2>Mitigation</h2>
-//         <div className="heist-code-block">
-//           <code>// Mitigation content goes here...</code>
-//         </div>
-//       </div>
-//     );
-
-//     // Render boxes based on challenge difficulty
-//     switch (challengeDifficulty) {
-//       case 'basic':
-//         return [storyBox, codeBox];
-//       case 'common':
-//         return [storyBox, codeBox, mitigationBox];
-//       case 'vip':
-//         return [storyBox, codeBox];
-//       default:
-//         return [];
-//     }
-//   };
-
-//   return (
-//     <div className="heist-container">
-//       {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
-//       <div className="heist-challenge-image">
-//         <img src={image} alt="Challenge" />
-//       </div>
-//       {renderBoxes()}
-//     </div>
-//   );
-// };
-
-// export default Heist;
