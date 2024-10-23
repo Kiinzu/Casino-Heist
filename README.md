@@ -120,7 +120,7 @@ blum di implement?
     Casino Heist is created and backed by ENUMA ID, a community that gathered Smart Contract Security Enthusiast in Indonesia.
 
 ## How to Contribute
-- Blom di pul @kiinzu
+- TEST
 
 ## Authors
 - [Kiinzu](github.com/kiinzu)
