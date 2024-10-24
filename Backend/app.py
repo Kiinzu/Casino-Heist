@@ -289,7 +289,7 @@ def get_featured_walktrough():
 
     contributors_list = [dict(contributor) for contributor in contributors]
 
-    return jsonify(contributors_list)
+    return jsonify(contributors_list), 200
 
 @app.route('/verify-flag', methods=['POST'])
 def verify_flag():
@@ -403,7 +403,7 @@ def get_hint(challengeCode, hintNumber):
         db.commit()
 
     # Return the hint regardless of challenge completion status
-    return jsonify({'hint': hint})
+    return jsonify({'hint': hint}), 200
 
 # To use the Walktrough, it will get updated
 @app.route('/update-walkthrough', methods=['POST'])
