@@ -420,7 +420,7 @@ def update_walkthrough():
         ''', (user_id, challenge_id))
         db.commit()
     else:
-        print("ChallengeCompletion is already 1, no update needed.")
+        print("Challenges is already completed, no update needed.")
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):
@@ -505,19 +505,16 @@ def Profile():
             completion_data = completion_dict[challenge_id]
 
             # Calculate the completion status based on hint and walkthrough usage
-            completion_status = completion_data['challenge_completion'] # Initial value since it's always completed
-            print(completion_status)
-            if completion_data['use_hint_one']:
-                completion_status += 1
-            if completion_data['use_hint_two']:
-                completion_status += 1
-            if completion_data['use_hint_three']:
-                completion_status += 1
-
-            if completion_data['use_walkthrough']:
-                if completion_data['challenge_completion'] == 0:
-                    completion_status = 0  # Challenge not completed, reset status to 0
-                else:
+            completion_status = completion_data['challenge_completion']
+            if completion_status == 1:
+                print(completion_status)
+                if completion_data['use_hint_one']:
+                    completion_status += 1
+                if completion_data['use_hint_two']:
+                    completion_status += 1
+                if completion_data['use_hint_three']:
+                    completion_status += 1
+                if completion_data['use_walkthrough']:
                     completion_status = 5
 
         else:
