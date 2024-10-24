@@ -107,6 +107,9 @@ import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothin
 // Needed Logos
 import downloadLogo from "../assets/images/download.png";
 import backgroundImage from "../assets/images/background.jpg";
+import hints_1 from "../assets/images/number-1.png";
+import hints_2 from "../assets/images/number-2.png";
+import hints_3 from "../assets/images/number-3.png";
 
 const Heist = () => {
   const { challengeCode } = useParams();
@@ -120,6 +123,14 @@ const Heist = () => {
   const [solved, setSolved] = useState(false); // New state for tracking challenge status
   const [flagResult, setFlagResult] = useState(''); // State for displaying flag result text
   const navigate = useNavigate(); 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [hintMessage, setHintMessage] = useState('');
+  const [hintTopMessage, setTopHintMessage] = useState('');
+  const [hintBottomMessage, setBottomHintMessage] = useState('');
+  const [isPopupOpenFlag, setIsPopupOpenFlag] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [flagStatus, setFlagStatus] = useState('');
+
 
   // Fetch and validate token
   const validateToken = async () => {
@@ -174,18 +185,29 @@ const Heist = () => {
         },
         body: JSON.stringify({ flag, challengeCode }),
       });
+
       const result = await response.json();
-      setFlagResult(result.message); // Show flag result message
+      setFlagResult(result.message); // Store the result message
+      if (result.message.includes('is correct!')) {
+        setPopupMessage('HEIST COMPLETED!');
+        setFlagStatus('flag-popup-overlay-success');
+      } else {
+        setPopupMessage('HEIST FAILED! WRONG FLAG! RETREAT!');
+        setFlagStatus('flag-popup-overlay-failed');
+      }
 
-      // Hide message after 1 second
-      setTimeout(() => setFlagResult(''), 1000);
+      setIsPopupOpenFlag(true); // Show the popup
 
-      // Check challenge status after flag submission
+      // Hide the popup after 1 second
+      setTimeout(() => setIsPopupOpenFlag(false), 1000);
+
+      // Check the challenge status after flag submission
       checkChallengeStatus();
     } catch (error) {
       console.error('Error submitting flag:', error);
     }
   };
+
 
   const handleHintClick = async (hintNumber) => {
     const token = localStorage.getItem('token');
@@ -197,10 +219,13 @@ const Heist = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
       const result = await response.json();
-      alert(`Hint ${hintNumber}: ${result['hint']}`); // Display the hint in an alert or update UI
-    }catch (error) {
+      setTopHintMessage(`Hint #${hintNumber}`);
+      setHintMessage(`${result['hint']}`); // Set the hint message
+      setBottomHintMessage("END OF HINTS---------");
+      setIsPopupOpen(true); // Open the popup
+    } catch (error) {
       console.error('Error fetching hint:', error);
     }
   };
@@ -275,6 +300,25 @@ const Heist = () => {
       .catch(console.error);
   }, [challengeCode]);
 
+  const hintImages = {
+    1: hints_1,
+    2: hints_2,
+    3: hints_3
+  }
+
+  // FOR HINTS
+  useEffect(() => {
+    const handleClickOutside = () => setIsPopupOpen(false);
+  
+    if (isPopupOpen) {
+      window.addEventListener('click', handleClickOutside);
+    }
+  
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [isPopupOpen]);
+
   const renderBoxes = () => {
     if (!data) return null;
 
@@ -342,15 +386,41 @@ const Heist = () => {
             <p>Submit Flag</p>
           </button>
           <div className="heist-hints">
-            {[1, 2, 3].map((hint) => (
-              <div
-                key={hint}
-                className="heist-hint-box"
-                onClick={() => handleHintClick(hint)}
-              />
+              {[1, 2, 3].map((hint) => (
+                <div
+                  key={hint}
+                  className="heist-hint-box"
+                  onClick={() => handleHintClick(hint)}
+                >
+                  <img 
+                    src={hintImages[hint]} 
+                    alt={`Hint ${hint}`} 
+                    className="hint-image" 
+                  />
+                </div>
             ))}
           </div>
         </div>
+      {/* FLAG POP UP */}
+      {isPopupOpenFlag && (
+        <div className={`${flagStatus}`}>
+          <div className="flag-popup-content">{popupMessage}</div>
+        </div>
+      )}
+
+        {/* Popup Box */}
+        {isPopupOpen && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              {/* <ReactMarkdown children={hintMessage}/> */}
+              <ReactMarkdown className="top-hints-message">{hintTopMessage}</ReactMarkdown>
+              <br />
+              <ReactMarkdown className="real-hints-message">{hintMessage}</ReactMarkdown>
+              <br />
+              <ReactMarkdown className="bottom-hints-message">{hintBottomMessage}</ReactMarkdown>
+            </div>
+          </div>
+        )}
       </div>
     );
 
