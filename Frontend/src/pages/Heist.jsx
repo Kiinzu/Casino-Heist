@@ -63,24 +63,24 @@ import executiveproblemsDescription from '../assets/Properties/blockchain-execut
 import doubleornothingDescription from '../assets/Properties/blockchain-double-or-nothing/description.md';
 
 // import downloadable files
-const briefingAttachment = "../assets/Properties/blockchain-briefing/blockchain-briefing.zip";
-const gearingAttachment = "../assets/Properties/blockchain-gearing-up/blockchain-gearing-up.zip";
-const cheapglitchAttachment = "../assets/Properties/blockchain-cheap-glitch/blockchain-cheap-glitch.zip";
-const entrypointAttachment = "../assets/Properties/blockchain-entry-point/blockchain-entry-point.zip";
-const barAttachment = "../assets/Properties/blockchain-bar/blockchain-bar.zip";
-const rouletteAttachment = "../assets/Properties/blockchain-roulette/blockchain-roulette.zip";
-const blackjackAttachment = "../assets/Properties/blockchain-master-of-blackjack/blockchain-master-of-blackjack.zip";
-const votingfrenzyAttachment = "../assets/Properties/blockchain-voting-frenzy/blockchain-voting-frenzy.zip";
-const vvvipmemberAttachment = "../assets/Properties/blockchain-vvvip-member/blockchain-vvvip-member.zip";
-const injubankAttachment = "../assets/Properties/blockchain-inju-bank/blockchain-inju-bank.zip";
-const silentDealerAttachment = "../assets/Properties/blockchain-silent-dealer/blockchain-silent-dealer.zip";
-const singularentityAttachment = "../assets/Properties/blockchain-singular-entity/blockchain-singularity.zip";
-const unlimitedCreditAttachment = "../assets/Properties/blockchain-unlimited-credit-line/blockchain-unlimited-credit-line.zip";
-const symbolofnobleAttachment = "../assets/Properties/blockchain-symbol-of-noble/blockchain-symbol-of-noble.zip";
-const casinovaultAttachment = "../assets/Properties/blockchain-casino-vault/blockchain-casino-vault.zip";
-const injusgambitAttachment = "../assets/Properties/blockchain-injus-gambit/blockchain-injus-gambit.zip";
-const casinobankbusterAttachment = "../assets/Properties/blockchain-casino-bankbuster/blockchain-casino-bank-buster.zip";
-const executiveproblemsAttachment = "../assets/Properties/blockchain-executive-problems/blockchain-executive-problems.zip";
+const briefingAttachment = "../src/assets/Properties/blockchain-briefing/blockchain-briefing.zip";
+const gearingAttachment = "../src/assets/Properties/blockchain-gearing-up/blockchain-gearing-up.zip";
+const cheapglitchAttachment = "../src/assets/Properties/blockchain-cheap-glitch/blockchain-cheap-glitch.zip";
+const entrypointAttachment = "../src/assets/Properties/blockchain-entry-point/blockchain-entry-point.zip";
+const barAttachment = "../src/assets/Properties/blockchain-bar/blockchain-bar.zip";
+const rouletteAttachment = "../src/assets/Properties/blockchain-roulette/blockchain-roulette.zip";
+const blackjackAttachment = "../src/assets/Properties/blockchain-master-of-blackjack/blockchain-master-of-blackjack.zip";
+const votingfrenzyAttachment = "../src/assets/Properties/blockchain-voting-frenzy/blockchain-voting-frenzy.zip";
+const vvvipmemberAttachment = "../src/assets/Properties/blockchain-vvvip-member/blockchain-vvvip-member.zip";
+const injubankAttachment = "../src/assets/Properties/blockchain-inju-bank/blockchain-inju-bank.zip";
+const silentDealerAttachment = "../src/assets/Properties/blockchain-silent-dealer/blockchain-silent-dealer.zip";
+const singularentityAttachment = "../src/assets/Properties/blockchain-singular-entity/blockchain-singularity.zip";
+const unlimitedCreditAttachment = "../src/assets/Properties/blockchain-unlimited-credit-line/blockchain-unlimited-credit-line.zip";
+const symbolofnobleAttachment = "../src/assets/Properties/blockchain-symbol-of-noble/blockchain-symbol-of-noble.zip";
+const casinovaultAttachment = "../src/assets/Properties/blockchain-casino-vault/blockchain-casino-vault.zip";
+const injusgambitAttachment = "../src/assets/Properties/blockchain-injus-gambit/blockchain-injus-gambit.zip";
+const casinobankbusterAttachment = "../src/assets/Properties/blockchain-casino-bankbuster/blockchain-casino-bank-buster.zip";
+const executiveproblemsAttachment = "../src/assets/Properties/blockchain-executive-problems/blockchain-executive-problems.zip";
 // const doubleornothingAttachment = "../assets/Properties/blockchain-";
 
 // import all art files
@@ -214,9 +214,11 @@ const Heist = () => {
     const link = document.createElement('a'); // Create anchor element
     link.href = attachment; 
     link.setAttribute('download', attachment.split('/').pop()); 
+    console.log(link);
     link.style.display = 'none'; 
     document.body.appendChild(link); 
     link.click(); // Trigger download
+    console.log();
   };
 
   useEffect(() => {
