@@ -34,72 +34,69 @@ import singularentityArt from '../assets/Properties/blockchain-singular-entity/a
 import unlimitedCreditArt from '../assets/Properties/blockchain-unlimited-credit-line/art.png';
 import symbolofnobleArt from '../assets/Properties/blockchain-symbol-of-noble/art.png';
 import casinovaultArt from "../assets/Properties/blockchain-casino-vault/art.png";
-
+ 
 const Guide = () => {
-  const { challengeCode } = useParams(); // Get the challengeCode from the URL
-  const [post, setPost] = useState(''); // State to store the markdown content
+  const { challengeCode } = useParams();
+  const [post, setPost] = useState('');
   const [image, setImage] = useState('');
-  const [data, setData] = useState(null); // State to store challenge data
-  const navigate = useNavigate(); // Initialize navigate for redirection
-
+  const [data, setData] = useState(null);
+  const [featuredWalkthroughs, setFeaturedWalkthroughs] = useState([[], []]);
+  const navigate = useNavigate();
 
   const validateToken = async (token) => {
     try {
-      if (!token) {
-        throw new Error('No token found'); // Redirect if the token is missing
-      }
-  
       const response = await fetch('http://127.0.0.1:5000/validate-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Add the token to the Authorization header
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error('Invalid token'); // Handle invalid token response
-      }
-  
-      console.log('Token is valid');
-    } catch (error) {
-      console.error('Token validation failed:', error);
-      localStorage.removeItem('token'); // Clear token if invalid
-      navigate('/login'); // Redirect to login page
-    }
-  };
-
-  const walkthroughUsed = async (token) => {
-    try{
-      const response = await fetch('http://127.0.0.1:5000/update-walkthrough', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ challengeCode }),
       });
 
-      if(!response.ok) {
-        throw new Error('Walkthrough Failed to Used');
-      }
-      console.log('Hint Sent');
-    } catch (error){
-      console.error('Error in aquiring Walkthrough');
+      if (!response.ok) throw new Error('Invalid token');
+      console.log('Token is valid');
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      localStorage.removeItem('token');
+      navigate('/login');
+    }
+  };
+
+  const fetchFeaturedWalkthroughs = async (token) => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:5000/featured-walkthrough?code=${challengeCode}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error('Failed to fetch walkthroughs');
+      const result = await response.json();
+
+      const firstBox = result.slice(0, 10);
+      const secondBox = result.slice(10, 20);
+      setFeaturedWalkthroughs([firstBox, secondBox]);
+    } catch (error) {
+      console.error('Error fetching walkthroughs:', error);
     }
   };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/login'); // If no token, redirect to login
+      navigate('/login');
     } else {
-      validateToken(token); // Validate the token if present
-      walkthroughUsed(token);
+      validateToken(token);
+      fetchFeaturedWalkthroughs(token);
     }
-  }, [navigate]); // Run this effect once on mount
+  }, [navigate]);
 
-  // Fetch the challenge data from the server and filter the appropriate challenge
+
   useEffect(() => {
     fetch('http://127.0.0.1:5000/Challenge')
       .then((response) => {
@@ -151,67 +148,118 @@ const Guide = () => {
 
   return (
     <div className="heist-container">
-        {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
+      {data ? <h1>{data.challengeName}</h1> : <h1>Loading...</h1>}
 
-        <div className="heist-challenge-image">
-          <img src={image} alt="Challenge" />
-        </div>
+      <div className="heist-challenge-image">
+        <img src={image} alt="Challenge" />
+      </div>
 
-        <div className="heist-description-container">
-          <h2>Story</h2>
-          {data ? (
-            <>
-              {/* ReactMarkdown with Syntax Highlighting for Code Blocks */}
-              <ReactMarkdown
-                children={post}
-                remarkPlugins={[remarkGfm]} // Enables GitHub-flavored markdown
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    // Check if it's an inline code or a code block
-                    if (inline) {
-                      return (
-                        <code className="react-markdown-inline-code" {...props}>
-                          {children}
-                        </code>
-                      );
-                    } else {
-                      const match = /language-(\w+)/.exec(className || '');
-                      return match ? (
-                        <SyntaxHighlighter
-                          style={xonokai} // Use the theme of your choice
-                          language={match[1]}
-                          PreTag="div"
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
-                      ) : (
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      );
-                    }
-                  }
-                }}
-                className="react-markdown-loader" /* React Component for Markdown */
-              />
-            </>
-          ) : (
-            <p>Loading challenge details...</p>
-          )}
-        </div>
+      <div className="heist-description-container">
+        <h2>Story</h2>
+        {data ? (
+          <ReactMarkdown
+            children={post}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    style={xonokai}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, '')}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+            className="react-markdown-loader"
+          />
+        ) : (
+          <p>Loading challenge details...</p>
+        )}
+      </div>
 
-        <div className="heist-code-container">
-          <h2>Code</h2>
-          <div className="heist-code-block">
-            <code>
-              // Code block content goes here...
-            </code>
+      {featuredWalkthroughs.some((box) => box.length > 0) && (
+        <div className="heist-contributor-container">
+          <h2>Featured Walkthrough</h2>
+          <div className="walkthrough-boxes">
+            {featuredWalkthroughs.map((walkthroughs, index) => (
+              <div className="walkthrough-box" key={index}>
+                {walkthroughs.map((walkthrough, i) => (
+                  <a
+                    key={i}
+                    href={walkthrough.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="walkthrough-link"
+                  >
+                    {walkthrough.name}
+                  </a>
+                ))}
+              </div>
+            ))}
           </div>
-          <button className="heist-copy-button">Copy Code</button>
         </div>
+      )}
     </div>
   );
 };
 
 export default Guide;
+
+
+// useEffect(() => {
+//   fetch('http://127.0.0.1:5000/Challenge')
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error('Network response was not OK');
+//       }
+//       return response.json();
+//       console.log(response.json);
+//     })
+//     .then((challenges) => {
+//       // Find the specific challenge based on the challengeCode
+//       const selectedChallenge = challenges.find(
+//         (challenge) => challenge.challengeCode === challengeCode
+//       );
+
+//       if (selectedChallenge) {
+//         setData(selectedChallenge); // Store the challenge data
+//         // Map challenge codes to the corresponding markdown file
+//         const markdownMap = {
+//           'blockchain-cheap-glitch': [cheapglitchWalkthrough, cheapglitchArt],
+//           'blockchain-entry-point': [entrypointWalkthrough, entrypointArt],
+//           'blockchain-bar': [barWalkthrough, barArt],
+//           'blockchain-roulette': [rouletteWalkthrough, rouletteArt],
+//           'blockchain-master-of-blackjack': [blackjackWalkthrough, blackjackArt],
+//           'blockchain-voting-frenzy': [votingfrenzyWalkthrough, votingfrenzyArt],
+//           'blockchain-vvvip-member': [vvvipmemberWalkthrough, vvvipmemberArt],
+//           'blockchain-inju-bank': [injubankWalkthrough, injubankArt],
+//           'blockchain-silent-dealer': [silentDealerWalkthrough, silentDealerArt],
+//           'blockchain-singular-entity': [singularentityWalkthrough, singularentityArt],
+//           'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
+//           'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
+//           'blockchain-casino-vault': [casinovaultWalkthrough, casinovaultArt],
+//         };
+
+//         // Set the markdown content for the selected challenge
+//         if (challengeCode in markdownMap) {
+//           const [markdown, art] = markdownMap[challengeCode]
+//           setPost(markdown);
+//           setImage(art);
+//         } else {
+//           console.error('Markdown file not found for challengeCode:', challengeCode);
+//         }
+//       } else {
+//         console.error('Challenge data not found for challengeCode:', challengeCode);
+//       }
+//     })
+//     .catch((error) => console.error('Error fetching challenges:', error));
+// }, [challengeCode]);
