@@ -259,6 +259,19 @@ def get_challenges():
 
     return jsonify(challenges_list)
 
+@app.route('/featured-walktrough', methods=['GET'])
+def get_featured_walktrough():
+    # Execute raw SQL query to fetch challenges
+    db = get_db()
+    cursor = db.execute('SELECT challengeCode, Name, Link FROM Contributor')  # Fetch all Contributor
+    contributors = cursor.fetchall()
+
+    contributors_list = [dict(contributor) for contributor in contributors]
+
+    return jsonify(contributors_list)
+
+
+
 @app.route('/verify-flag', methods=['POST'])
 def verify_flag():
     # Get the JWT from the Authorization header
