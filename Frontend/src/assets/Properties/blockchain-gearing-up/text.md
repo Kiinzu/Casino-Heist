@@ -3,14 +3,17 @@ Gearing up for every heist is very important, not only every heist has their own
 In this lab, you are going to create your first ever exploit contract to solve the lab. what? Kinda confuse how to do it? We'll guide you! &nbsp;  
 &nbsp;
 ## Creating Your First Project
-First of all, we need to setup a new project to create our contract, we are going to use **Foundry - Forge** to create the environment, let's do it by using this command
+First of all, we need to setup a new project to create our contract, we are going to use **Foundry - Forge** to create the environment, let's do it by using this command &nbsp;  
+&nbsp;  
 ```bash
 forge init heist-exploit 
 ``` 
+&nbsp;  
 NOTE: You may name the folder however you like! &nbsp;  
 &nbsp; 
 
-after running the command now you'd have a folder structure as such
+after running the command now you'd have a folder structure as such &nbsp;  
+&nbsp;  
 ```text
 heist-exploit
 ├── README.md
@@ -26,7 +29,8 @@ heist-exploit
     └── Counter.t.sol
 ``` 
 &nbsp;  
-It is better to remove the *Counter.s.sol*, *Counter.sol* and *Counter.t.sol*, since we are going to write in these 3 directories. Now that you have the project ready, what we want is to create a new folder in the src called "**gearing-up**", then import the *Setup.sol* and *GearingUp.sol* to the folder and create a new file called *Exploit.sol*.
+It is better to remove the *Counter.s.sol*, *Counter.sol* and *Counter.t.sol*, since we are going to write in these 3 directories. Now that you have the project ready, what we want is to create a new folder in the src called "**gearing-up**", then import the *Setup.sol* and *GearingUp.sol* to the folder and create a new file called *Exploit.sol*. &nbsp;  
+&nbsp;  
 
 ```text
 ├── src
@@ -37,7 +41,8 @@ It is better to remove the *Counter.s.sol*, *Counter.sol* and *Counter.t.sol*, s
 &nbsp;  
 
 ## Writing The Prequisite Exploit
-Now that we have everything that we need in the */src*, we can start writting the code, first of all we want to import the contract that we are going to exploit
+Now that we have everything that we need in the */src*, we can start writting the code, first of all we want to import the contract that we are going to exploit &nbsp;  
+&nbsp;  
 
 ```solidity
 pragma solidity ^0.8.26;
@@ -50,7 +55,8 @@ contract Exploit{
 }
 ```
 &nbsp;  
-After we import the contracts, we can now make a variable that will reference to a contract instance, for this we need to know the *Contract Name*, this name is defined after the keyword *contract*. To refet to both *Setup* and *GearingUp* with their respective deployed address we can do this
+After we import the contracts, we can now make a variable that will reference to a contract instance, for this we need to know the *Contract Name*, this name is defined after the keyword *contract*. To refet to both *Setup* and *GearingUp* with their respective deployed address we can do this &nbsp;  
+&nbsp;  
 
 ```solidity
 contract Exploit{
@@ -82,7 +88,8 @@ The *Gearing Up* contract on deployed has 10 Ether, we can see that on the const
 &nbsp;  
 &nbsp;
 ### Calling a Function
-We are going to make *GearingUp::callOne()* returns true first, let's see the code
+We are going to make *GearingUp::callOne()* returns true first, let's see the code &nbsp;  
+&nbsp;  
 
 ```solidity
     function callThis() public{
@@ -92,7 +99,8 @@ We are going to make *GearingUp::callOne()* returns true first, let's see the co
     }
 ```
 &nbsp;  
-It compares the *msg.sender* value with the *tx.origin*, we know from the *briefing* that *msg.sender* can be either EOA or Smart Contract, but tx.origin will always be an EOA, so to solve this we need to call the function using a Smart Contract, in this case our Exploit Contract. We can call the function by implementing this in our Smart Contract
+It compares the *msg.sender* value with the *tx.origin*, we know from the *briefing* that *msg.sender* can be either EOA or Smart Contract, but tx.origin will always be an EOA, so to solve this we need to call the function using a Smart Contract, in this case our Exploit Contract. We can call the function by implementing this in our Smart Contract &nbsp;  
+&nbsp;  
 
 ```solidity
 function solveGearingUp() public {
@@ -108,7 +116,8 @@ Smart Contract can also sends another Smart Contract Ether, but do take note tha
 &nbsp;  
 - *transfer*
     &nbsp;  
-    *transfer* only use 2300 gas and will throws an error upon failure, however this function is no longer recommended for sending Ether.
+    *transfer* only use 2300 gas and will throws an error upon failure, however this function is no longer recommended for sending Ether. &nbsp;  
+    &nbsp;  
 
     ```solidity
     // 0.8.0
@@ -119,7 +128,8 @@ Smart Contract can also sends another Smart Contract Ether, but do take note tha
 &nbsp;   
 - *send*
     &nbsp;  
-    Just like transfer, *send* also has the gas limit of 2300, but it won't revert on failure since it returns bool, so we need to check whether the *send* is successful or not.
+    Just like transfer, *send* also has the gas limit of 2300, but it won't revert on failure since it returns bool, so we need to check whether the *send* is successful or not. &nbsp;  
+    &nbsp;  
 
     ```solidity
     // 0.8.0
@@ -131,7 +141,8 @@ Smart Contract can also sends another Smart Contract Ether, but do take note tha
 &nbsp;  
 - *call*
     &nbsp;  
-    *call* is the by far the most recommended method of transferring Ether. It has No limit on how many gas it uses, but it doesn't revert on failure since it's also return bool.
+    *call* is the by far the most recommended method of transferring Ether. It has No limit on how many gas it uses, but it doesn't revert on failure since it's also return bool. &nbsp;  
+    &nbsp;  
 
     ```solidity
     // 0.8.0
@@ -141,7 +152,8 @@ Smart Contract can also sends another Smart Contract Ether, but do take note tha
     }
     ```
     &nbsp;   
-    Here is also an example of the implementation of *call* in the earlier version of *0.6.0*
+    Here is also an example of the implementation of *call* in the earlier version of *0.6.0* &nbsp;  
+    &nbsp;  
 
     ```solidity
     // 0.6.0
@@ -151,7 +163,8 @@ Smart Contract can also sends another Smart Contract Ether, but do take note tha
     }
     ```
 &nbsp;   
-Let's see what we have to deal to make the *GearingUp::depositOne()* returns true
+Let's see what we have to deal to make the *GearingUp::depositOne()* returns true &nbsp;  
+&nbsp;  
 
 ```solidity
     function sendMoneyHere() public payable{
@@ -171,7 +184,8 @@ as usual, the first check always check whether the *msg.sender* is an EOA or not
 &nbsp;  
 - *receive()* and *fallback()*
     &nbsp;  
-    While making your constructor payable only give the contract ability to receive Ether upon deployment, adding *receive()* or *fallback()* allow your contract to be receive Ether at any given moment. However we need to understand the difference between them
+    While making your constructor payable only give the contract ability to receive Ether upon deployment, adding *receive()* or *fallback()* allow your contract to be receive Ether at any given moment. However we need to understand the difference between them &nbsp;  
+    &nbsp;  
 
     ```text
                        send Ether
@@ -187,7 +201,8 @@ as usual, the first check always check whether the *msg.sender* is an EOA or not
   receive()   fallback()
   ```
     &nbsp;  
-    depends on what your smart contract need, you can either implement one or both of them. Here is the example of implementation
+    depends on what your smart contract need, you can either implement one or both of them. Here is the example of implementation &nbsp;  
+    &nbsp;  
     ```solidity
     receive() external payable{
         // some logic here if needed
@@ -198,7 +213,8 @@ as usual, the first check always check whether the *msg.sender* is an EOA or not
     }
     ```
 &nbsp;  
-Not that we already have the knowledge, let's implement the code to make `GearingUp::depositOne()` and `GearingUp::withdrawOne()` return true.
+Not that we already have the knowledge, let's implement the code to make *GearingUp::depositOne()* and *GearingUp::withdrawOne()* return true. &nbsp;  
+&nbsp;  
 
 ```solidity
 function solveGearingUp() public payable{
@@ -210,7 +226,8 @@ function solveGearingUp() public payable{
 receive() external payable{}
 ```
 &nbsp;  
-That is one way of sending the Ether since the &*GearingUp::sendMoneyHere()* is a payable function, but since our contract didn't have Ether, we need to make *Exploit::solveGearingUp()* become a *payable* function by adding the word *payable* there. If you wish to give the contract some balance first is also fine, we can modify the contract to receive an Ether upon deployment and send the amount later when calling the *solveGearingUp()*
+That is one way of sending the Ether since the &*GearingUp::sendMoneyHere()* is a payable function, but since our contract didn't have Ether, we need to make *Exploit::solveGearingUp()* become a *payable* function by adding the word *payable* there. If you wish to give the contract some balance first is also fine, we can modify the contract to receive an Ether upon deployment and send the amount later when calling the *solveGearingUp()* &nbsp;  
+&nbsp;  
 
 ```solidity
 contract Exploit{
@@ -227,7 +244,8 @@ contract Exploit{
 ```
 &nbsp;  
 ### Sending Data 
-Smart Contract can also be used to send data, just like the function *GearingUp:sendSomeData()*, you are going to send a *string*, *uint256*, *bytes* and *address*, let's see the if logic 
+Smart Contract can also be used to send data, just like the function *GearingUp:sendSomeData()*, you are going to send a *string*, *uint256*, *bytes* and *address*, let's see the if logic &nbsp;  
+&nbsp;  
 
 ```solidity
     function sendSomeData(string memory password, uint256 code, bytes4 fourBytes, address sender) public{
@@ -242,7 +260,8 @@ Smart Contract can also be used to send data, just like the function *GearingUp:
     }
 ```
 &nbsp;  
-you might wonder now why we use hash comparison and why not directly compare the input and the values (bytes and string), well solidity can't do that, hence that logic above is implemented. Okay let's write the code now 
+you might wonder now why we use hash comparison and why not directly compare the input and the values (bytes and string), well solidity can't do that, hence that logic above is implemented. Okay let's write the code now &nbsp;  
+&nbsp;  
 
 ```solidity
 function solveGearingUp() public payable{
@@ -258,8 +277,8 @@ Oh yeah, the *address(what)* is to fulfill the 4th requirement, since it compare
 &nbsp;  
 &nbsp;
 ### Finishing Up & Deploying Exploit
-Now that we have our Exploit for every function, we just need to call *GearingUp::completedGearing()* to make the *Setup::isSolved()* returns true and solved the lab, here is our final Exploit with the Ether send on the attack
-
+Now that we have our Exploit for every function, we just need to call *GearingUp::completedGearing()* to make the *Setup::isSolved()* returns true and solved the lab, here is our final Exploit with the Ether send on the attack &nbsp;  
+&nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -290,20 +309,22 @@ contract Exploit{
 }
 ```
 &nbsp;  
-To Deploy the Exploit, we can use this command below on the root of your project folder
+To Deploy the Exploit, we can use this command below on the root of your project folder &nbsp;  
+&nbsp;  
 
 ```bash
 forge create src/gearing-up/Exploit.sol:Exploit -r $RPC_URL --private-key $PK --constructor-args $SETUP_ADDR 
 ```
 &nbsp;  
-you can adjust the command to you needs, by doing this, we are deploying our contract to the network. You will see *Deployer*, *Deployed to*, and *Transaction Hash*, your contract is now deployed with an address of *Deployed To*. To finish up and solve the Lab, let's call our *solveGearingUp()*
+you can adjust the command to you needs, by doing this, we are deploying our contract to the network. You will see *Deployer*, *Deployed to*, and *Transaction Hash*, your contract is now deployed with an address of *Deployed To*. To finish up and solve the Lab, let's call our *solveGearingUp()* &nbsp;  
+&nbsp;  
 
 ```bash
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveGearingUp()" --value 5ether
 ```
-
-Here is another version of the Exploit contract, this one will require you to include the Ether on the Deployment instead when calling them like the last version of Contract
-
+&nbsp;  
+Here is another version of the Exploit contract, this one will require you to include the Ether on the Deployment instead when calling them like the last version of Contract &nbsp;  
+&nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -334,7 +355,8 @@ contract Exploit{
 }
 ```
 &nbsp;  
-To deploy this version of contract we need to adjust our command to be like this one below
+To deploy this version of contract we need to adjust our command to be like this one below &nbsp;  
+&nbsp;  
 
 ```bash
 // Deploying the Exploit
@@ -343,6 +365,6 @@ forge create src/gearing-up/Exploit.sol:Exploit -r $RPC_URL --private-key $PK --
 // Calling the solveGearingUp function
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveGearingUp()" 
 ```
-
+&nbsp;  
 And Congratulations! You just Solved Gearing Up and Ready to begin the Real HEIST!
 
