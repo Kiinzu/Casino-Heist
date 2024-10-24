@@ -307,7 +307,38 @@ const Heist = () => {
     const mitigationBox = solved && (
       <div className="heist-code-container" key="mitigation">
         <h2>Mitigation</h2>
-        <ReactMarkdown children={mitigation} remarkPlugins={[remarkGfm]} />
+        <ReactMarkdown
+          children={mitigation}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              if (inline) {
+                return (
+                  <code className="react-markdown-inline-code" {...props}>
+                    {children}
+                  </code>
+                );
+              } else {
+                const match = /language-(\w+)/.exec(className || '');
+                return match ? (
+                  <SyntaxHighlighter
+                    style={xonokai}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, '')}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              }
+            },
+          }}
+          className="react-markdown-loader"
+        />
       </div>
     );
 
