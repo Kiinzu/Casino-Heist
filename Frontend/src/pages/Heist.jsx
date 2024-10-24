@@ -26,7 +26,6 @@ import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-ban
 import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
 import casinovaultMarkdown from "../assets/Properties/blockchain-casino-vault/text.md";
 
-
 // import all mitigation files
 import cheapglitchMitigation from '../assets/Properties/blockchain-cheap-glitch/mitigation.md';
 import entrypointMitigation from '../assets/Properties/blockchain-entry-point/mitigation.md';
@@ -42,7 +41,7 @@ import unlimitedCreditMitigation from '../assets/Properties/blockchain-unlimited
 import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-noble/mitigation.md';
 import casinovaultMitigation from "../assets/Properties/blockchain-casino-vault/mitigation.md";
 
-// import all art files
+// import all description for challenge files
 import briefingDescription from '../assets/Properties/blockchain-briefing/description.md';
 import gearingupDescription from '../assets/Properties/blockchain-gearing-up/description.md';
 import cheapglitchDescription from '../assets/Properties/blockchain-cheap-glitch/description.md';
@@ -62,6 +61,27 @@ import injusgambitDescription from '../assets/Properties/blockchain-injus-gambit
 import casinobankbusterDescription from '../assets/Properties/blockchain-casino-bankbuster/description.md';
 import executiveproblemsDescription from '../assets/Properties/blockchain-executive-problems/description.md';
 import doubleornothingDescription from '../assets/Properties/blockchain-double-or-nothing/description.md';
+
+// import downloadable files
+const briefingAttachment = "../assets/Properties/blockchain-briefing/blockchain-briefing.zip";
+const gearingAttachment = "../assets/Properties/blockchain-gearing-up/blockchain-gearing-up.zip";
+const cheapglitchAttachment = "../assets/Properties/blockchain-cheap-glitch/blockchain-cheap-glitch.zip";
+const entrypointAttachment = "../assets/Properties/blockchain-entry-point/blockchain-entry-point.zip";
+const barAttachment = "../assets/Properties/blockchain-bar/blockchain-bar.zip";
+const rouletteAttachment = "../assets/Properties/blockchain-roulette/blockchain-roulette.zip";
+const blackjackAttachment = "../assets/Properties/blockchain-master-of-blackjack/blockchain-master-of-blackjack.zip";
+const votingfrenzyAttachment = "../assets/Properties/blockchain-voting-frenzy/blockchain-voting-frenzy.zip";
+const vvvipmemberAttachment = "../assets/Properties/blockchain-vvvip-member/blockchain-vvvip-member.zip";
+const injubankAttachment = "../assets/Properties/blockchain-inju-bank/blockchain-inju-bank.zip";
+const silentDealerAttachment = "../assets/Properties/blockchain-silent-dealer/blockchain-silent-dealer.zip";
+const singularentityAttachment = "../assets/Properties/blockchain-singular-entity/blockchain-singularity.zip";
+const unlimitedCreditAttachment = "../assets/Properties/blockchain-unlimited-credit-line/blockchain-unlimited-credit-line.zip";
+const symbolofnobleAttachment = "../assets/Properties/blockchain-symbol-of-noble/blockchain-symbol-of-noble.zip";
+const casinovaultAttachment = "../assets/Properties/blockchain-casino-vault/blockchain-casino-vault.zip";
+const injusgambitAttachment = "../assets/Properties/blockchain-injus-gambit/blockchain-injus-gambit.zip";
+const casinobankbusterAttachment = "../assets/Properties/blockchain-casino-bankbuster/blockchain-casino-bank-buster.zip";
+const executiveproblemsAttachment = "../assets/Properties/blockchain-executive-problems/blockchain-executive-problems.zip";
+// const doubleornothingAttachment = "../assets/Properties/blockchain-";
 
 // import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
@@ -92,6 +112,7 @@ const Heist = () => {
   const { challengeCode } = useParams();
   const [post, setPost] = useState('');
   const [desc, setDesc] = useState('');
+  const [attachment, setAttachment] = useState(null);
   const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
@@ -185,13 +206,17 @@ const Heist = () => {
   };
 
   const handleDownload = () => {
-    const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = 'file.txt'; // Name of the file to be downloaded
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if(!attachment){
+      console.error("No attachment found");
+      return;
+    }
+
+    const link = document.createElement('a'); // Create anchor element
+    link.href = attachment; 
+    link.setAttribute('download', attachment.split('/').pop()); 
+    link.style.display = 'none'; 
+    document.body.appendChild(link); 
+    link.click(); // Trigger download
   };
 
   useEffect(() => {
@@ -216,32 +241,33 @@ const Heist = () => {
           setData(selectedChallenge);
 
           const markdownMap = {
-            'blockchain-briefing': [briefingMarkdown, '', briefingArt, briefingDescription],
-            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt, gearingupDescription],
-            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt, cheapglitchDescription],
-            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt, entrypointDescription],
-            'blockchain-bar': [barMarkdown, barMitigation, barArt, barDescription],
-            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt, rouletteDescription],
-            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt, blackjackDescription],
-            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt, votingfrenzyDescription],
-            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt, vvvipmemberDescription],
-            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt, injubankDescription],
-            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt, silentDealerDescription],
-            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt, singularentityDescription],
-            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt, unlimitedCreditDescription],
-            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt, symbolofnobleDescription],
-            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt, casinovaultDescription],
-            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt, injusgambitDescription],
-            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt, casinobankbusterDescription],
-            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt, executiveproblemsDescription],
-            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt. doubleornothingDescription],
+            'blockchain-briefing': [briefingMarkdown, '', briefingArt, briefingDescription, briefingAttachment],
+            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt, gearingupDescription, gearingAttachment],
+            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt, cheapglitchDescription, cheapglitchAttachment],
+            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt, entrypointDescription, entrypointAttachment],
+            'blockchain-bar': [barMarkdown, barMitigation, barArt, barDescription, barAttachment],
+            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt, rouletteDescription, rouletteAttachment],
+            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt, blackjackDescription, blackjackAttachment],
+            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt, votingfrenzyDescription, votingfrenzyAttachment],
+            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt, vvvipmemberDescription, vvvipmemberAttachment],
+            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt, injubankDescription, injusgambitAttachment],
+            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt, silentDealerDescription, silentDealerAttachment],
+            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt, singularentityDescription, singularentityAttachment],
+            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt, unlimitedCreditDescription, unlimitedCreditAttachment],
+            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt, symbolofnobleDescription, symbolofnobleAttachment],
+            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt, casinovaultDescription, casinovaultAttachment],
+            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt, injusgambitDescription, injusgambitAttachment],
+            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt, casinobankbusterDescription, casinobankbusterAttachment],
+            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt, executiveproblemsDescription, executiveproblemsAttachment],
+            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt. doubleornothingDescription, briefingAttachment],
           };
 
-          const [story, mitigation, art, desc] = markdownMap[challengeCode] || [];
+          const [story, mitigation, art, desc, attachment] = markdownMap[challengeCode] || [];
           setPost(story);
           setMitigation(mitigation);
           setImage(art);
           setDesc(desc);
+          setAttachment(attachment);
         }
       })
       .catch(console.error);
