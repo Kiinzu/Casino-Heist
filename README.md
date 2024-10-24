@@ -122,7 +122,7 @@ blum di implement?
 ## How to Contribute
 We are open for contribution, you can contribute in 2 ways. If you like to create a challenge and want others to try it out or If you like to write writeups and walkthrough and excited for it to be read by other and featured in our Playground, you can do that! 
 
-Just follow the Instruction [here](./Contribution/README.md) to Contribute!
+Just follow the Instruction [here](./Contribution/) to Contribute!
 
 ## Authors
 - [Kiinzu](github.com/kiinzu)
