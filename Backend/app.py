@@ -259,6 +259,38 @@ def get_challenges():
 
     return jsonify(challenges_list)
 
+@app.route('/featured-walktrough', methods=['GET'])
+def get_featured_walktrough():
+    # Get the JWT from the Authorization header
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return jsonify({'error': 'Authorization header missing or malformed'}), 401
+
+    token = auth_header.split(" ")[1]
+
+    # Decode the JWT to get the user ID
+    try:
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        user_id = decoded_token.get('user_id')
+        if user_id is None:
+            return jsonify({'error': 'User ID not found in token'}), 401
+
+    except jwt.InvalidTokenError:
+        return jsonify({'error': 'Invalid token'}), 401
+    
+    # Get the challenge code from the request body
+    data = request.get_json()
+    challenge_code = data.get('challengeCode')
+
+    # Execute raw SQL query to fetch Contributors
+    db = get_db()
+    cursor = db.execute('SELECT challengeCode, Name, Link FROM Contributor WHERE challengeCode = ?', (challenge_code,))
+    contributors = cursor.fetchall()
+
+    contributors_list = [dict(contributor) for contributor in contributors]
+
+    return jsonify(contributors_list), 200
+
 @app.route('/verify-flag', methods=['POST'])
 def verify_flag():
     # Get the JWT from the Authorization header
@@ -371,7 +403,7 @@ def get_hint(challengeCode, hintNumber):
         db.commit()
 
     # Return the hint regardless of challenge completion status
-    return jsonify({'hint': hint})
+    return jsonify({'hint': hint}), 200
 
 # To use the Walktrough, it will get updated
 @app.route('/update-walkthrough', methods=['POST'])
