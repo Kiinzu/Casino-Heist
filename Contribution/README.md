@@ -11,7 +11,7 @@ If you like writting writeups or walkthrough and you want yours to be featured i
 3. You will find this file structure there 
 
 ```text
-Template
+Template-Challenge
     ├── Challenge
     │      ├── Dockerfile
     │      ├── build.sh
@@ -19,11 +19,12 @@ Template
     │      ├── deploy
     │      └── images
     └── Markdown
-        ├── art.png
-        ├── description.md
-        ├── mitigation.md
-        ├── text.md
-        └── walkthrough.md
+    │   ├── art.png
+    │   ├── description.md
+    │   ├── mitigation.md
+    │   ├── text.md
+    │   └── walkthrough.md
+    └──  note.txt
 ```
 
 4. Based on your challenge difficulty, please edit the following files in the `/Markdown` folder
