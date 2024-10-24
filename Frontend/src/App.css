@@ -585,6 +585,12 @@ main {
   background-image: url("./assets/images/background.jpg");
 }
 
+.heist-container span{
+  font-size: 14px;
+  font-family: 'Lucida Sans' , 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+}
+
 .heist-challenge-image {
   width: 200px;
   height: 200px;
@@ -684,8 +690,8 @@ main {
   color: #eee839;
   background-color: rgb(83, 83, 83);
   border-radius: 6px;
-  font-size: 17px;
-  padding: 2px 5px 2px 5px;
+  font-size: 16px;
+  padding: 1px 3px 1px 3px;
 }
 
 .react-markdown-loader h2{
