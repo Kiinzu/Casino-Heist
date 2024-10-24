@@ -419,8 +419,10 @@ def update_walkthrough():
             ON CONFLICT(userId, challengeId) DO UPDATE SET useWalkthrough = 1
         ''', (user_id, challenge_id))
         db.commit()
+        return jsonify({'message': 'success'}),200
     else:
         print("ChallengeCompletion is already 1, no update needed.")
+        return jsonify({'message': 'success'}),200
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):
@@ -506,7 +508,7 @@ def Profile():
 
             # Calculate the completion status based on hint and walkthrough usage
             completion_status = completion_data['challenge_completion'] # Initial value since it's always completed
-            print(completion_status)
+            # print(completion_status)
             if completion_data['use_hint_one']:
                 completion_status += 1
             if completion_data['use_hint_two']:
