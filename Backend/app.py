@@ -328,14 +328,14 @@ def get_hint(challengeCode, hintNumber):
         return jsonify({'error': 'Invalid token'}), 401
 
     db = get_db()
+    # Fetch the challenge hints from the Challenges table based on challengeCode
     cursor = db.execute('SELECT challengeHintOne, challengeHintTwo, challengeHintThree FROM Challenges WHERE challengeCode = ?', (challengeCode,))
     challenge = cursor.fetchone()
-    print(dict(challenge))
 
     if not challenge:
         return jsonify({'error': 'Challenge not found'}), 404
 
-    # Determine which hint to return and update the ChallengeCompletion table
+    # Determine which hint to return
     if hintNumber == 1:
         hint = challenge['challengeHintOne']
         update_query = 'UPDATE ChallengeCompletion SET useHintOne = 1 WHERE userId = ? AND challengeId = ?'
@@ -357,10 +357,20 @@ def get_hint(challengeCode, hintNumber):
 
     challenge_id = challenge_id_row['challengeId']
 
-    # Update the ChallengeCompletion table
-    db.execute(update_query, (user_id, challenge_id))
-    db.commit()
-    print(hint)
+    # Check if the challenge is already completed (challengeCompletion == 1)
+    completion_cursor = db.execute('SELECT challengeCompletion FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id))
+    completion_status = completion_cursor.fetchone()
+
+    if not completion_status:
+        return jsonify({'error': 'Challenge completion status not found'}), 404
+
+    # Always provide the hint, but only update if challengeCompletion == 0
+    if completion_status['challengeCompletion'] == 0:
+        # Update the ChallengeCompletion table with the hint usage
+        db.execute(update_query, (user_id, challenge_id))
+        db.commit()
+
+    # Return the hint regardless of challenge completion status
     return jsonify({'hint': hint})
 
 # To use the Walktrough, it will get updated
