@@ -366,6 +366,7 @@ const Heist = () => {
 
     switch (challengeDifficulty) {
       case 'basic':
+        return [codeBox, storyBox];
       case 'vip':
         return [storyBox, codeBox];
       case 'common':
