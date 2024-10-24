@@ -419,6 +419,7 @@ def update_walkthrough():
             ON CONFLICT(userId, challengeId) DO UPDATE SET useWalkthrough = 1
         ''', (user_id, challenge_id))
         db.commit()
+        return jsonify({'message': 'success'}),200
     else:
         print("Challenges is already completed, no update needed.")
 

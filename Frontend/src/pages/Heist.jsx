@@ -43,6 +43,27 @@ import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-n
 import casinovaultMitigation from "../assets/Properties/blockchain-casino-vault/mitigation.md";
 
 // import all art files
+import briefingDescription from '../assets/Properties/blockchain-briefing/description.md';
+import gearingupDescription from '../assets/Properties/blockchain-gearing-up/description.md';
+import cheapglitchDescription from '../assets/Properties/blockchain-cheap-glitch/description.md';
+import entrypointDescription from '../assets/Properties/blockchain-entry-point/description.md';
+import barDescription from '../assets/Properties/blockchain-bar/description.md';
+import rouletteDescription from '../assets/Properties/blockchain-roulette/description.md';
+import blackjackDescription from '../assets/Properties/blockchain-master-of-blackjack/description.md';
+import votingfrenzyDescription from '../assets/Properties/blockchain-voting-frenzy/description.md';
+import vvvipmemberDescription from '../assets/Properties/blockchain-vvvip-member/description.md';
+import injubankDescription from '../assets/Properties/blockchain-inju-bank/description.md';
+import silentDealerDescription from '../assets/Properties/blockchain-silent-dealer/description.md';
+import singularentityDescription from '../assets/Properties/blockchain-singular-entity/description.md';
+import unlimitedCreditDescription from '../assets/Properties/blockchain-unlimited-credit-line/description.md';
+import symbolofnobleDescription from '../assets/Properties/blockchain-symbol-of-noble/description.md';
+import casinovaultDescription from "../assets/Properties/blockchain-casino-vault/description.md";
+import injusgambitDescription from '../assets/Properties/blockchain-injus-gambit/description.md';
+import casinobankbusterDescription from '../assets/Properties/blockchain-casino-bankbuster/description.md';
+import executiveproblemsDescription from '../assets/Properties/blockchain-executive-problems/description.md';
+import doubleornothingDescription from '../assets/Properties/blockchain-double-or-nothing/description.md';
+
+// import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
 import gearingupArt from '../assets/Properties/blockchain-gearing-up/art.png';
 import cheapglitchArt from '../assets/Properties/blockchain-cheap-glitch/art.png';
@@ -70,6 +91,7 @@ import backgroundImage from "../assets/images/background.jpg";
 const Heist = () => {
   const { challengeCode } = useParams();
   const [post, setPost] = useState('');
+  const [desc, setDesc] = useState('');
   const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
@@ -194,31 +216,32 @@ const Heist = () => {
           setData(selectedChallenge);
 
           const markdownMap = {
-            'blockchain-briefing': [briefingMarkdown, '', briefingArt],
-            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt],
-            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt],
-            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt],
-            'blockchain-bar': [barMarkdown, barMitigation, barArt],
-            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt],
-            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt],
-            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt],
-            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt],
-            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt],
-            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt],
-            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt],
-            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt],
-            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt],
-            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt],
-            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt],
-            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt],
-            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt],
-            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt],
+            'blockchain-briefing': [briefingMarkdown, '', briefingArt, briefingDescription],
+            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt, gearingupDescription],
+            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt, cheapglitchDescription],
+            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt, entrypointDescription],
+            'blockchain-bar': [barMarkdown, barMitigation, barArt, barDescription],
+            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt, rouletteDescription],
+            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt, blackjackDescription],
+            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt, votingfrenzyDescription],
+            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt, vvvipmemberDescription],
+            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt, injubankDescription],
+            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt, silentDealerDescription],
+            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt, singularentityDescription],
+            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt, unlimitedCreditDescription],
+            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt, symbolofnobleDescription],
+            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt, casinovaultDescription],
+            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt, injusgambitDescription],
+            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt, casinobankbusterDescription],
+            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt, executiveproblemsDescription],
+            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt. doubleornothingDescription],
           };
 
-          const [story, mitigation, art] = markdownMap[challengeCode] || [];
+          const [story, mitigation, art, desc] = markdownMap[challengeCode] || [];
           setPost(story);
           setMitigation(mitigation);
           setImage(art);
+          setDesc(desc);
         }
       })
       .catch(console.error);
@@ -272,8 +295,7 @@ const Heist = () => {
         <h2>Code</h2>
         <div className="heist-code-content">
           <div className="heist-description">
-            <p>LOREM IPSUM DUAR DUAR NMAX MEMEK</p>
-            <p>BUM BUM BUM PAW PAW PAW</p>
+            <ReactMarkdown children={desc} className="heist-codebox-description"/>
           </div>
           <div className="heist-download" onClick={handleDownload}>
             <img src={downloadLogo} alt="Download" />
@@ -307,7 +329,38 @@ const Heist = () => {
     const mitigationBox = solved && (
       <div className="heist-code-container" key="mitigation">
         <h2>Mitigation</h2>
-        <ReactMarkdown children={mitigation} remarkPlugins={[remarkGfm]} />
+        <ReactMarkdown
+          children={mitigation}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              if (inline) {
+                return (
+                  <code className="react-markdown-inline-code" {...props}>
+                    {children}
+                  </code>
+                );
+              } else {
+                const match = /language-(\w+)/.exec(className || '');
+                return match ? (
+                  <SyntaxHighlighter
+                    style={xonokai}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, '')}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              }
+            },
+          }}
+          className="react-markdown-loader"
+        />
       </div>
     );
 
