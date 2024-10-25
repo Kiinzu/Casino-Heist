@@ -68,7 +68,7 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     cast call -r $RP_URL $BriefADDR "completedCall()"
     ```
     &nbsp;  
-    The return value of it will always be hex, you can easily translate it to human readable using tools like Cyberchef, etc.&nbsp;  
+    The return value of it will always be hex, you can easily translate it to human readable using tools like Cyberchef, etc.&nbsp;   
     &nbsp; 
 - *cast send*
     Unlike the command the we've learned before, cast send are often use when we want to make a change in the state of the contract, like changing the value, sending Ether, etc.&nbsp; 
