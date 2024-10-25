@@ -40,7 +40,7 @@ const Guide = () => {
   const [post, setPost] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
-  const [featuredWalkthroughs, setFeaturedWalkthroughs] = useState([[], []]);
+  const [featuredWalkthroughs, setFeaturedWalkthroughs] = useState([[], [], [], [], []]);
   const navigate = useNavigate();
 
   const validateToken = async (token) => {
@@ -65,22 +65,26 @@ const Guide = () => {
   const fetchFeaturedWalkthroughs = async (token) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/featured-walkthrough?code=${challengeCode}`,
+        `http://127.0.0.1:5000/featured-walkthrough`,
         {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({ challengeCode }),
         }
       );
 
       if (!response.ok) throw new Error('Failed to fetch walkthroughs');
       const result = await response.json();
-
+      console.log(result);
       const firstBox = result.slice(0, 10);
       const secondBox = result.slice(10, 20);
-      setFeaturedWalkthroughs([firstBox, secondBox]);
+      const thirdBox = result.slice(20, 30);
+      const fourthBox = result.slice(30, 40);
+      const fifthBox = result.slice(40, 50);
+      setFeaturedWalkthroughs([firstBox, secondBox, thirdBox, fourthBox, fifthBox]);
     } catch (error) {
       console.error('Error fetching walkthroughs:', error);
     }
@@ -185,26 +189,37 @@ const Guide = () => {
           <p>Loading challenge details...</p>
         )}
       </div>
-
       {featuredWalkthroughs.some((box) => box.length > 0) && (
         <div className="heist-contributor-container">
           <h2>Featured Walkthrough</h2>
           <div className="walkthrough-boxes">
-            {featuredWalkthroughs.map((walkthroughs, index) => (
-              <div className="walkthrough-box" key={index}>
-                {walkthroughs.map((walkthrough, i) => (
-                  <a
-                    key={i}
-                    href={walkthrough.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="walkthrough-link"
-                  >
-                    {walkthrough.name}
-                  </a>
-                ))}
-              </div>
-            ))}
+            {featuredWalkthroughs.map((walkthroughs, index) =>
+              walkthroughs.length > 0 ? (
+                <div
+                  className={
+                    index === 0
+                      ? "walkthrough-featured-first-box"
+                      : "walkthrough-featured-box"
+                  }
+                  key={index}
+                >
+                  <ul className="walkthrough-featured-list">
+                    {walkthroughs.map((walkthrough, i) => (
+                      <li key={i}>
+                        <a
+                          href={walkthrough.Link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="walkthrough-link"
+                        >
+                          {walkthrough.Name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null // Only render the box if it contains items
+            )}
           </div>
         </div>
       )}

@@ -259,7 +259,7 @@ def get_challenges():
 
     return jsonify(challenges_list)
 
-@app.route('/featured-walktrough', methods=['GET'])
+@app.route('/featured-walkthrough', methods=['POST'])
 def get_featured_walktrough():
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')

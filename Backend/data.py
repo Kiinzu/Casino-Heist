@@ -219,6 +219,66 @@ Contributors = [
         'Link' : 'https://google.com'
     },
     {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
+        'challengeCode' : 'blockchain-cheap-glitch',
+        'Name' : 'Kiinzu',
+        'Link' : 'https://google.com'
+    },
+    {
         'challengeCode' : 'blockchain-bar',
         'Name' : 'Mewzael',
         'Link' : 'https://bing.com'
