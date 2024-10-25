@@ -451,9 +451,9 @@ def update_walkthrough():
             ON CONFLICT(userId, challengeId) DO UPDATE SET useWalkthrough = 1
         ''', (user_id, challenge_id))
         db.commit()
-        return jsonify({'message': 'success'}),200
+        return jsonify({'message': 'success'}), 200
     else:
-        print("Challenges is already completed, no update needed.")
+        print("Challenges is already completed, no update needed."), 200
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):

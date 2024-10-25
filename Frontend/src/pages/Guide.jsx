@@ -62,6 +62,26 @@ const Guide = () => {
     }
   };
 
+  const walkthroughUsed = async (token) => {
+    try{
+      const response = await fetch('http://127.0.0.1:5000/update-walkthrough', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ challengeCode }),
+      });
+
+      if(!response.ok) {
+        throw new Error('Walkthrough Failed to Used');
+      }
+      console.log('Hint Sent');
+    } catch (error){
+      console.error('Error in aquiring Walkthrough');
+    }
+  }; 
+
   const fetchFeaturedWalkthroughs = async (token) => {
     try {
       const response = await fetch(
@@ -96,6 +116,7 @@ const Guide = () => {
       navigate('/login');
     } else {
       validateToken(token);
+      walkthroughUsed(token);
       fetchFeaturedWalkthroughs(token);
     }
   }, [navigate]);
