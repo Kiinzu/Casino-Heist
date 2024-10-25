@@ -259,6 +259,38 @@ def get_challenges():
 
     return jsonify(challenges_list)
 
+@app.route('/featured-walkthrough', methods=['POST'])
+def get_featured_walktrough():
+    # Get the JWT from the Authorization header
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return jsonify({'error': 'Authorization header missing or malformed'}), 401
+
+    token = auth_header.split(" ")[1]
+
+    # Decode the JWT to get the user ID
+    try:
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        user_id = decoded_token.get('user_id')
+        if user_id is None:
+            return jsonify({'error': 'User ID not found in token'}), 401
+
+    except jwt.InvalidTokenError:
+        return jsonify({'error': 'Invalid token'}), 401
+    
+    # Get the challenge code from the request body
+    data = request.get_json()
+    challenge_code = data.get('challengeCode')
+
+    # Execute raw SQL query to fetch Contributors
+    db = get_db()
+    cursor = db.execute('SELECT challengeCode, Name, Link FROM Contributor WHERE challengeCode = ?', (challenge_code,))
+    contributors = cursor.fetchall()
+
+    contributors_list = [dict(contributor) for contributor in contributors]
+
+    return jsonify(contributors_list), 200
+
 @app.route('/verify-flag', methods=['POST'])
 def verify_flag():
     # Get the JWT from the Authorization header
@@ -371,7 +403,7 @@ def get_hint(challengeCode, hintNumber):
         db.commit()
 
     # Return the hint regardless of challenge completion status
-    return jsonify({'hint': hint})
+    return jsonify({'hint': hint}), 200
 
 # To use the Walktrough, it will get updated
 @app.route('/update-walkthrough', methods=['POST'])
@@ -421,8 +453,7 @@ def update_walkthrough():
         db.commit()
         return jsonify({'message': 'success'}),200
     else:
-        print("ChallengeCompletion is already 1, no update needed.")
-        return jsonify({'message': 'success'}),200
+        print("Challenges is already completed, no update needed.")
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):
@@ -507,19 +538,16 @@ def Profile():
             completion_data = completion_dict[challenge_id]
 
             # Calculate the completion status based on hint and walkthrough usage
-            completion_status = completion_data['challenge_completion'] # Initial value since it's always completed
-            # print(completion_status)
-            if completion_data['use_hint_one']:
-                completion_status += 1
-            if completion_data['use_hint_two']:
-                completion_status += 1
-            if completion_data['use_hint_three']:
-                completion_status += 1
-
-            if completion_data['use_walkthrough']:
-                if completion_data['challenge_completion'] == 0:
-                    completion_status = 0  # Challenge not completed, reset status to 0
-                else:
+            completion_status = completion_data['challenge_completion']
+            if completion_status == 1:
+                print(completion_status)
+                if completion_data['use_hint_one']:
+                    completion_status += 1
+                if completion_data['use_hint_two']:
+                    completion_status += 1
+                if completion_data['use_hint_three']:
+                    completion_status += 1
+                if completion_data['use_walkthrough']:
                     completion_status = 5
 
         else:

@@ -1,2 +1,3 @@
-INI DESCRIPTION
-[CHALLENGE](127.0.0.1:5000/challenge)
+The crew is assembled, the plan is set, but before you hit the floor, you need the right tools. In the shadows of the casino’s glimmering lights, you’re stashing a secret weapon—a piece of code that’ll make or break the job. This is your moment to suit up, arm yourself with the right gadgets, and prepare for the perfect break-in. Every heist needs precision, and this is where you gear up for glory. Gear Up for it!  
+&nbsp;  
+Start Heist [HERE!](http://103.178.153.113:30002)

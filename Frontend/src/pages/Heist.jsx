@@ -26,7 +26,6 @@ import casinobankbusterMarkdown from '../assets/Properties/blockchain-casino-ban
 import executiveproblemsMarkdown from '../assets/Properties/blockchain-executive-problems/text.md';
 import casinovaultMarkdown from "../assets/Properties/blockchain-casino-vault/text.md";
 
-
 // import all mitigation files
 import cheapglitchMitigation from '../assets/Properties/blockchain-cheap-glitch/mitigation.md';
 import entrypointMitigation from '../assets/Properties/blockchain-entry-point/mitigation.md';
@@ -42,7 +41,7 @@ import unlimitedCreditMitigation from '../assets/Properties/blockchain-unlimited
 import symbolofnobleMitigation from '../assets/Properties/blockchain-symbol-of-noble/mitigation.md';
 import casinovaultMitigation from "../assets/Properties/blockchain-casino-vault/mitigation.md";
 
-// import all art files
+// import all description for challenge files
 import briefingDescription from '../assets/Properties/blockchain-briefing/description.md';
 import gearingupDescription from '../assets/Properties/blockchain-gearing-up/description.md';
 import cheapglitchDescription from '../assets/Properties/blockchain-cheap-glitch/description.md';
@@ -62,6 +61,27 @@ import injusgambitDescription from '../assets/Properties/blockchain-injus-gambit
 import casinobankbusterDescription from '../assets/Properties/blockchain-casino-bankbuster/description.md';
 import executiveproblemsDescription from '../assets/Properties/blockchain-executive-problems/description.md';
 import doubleornothingDescription from '../assets/Properties/blockchain-double-or-nothing/description.md';
+
+// import downloadable files
+const briefingAttachment = "../src/assets/Properties/blockchain-briefing/blockchain-briefing.zip";
+const gearingAttachment = "../src/assets/Properties/blockchain-gearing-up/blockchain-gearing-up.zip";
+const cheapglitchAttachment = "../src/assets/Properties/blockchain-cheap-glitch/blockchain-cheap-glitch.zip";
+const entrypointAttachment = "../src/assets/Properties/blockchain-entry-point/blockchain-entry-point.zip";
+const barAttachment = "../src/assets/Properties/blockchain-bar/blockchain-bar.zip";
+const rouletteAttachment = "../src/assets/Properties/blockchain-roulette/blockchain-roulette.zip";
+const blackjackAttachment = "../src/assets/Properties/blockchain-master-of-blackjack/blockchain-master-of-blackjack.zip";
+const votingfrenzyAttachment = "../src/assets/Properties/blockchain-voting-frenzy/blockchain-voting-frenzy.zip";
+const vvvipmemberAttachment = "../src/assets/Properties/blockchain-vvvip-member/blockchain-vvvip-member.zip";
+const injubankAttachment = "../src/assets/Properties/blockchain-inju-bank/blockchain-inju-bank.zip";
+const silentDealerAttachment = "../src/assets/Properties/blockchain-silent-dealer/blockchain-silent-dealer.zip";
+const singularentityAttachment = "../src/assets/Properties/blockchain-singular-entity/blockchain-singularity.zip";
+const unlimitedCreditAttachment = "../src/assets/Properties/blockchain-unlimited-credit-line/blockchain-unlimited-credit-line.zip";
+const symbolofnobleAttachment = "../src/assets/Properties/blockchain-symbol-of-noble/blockchain-symbol-of-noble.zip";
+const casinovaultAttachment = "../src/assets/Properties/blockchain-casino-vault/blockchain-casino-vault.zip";
+const injusgambitAttachment = "../src/assets/Properties/blockchain-injus-gambit/blockchain-injus-gambit.zip";
+const casinobankbusterAttachment = "../src/assets/Properties/blockchain-casino-bankbuster/blockchain-casino-bank-buster.zip";
+const executiveproblemsAttachment = "../src/assets/Properties/blockchain-executive-problems/blockchain-executive-problems.zip";
+// const doubleornothingAttachment = "../assets/Properties/blockchain-";
 
 // import all art files
 import briefingArt from '../assets/Properties/blockchain-briefing/art.png';
@@ -87,11 +107,15 @@ import doubleornothingArt from '../assets/Properties/blockchain-double-or-nothin
 // Needed Logos
 import downloadLogo from "../assets/images/download.png";
 import backgroundImage from "../assets/images/background.jpg";
+import hints_1 from "../assets/images/number-1.png";
+import hints_2 from "../assets/images/number-2.png";
+import hints_3 from "../assets/images/number-3.png";
 
 const Heist = () => {
   const { challengeCode } = useParams();
   const [post, setPost] = useState('');
   const [desc, setDesc] = useState('');
+  const [attachment, setAttachment] = useState(null);
   const [mitigation, setMitigation] = useState('');
   const [image, setImage] = useState('');
   const [data, setData] = useState(null);
@@ -99,6 +123,14 @@ const Heist = () => {
   const [solved, setSolved] = useState(false); // New state for tracking challenge status
   const [flagResult, setFlagResult] = useState(''); // State for displaying flag result text
   const navigate = useNavigate(); 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [hintMessage, setHintMessage] = useState('');
+  const [hintTopMessage, setTopHintMessage] = useState('');
+  const [hintBottomMessage, setBottomHintMessage] = useState('');
+  const [isPopupOpenFlag, setIsPopupOpenFlag] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [flagStatus, setFlagStatus] = useState('');
+
 
   // Fetch and validate token
   const validateToken = async () => {
@@ -153,18 +185,29 @@ const Heist = () => {
         },
         body: JSON.stringify({ flag, challengeCode }),
       });
+
       const result = await response.json();
-      setFlagResult(result.message); // Show flag result message
+      setFlagResult(result.message); // Store the result message
+      if (result.message.includes('is correct!')) {
+        setPopupMessage('HEIST COMPLETED!');
+        setFlagStatus('flag-popup-overlay-success');
+      } else {
+        setPopupMessage('HEIST FAILED! WRONG FLAG! RETREAT!');
+        setFlagStatus('flag-popup-overlay-failed');
+      }
 
-      // Hide message after 1 second
-      setTimeout(() => setFlagResult(''), 1000);
+      setIsPopupOpenFlag(true); // Show the popup
 
-      // Check challenge status after flag submission
+      // Hide the popup after 1 second
+      setTimeout(() => setIsPopupOpenFlag(false), 1000);
+
+      // Check the challenge status after flag submission
       checkChallengeStatus();
     } catch (error) {
       console.error('Error submitting flag:', error);
     }
   };
+
 
   const handleHintClick = async (hintNumber) => {
     const token = localStorage.getItem('token');
@@ -176,22 +219,31 @@ const Heist = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
       const result = await response.json();
-      alert(`Hint ${hintNumber}: ${result['hint']}`); // Display the hint in an alert or update UI
-    }catch (error) {
+      setTopHintMessage(`Hint #${hintNumber}`);
+      setHintMessage(`${result['hint']}`); // Set the hint message
+      setBottomHintMessage("END OF HINTS---------");
+      setIsPopupOpen(true); // Open the popup
+    } catch (error) {
       console.error('Error fetching hint:', error);
     }
   };
 
   const handleDownload = () => {
-    const fileUrl = '/path/to/your-file.txt'; // Replace with actual file path
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = 'file.txt'; // Name of the file to be downloaded
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if(!attachment){
+      console.error("No attachment found");
+      return;
+    }
+
+    const link = document.createElement('a'); // Create anchor element
+    link.href = attachment; 
+    link.setAttribute('download', attachment.split('/').pop()); 
+    console.log(link);
+    link.style.display = 'none'; 
+    document.body.appendChild(link); 
+    link.click(); // Trigger download
+    console.log();
   };
 
   useEffect(() => {
@@ -216,36 +268,56 @@ const Heist = () => {
           setData(selectedChallenge);
 
           const markdownMap = {
-            'blockchain-briefing': [briefingMarkdown, '', briefingArt, briefingDescription],
-            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt, gearingupDescription],
-            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt, cheapglitchDescription],
-            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt, entrypointDescription],
-            'blockchain-bar': [barMarkdown, barMitigation, barArt, barDescription],
-            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt, rouletteDescription],
-            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt, blackjackDescription],
-            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt, votingfrenzyDescription],
-            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt, vvvipmemberDescription],
-            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt, injubankDescription],
-            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt, silentDealerDescription],
-            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt, singularentityDescription],
-            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt, unlimitedCreditDescription],
-            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt, symbolofnobleDescription],
-            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt, casinovaultDescription],
-            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt, injusgambitDescription],
-            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt, casinobankbusterDescription],
-            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt, executiveproblemsDescription],
-            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt. doubleornothingDescription],
+            'blockchain-briefing': [briefingMarkdown, '', briefingArt, briefingDescription, briefingAttachment],
+            'blockchain-gearing-up': [gearingupMarkdown, '', gearingupArt, gearingupDescription, gearingAttachment],
+            'blockchain-cheap-glitch': [cheapglitchMarkdown, cheapglitchMitigation, cheapglitchArt, cheapglitchDescription, cheapglitchAttachment],
+            'blockchain-entry-point': [entrypointMarkdown, entrypointMitigation, entrypointArt, entrypointDescription, entrypointAttachment],
+            'blockchain-bar': [barMarkdown, barMitigation, barArt, barDescription, barAttachment],
+            'blockchain-roulette': [rouletteMarkdown, rouletteMitigation, rouletteArt, rouletteDescription, rouletteAttachment],
+            'blockchain-master-of-blackjack': [blackjackMarkdown, blackjackMitigation, blackjackArt, blackjackDescription, blackjackAttachment],
+            'blockchain-voting-frenzy': [votingfrenzyMarkdown, votingfrenzyMitigation, votingfrenzyArt, votingfrenzyDescription, votingfrenzyAttachment],
+            'blockchain-vvvip-member': [vvvipmemberMarkdown, vvvipmemberMitigation, vvvipmemberArt, vvvipmemberDescription, vvvipmemberAttachment],
+            'blockchain-inju-bank': [injubankMarkdown, injubankMitigation, injubankArt, injubankDescription, injusgambitAttachment],
+            'blockchain-silent-dealer': [silentDealerMarkdown, silentDealerMitigation, silentDealerArt, silentDealerDescription, silentDealerAttachment],
+            'blockchain-singular-entity': [singularentityMarkdown, singularentityMitigation, singularentityArt, singularentityDescription, singularentityAttachment],
+            'blockchain-unlimited-credit-line': [unlimitedCreditMarkdown, unlimitedCreditMitigation, unlimitedCreditArt, unlimitedCreditDescription, unlimitedCreditAttachment],
+            'blockchain-symbol-of-noble': [symbolofnobleMarkdown, symbolofnobleMitigation, symbolofnobleArt, symbolofnobleDescription, symbolofnobleAttachment],
+            'blockchain-casino-vault': [casinovaultMarkdown, casinovaultMitigation, casinovaultArt, casinovaultDescription, casinovaultAttachment],
+            'blockchain-injus-gambit': [injusgambitMarkdown, '', injusgambitArt, injusgambitDescription, injusgambitAttachment],
+            'blockchain-casino-bankbuster': [casinobankbusterMarkdown, '', casinobankbusterArt, casinobankbusterDescription, casinobankbusterAttachment],
+            'blockchain-executive-problems': [executiveproblemsMarkdown, '', executiveproblemsArt, executiveproblemsDescription, executiveproblemsAttachment],
+            'blockchain-double-or-nothing': [doubleornothingMarkdown, '', doubleornothingArt. doubleornothingDescription, briefingAttachment],
           };
 
-          const [story, mitigation, art, desc] = markdownMap[challengeCode] || [];
+          const [story, mitigation, art, desc, attachment] = markdownMap[challengeCode] || [];
           setPost(story);
           setMitigation(mitigation);
           setImage(art);
           setDesc(desc);
+          setAttachment(attachment);
         }
       })
       .catch(console.error);
   }, [challengeCode]);
+
+  const hintImages = {
+    1: hints_1,
+    2: hints_2,
+    3: hints_3
+  }
+
+  // FOR HINTS
+  useEffect(() => {
+    const handleClickOutside = () => setIsPopupOpen(false);
+  
+    if (isPopupOpen) {
+      window.addEventListener('click', handleClickOutside);
+    }
+  
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [isPopupOpen]);
 
   const renderBoxes = () => {
     if (!data) return null;
@@ -314,15 +386,41 @@ const Heist = () => {
             <p>Submit Flag</p>
           </button>
           <div className="heist-hints">
-            {[1, 2, 3].map((hint) => (
-              <div
-                key={hint}
-                className="heist-hint-box"
-                onClick={() => handleHintClick(hint)}
-              />
+              {[1, 2, 3].map((hint) => (
+                <div
+                  key={hint}
+                  className="heist-hint-box"
+                  onClick={() => handleHintClick(hint)}
+                >
+                  <img 
+                    src={hintImages[hint]} 
+                    alt={`Hint ${hint}`} 
+                    className="hint-image" 
+                  />
+                </div>
             ))}
           </div>
         </div>
+      {/* FLAG POP UP */}
+      {isPopupOpenFlag && (
+        <div className={`${flagStatus}`}>
+          <div className="flag-popup-content">{popupMessage}</div>
+        </div>
+      )}
+
+        {/* Popup Box */}
+        {isPopupOpen && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              {/* <ReactMarkdown children={hintMessage}/> */}
+              <ReactMarkdown className="top-hints-message">{hintTopMessage}</ReactMarkdown>
+              <br />
+              <ReactMarkdown className="real-hints-message">{hintMessage}</ReactMarkdown>
+              <br />
+              <ReactMarkdown className="bottom-hints-message">{hintBottomMessage}</ReactMarkdown>
+            </div>
+          </div>
+        )}
       </div>
     );
 
@@ -366,6 +464,7 @@ const Heist = () => {
 
     switch (challengeDifficulty) {
       case 'basic':
+        return [codeBox, storyBox];
       case 'vip':
         return [storyBox, codeBox];
       case 'common':

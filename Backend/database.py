@@ -72,6 +72,17 @@ CREATE TABLE IF NOT EXISTS Whitelist (
 )
 ''')
 
+# Create Contributor Table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Contributor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    challengeCode TEXT NOT NULL,
+    Name TEXT NOT NULL,
+    Link TEXT NOT NULL,
+    FOREIGN KEY (challengeCode) REFERENCES Challenges(challengeCode) ON DELETE CASCADE
+)
+''')
+
 # Commit changes and close the connection
 conn.commit()
 conn.close()

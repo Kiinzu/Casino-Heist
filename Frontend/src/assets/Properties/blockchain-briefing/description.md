@@ -1,2 +1,3 @@
-INI DESCRIPTION
-[CHALLENGE](127.0.0.1:5000/challenge)
+Everything has its own starting point, well your starting point will be here, with the *Briefing*. We will brief you everything you need or refresh what you already know, so let's just jump to the Briefing!  
+&nbsp;  
+Start Heist [HERE!](http://103.178.153.113:30001)
