@@ -453,7 +453,8 @@ def update_walkthrough():
         db.commit()
         return jsonify({'message': 'success'}), 200
     else:
-        print("Challenges is already completed, no update needed."), 200
+        print("Challenges is already completed, no update needed.")
+        return jsonify({'message': 'success'}), 200
 
 @app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cornerIcon from "../assets/images/corner-icon.png";
 import '../App.css'; // Import the CSS file
@@ -20,6 +20,10 @@ import casinovaultArt from '../assets/Properties/blockchain-casino-vault/art.png
 
 const Walkthrough = () => {
     const [challenges, setChallenges] = useState([]);
+    const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false); // Manage confirmation popup
+    const [selectedChallengeCode, setSelectedChallengeCode] = useState(null); // Store selected challenge code
+    const [solved, setSolved] = useState(false);
+    const selectorRef = useRef(null);
     const navigate = useNavigate();
 
     // Map of challenge codes to corresponding images
@@ -55,10 +59,52 @@ const Walkthrough = () => {
             .catch((error) => console.error('Error fetching challenges:', error));
     }, []);
 
+    const checkIfSolved = async (challengeCode) =>{
+        const token = localStorage.getItem('token');
+        console.log(token);
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/challenge-status/${challengeCode}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+            });
+        
+            const result = await response.json();
+            console.log(result.isSolved);
+            if(result.isSolved === 1){
+                setSolved(true);
+            }else{
+                setSolved(false)
+            }
+        } catch (error) {
+            console.error(error);
+        }  
+    }
+
     // Handle click to navigate to the guide page with challengeCode
     const handleChallengeClick = (challengeCode) => {
-        navigate(`/guide/${challengeCode}`);
+        const result = checkIfSolved(challengeCode);
+        if(solved === false){
+            setSelectedChallengeCode(challengeCode);
+            setIsConfirmPopupOpen(true);
+        }else{
+            navigate(`/guide/${challengeCode}`);
+            setSolved(false)
+        }
     };
+    
+    const handleConfirmYes = () =>{
+        navigate(`/guide/${selectedChallengeCode}`);
+        setIsConfirmPopupOpen(false);
+        console.log(solved, "test");
+    }
+
+    const handleConfirmNo = () =>{
+        setIsConfirmPopupOpen(false);
+        console.log(solved);
+    }
 
     return (
         <div className="walkthrough-container">
@@ -92,6 +138,16 @@ const Walkthrough = () => {
                     <p>Loading challenges...</p>
                 )}
             </div>
+            {/* Confirmation Popup */}
+            {isConfirmPopupOpen && (
+                <div className="popup-overlay">
+                <div className="popup-content-walkthrough">
+                    <p>Are you sure you want to start this challenge?</p>
+                    <button onClick={handleConfirmYes} className='button-one'>Yes</button>
+                    <button onClick={handleConfirmNo} className='button-two'>No</button>
+                </div>
+                </div>
+            )}
         </div>
     );
 };
