@@ -647,6 +647,10 @@ main {
   margin-left: 20px;
 }
 
+.heist-description-container h3 p li ul {
+  color: #fff;
+}
+
 .heist-description-container h2,
 .heist-code-container h2 {
   font-size: 1.5rem;
