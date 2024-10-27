@@ -5,27 +5,33 @@ import homeIcon from '../assets/images/home.png';
 import challengeIcon from '../assets/images/challenge.png';
 import walkthroughIcon from '../assets/images/walkthrough.png';
 import profileIcon from '../assets/images/profile.png';
+import documentationIcon from '../assets/images/documentation.png';
 
 const Sidebar = ({children}) => {
     const menuItem = [
         {
             path:"/",
-            name:"home",
+            name:"Home",
             icon: homeIcon
         },
         {
             path:"/challenge",
-            name:"challenge",
+            name:"Challenge",
             icon: challengeIcon
         },
         {
             path:"/walkthrough",
-            name:"walkthrough",
+            name:"Walkthrough",
             icon: walkthroughIcon
         },
         {
+            path:"/documentation",
+            name:"Documentation",
+            icon: documentationIcon
+        },
+        {
             path:"/profile",
-            name:"profile",
+            name:"Profile",
             icon: profileIcon
         }
     ];

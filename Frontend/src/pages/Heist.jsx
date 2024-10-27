@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Use Prism or other themes
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a style
 import remarkGfm from 'remark-gfm'; // For GitHub-flavored markdown
+import rehypeRaw from 'rehype-raw'
 
 // Import all markdown files 
 import briefingMarkdown from '../assets/Properties/blockchain-briefing/text.md';
@@ -130,6 +131,8 @@ const Heist = () => {
   const [isPopupOpenFlag, setIsPopupOpenFlag] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
   const [flagStatus, setFlagStatus] = useState('');
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false); // Confirmation popup
+  const [hintNumber, setHintNumber] = useState(null);
 
 
   // Fetch and validate token
@@ -210,6 +213,11 @@ const Heist = () => {
 
 
   const handleHintClick = async (hintNumber) => {
+    setHintNumber(hintNumber);
+    setIsConfirmPopupOpen(true);
+  };
+
+  const fetchHint = async () => {
     const token = localStorage.getItem('token');
     try {
       const response = await fetch(`http://127.0.0.1:5000/hint/${challengeCode}/${hintNumber}`, {
@@ -221,6 +229,7 @@ const Heist = () => {
       });
   
       const result = await response.json();
+      setIsConfirmPopupOpen(false);
       setTopHintMessage(`Hint #${hintNumber}`);
       setHintMessage(`${result['hint']}`); // Set the hint message
       setBottomHintMessage("END OF HINTS---------");
@@ -229,6 +238,15 @@ const Heist = () => {
       console.error('Error fetching hint:', error);
     }
   };
+
+  const handleConfirmYes = () => {
+    fetchHint(); // Proceed to fetch the hint
+  };
+
+  const handleConfirmNo = () => {
+    setIsConfirmPopupOpen(false); // Close the confirmation popup
+  };
+
 
   const handleDownload = () => {
     if(!attachment){
@@ -330,6 +348,7 @@ const Heist = () => {
         <ReactMarkdown
           children={post}
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             code({ node, inline, className, children, ...props }) {
               if (inline) {
@@ -355,6 +374,18 @@ const Heist = () => {
                   </code>
                 );
               }
+            },
+            img({ src, alt, ...props }) {
+              return (
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+                  <img
+                    src={src}
+                    alt={alt}
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                    {...props}
+                  />
+                </div>
+              );
             },
           }}
           className="react-markdown-loader"
@@ -401,6 +432,17 @@ const Heist = () => {
             ))}
           </div>
         </div>
+        {/* Confirmation Popup */}
+        {isConfirmPopupOpen && (
+        <div className="popup-overlay">
+          <div className="popup-content-confirmation">
+            <p>Are you sure you want to use this hint?</p>
+            <button onClick={handleConfirmYes} className='button-one'>Yes</button>
+            <button onClick={handleConfirmNo} className='button-two'>No</button>
+          </div>
+        </div>
+      )}
+      
       {/* FLAG POP UP */}
       {isPopupOpenFlag && (
         <div className={`${flagStatus}`}>

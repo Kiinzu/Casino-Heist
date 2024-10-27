@@ -76,7 +76,7 @@ const Guide = () => {
       if(!response.ok) {
         throw new Error('Walkthrough Failed to Used');
       }
-      console.log('Hint Sent');
+      // console.log('Hint Sent');
     } catch (error){
       console.error('Error in aquiring Walkthrough');
     }
