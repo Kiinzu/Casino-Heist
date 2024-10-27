@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  frontend:
+    build:
+      context: ./Frontend
+    restart: unless-stopped
+    expose:
+      - 80
+    environment:
+      - NODE_ENV=production
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx/default.https.conf:/etc/nginx/conf.d/default.conf  # Mount the HTTPS config file
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Mount the main nginx config if needed
+      - ./Frontend/build:/usr/share/nginx/html  # Serve static files if necessary
+      - /etc/letsencrypt:/etc/letsencrypt  # For SSL certificates if using Let's Encrypt
+    restart: unless-stopped
+    depends_on:
+      - web
+      - frontend
+    logging:
+      options:
+        max-size: "50m"
+
+  web:
+    build:
+      context: ./Backend
+    expose:
+      - 7555
+    command: gunicorn wsgi:app --bind 0.0.0.0:7555 --timeout 300
+    environment:
+      PYTHONUNBUFFERED: 1
+    restart: unless-stopped
