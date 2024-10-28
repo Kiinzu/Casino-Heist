@@ -327,12 +327,9 @@ def verify_flag():
         correct_hashed_flag = challenge['challengeFlag']  # Get the hashed flag from the database
 
         if hashed_flag == correct_hashed_flag:
+            current_date = time.strftime("%d-%b-%Y")
             # If the hashed flag is correct, update the ChallengeCompletion table
-            db.execute('''
-                UPDATE ChallengeCompletion
-                SET challengeCompletion = 1
-                WHERE userId = ? AND challengeId = ?
-            ''', (user_id, challenge_id))
+            db.execute('UPDATE ChallengeCompletion SET challengeCompletion = 1, timeCompletion = ? WHERE userId = ? AND challengeId = ?', (current_date, user_id, challenge_id))
             db.commit()  # Commit the changes
             return jsonify({'message': 'Flag is correct! Challenge completed.'}), 200
         else:
@@ -512,7 +509,7 @@ def Profile():
     challenges = cursor.fetchall()
 
     # Fetch challenge completion status for the user
-    cursor = db.execute('SELECT challengeId, challengeCompletion, useHintOne, useHintTwo, useHintThree, useWalkthrough FROM ChallengeCompletion WHERE userId = ?', (user_id,))
+    cursor = db.execute('SELECT challengeId, challengeCompletion, useHintOne, useHintTwo, useHintThree, useWalkthrough, timeCompletion FROM ChallengeCompletion WHERE userId = ?', (user_id,))
     completions = cursor.fetchall()
 
     # Create a dictionary for faster lookup of completed challenges
@@ -523,6 +520,7 @@ def Profile():
             "use_hint_two": completion['useHintTwo'],
             "use_hint_three": completion['useHintThree'],
             "use_walkthrough": completion['useWalkthrough'],
+            "time_completion": completion['timeCompletion'] 
         }
         for completion in completions
     }
@@ -549,10 +547,12 @@ def Profile():
                     completion_status += 1
                 if completion_data['use_walkthrough']:
                     completion_status = 5
+                time_completion = completion_data['time_completion']
 
         else:
             # If not completed, set the default values for an unsolved challenge
             completion_status = 0  # Not solved
+            time_completion = None
             completion_data = {
                 "use_hint_one": 0,
                 "use_hint_two": 0,
@@ -564,7 +564,8 @@ def Profile():
             "challengeId": challenge_id,
             "challengeCode": challenge['challengeCode'],
             "challengeName": challenge['challengeName'],
-            "completion_status": completion_status
+            "completion_status": completion_status,
+            "time_completion": time_completion
         })
 
     # Sort the challenge_statuses list by challenge_id

@@ -13,6 +13,6 @@ WORKDIR /src
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt  # Ensure this is correct
 RUN chmod +x ./docker-entrypoint.sh  # Make entrypoint script executable
-RUN chmod +x ./start.sh  # Make start.sh executable
+RUN chmod 777 ./start.sh  # Make start.sh executable
 
 ENTRYPOINT ["./docker-entrypoint.sh"]

@@ -3,3 +3,4 @@ flask-cors
 werkzeug
 pyjwt
 waitress
+gunicorn==22.0.0
