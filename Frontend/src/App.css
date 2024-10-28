@@ -713,6 +713,10 @@ main {
   padding: 1px 3px 1px 3px;
 }
 
+.react-markdown-loader h3, li, p, ul, li{
+  color: #fff;
+}
+
 .react-markdown-loader h2{
   color: rgb(219, 215, 215);
   padding: 10px 0px 0px 0px;
