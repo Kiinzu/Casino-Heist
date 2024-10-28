@@ -16,9 +16,9 @@ import changeAvatar from '../assets/images/change-profile.png';
 
 const Profile = () => {
     const [profileImage, setProfileImage] = useState(avatar1); // Default avatar image
-    const [profileAlias, setProfileAlias] = useState('madman'); // Default alias
     const [showSelector, setShowSelector] = useState(false);
     const [challenges, setChallenges] = useState([]);
+    const [completionDate, setCompletionDate] = useState([]);
     const [data, setData] = useState([]);
     const selectorRef = useRef(null);
     const navigate = useNavigate();
@@ -128,15 +128,18 @@ const Profile = () => {
 
     const getHeistStatus = (challenge) => {
         switch (challenge.completion_status) {
-            case 0: return 'HEIST NOT STARTED';
-            case 1: return 'HEIST DONE SOLO';
-            case 2: return 'HEIST DONE WITH 1 HELP';
-            case 3: return 'HEIST DONE WITH 2 HELPS';
-            case 4: return 'HEIST DONE WITH 3 HELPS';
-            case 5: return 'HEIST DONE WITH GUIDE';
-            default: return 'UNKNOWN STATUS';
+            case 0: return 'Heist Not Started';
+            case 1: return 'Completed';
         }
     };
+
+    const getCompletionDate = (challenge) => {
+        if (challenge.time_completion === null){
+            return '';
+        }else{
+            return `(${challenge.time_completion})`;
+        }
+    }
 
     return (
         <div className="profile-container">
@@ -171,17 +174,32 @@ const Profile = () => {
                     <table className="profile-table">
                         <thead>
                             <tr>
-                                <th>LAB LIST</th>
+                                <th>Heist List</th>
                                 <th>|</th>
-                                <th>STATUS</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='profile-table-content'>
                             {challenges.map((challenge) => (
                                 <tr key={challenge.challengeId}>
                                     <td>{challenge.challengeName}</td>
                                     <td>|</td>
-                                    <td>{getHeistStatus(challenge)}</td>
+                                    <td>
+                                        <div>{getHeistStatus(challenge)}{" "}{getCompletionDate(challenge)}</div> {/* Status on one line */}
+                                        <div className="tags-container">
+                                            {challenge.completion_status === 1 && challenge.hints_used !== 0 && (
+                                                <div className="hint-assists-tag">#{challenge.hints_used}-Assists!</div>
+                                            )}
+
+                                            {challenge.completion_status === 1 && challenge.walkthrough_used === 1 && (
+                                                <div className="wt-assists-tag">Guided Heist!</div>
+                                            )}
+
+                                            {challenge.completion_status === 1 && challenge.hints_used === 0 && challenge.walkthrough_used === 0  && (
+                                                <div className="solo-assists-tag">PERFECT SOLO HEIST!</div>
+                                            )}
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

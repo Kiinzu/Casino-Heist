@@ -1228,13 +1228,19 @@ main {
   justify-content: center;
   background-color: white;
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   padding-top: 100px; /* Extra space for the avatar */
   padding-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 100px;
   box-sizing: border-box;
+}
+
+.profile-header p{
+  color: #d2b48c;
+  font-style: bold;
+  font-size: larger;
 }
 
 /* Avatar Wrapper: Centered within the header */
@@ -1329,7 +1335,7 @@ main {
 .profile-white-box {
   background-color: white;
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   padding: 30px;
   margin-top: 40px; /* Ensure it stays below the header */
   margin-bottom: 20px;
@@ -1343,6 +1349,7 @@ main {
 .profile-table {
   width: 100%;
   border-collapse: collapse;
+  justify-content: auto;
 }
 
 .profile-table th,
@@ -1354,11 +1361,51 @@ main {
 .profile-table th {
   font-weight: bold;
   text-transform: uppercase;
+  max-width: 200px;
 }
 
 .profile-table td {
   border-bottom: 1px solid #ccc;
   color: #000;
+  font-weight: bold;
+}
+
+.profile-table-content tr{
+  display: relative;
+}
+
+.tags-container {
+  display: flex;
+  gap: 8px; /* Space between tags */
+}
+
+.wt-assists-tag {
+  background-color: #52ACFF;
+  background-image: linear-gradient(195deg, #52ACFF 25%, #FFE32C 92%);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.hint-assists-tag {
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.solo-assists-tag {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);   
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
   font-weight: bold;
 }
 
