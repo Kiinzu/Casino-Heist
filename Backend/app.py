@@ -327,12 +327,9 @@ def verify_flag():
         correct_hashed_flag = challenge['challengeFlag']  # Get the hashed flag from the database
 
         if hashed_flag == correct_hashed_flag:
+            current_date = time.strftime("%d-%b-%Y")
             # If the hashed flag is correct, update the ChallengeCompletion table
-            db.execute('''
-                UPDATE ChallengeCompletion
-                SET challengeCompletion = 1
-                WHERE userId = ? AND challengeId = ?
-            ''', (user_id, challenge_id))
+            db.execute('UPDATE ChallengeCompletion SET challengeCompletion = 1, timeCompletion = ? WHERE userId = ? AND challengeId = ?', (current_date, user_id, challenge_id))
             db.commit()  # Commit the changes
             return jsonify({'message': 'Flag is correct! Challenge completed.'}), 200
         else:
@@ -489,7 +486,7 @@ def challengeStatus(challengeCode):
 
 
 @app.route('/profile', methods=['GET'])
-def Profile():
+def profile():
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')
     if not auth_header or not auth_header.startswith("Bearer "):
@@ -508,15 +505,20 @@ def Profile():
 
     db = get_db()
 
-    # Fetch all challenges
+    # Fetch all challenges from the database
     cursor = db.execute('SELECT challengeId, challengeCode, challengeName FROM Challenges')
     challenges = cursor.fetchall()
 
-    # Fetch challenge completion status for the user
-    cursor = db.execute('SELECT challengeId, challengeCompletion, useHintOne, useHintTwo, useHintThree, useWalkthrough FROM ChallengeCompletion WHERE userId = ?', (user_id,))
+    # Fetch the user's challenge completion data
+    cursor = db.execute('''
+        SELECT challengeId, challengeCompletion, useHintOne, useHintTwo, 
+               useHintThree, useWalkthrough, timeCompletion 
+        FROM ChallengeCompletion 
+        WHERE userId = ?
+    ''', (user_id,))
     completions = cursor.fetchall()
 
-    # Create a dictionary for faster lookup of completed challenges
+    # Create a dictionary for quick lookup of completion data
     completion_dict = {
         completion['challengeId']: {
             "challenge_completion": completion['challengeCompletion'],
@@ -524,67 +526,68 @@ def Profile():
             "use_hint_two": completion['useHintTwo'],
             "use_hint_three": completion['useHintThree'],
             "use_walkthrough": completion['useWalkthrough'],
+            "time_completion": completion['timeCompletion']
         }
         for completion in completions
     }
 
-    # Prepare a list of all challenges with their status
-    # print(completion_dict)
+    # Prepare a list of challenges with their statuses and hint/walkthrough usage
     challenge_statuses = []
     for challenge in challenges:
         challenge_id = challenge['challengeId']
 
-        # Check if this challenge is completed by the user
+        # Initialize default values for each challenge
+        completion_status = 0
+        time_completion = None
+        hints_used = 0
+        walkthrough_used = 0
+
+        # If the user has interacted with the challenge, get the data
         if challenge_id in completion_dict:
             completion_data = completion_dict[challenge_id]
 
-            # Calculate the completion status based on hint and walkthrough usage
+            # Extract challenge completion status
             completion_status = completion_data['challenge_completion']
-            if completion_status == 1:
-                print(completion_status)
-                if completion_data['use_hint_one']:
-                    completion_status += 1
-                if completion_data['use_hint_two']:
-                    completion_status += 1
-                if completion_data['use_hint_three']:
-                    completion_status += 1
-                if completion_data['use_walkthrough']:
-                    completion_status = 5
+            time_completion = completion_data['time_completion']
 
-        else:
-            # If not completed, set the default values for an unsolved challenge
-            completion_status = 0  # Not solved
-            completion_data = {
-                "use_hint_one": 0,
-                "use_hint_two": 0,
-                "use_hint_three": 0,
-                "use_walkthrough": 0
-            }
+            # Calculate the number of hints used
+            hints_used = (
+                completion_data['use_hint_one'] +
+                completion_data['use_hint_two'] +
+                completion_data['use_hint_three']
+            )
 
+            # Check if the walkthrough is used (1 if used, 0 otherwise)
+            walkthrough_used = completion_data['use_walkthrough']
+
+        # Append the status for the current challenge
         challenge_statuses.append({
             "challengeId": challenge_id,
             "challengeCode": challenge['challengeCode'],
             "challengeName": challenge['challengeName'],
-            "completion_status": completion_status
+            "completion_status": completion_status,
+            "time_completion": time_completion,
+            "hints_used": hints_used,
+            "walkthrough_used": walkthrough_used
         })
 
-    # Sort the challenge_statuses list by challenge_id
+    # Sort the challenge statuses by challengeId
     challenge_statuses.sort(key=lambda x: x['challengeId'])
 
-    # Return the user info and challenge completion statuses
+    # Fetch user info from the database
     cursor = db.execute('SELECT userHandler, userEmail, avatar FROM User WHERE userId = ?', (user_id,))
     user = cursor.fetchone()
 
     if user is None:
         return jsonify({"message": "User not found"}), 404
 
+    # Return the profile information and challenge statuses
     return jsonify({
         "username": user['userHandler'],
         "email": user['userEmail'],
         "avatar": user['avatar'],
         "challenge_completions": challenge_statuses
     }), 200
-
 
 # Route to update avatar selection
 @app.route('/avatar-select', methods=['POST'])
