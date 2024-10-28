@@ -139,7 +139,7 @@ main {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 9999t;
+  z-index: 9999;
 }
 
 .link:hover .item-hover-text {
@@ -1127,6 +1127,7 @@ main {
   min-height: 100%;
   margin-bottom: 120px;
   background-image: url("./assets/images/background.jpg");
+  z-index: -1;
 }
 
 /* Walkthrough Grid Layout */
