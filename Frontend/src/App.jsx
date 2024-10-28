@@ -13,6 +13,7 @@ import Guide from './pages/Guide';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Documentation from './pages/Documentation';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/challenge" element={<Challenge />} />
               <Route path="/walkthrough" element={<Walkthrough />} />
+              <Route path="/documentation" element={<Documentation />}/>
               {/* Use a dynamic route for the Setting page to handle different challenges */}
               <Route path="/heist/:challengeCode" element={<Heist />} />
               <Route path="/guide/:challengeCode" element={<Guide />} />
