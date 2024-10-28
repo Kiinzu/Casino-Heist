@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS ChallengeCompletion (
     useHintTwo INTEGER DEFAULT 0,         -- 0 for not used, 1 for used
     useHintThree INTEGER DEFAULT 0,       -- 0 for not used, 1 for used
     useWalkthrough INTEGER DEFAULT 0,     -- 0 for not used, 1 for used
+    timeCompletion TEXT DEFAULT NULL,     -- Date in ISO format (YYYY-MM-DD)
     FOREIGN KEY (userId) REFERENCES User(userId) ON DELETE CASCADE,
     FOREIGN KEY (challengeId) REFERENCES Challenges(challengeId) ON DELETE CASCADE,
     PRIMARY KEY (userId, challengeId)
