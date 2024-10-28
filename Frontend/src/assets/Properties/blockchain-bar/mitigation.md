@@ -1,5 +1,5 @@
-Knowing that the problem is very simple, the modifier `onlyMember()` doesn't actually checking for the `msg.sender` is a member or not, but it just make the `msg.sender` a member! To fix this issue we can just modify the modifier to become like this
-
+Knowing that the problem is very simple, the modifier *onlyMember()* doesn't actually checking for the *msg.sender* is a member or not, but it just make the *msg.sender* a member! To fix this issue we can just modify the modifier to become like this &nbsp;  
+&nbsp;  
 ```solidity
 pragma solidity ^0.8.25;
 
@@ -52,5 +52,5 @@ contract Bar{
     
 }
 ```
-
-by adding the proper check for `barMember` at `onlyMember()` we can make sure that only the `owner` can approve a member registration and make them a member once it done!
+&nbsp;  
+by adding the proper check for *barMember* at *onlyMember()* we can make sure that only the *owner* can approve a member registration and make them a member once it done!
