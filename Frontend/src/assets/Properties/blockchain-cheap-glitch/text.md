@@ -4,8 +4,10 @@ At Inju Casino, wealth wasn’t just admired—it was the only key to the inner 
 
 Solidity is a language that process integer based on how many bits it can contain, like *uint8* meaning it can only have 8 bits, thus setting the maximum value it can holds to 255 (2^8 - 1). Integer Overflow happens when the uint (unsigned integer) reches its byte size, but then we add something that when added will exceed the max balance and returning to the first variable element, for example if it's an *uint8* the maximum value it can hold is 255, if we add 1 to it it won't become 256, but it will turn into 0 (first variable element). The Underflow is just the oposite, let's say we have the same *uint8* and it's current value is 0, then we substract 1 from it, it won't become -1 since unsigned cannot be negative number, instead it will become 255 (maximum variable element). &nbsp;  
 &nbsp;  
-So what's the factor or condition where it can happened? &nbsp;  
-&nbsp;  
+
+## How can Integer Overflow-Underflow happened?
+There are many factor how it can happened, here are some of them, ranging from the compiler version to the low level code like `inline assembly`
+
 ### Solidity Version
 
 Solidity with Version *0.6.0* to *0.7.0* compiler has the risk of Integer Underflow/Overflow by default because there were no checking implemented in that compiler version, but the newest version of *0.8.0* compiler will automatically take care of checking for overflows and underflows. &nbsp;  
@@ -39,3 +41,25 @@ contract exampleOUInteger{
 ```
 &nbsp;  
 In the example above, we used it in solidity version *0.8.0*, which should be safe, but no, if the *unchecked* keyword is also used, it tells the compiler not to check the result or possibility in this operation, meaning it tells the compiler not to check for interger underflow and overflow. Let's say we input *61* as the value for the *a*, it will then return *5* because *255* is the max it can hold, it has extra 6, since the overflow start from 0, so it's like a *6 - 1*, thus returning *5*.
+
+### Inline Assembly
+Inline Assembly in Solidity is performed using YUL language. Because YUL being a low-level langguage, integer overflow and underflow are possible since the compiler won't automatically check for it, take this code as exmaple
+
+```solidity 
+uint8 test = 255;
+
+function add() public pure returns(uint8 result){
+    assembly{
+        result := add(sload(test.slot), 1)
+    }
+    return result;
+}
+```
+
+Running the code above would return `0` since the maximum for type `uint8` is 255, and adding 1 to it will make it overflow and return `0`.
+
+### Using Shift Operators
+In solidity, Overflow & Underflow checks are not perfomed for shift operations like they are performed for other arithmetic operations. Thus Oveflow & Underflow are possible.
+
+### Typecasting
+A very common way this vulnerability exist is because a typecasting a higher integer type like `uint256` to a lower one like `uint8`.
