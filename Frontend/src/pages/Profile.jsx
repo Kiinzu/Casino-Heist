@@ -15,7 +15,7 @@ import avatar8 from '../assets/profile-picture/croco.png';
 import changeAvatar from '../assets/images/change-profile.png';
 
 const Profile = () => {
-    const [profileImage, setProfileImage] = useState(avatar1); // Default avatar image
+    const [profileImage, setProfileImage] = useState(avatar7); // Default avatar image
     const [showSelector, setShowSelector] = useState(false);
     const [challenges, setChallenges] = useState([]);
     const [completionDate, setCompletionDate] = useState([]);
