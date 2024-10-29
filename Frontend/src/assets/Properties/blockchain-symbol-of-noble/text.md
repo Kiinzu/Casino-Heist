@@ -25,4 +25,4 @@ Though ERC-721 provides a standard structure, **incorrect implementations** can 
 - **Access Control Issuess (Minting and Burning)** 
     If access control is not implemented correctly for **minting or burning tokens**,  unauthorized users might mint unlimited NFTs or burn tokens owned by others.
 
-Although, some vulnerability
+When implementing standard, most of the time the vulnerability exist not because of the standard itself but the misimplementation done by the developer, we can say most of the time is human error factor.
