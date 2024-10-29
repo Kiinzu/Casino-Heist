@@ -213,6 +213,7 @@ const Guide = () => {
       {featuredWalkthroughs.some((box) => box.length > 0) && (
         <div className="heist-contributor-container">
           <h2>Featured Walkthrough</h2>
+          <p>Here are some Walkthrough that is written by our Contributors! If you have written one and want to get featured on the platform, please follow this <a href="https://google.com">Contribution Guide</a>!</p>
           <div className="walkthrough-boxes">
             {featuredWalkthroughs.map((walkthroughs, index) =>
               walkthroughs.length > 0 ? (

@@ -957,6 +957,7 @@ main {
 .walkthrough-boxes {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .walkthrough-box {
@@ -1512,7 +1513,7 @@ main {
   /* align-items: left; */
   justify-content: left;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-left: 10px;
+  /* margin-left: 10px; */
   /* align-content: left; */
   /* margin: 0; */
 }
