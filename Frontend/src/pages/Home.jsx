@@ -55,7 +55,6 @@ const Home = () => {
                     <p>Join the community to discuss the challenge and meet new friends!</p>
                 </div>
             </section>
-
         </div>
     );
 };

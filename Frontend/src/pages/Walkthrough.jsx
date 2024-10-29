@@ -72,8 +72,9 @@ const Walkthrough = () => {
             });
     
             const result = await response.json();
+            console.log(result);
             // console.log(result.isSolved);
-            return result.isSolved === 1; // Return true or false directly
+            return result.isSolved === 1 || result.usedWalkthrough === 1; // Return true or false directly
         } catch (error) {
             console.error(error);
             return false; // Return false in case of an error
@@ -84,6 +85,7 @@ const Walkthrough = () => {
     const handleChallengeClick = async (challengeCode) => {
         try {
             const isSolved = await checkIfSolved(challengeCode); // Wait for the result
+            console.log(isSolved);
             // console.log("Challenge Code:", challengeCode);
             // console.log("Condition is:", isSolved);
     

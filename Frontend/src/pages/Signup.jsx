@@ -43,7 +43,7 @@ const Signup = () => {
           showMessage(data.error, true);
         } else {
           showMessage('Registration successful!', false);
-          setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
+          setTimeout(() => navigate('/login'), 1000); // Redirect after 2 seconds
         }
       })
       .catch((error) => {
@@ -57,7 +57,7 @@ const Signup = () => {
     setIsError(isError);
 
     // Auto-hide the message after 3 seconds
-    setTimeout(() => setMessage(null), 3000);
+    setTimeout(() => setMessage(null), 1000);
   };
 
   return (
@@ -78,7 +78,7 @@ const Signup = () => {
             <input
               type="text"
               name="username"
-              placeholder="E.g Kiinzu"
+              placeholder="E.g Klonberg"
               value={formData.username}
               onChange={handleInputChange}
               required
@@ -90,7 +90,7 @@ const Signup = () => {
             <input
               type="email"
               name="email"
-              placeholder="E.g Richard"
+              placeholder="E.g test@enuma.io"
               value={formData.email}
               onChange={handleInputChange}
               required

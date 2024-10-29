@@ -480,8 +480,12 @@ def challengeStatus(challengeCode):
     cursor = db.execute('SELECT challengeCompletion FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id,))
     challenge_status = cursor.fetchone()[0]
 
+    cursor = db.execute('SELECT useWalkthrough FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id,))
+    walkthrough_used = cursor.fetchone()[0]
+
     return jsonify({
-        "isSolved" : challenge_status
+        "isSolved" : challenge_status,
+        "usedWalkthrough": walkthrough_used
     }), 200
 
 

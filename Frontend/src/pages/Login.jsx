@@ -13,6 +13,20 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const displayNotification = (type, text) => {
+    if (type === 'success') {
+      setMessage(text);
+    } else if (type === 'error') {
+      setError(text);
+    }
+
+    // Clear the notification after 1 second
+    setTimeout(() => {
+      setMessage('');
+      setError('');
+    }, 1000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,17 +47,16 @@ const Login = () => {
         if (data.token) {
           // Save token in localStorage
           localStorage.setItem('token', data.token);
-          setMessage('Login successful! Redirecting...');
+          displayNotification('success', 'Login successful!');
           setTimeout(() => {
             navigate('/'); // Redirect to home page
-          }, 2000); // Delay for 2 seconds
+          }, 1000); // Delay for navigation
         } else if (data.error) {
-          setError(data.error);
+          displayNotification('error', 'Invalid Credentials!');
         }
       })
       .catch((error) => {
-        setError('An error occurred. Please try again.');
-        console.error('Error:', error);
+        displayNotification('error', 'Invalid Credentials!');
       });
   };
 
