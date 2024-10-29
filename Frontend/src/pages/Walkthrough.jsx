@@ -59,41 +59,46 @@ const Walkthrough = () => {
             .catch((error) => console.error('Error fetching challenges:', error));
     }, []);
 
-    const checkIfSolved = async (challengeCode) =>{
+    const checkIfSolved = async (challengeCode) => {
         const token = localStorage.getItem('token');
         console.log(token);
         try {
             const response = await fetch(`http://127.0.0.1:5000/challenge-status/${challengeCode}`, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
             });
-        
+    
             const result = await response.json();
-            console.log(result.isSolved);
-            if(result.isSolved === 1){
-                setSolved(true);
-            }else{
-                setSolved(false)
-            }
+            // console.log(result.isSolved);
+            return result.isSolved === 1; // Return true or false directly
         } catch (error) {
             console.error(error);
-        }  
-    }
-
-    // Handle click to navigate to the guide page with challengeCode
-    const handleChallengeClick = (challengeCode) => {
-        const result = checkIfSolved(challengeCode);
-        if(solved === false){
-            setSelectedChallengeCode(challengeCode);
-            setIsConfirmPopupOpen(true);
-        }else{
-            navigate(`/guide/${challengeCode}`);
-            setSolved(false)
+            return false; // Return false in case of an error
         }
     };
+    
+    // Handle click to navigate to the guide page with challengeCode
+    const handleChallengeClick = async (challengeCode) => {
+        try {
+            const isSolved = await checkIfSolved(challengeCode); // Wait for the result
+            // console.log("Challenge Code:", challengeCode);
+            // console.log("Condition is:", isSolved);
+    
+            if (!isSolved) { // If not solved, show confirmation popup
+                setSelectedChallengeCode(challengeCode);
+                setIsConfirmPopupOpen(true);
+            } else { // If solved, navigate to the guide
+                navigate(`/guide/${challengeCode}`);
+                setSolved(false); // Reset solved state
+            }
+        } catch (error) {
+            console.error("Error handling challenge click:", error);
+        }
+    };
+    
     
     const handleConfirmYes = () =>{
         navigate(`/guide/${selectedChallengeCode}`);
