@@ -106,7 +106,7 @@ challenges = [
         'challengeDifficulty':'common',
         'challengeCode': 'blockchain-inju-bank',
         'challengeTag': 'Reentrancy',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': 'adb9bb70d0d7cbaaa9495396866c2f6a451186417fd5612c669b1e9c0c67241e',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
@@ -117,7 +117,7 @@ challenges = [
         'challengeDifficulty':'common',
         'challengeCode': 'blockchain-silent-dealer',
         'challengeTag': 'Low-level Call',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': '3936af6ef13125e1dcc1c601b2bce84f09e46bb3196de7cd46e2f409feb457dd',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
@@ -139,7 +139,7 @@ challenges = [
         'challengeDifficulty':'common',
         'challengeCode': 'blockchain-unlimited-credit-line',
         'challengeTag': 'ERC-20 Misuse',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': 'e96fd8fb2beff32a57b725fe860870c886a810de18302933ef93ba77bda9aba0',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
@@ -150,7 +150,7 @@ challenges = [
         'challengeDifficulty':'common',
         'challengeCode': 'blockchain-symbol-of-noble',
         'challengeTag': 'ERC721 Reentrancy',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': '48c8329c149f96ab791c1042e8f432deafa5d729e2f70cf71b43213f76828aad',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
@@ -161,7 +161,7 @@ challenges = [
         'challengeDifficulty':'common',
         'challengeCode': 'blockchain-casino-vault',
         'challengeTag': 'Delegate Call',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': 'bbe4a3ba682ce2ab679410b644142f6c766303904d62c1d62cb76a63eb6baaf4',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
@@ -183,7 +183,7 @@ challenges = [
         'challengeDifficulty':'vip',
         'challengeCode': 'blockchain-casino-bankbuster',
         'challengeTag': 'UNK0WN',
-        'challengeFlag': 'ENUMA',
+        'challengeFlag': 'fd33984753e3688b2d48b4354ecfd2bff8b9b005c77ed7ba4cfd5749e3d23c96',
         'challengeHintOne': 'PlaceHolder#1',
         'challengeHintTwo': 'PlaceHolder#2',
         'challengeHintThree': 'PlaceHolder#3'
