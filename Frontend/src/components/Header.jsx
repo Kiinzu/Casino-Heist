@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation for tracking route changes
-import '../App.css'; 
+import { useNavigate, useLocation, Link } from 'react-router-dom'; // Import Link
+import '../App.css';
 import casinoheistLogo from "../assets/images/sidebar-logo.png";
 
 const Header = () => {
@@ -13,14 +13,14 @@ const Header = () => {
     try {
       const apiUrl = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
       console.log(apiUrl);
-      const response = await fetch(`${apiUrl}/validate-token`, {
+      const response = await fetch('http://127.0.0.1:5000/validate-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       if (response.ok) {
         setIsLoggedIn(true); // Mark user as logged in if the token is valid
       } else {
@@ -48,18 +48,30 @@ const Header = () => {
     navigate('/profile'); // Redirect to the profile on click
   };
 
+  const handleHomeClick = async () => {
+    navigate('/');
+  }
+
+  const handleLoginClick = async () => {
+    navigate('/login');
+  }
+
+  const handleSignUpClick = async () => {
+    navigate('/signup');
+  }
+
   const handleLogout = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
-  
+
     try {
       const response = await fetch('http://127.0.0.1:5000/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
       });
-  
+
       if (response.ok) {
         console.log('Logged out successfully');
       } else {
@@ -74,10 +86,12 @@ const Header = () => {
     }
   };
 
+
+
   return (
     <header className="header-container">
       <div className="logo-section">
-        <a href="/home"><img src={casinoheistLogo} alt="Casino-Heist-Logo" className="header-logo" /></a>
+          <img src={casinoheistLogo} alt="Casino-Heist-Logo" className="header-logo" onClick={handleHomeClick} />
       </div>
       <div className="auth-buttons">
         {isLoggedIn ? (
@@ -91,12 +105,8 @@ const Header = () => {
           </>
         ) : (
           <>
-            <a href="/login">
-              <button className="login-btn">Login</button>
-            </a>
-            <a href="/signup">
-              <button className="signup-btn">Sign Up</button>
-            </a>
+            <button className="login-btn" onClick={handleLoginClick}>Login</button>
+            <button className="signup-btn" onClick={handleSignUpClick}>Sign Up</button>
           </>
         )}
       </div>
