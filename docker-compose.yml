@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    command: gunicorn -w 4 -b 0.0.0.0:8000 wsgi:app
+    expose:
+      - "8000"
+    environment:
+      - FLASK_ENV=production
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - web
+      - frontend
+    networks:
+      - app-network
+
+volumes:
+  certs:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
