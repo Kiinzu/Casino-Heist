@@ -9,6 +9,7 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import time
+from dotenv import load_dotenv
 
 # //////////////////////////////////
 # /////     Configuration      /////
@@ -44,11 +45,9 @@ def close_db(exception):
 # /////      SECRET_KEY        /////
 # //////////////////////////////////
 
-# Generate a 32-byte random secret key
-def generate_secret_key():
-    return binascii.hexlify(os.urandom(32)).decode()
+load_dotenv()
 
-SECRET_KEY = generate_secret_key()
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # //////////////////////////////////
 # /////      Generation        /////
@@ -68,7 +67,7 @@ def generate_token(user_id, username):
 # //////////////////////////////////
 
 # endpoint to validate JWT token
-@app.route('/validate-token', methods=['POST'])
+@app.route('/api/validate-token', methods=['POST'])
 def validate_token():
     auth_header = request.headers.get('Authorization')
     if not auth_header:
@@ -116,7 +115,7 @@ def get_token_expiration(user_id, token):
 # //////////////////////////////////
 
 # Route to register a new user
-@app.route('/register', methods=['POST'])
+@app.route('/api/register', methods=['POST'])
 def register_user():
     try:
         data = request.json
@@ -169,7 +168,7 @@ def register_user():
         return jsonify({'error': 'An error occurred during registration'}), 500
 
 # Route to log in an existing user
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def login_user():
     try:
         data = request.get_json() 
@@ -217,7 +216,7 @@ def login_user():
         return jsonify({'error': 'An error occurred during login'}), 500
 
 # Route to log out an existing user
-@app.route('/logout', methods=['POST'])
+@app.route('/api/logout', methods=['POST'])
 def logout_user():
     try:
         token = request.headers.get('Authorization').split()[1]
@@ -247,7 +246,7 @@ def logout_user():
 
 # Flask route to return all challenges
 # reconfigure challenge
-@app.route('/Challenge', methods=['GET'])
+@app.route('/api/Challenge', methods=['GET'])
 def get_challenges():
     # Execute raw SQL query to fetch challenges
     db = get_db()
@@ -259,7 +258,7 @@ def get_challenges():
 
     return jsonify(challenges_list)
 
-@app.route('/featured-walkthrough', methods=['POST'])
+@app.route('/api/featured-walkthrough', methods=['POST'])
 def get_featured_walktrough():
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')
@@ -291,7 +290,7 @@ def get_featured_walktrough():
 
     return jsonify(contributors_list), 200
 
-@app.route('/verify-flag', methods=['POST'])
+@app.route('/api/verify-flag', methods=['POST'])
 def verify_flag():
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')
@@ -337,7 +336,7 @@ def verify_flag():
     else:
         return jsonify({'message': 'Challenge not found.'}), 404
     
-@app.route('/hint/<string:challengeCode>/<int:hintNumber>', methods=['POST'])
+@app.route('/api/hint/<string:challengeCode>/<int:hintNumber>', methods=['POST'])
 def get_hint(challengeCode, hintNumber):
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')
@@ -403,7 +402,7 @@ def get_hint(challengeCode, hintNumber):
     return jsonify({'hint': hint}), 200
 
 # To use the Walktrough, it will get updated
-@app.route('/update-walkthrough', methods=['POST'])
+@app.route('/api/update-walkthrough', methods=['POST'])
 def update_walkthrough():
     auth_header = request.headers.get('Authorization')
     if not auth_header or not auth_header.startswith("Bearer "):
@@ -453,7 +452,7 @@ def update_walkthrough():
         print("Challenges is already completed, no update needed.")
         return jsonify({'message': 'success'}), 200
 
-@app.route('/challenge-status/<string:challengeCode>', methods=['GET'])
+@app.route('/api/challenge-status/<string:challengeCode>', methods=['GET'])
 def challengeStatus(challengeCode):
     auth_header = request.headers.get('Authorization')
     if not auth_header or not auth_header.startswith("Bearer "):
@@ -480,16 +479,12 @@ def challengeStatus(challengeCode):
     cursor = db.execute('SELECT challengeCompletion FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id,))
     challenge_status = cursor.fetchone()[0]
 
-    cursor = db.execute('SELECT useWalkthrough FROM ChallengeCompletion WHERE userId = ? AND challengeId = ?', (user_id, challenge_id,))
-    walkthrough_used = cursor.fetchone()[0]
-
     return jsonify({
-        "isSolved" : challenge_status,
-        "usedWalkthrough": walkthrough_used
+        "isSolved" : challenge_status
     }), 200
 
 
-@app.route('/profile', methods=['GET'])
+@app.route('/api/profile', methods=['GET'])
 def profile():
     # Get the JWT from the Authorization header
     auth_header = request.headers.get('Authorization')
@@ -594,7 +589,7 @@ def profile():
     }), 200
 
 # Route to update avatar selection
-@app.route('/avatar-select', methods=['POST'])
+@app.route('/api/avatar-select', methods=['POST'])
 def avatar_select():
     data = request.get_json()
     avatar = data.get('avatar')
