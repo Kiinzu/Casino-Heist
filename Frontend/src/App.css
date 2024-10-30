@@ -288,7 +288,7 @@ main {
   height: 100%;
   max-width: 100%;
   max-height: auto;
-  padding: 20px;
+  padding: 0px 0px 20px 0px;
   /* background-color: #1c1e22; */
   /* background-color: #000; */
   color: white;
@@ -312,6 +312,7 @@ main {
 
 .home-hero-content{
   padding: 40px;
+  justify-items: center;
 }
 
 .home-hero-content h1 {
@@ -1803,4 +1804,43 @@ main {
   margin-top: 5px;
   font-weight: normal;
   color: #fefefe;
+}
+
+/* REVAMP HOME */
+.home-first-container{
+  background-color: #000000;
+  background-image: linear-gradient(180deg, #000000 50%, #d0caca 100%);
+  
+  width: 100%;
+  min-width: auto;
+  height: 100dvh;
+}
+
+.home-first-container h1{
+  font-size: 52px;
+}
+
+.home-first-looks{
+  padding-top: 220px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.home-first-looks img{
+  margin-top: 200px;
+  width: 3.5%;
+}
+
+.home-second-container{
+  background-color: #f9f9f9;
+  background-image: linear-gradient(180deg, #d0caca 47%, #000000 85%);  
+  width: 100%;
+  min-width: auto;
+  height: 100dvh;
+  color: #000;
+}
+
+.home-second-container{
+
 }
