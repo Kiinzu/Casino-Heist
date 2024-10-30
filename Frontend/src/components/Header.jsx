@@ -12,7 +12,6 @@ const Header = () => {
   // Function to validate token from the backend (if not valid, show login/signup)
   const validateToken = async (token) => {
     try {
-      console.log(apiUrl);
       const response = await fetch(`${apiURL}/validate-token`, {
         method: 'POST',
         headers: {

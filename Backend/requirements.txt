@@ -3,3 +3,4 @@ flask-cors
 pyjwt
 gunicorn
 waitress
+python-dotenv
