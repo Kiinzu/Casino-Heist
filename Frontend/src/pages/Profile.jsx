@@ -192,11 +192,11 @@ const Profile = () => {
                                             )}
 
                                             {challenge.completion_status === 1 && challenge.walkthrough_used === 1 && (
-                                                <div className="wt-assists-tag">Guided Heist!</div>
+                                                <div className="wt-assists-tag">#Guided Heist!</div>
                                             )}
 
                                             {challenge.completion_status === 1 && challenge.hints_used === 0 && challenge.walkthrough_used === 0  && (
-                                                <div className="solo-assists-tag">PERFECT SOLO HEIST!</div>
+                                                <div className="solo-assists-tag">#PERFECT SOLO HEIST!</div>
                                             )}
                                         </div>
                                     </td>

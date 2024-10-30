@@ -17,15 +17,15 @@ import Profile from './pages/Profile';
 import Documentation from './pages/Documentation';
 
 function App() {
-  const navigate = useNavigate(); // Initialize navigation hook
-  const location = useLocation(); // Track the current route
+  // const navigate = useNavigate(); // Initialize navigation hook
+  // const location = useLocation(); // Track the current route
 
   // Handle refresh and re-navigate to the current location
-  useEffect(() => {
-    const currentPath = location.pathname;
-    console.log(`Navigating to ${currentPath} on refresh`);
-    navigate(currentPath); // Ensure it navigates to the same route on refresh
-  }, [location.pathname, navigate]);
+  // useEffect(() => {
+  //   const currentPath = location.pathname;
+  //   console.log(`Navigating to ${currentPath} on refresh`);
+  //   navigate(currentPath); // Ensure it navigates to the same route on refresh
+  // }, [location.pathname, navigate]);
 
   return (
     <div>
