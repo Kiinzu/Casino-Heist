@@ -16,6 +16,7 @@ import changeAvatar from '../assets/images/change-profile.png';
 
 const Profile = () => {
     const [profileImage, setProfileImage] = useState(avatar7); // Default avatar image
+    const [profileAlias, setProfileAlias] = useState('robo');
     const [showSelector, setShowSelector] = useState(false);
     const [challenges, setChallenges] = useState([]);
     const [completionDate, setCompletionDate] = useState([]);
@@ -93,29 +94,41 @@ const Profile = () => {
         }
     }, []);
 
-    const handleImageSelect = (e, option) => {
-        e.stopPropagation();
-        setProfileImage(option.image); // Set selected image
-        setProfileAlias(option.alias); // Set alias
-        setShowSelector(false);
-        console.log(`Selected: ${option.alias}`);
-
-        const token = localStorage.getItem('token');
-        fetch(`${apiURL}/avatar-select`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ avatar: option.alias }),
-        })
-            .then((response) => {
-                if (!response.ok) throw new Error('Failed to save avatar');
-                return response.json();
-            })
-            .then((data) => console.log(data.message))
-            .catch((error) => console.error('Error:', error));
+    const handleImageSelect = async (e, option) => {
+        try {
+            e.stopPropagation(); // Prevent click from bubbling up
+            setProfileImage(option.image); // Update profile image immediately
+            setProfileAlias(option.alias); // Update alias immediately
+            setShowSelector(false); // Close the selector
+    
+            console.log(`Selected Avatar: ${option.alias}`);
+    
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No token found.');
+    
+            const response = await fetch(`${apiURL}/avatar-select`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ avatar: option.alias }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Failed to save avatar:', errorData);
+                throw new Error('Avatar selection failed.');
+            }
+    
+            const data = await response.json();
+            console.log('Avatar saved successfully:', data.message);
+        } catch (error) {
+            console.error('Error:', error);
+            alert(`Failed to update avatar: ${error.message}`);
+        }
     };
+    
 
     useEffect(() => {
         const handleClickOutside = (event) => {
