@@ -1,4 +1,5 @@
-The Heist you just done has the vulnerability of Insecure Randomness because it's using `block.timestamp` in this two functions
+The Heist you just done has the vulnerability of Insecure Randomness because it's using *block.timestamp* in this two functions &nbsp;  
+&nbsp;  
 
 ```solidity
 function randomGenerator() internal view returns(uint256){
@@ -10,6 +11,7 @@ function biggerRandomGenerator() internal view returns(uint256){
 }
 ```
 
-The only way to mitigate this if we really need the randomness is to use `Chainlink VRF`, to see how you can implement the Verifiable Random Function, you can refer to this docs.
+The only way to mitigate this if we really need the randomness is to use *Chainlink VRF*, to see how you can implement the Verifiable Random Function, you can refer to this docs. &nbsp;  
+&nbsp;  
 
 - https://docs.chain.link/vrf

@@ -1,4 +1,5 @@
-In the lab you've just done, you know that you can become the FOREVER VVVIP Member by making a smart contract that couldn't receive any Ether in order making the refund failed, but know we are going to learn hwo to mitigate such vulnerability, the vulnerability lies in here
+In the lab you've just done, you know that you can become the FOREVER VVVIP Member by making a smart contract that couldn't receive any Ether in order making the refund failed, but know we are going to learn hwo to mitigate such vulnerability, the vulnerability lies in here &nbsp;  
+&nbsp;  
 
 ```solidity
 function becomeVVVVIP() external payable{
@@ -13,8 +14,9 @@ function becomeVVVVIP() external payable{
     currentBalance = msg.value;
 }
 ```
-
-the easiest mitigation that we can implement here, is just not to immediately send the balance if one position is taken by other--by calling this function with higher Ether, what we can do is make a mapping for each one balance and a withdraw function to make allow pass VVVIP to withdraw their own balance, so the mitigated contract would look like this
+&nbsp;  
+the easiest mitigation that we can implement here, is just not to immediately send the balance if one position is taken by other--by calling this function with higher Ether, what we can do is make a mapping for each one balance and a withdraw function to make allow pass VVVIP to withdraw their own balance, so the mitigated contract would look like this &nbsp;  
+&nbsp;  
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -47,13 +49,14 @@ contract VVVIP{
 
 }
 ```
-
-If you want to try your previous exploit against this new mitigated contract, you need to change the `Setup.sol::TryIfSolve()` to the one like below to ensure that the function try to becoming VVVIP again.
+&nbsp;  
+If you want to try your previous exploit against this new mitigated contract, you need to change the *Setup.sol::TryIfSolve()* to the one like below to ensure that the function try to becoming VVVIP again. &nbsp;  
+&nbsp;  
 
 ```solidity
    function TryIfSolve() public payable {
         vvvip.becomeVVVVIP{value: 10 ether}();
     }
 ```
-
+&nbsp;  
 Although most developer takes their time and put into much efforct to ensure that logic, calculation and interactions are functioning as its intended, some times there will be an unexpectd behavior that may be they didn't realize, that often lead to something like DoS.
