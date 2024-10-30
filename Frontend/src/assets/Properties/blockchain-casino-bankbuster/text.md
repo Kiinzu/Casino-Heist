@@ -1,1 +1,5 @@
-# THIS IS JUST A PLACE HOLDER
+In the shadows of the city, where the lines between luxury and cunning blur, two giants silently conspire: the Casino and the Bank. On the surface, they seem like friendly allies, feeding each other in a symbiotic dance—players lose their fortune at the Casino, only to borrow from the Bank and try again. The cycle is endless, each institution thriving off the other's existence. But beneath this polished veneer lies a delicate balance, one that holds the fate of both in fragile equilibrium. What would happen if one fell? If the Casino crumbled, would the Bank follow? And if the Bank went under, could the Casino survive?
+
+The stakes are high, and the temptation to intervene even higher. You see, when two pillars of wealth lean on each other so closely, toppling one could send the other crashing down like a house of cards. It's not about luck anymore—it's about precision. A small shift in the right place could bring everything to its knees. Fortune isn't just earned here; it’s orchestrated.
+
+So now the challenge lies before you. Will you tip the scales and watch the empire collapse, or let the cycle of greed spin endlessly? The choice is yours, but remember—if one falls, the other won’t be far behind.
