@@ -13,6 +13,7 @@ const Signup = () => {
   const [message, setMessage] = useState(null); // Store success or error message
   const [isError, setIsError] = useState(false); // Track if the message is an error
   const navigate = useNavigate(); // Initialize useNavigate
+  const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +28,7 @@ const Signup = () => {
       return;
     }
 
-    fetch('http://127.0.0.1:5000/register', {
+    fetch(`${apiURL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),

@@ -42,10 +42,11 @@ const Guide = () => {
   const [data, setData] = useState(null);
   const [featuredWalkthroughs, setFeaturedWalkthroughs] = useState([[], [], [], [], []]);
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
   const validateToken = async (token) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+      const response = await fetch(`${apiURL}/validate-token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ const Guide = () => {
 
   const walkthroughUsed = async (token) => {
     try{
-      const response = await fetch('http://127.0.0.1:5000/update-walkthrough', {
+      const response = await fetch(`${apiURL}/update-walkthrough`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +86,7 @@ const Guide = () => {
   const fetchFeaturedWalkthroughs = async (token) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/featured-walkthrough`,
+        `${apiURL}/featured-walkthrough`,
         {
           method: 'POST',
           headers: {
@@ -123,7 +124,7 @@ const Guide = () => {
 
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/Challenge')
+    fetch(`${apiURL}/Challenge`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
@@ -250,53 +251,3 @@ const Guide = () => {
 };
 
 export default Guide;
-
-
-// useEffect(() => {
-//   fetch('http://127.0.0.1:5000/Challenge')
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error('Network response was not OK');
-//       }
-//       return response.json();
-//       console.log(response.json);
-//     })
-//     .then((challenges) => {
-//       // Find the specific challenge based on the challengeCode
-//       const selectedChallenge = challenges.find(
-//         (challenge) => challenge.challengeCode === challengeCode
-//       );
-
-//       if (selectedChallenge) {
-//         setData(selectedChallenge); // Store the challenge data
-//         // Map challenge codes to the corresponding markdown file
-//         const markdownMap = {
-//           'blockchain-cheap-glitch': [cheapglitchWalkthrough, cheapglitchArt],
-//           'blockchain-entry-point': [entrypointWalkthrough, entrypointArt],
-//           'blockchain-bar': [barWalkthrough, barArt],
-//           'blockchain-roulette': [rouletteWalkthrough, rouletteArt],
-//           'blockchain-master-of-blackjack': [blackjackWalkthrough, blackjackArt],
-//           'blockchain-voting-frenzy': [votingfrenzyWalkthrough, votingfrenzyArt],
-//           'blockchain-vvvip-member': [vvvipmemberWalkthrough, vvvipmemberArt],
-//           'blockchain-inju-bank': [injubankWalkthrough, injubankArt],
-//           'blockchain-silent-dealer': [silentDealerWalkthrough, silentDealerArt],
-//           'blockchain-singular-entity': [singularentityWalkthrough, singularentityArt],
-//           'blockchain-unlimited-credit-line': [unlimitedCreditWalkthrough, unlimitedCreditArt],
-//           'blockchain-symbol-of-noble': [symbolofnobleWalkthrough, symbolofnobleArt],
-//           'blockchain-casino-vault': [casinovaultWalkthrough, casinovaultArt],
-//         };
-
-//         // Set the markdown content for the selected challenge
-//         if (challengeCode in markdownMap) {
-//           const [markdown, art] = markdownMap[challengeCode]
-//           setPost(markdown);
-//           setImage(art);
-//         } else {
-//           console.error('Markdown file not found for challengeCode:', challengeCode);
-//         }
-//       } else {
-//         console.error('Challenge data not found for challengeCode:', challengeCode);
-//       }
-//     })
-//     .catch((error) => console.error('Error fetching challenges:', error));
-// }, [challengeCode]);

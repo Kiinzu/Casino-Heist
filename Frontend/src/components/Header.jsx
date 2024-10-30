@@ -7,13 +7,13 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const navigate = useNavigate(); // Initialize navigate for redirection
   const location = useLocation(); // Track the current route location
+  const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
   // Function to validate token from the backend (if not valid, show login/signup)
   const validateToken = async (token) => {
     try {
-      const apiUrl = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
       console.log(apiUrl);
-      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+      const response = await fetch(`${apiURL}/validate-token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,9 +62,8 @@ const Header = () => {
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
-
     try {
-      const response = await fetch('http://127.0.0.1:5000/logout', {
+      const response = await fetch(`${apiURL}/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

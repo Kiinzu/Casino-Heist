@@ -22,6 +22,7 @@ const Profile = () => {
     const [data, setData] = useState([]);
     const selectorRef = useRef(null);
     const navigate = useNavigate();
+    const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
     // Array of avatar objects with aliases
     const avatarOptions = [
@@ -39,7 +40,7 @@ const Profile = () => {
         try {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No token found');
-            const response = await fetch('http://127.0.0.1:5000/validate-token', {
+            const response = await fetch(`${apiURL}/validate-token`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ const Profile = () => {
 
     const fetchAllData = async (token) => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/profile', {
+            const response = await fetch(`${apiURL}/profile`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ const Profile = () => {
         console.log(`Selected: ${option.alias}`);
 
         const token = localStorage.getItem('token');
-        fetch('http://127.0.0.1:5000/avatar-select', {
+        fetch(`${apiURL}/avatar-select`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

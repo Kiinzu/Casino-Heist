@@ -28,6 +28,7 @@ import ethereumFeature from "../assets/images/ethereum-coins.png";
 const Challenge = () => {
   const [challenges, setChallenges] = useState([]);
   const navigate = useNavigate(); // Initialize useNavigate
+  const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
   // Map of challenge codes to corresponding images
   const challengeArtMap = {
@@ -53,7 +54,7 @@ const Challenge = () => {
   };
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/Challenge')
+    fetch(`${apiURL}/Challenge`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not OK');

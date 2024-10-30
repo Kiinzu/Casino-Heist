@@ -25,6 +25,7 @@ const Walkthrough = () => {
     const [solved, setSolved] = useState(false);
     const selectorRef = useRef(null);
     const navigate = useNavigate();
+    const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
     // Map of challenge codes to corresponding images
     const challengeArtMap = {
@@ -45,7 +46,7 @@ const Walkthrough = () => {
 
     // Fetch the challenges from the Flask API when the component mounts
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/Challenge')
+        fetch(`${apiURL}/Challenge`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -63,7 +64,7 @@ const Walkthrough = () => {
         const token = localStorage.getItem('token');
         console.log(token);
         try {
-            const response = await fetch(`http://127.0.0.1:5000/challenge-status/${challengeCode}`, {
+            const response = await fetch(`${apiURL}/challenge-status/${challengeCode}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

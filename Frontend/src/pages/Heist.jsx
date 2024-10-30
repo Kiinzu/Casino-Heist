@@ -133,6 +133,7 @@ const Heist = () => {
   const [flagStatus, setFlagStatus] = useState('');
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false); // Confirmation popup
   const [hintNumber, setHintNumber] = useState(null);
+  const apiURL = import.meta.env.VITE_BACKEND_IP; // Use the API URL from environment variable
 
 
   // Fetch and validate token
@@ -140,7 +141,7 @@ const Heist = () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('No token found');
-      const response = await fetch('http://127.0.0.1:5000/validate-token', {
+      const response = await fetch(`${apiURL}/validate-token`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +161,7 @@ const Heist = () => {
     try {
       const token = localStorage.getItem('token');
       console.log(challengeCode)
-      const response = await fetch(`http://127.0.0.1:5000/challenge-status/${challengeCode}`,{
+      const response = await fetch(`${apiURL}/challenge-status/${challengeCode}`,{
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
@@ -180,7 +181,7 @@ const Heist = () => {
   const handleFlagSubmit = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://127.0.0.1:5000/verify-flag', {
+      const response = await fetch(`${apiURL}/verify-flag`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -220,7 +221,7 @@ const Heist = () => {
   const fetchHint = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://127.0.0.1:5000/hint/${challengeCode}/${hintNumber}`, {
+      const response = await fetch(`${apiURL}/hint/${challengeCode}/${hintNumber}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -275,7 +276,7 @@ const Heist = () => {
   }, [navigate]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/Challenge')
+    fetch(`${apiURL}/Challenge`)
       .then((response) => response.json())
       .then((challenges) => {
         const selectedChallenge = challenges.find(
