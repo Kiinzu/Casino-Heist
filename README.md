@@ -59,24 +59,15 @@ To deploy Casino Heist:
 
 ```bash
 git clone https://github.com/Kiinzu/react-casino-heist/
-cd react-casino-heist/Challenges/challenge-only-v/
+cd react-casino-heist/Challenges/
 ```
 
-2. We have some make file there:
+2. You can use the `deploy.sh` file to deploy and remove any challenge that you like (we do recommend you to only deploy one at a time).
 
-```bash
-To be create makefile command
+### Full Website & Challenges Deployment
 
-start
+We offer 2 types of deployment that you can choose
 
-stop
-
-clear
-```
-
-3. Use the make file to start and stop the container and clear your docker images list.
-
-### Full Website & Challenges
 1. Clone this repository in both your `Challenge-server` and `Website-server`
 
 ```bash
