@@ -260,22 +260,6 @@ def get_challenges():
 
 @app.route('/api/download/<string:challengeCode>', methods=['GET'])
 def download_file(challengeCode):
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith("Bearer "):
-        return jsonify({'error': 'Authorization header missing or malformed'}), 401
-
-    token = auth_header.split(" ")[1]
-
-    # Decode the JWT to get the user ID
-    try:
-        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-        user_id = decoded_token.get('user_id')
-        if user_id is None:
-            return jsonify({'error': 'User ID not found in token'}), 401
-
-    except jwt.InvalidTokenError:
-        return jsonify({'error': 'Invalid token'}), 401
-    
     FILE_DIRECTORY = os.path.join(os.path.dirname(__file__), 'Attachment')
     try:
             # Full path to the file

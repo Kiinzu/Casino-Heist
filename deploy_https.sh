@@ -11,7 +11,7 @@ echo "Secret key saved in $backend_env"
 
 # Step 1: Run docker-compose up in detached mode
 echo "Starting Docker containers..."
-docker-compose down
+docker-compose down 
 docker-compose up -d --build
 
 # Step 2: Ask for domain name input
@@ -22,6 +22,7 @@ frontend_env="./Frontend/.env"
 echo "VITE_BACKEND_IP='https://$domain_name/api'" > "$frontend_env"
 cd ./Frontend
 python3 changer.py http://$challenge_ip
+chmod 777 ./install.sh
 ./install.sh
 cp -r ./dist/* /var/www/$domain_name/html
 cd ..

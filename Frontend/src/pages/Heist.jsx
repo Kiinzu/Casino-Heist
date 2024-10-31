@@ -250,45 +250,22 @@ const Heist = () => {
 
 
   const handleDownload = async () => {
-    try {
+      try {
         // Get the token from local storage
         const token = localStorage.getItem("token");
         if (!token) {
             console.error("No authorization token found");
             return;
         }
-
-        // Replace 'challengeCode' with the specific challenge code if needed
-        const response = await fetch(`${apiURL}/download/${challengeCode}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            }
-        });
-
-        if (!response.ok) {
-            console.error("Failed to fetch the file:", response.statusText);
-            return;
-        }
-
-        // Convert response to blob and prompt download
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${challengeCode}.zip`); // Adjust file name as needed
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Clean up the URL object
-        window.URL.revokeObjectURL(url);
-
+    
+        // Open the download link in a new window
+        const downloadUrl = `${apiURL}/download/${challengeCode}`;
+        window.open(downloadUrl, '_blank');
+    
     } catch (error) {
         console.error("Error during file download:", error);
     }
-};
+  };
 
 
   useEffect(() => {
