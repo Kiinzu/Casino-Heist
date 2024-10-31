@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, g
+from flask import Flask, request, jsonify, g, send_file
 from pathlib import Path
 import sqlite3
 import uuid
@@ -257,6 +257,46 @@ def get_challenges():
     challenges_list = [dict(challenge) for challenge in challenges]
 
     return jsonify(challenges_list)
+
+@app.route('/api/download/<string:challengeCode>', methods=['GET'])
+def download_file(challengeCode):
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return jsonify({'error': 'Authorization header missing or malformed'}), 401
+
+    token = auth_header.split(" ")[1]
+
+    # Decode the JWT to get the user ID
+    try:
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        user_id = decoded_token.get('user_id')
+        if user_id is None:
+            return jsonify({'error': 'User ID not found in token'}), 401
+
+    except jwt.InvalidTokenError:
+        return jsonify({'error': 'Invalid token'}), 401
+    
+    FILE_DIRECTORY = os.path.join(os.path.dirname(__file__), 'Attachment')
+    try:
+            # Full path to the file
+            filename = f"{challengeCode}.zip"
+            file_path = os.path.join(FILE_DIRECTORY, filename)
+            
+            # Debugging prints
+            print(f"Attempting to serve file from: {file_path}")
+            print("Current working directory:", os.getcwd())
+
+            # Check if the file exists
+            if not os.path.isfile(file_path):
+                print("File not found at:", file_path)
+                return jsonify({"error": "File not found"}), 404
+
+            # Serve the file
+            return send_file(file_path, as_attachment=True, download_name=filename)
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/featured-walkthrough', methods=['POST'])
 def get_featured_walktrough():
