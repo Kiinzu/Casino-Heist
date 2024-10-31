@@ -32,13 +32,14 @@ remove_specific() {
   fi
 }
 
+
 echo """
-  ___  _   __   _____    __  ___           _______  __  _____ 
-  / __\/_\ / _\  \_   \/\ \ \/___\   /\  /\/__\_   \/ _\/__   \
- / /  //_\\\ \    / /\/  \/ //  //  / /_/ /_\  / /\/\ \   / /\/
-/ /__/  _  \\ \/\/ /_/ /\  / \_//  / __  //_/\/ /_  _\ \ / /   
-\____|_/ \_|__/\____/\_\ \/\___/   \/ /_/\__|____/  \__/ \/    
+  ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
+ / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
+( (__ /    \\___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
+ \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
 """
+
 while true;do
 echo """
 Welcome to Casino Heist Challenge Deployer!
@@ -268,6 +269,7 @@ Which container do you want to remove?
         echo "Invalid choice."
     fi
 elif [ "$option" -eq 3 ]; then
+    containers=$(docker ps --format "{{.ID}}: {{.Names}}")
     echo "Running Docker Containers:"
     echo "$containers"
 else 
