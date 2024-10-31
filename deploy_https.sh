@@ -12,7 +12,7 @@ echo "Secret key saved in $backend_env"
 # Step 1: Run docker-compose up in detached mode
 echo "Starting Docker containers..."
 docker-compose down
-docker-compose up -d
+docker-compose up -d --build
 
 # Step 2: Ask for domain name input
 read -p "Enter your domain name: " domain_name
@@ -107,6 +107,6 @@ fi
 
 # Step 7: Restart NGINX service
 echo "Restarting NGINX..."
-sudo service nginx restart
+service nginx restart
 
 echo "Deployment completed successfully!"
