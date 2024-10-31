@@ -1,5 +1,5 @@
-Based on the Heist you just did, you must have already noticed that the problem was the incorrect CEI Implementation
-
+Based on the Heist you just did, you must have already noticed that the problem was the incorrect CEI Implementation &nbsp;  
+&nbsp;  
 ```solidity
 function withdraw(uint256 _amount) public{
     // CHECK
@@ -13,9 +13,9 @@ function withdraw(uint256 _amount) public{
     balanceOf[msg.sender] = newBalance;
 }
 ```
-
-The first easily mitigation for this problem is implmeneting the correct CEI pattern, so it would prevent reentrancy because the balance is being set before sending the actual Ether
-
+&nbsp;  
+The first easily mitigation for this problem is implmeneting the correct CEI pattern, so it would prevent reentrancy because the balance is being set before sending the actual Ether &nbsp;  
+&nbsp;  
 ```solidity
 function withdraw(uint256 _amount) public{
     // CHECK
@@ -29,9 +29,9 @@ function withdraw(uint256 _amount) public{
     require(sent, "Withdrawal Failed!");
 }
 ```
-
-We can add an extra layer of protection by using `Openzeppelin's Library` especially the `ReentrancyGuard.sol`, you can find the contract [here](import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Using ReentrancyGuard.sol). How it works is basically make sure that there is no recursive call to the function that being protected when an unfinished call is happening, and here is how we can implement it
-
+&nbsp;  
+We can add an extra layer of protection by using *Openzeppelin's Library* especially the *ReentrancyGuard.sol*, you can find the contract [here](import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Using ReentrancyGuard.sol). How it works is basically make sure that there is no recursive call to the function that being protected when an unfinished call is happening, and here is how we can implement it &nbsp;  
+&nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
@@ -72,5 +72,5 @@ contract InjuBank is ReentrancyGuard{
 
 }
 ```
-
+&nbsp;  
 With the fix we've done above, the mitigated contract should be secure now!
