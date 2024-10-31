@@ -1,4 +1,4 @@
-At the grand gates of the casino, known as the *Entry Point*, only those who managed to get the exact amount of deposit can cross into the high-stakes games. Manye eager players approach with pockets jingling, exchanging their precious ether for tokens at the shimmering kisok. Despite their careful calculations, some finds themselves just shy of the threshold-denied entry by the Gatekeeper. It's rumored that they deals in absolutes, not even the smallest miscalculation leaves hopeful standing on the outside. &nbsp;  
+At the grand gates of the casino, known as the *Entry Point*, only those who managed to get the exact amount of deposit can cross into the high-stakes games. Many eager players approach with pockets jingling, exchanging their precious ether for tokens at the shimmering kiosk. Despite their careful calculations, some finds themselves just shy of the threshold-denied entry by the Gatekeeper. It's rumored that they deals in absolutes, not even the smallest miscalculation leaves hopeful standing on the outside. &nbsp;  
 &nbsp;  
 
 ## Rounding Error

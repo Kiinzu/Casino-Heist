@@ -61,7 +61,7 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     cast call -r $RPC_URL $SetupADDR "brief()"
     ```
     &nbsp;  
-    You will get a return of 32 bytes, 20 bytes is the real address while the rest is just a padding to fulfill the 32 btyes standard of a SLOT, we will talk about this later in this same challenge.&nbsp; 
+    You will get a return of 32 bytes, 20 bytes is the real address while the rest is just a padding to fulfill the 32 bytes standard of a SLOT, we will talk about this later in this same challenge.&nbsp; 
     Now that we have the address of *Briefing Contract*, we can then interact with anything inside it, like its Functions and Variables, let's try calling a variable and see its value, let's call *completedCall*, &nbsp;  
     &nbsp; 
     ```text
@@ -144,12 +144,12 @@ SLOT 3| number_three (32 bytes)
 Right now, you maybe have these questions &nbsp;  
 &nbsp;  
 - Why can't *number_three* be stored 3 bytes on the SLOT 2 and the remaining bytes on SLOT 3?&nbsp; 
-&nbsp; 
+    &nbsp; 
     The rules of the solidity storage system, prevent this type of storage, a storage that is reserved or required for a certain type of variable is absolute and cannot be divided.&nbsp;  
     &nbsp;  
 
 - Why the address public immutable player is not stored on the Storage?&nbsp; 
-&nbsp; 
+    &nbsp; 
     Both constant and immutable; a variable that is always has the same value and cannot be changed, are stored in the contract bytecode instead of the EVM Storage.&nbsp;  
     &nbsp;  
 

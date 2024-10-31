@@ -6,7 +6,7 @@ A Hash Collision occurs when two different input produce the same hash value usi
 &nbsp;  
 
 ## What's the Causes?
-In solidity, the root of the problem is often *abi.encodePacked()* function that normally then be hashed using *keccak256()*. When *abi.encodePacked()* is used with multiple variable-length arguments (such as strings and array), the packed encoding does not include information about the boundaries betweeen different arguments abd just combine them, this can lead to situations where different combinations of arguments result in the same encoded output, causing hash collisions, take this for example &nbsp;  
+In solidity, the root of the problem is often *abi.encodePacked()* function that normally then be hashed using *keccak256()*. When *abi.encodePacked()* is used with multiple variable-length arguments (such as strings and array), the packed encoding does not include information about the boundaries betweeen different arguments and just combine them, this can lead to situations where different combinations of arguments result in the same encoded output, causing hash collisions, take this for example &nbsp;  
 &nbsp;  
 
 ```solidity

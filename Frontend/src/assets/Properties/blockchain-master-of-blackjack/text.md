@@ -1,4 +1,4 @@
-*Beginner's Luck* is a curious phenomenon often whispered about in the lively halls of casinos, where first-times seem to defy the odds and walk away with unxepected wins. Whether it's hitting a blackjack, landing a lucky number on the roulette wheel, or scoring a jackpot on the slots, these early victories cam feel almost magical, right? But you are not one of them, luck is not a factor in your journey, you have no luck, you just, PRECISE! &nbsp;  
+*Beginner's Luck* is a curious phenomenon often whispered about in the lively halls of casinos, where first-times seem to defy the odds and walk away with unexpected wins. Whether it's hitting a blackjack, landing a lucky number on the roulette wheel, or scoring a jackpot on the slots, these early victories cam feel almost magical, right? But you are not one of them, luck is not a factor in your journey, you have no luck, you just, PRECISE! &nbsp;  
 &nbsp;  
 
 ## Timestamp Dependence
