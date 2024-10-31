@@ -55,7 +55,7 @@ contract Exploit{
 }
 ```
 &nbsp;  
-After we import the contracts, we can now make a variable that will reference to a contract instance, for this we need to know the *Contract Name*, this name is defined after the keyword *contract*. To refet to both *Setup* and *GearingUp* with their respective deployed address we can do this &nbsp;  
+After we import the contracts, we can now make a variable that will reference to a contract instance, for this we need to know the *Contract Name*, this name is defined after the keyword *contract*. To refer to both *Setup* and *GearingUp* with their respective deployed address we can do this &nbsp;  
 &nbsp;  
 
 ```solidity

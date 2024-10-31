@@ -127,7 +127,7 @@ const DocumentLayout = () => {
                     <li><a href="https://app.hats.finance/audit-competitions">Hats finance</a></li>
                 </ul>
                 <br />
-                <p>Goot to Read</p>
+                <p>Good to Read</p>
                 <ul>
                     <li><a href="https://www.rareskills.io/">Rareskills</a></li>
                 </ul>

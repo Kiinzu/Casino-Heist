@@ -3,7 +3,7 @@ In the heart of the Casino lies the ultimate test of influence, ENUMA and ALPHA 
 
 ## Logic Errors
 
-Logic error in smart contracts refers to a flaw or unintended behavior in the design or implementation of the contract's logic, unlike bugs like overflow or reentrancy attacks, logic errors occur when the contract **doesn't perform the expectede task correctly**, even though the code is syntactically correct. This can lead to unexpected outcomes, like financial loss, or security vulnerabilities. Some of the example may include but not limited to: &nbsp;  
+Logic error in smart contracts refers to a flaw or unintended behavior in the design or implementation of the contract's logic, unlike bugs like overflow or reentrancy attacks, logic errors occur when the contract **doesn't perform the expected task correctly**, even though the code is syntactically correct. This can lead to unexpected outcomes, like financial loss, or security vulnerabilities. Some of the example may include but not limited to: &nbsp;  
 &nbsp;  
 
 1. **Voting System Logic Flaw** &nbsp;  

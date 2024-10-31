@@ -63,4 +63,4 @@ Notice that the *bytes32* return is a hash, we only take the first 4 bytes, and 
     selector                        Argument (address)
 ```
 &nbsp;  
-so essentially, it first use the 4 bytes signature folloed by the argument in a 32-bytes (slot) format, well if the function require more argument, it could be longer but it will be always the multiples of 32 / slot.
+so essentially, it first use the 4 bytes signature followed by the argument in a 32-bytes (slot) format, well if the function require more argument, it could be longer but it will be always the multiples of 32 / slot.
