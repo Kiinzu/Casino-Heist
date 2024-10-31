@@ -49,6 +49,8 @@ Running the Entire application (Backend & Frontend) and all Challenges at once
 - Port 80, 443
 - Docker
 - Docker Compose
+- NGINX (only for HTTPS Deployment)
+- Certbot (only for HTTPS Deployment)
 
 **please make sure that the requirements are fulfilled, for the deployment- we'll do it for you!**
 
@@ -64,35 +66,79 @@ cd react-casino-heist/Challenges/
 
 2. You can use the `deploy.sh` file to deploy and remove any challenge that you like (we do recommend you to only deploy one at a time).
 
+```bash
+  ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
+ / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
+( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
+ \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
+
+
+Welcome to Casino Heist Challenge Deployer!
+
+Anything we can help?
+1. Deploy Challenge
+2. Stop Challenge
+3. Containers Info
+
+>> 
+```
+**WARNING** 
+The option `1337` sometimes doesn't work well since it deployes all challenge at once, making the VPS CPU consumption skyrocket in a short time.
+
 ### Full Website & Challenges Deployment
 
-We offer 2 types of deployment that you can choose
+We offer 2 types of deployment that you can choose, whether you want HTTP or more secure option HTTPS, we got you!
 
-1. Clone this repository in both your `Challenge-server` and `Website-server`
+#### HTTPS Deployment (Production Ready)
+
+##### Website Server(Frontend & Backend)
+1. First prepare your VPS for the Website.
+
+2. On your Website VPS, git clone this repository in that VPS
 
 ```bash
 git clone https://github.com/Kiinzu/react-casino-heist/
 ```
 
-2. In your `Challenge-server` go to the `/Challenges/full-challenges/` and run this command (it will take a couple of minutes)
+4. Make sure that NGINX is installed and running.
+5. Generate Certificates for your domain using Certbot and make sure this two files present in this directory
+
+```
+/etc/letsencrypt/live/<YOUR_DOMAIN>/fullchain.pem;
+/etc/letsencrypt/live/<YOUR_DOMAIN>/privkey.pem;
+```
+
+6. On the Root Folder, run the `deploy_https.sh` and fill the requested input, which is your domain name (same domain name for certbot) and the your Challenge VPS IP; This script will automatically configure your nginx and deploy the backend for you. 
+
+**NOTE**: `sudo service nginx restart` may failed if your VPS doesn't have sudo, in taht case please restart the nginx manually using `service nginx restart`
+
+7. By now you should have a working Website.
+
+##### Challenge Server
+1. On your Challenge VPS, git clone this repository
 
 ```bash
-cd react-casino-heist/Challenges/full-challenges/
-make start-all
+git clone https://github.com/Kiinzu/react-casino-heist/
 ```
 
-3. The Challenges docker should be up by now, you can verify this by accessing the port of respective container.
+2. Navigate to `/Challenges`, there you'll find `deploy.sh`; an interactive deployment helper for the challenges
 
-4. Now move to your `Website-server`, please modify the `.env` variable to point to the Backend IP. 
+3. You can choose option `1` for deployment and `2` for removing the docker. 
 
-```
-VITE_something....
-blum di implement?
-```
+4. If your Server is above the recommendation, you can choose `1` and then `1337` to deploy all challenge at once. NOTE that this will use a lot of CPUs and will take around `25 minutes` to be fully deployed
 
-5. Run the `start.sh` in the root directory to run both the Backend and the Frontend (this might takes a couple of minutes)
+5. Once done, verify that all challenge are perfectly deployed by trying to access them.
 
-6. You should've a working Casino Heist Website now!
+### HTTP Deployment (Local Usage)
+For a limited time, you can have the Casino Heist website running in your local and fetch the data from our running website at `casinoheist.xyz/api`, here is how you can deploy your local Casino Heist Website
+
+1. Go to `/Frontend` directory 
+2. Configure the `/Frontend/.env` to poiting to `casinoheist.xyz/api`
+3. Run the `./start.sh` to run the website on `dev` mode
+4. Now you have Casino Heist Website running on your Local, with the api from the officail server!
+
+**NOTE** 
+This Option of communication directly to our backend will end in the end of 2024.
 
 ## Main Feature
 - **Private Blockchain**  

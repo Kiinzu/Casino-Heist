@@ -16,10 +16,12 @@ docker-compose up -d
 
 # Step 2: Ask for domain name input
 read -p "Enter your domain name: " domain_name
+read -p "Enter your challenge server IP: " challenge_ip
 
 frontend_env="./Frontend/.env"
 echo "VITE_BACKEND_IP='https://$domain_name/api'" > "$frontend_env"
 cd ./Frontend
+python3 changer.py http://$challenge_ip
 ./install.sh
 cp -r ./dist/* /var/www/$domain_name/html
 cd ..
