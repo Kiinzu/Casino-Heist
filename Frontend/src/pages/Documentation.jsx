@@ -115,7 +115,7 @@ const DocumentLayout = () => {
                 <p>Bug Bounty platforms</p>
                 <ul>
                     <li><a href="https://immunefi.com/hackers/">Immunefi</a></li>
-                    <li><a href="https://hashlock.com/bug-bounty">Hahslock</a></li>
+                    <li><a href="https://hashlock.com/bug-bounty">Hashlock</a></li>
                 </ul>
                 <br />
                 <p>Auditing platforms</p>
