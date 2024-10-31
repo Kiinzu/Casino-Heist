@@ -120,8 +120,8 @@ const DocumentLayout = () => {
                 <br />
                 <p>Auditing platforms</p>
                 <ul>
-                    <li><a href="https://code4rena.com/"></a>code4rena</li>
-                    <li><a href="https://codehawks.cyfrin.io/"></a>codehawks</li>
+                    <li><a href="https://code4rena.com/">code4rena</a></li>
+                    <li><a href="https://codehawks.cyfrin.io/">codehawks</a></li>
                     <li><a href="https://cantina.xyz/competitions">Cantina</a></li>
                     <li><a href="https://audits.sherlock.xyz/contests">Sherlock</a></li>
                     <li><a href="https://app.hats.finance/audit-competitions">Hats finance</a></li>

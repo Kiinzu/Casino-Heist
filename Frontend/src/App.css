@@ -327,24 +327,6 @@ main {
   max-width: 500px;
 }
 
-.home-play-now-btn {
-  background-color: transparent;
-  color: white;
-  padding: 12px 24px;
-  border: 0.1px double rgb(255,255,255,0.45);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  transition: background-color color 1s ease;
-}
-
-.home-play-now-btn:hover {
-  border: 0.1px double #fff;
-  background-color: #f63628aa;
-  color: #fff;
-}
-
 .home-hero-image img {
   max-width: 400px;
   border-radius: 8px;
@@ -412,8 +394,8 @@ main {
   height: auto;
   min-height: 100%;
   margin-bottom: 120px;
-  background-image: url("./assets/images/background.jpg");
-  /* background-image: url("./assets/images/test-background.png"); */
+  /* background-image: url("./assets/images/background.jpg"); */
+  background-image: url("./assets/images/front-background.png");
 }
 
 /* Title styling */
@@ -591,7 +573,7 @@ main {
   max-height: 100%;
   background-color: rgb(41, 40, 40);
   padding: 80px 20px 20px 20px;
-  background-image: url("./assets/images/background.jpg");
+  background-image: url("./assets/images/front-background.png");
 }
 
 .heist-container span{
@@ -1014,7 +996,7 @@ main {
   height: 100%;
   min-height: 100vh;
   max-height: auto;
-  background-image: url("./assets/images/background.jpg");
+  background-image: url("./assets/images/front-background.png");
 }
 
 
@@ -1133,7 +1115,7 @@ main {
   height: auto;
   min-height: 100%;
   margin-bottom: 120px;
-  background-image: url("./assets/images/background.jpg");
+  background-image: url("./assets/images/front-background.png");
   z-index: -1;
 }
 
@@ -1223,7 +1205,7 @@ main {
   box-sizing: border-box;
   position: relative;
   overflow: visible;
-  background-image: url("./assets/images/background.jpg");
+  background-image: url("./assets/images/front-background.png");
 }
 
 /* Header Section: Adjust to ensure it stays inside the container */
@@ -1807,13 +1789,26 @@ main {
 }
 
 /* REVAMP HOME */
+.home-final-container{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  /* min-height: 100%; */
+  max-height: auto;
+  align-items: center;
+  overflow: hidden;
+}
+
 .home-first-container{
   background-color: #000000;
-  background-image: linear-gradient(180deg, #000000 50%, #d0caca 100%);
-  
+  background-image: linear-gradient(180deg, #000000 60%, #d0caca 100%);
+  display: flex;
+  justify-content: center;
   width: 100%;
   min-width: auto;
-  height: 100dvh;
+  height: 100%;
+  max-height: auto;
 }
 
 .home-first-container h1{
@@ -1821,26 +1816,170 @@ main {
 }
 
 .home-first-looks{
-  padding-top: 220px;
+  padding-top: 280px;
   align-items: center;
   justify-items: center;
   text-align: center;
 }
 
-.home-first-looks img{
-  margin-top: 200px;
-  width: 3.5%;
+
+.home-first-bottom{
+  margin-top: 250px;
+}
+
+.home-first-bottom h1{
+  color: #000;
+}
+
+.home-first-bottom p{
+  color: #000;
+}
+
+.home-play-now-btn {
+  background-color: transparent;
+  color: white;
+  padding: 12px 24px;
+  border: 0.1px double rgb(255,255,255,0.45);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color color 1s ease;
+}
+
+.home-play-now-btn:hover {
+  border: 0.1px double #000000;
+  background-color: #ffffffaa;
+  color: #000000;
+}
+
+.big-thanks{
+  /* width: 3.5%; */
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.enuma-sponsor-icon{
+  width: 100px;
+}
+
+.tcp1p-sponsor-icon{
+  width: 100px;
+  
+}
+
+.petir-sponsor-icon{
+  width: 100px;
 }
 
 .home-second-container{
   background-color: #f9f9f9;
   background-image: linear-gradient(180deg, #d0caca 47%, #000000 85%);  
+  color: #000;
+  display: flex;
+  justify-content: center;
   width: 100%;
   min-width: auto;
-  height: 100dvh;
+  height: 100%;
+  min-height: auto;
+  max-height: auto;
+}
+
+.home-second-intro{
+  padding-top: 20px;
+  padding-bottom: 300px;
+  padding-right: 20%;
+  padding-left: 20%;
+  text-align: justify;
+}
+
+.home-second-intro p{
   color: #000;
 }
 
-.home-second-container{
+.home-filler-layer{
+  width: 100%;
+  min-width: auto;
+  height: 400px;
+  background-color: #000;
+}
 
+.home-third-container{
+  /* background-image: url("./assets/images/front-background.png"); */
+  /* background-color: #000; */
+  background-image: url("./assets/images/front-background.png");
+  width: 100%;
+  min-width: auto;
+  height: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 100px 10px 0px 10px;
+  margin-bottom: -76px;
+}
+
+.home-third-card-one {
+  /* background-image: linear-gradient(to bottom right, #1b4275, #3b5363); */
+  background-color: #000000;
+  background-image: linear-gradient(213deg, transparent 69%, #ff4b2c 100%);
+  padding: 40px;
+  /* height: 150%; */
+  border: #fff 1px solid;
+  border-radius: 8px;
+  text-align: center;
+  width: 10%;
+  height: 60%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-third-card-two {
+  /* background-image: linear-gradient(to bottom right, #1b4275, #3b5363); */
+  background-color: #000000;
+  background-image: linear-gradient(213deg, transparent 69%, #ffb92c 100%);
+  padding: 40px;
+  /* height: 150%; */
+  border: #fff 1px solid;
+  border-radius: 8px;
+  text-align: center;
+  width: 10%;
+  height: 60%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-third-card-three {
+  /* background-image: linear-gradient(to bottom right, #1b4275, #3b5363); */
+  background-color: #000000;
+  background-image: linear-gradient(213deg, transparent 69%, #2cdcff 100%);
+  padding: 40px;
+  /* height: 150%; */
+  border: #fff 1px solid;
+  border-radius: 8px;
+  text-align: center;
+  width: 10%;
+  height: 60%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-fourth-container{
+  background-image: url("./assets/images/front-background.png");
+  /* background-color: #000; */
+  width: 100%;
+  min-width: auto;
+  height: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 0px 10px 80px 10px;
 }
