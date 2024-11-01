@@ -2,11 +2,16 @@ import React from 'react';
 import '../App.css'; 
 import githubIcon from '../assets/images/github-logo.png'; 
 import discordIcon from '../assets/images/discord-logo.png';
+import enumaIcon from "../assets/images/2.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear(); 
   return (
     <div className="footer-container">
+      {/* <div className='footer-logo'>
+        <img src={enumaIcon} className='social-icon' />
+      </div> */}
+
       <div className="footer-section">
         <h4>Help</h4>
         <ul>
