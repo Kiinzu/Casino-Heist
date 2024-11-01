@@ -85,7 +85,7 @@ const DocumentLayout = () => {
                 <br />
             <h1 id='contribute'>IV. CONTRIBUTE</h1>
                 <p>We are open for contribution, you can contribute in 2 ways. If you like to create a challenge and want others to try it out or If you like to write writeups and walkthrough and excited for it to be read by other and featured in our Playground, you can do that!</p>
-                <p>Just follow the Instruction <a href="github.com"><b>here</b></a> to Contribute!</p>
+                <p>Just follow the Instruction <a href="https://github.com/Kiinzu/CASINO-HEIST/tree/main/Contribution"><b>here</b></a> to Contribute!</p>
             <h1 id='faq'>V. FAQ</h1>
             <div class="qa-section">
                 <div class="question">

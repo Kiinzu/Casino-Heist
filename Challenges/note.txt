@@ -1,0 +1,24 @@
+BASIC (30000)
+ 30001 [V] > blockchain-briefing 
+ 30002 [V] > blockchain-gearing_up 
+
+COMMON (40000)
+ 40001 [] > blockchain-Cheap Glitch 
+ 40002 [] > blockchain-Entry Point 
+ 40003 [] > blockchain-Bar 
+ 40004 [] > blockchain-Roulette 
+ 40005 [] > blockchain-Master of BlackJack 
+ 40006 [] > blockchain-Voting Frenzy
+ 40007 [] > blockchain-VVVIP Member 
+ 40008 [] > blockchain-INJU Bank 
+ 40009 [] > blockchain-Silent Dealer 
+ 40010 [] > blockchain-Singular Identity 
+ 40011 [] > blockchain-Unlimited Credit line 
+ 40012 [] > blockchain-Symbol of Noble 
+ 40013 [] > blockchain-Casino Vault
+
+VIP (50000)
+ 50001 [] > blockchain-injus_gambit 
+ 50002 [] > blockchain-casino-bankbuster 
+ 50003 [] > blockchain-executive-problems 
+ 50004 [] > blockchain-Double or Delegate 

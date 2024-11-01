@@ -18,7 +18,7 @@ const Footer = () => {
       <div className="footer-section">
         <h4>Join Our Community</h4>
         <div className="social-icons">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Kiinzu/CASINO-HEIST" target="_blank" rel="noopener noreferrer">
             <img src={githubIcon} alt="GitHub" className="social-icon" />
           </a>
           <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
