@@ -12,16 +12,16 @@ This standard provides the foundation for *NFTs (Non-Fungible Tokens)*-- digital
 ERC-721 is used to represent ownership of **unique digital items**.  Some common use cases include: &nbsp;  
 &nbsp;  
 
-- **Digital Art and Collectibles**
+- **Digital Art and Collectibles** &nbsp;  
     NFTs are used to tokenize digital artworks or collectibles, allowing them to be traded, auctioned, or transferred while preserving **ownership** and **provenance** &nbsp;  
     &nbsp;  
-- **Gaming Assets**
+- **Gaming Assets** &nbsp;  
     NFTsrepresent in-game asseets (e.g., skins, weapons, or achievement), enabling players to **own and trade unique items** outside the game ecosystem &nbsp;  
     &nbsp;  
-- **Music and media Rights**
+- **Music and media Rights** &nbsp;  
     Musicians and content creators can tokenize their work, offering NFTs to represent **ownership**, **royalties**, or **access rights** to songs, videos or exclusive content &nbsp;  
     &nbsp;  
-- **Domain Names**
+- **Domain Names** &nbsp;  
     NFTs are used to register unique *Ethereum name Service (ENS)*, giving users ownership over **blockchain-based domains** &nbsp;  
     &nbsp;  
 
@@ -29,10 +29,10 @@ ERC-721 is used to represent ownership of **unique digital items**.  Some common
 Though ERC-721 provides a standard structure, **incorrect implementations** can itroduce bugs, vulnerabilities, or unexpected behaviors. Below are some examples &nbsp;  
 &nbsp;  
 
-- **Missing *safeTransferFrom()* implementation**
+- **Missing *safeTransferFrom()* implementation** &nbsp;  
     ERC-721 includes **two types** of token transfers, *transferFrom()* and *safeTransferFrom()*. The *safeTransferFrom()* ensures that the receiver (smart contract, since EOAs are not checked) are able to receiving NFTs, if developer only implement *transferFrom()* and skips *safeTransferFrom()*, tokens might be transferred to a contract that cannot handle them. &nbsp;  
     &nbsp;  
-- **Access Control Issuess (Minting and Burning)** 
+- **Access Control Issuess (Minting and Burning)** &nbsp;  
     If access control is not implemented correctly for **minting or burning tokens**,  unauthorized users might mint unlimited NFTs or burn tokens owned by others. &nbsp;  
     &nbsp;  
 

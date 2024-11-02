@@ -11,12 +11,12 @@ The problem of using the block attributes are they are so predictable and can be
 In Solidity, using predictable sources of randomness can be seen as not using randomness at all, since people could just make a smart contract to handle the same source of randomness and produce the exact same value as the original contract intended, here is the impact of using it in a smart contract &nbsp;  
 &nbsp;  
 
-- **Predicatble Lottery or Casino Outcomes**
+- **Predicatble Lottery or Casino Outcomes** &nbsp;  
     Attackers can predict the outcome of a lottery or casino game before the results are revealed. This allows them to exploit the randomness to win **consistently**. &nbsp;  
     &nbsp;  
-- **Manipulation of Reward Distributions**
+- **Manipulation of Reward Distributions** &nbsp;  
     If the distribution of tokens, NFTs or a lottery is based on on-chain randomness, attackers can manipulate the randomness to ensure they receive the best outcomes &nbsp;  
     &nbsp;  
-- **Front-running Exploits**
+- **Front-running Exploits** &nbsp;  
     It's not directly, but since attacker can monitor pending transaction and predict the outcome of a function that relise on randomness, if they determine a profitable outcome, they can use front-running technique to submit a transaction with a higher gas fee, ensuring they get the reward &nbsp;  
     &nbsp;  
