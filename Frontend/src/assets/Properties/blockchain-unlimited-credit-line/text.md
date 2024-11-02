@@ -10,13 +10,13 @@ By adhering to the ERC-20 Standard, tokens can seamlessly interact with wallets,
 ## What is ERC-20 Used For?
 The ERC-20 Standard is widely used for a variety of purposes, including: &nbsp;  
 &nbsp;  
-- **Cryptocurrencies and Payment Tokens**
+- **Cryptocurrencies and Payment Tokens** &nbsp;  
     Many project issue ERC-20 tokens to represent cryptocurrencies, allowing easy transfers and payment within the Ethereum network. &nbsp;  
     &nbsp;  
-- **Utility Tokens**
+- **Utility Tokens** &nbsp;  
     Some dApps use ERC-20 tokens to grant access to specific services or products within their platforms (e.g., Chainlink's *LINK* token) &nbsp;  
     &nbsp;  
-- **Stablecoins**
+- **Stablecoins** &nbsp;  
     ERC-20 tokens are often used to represent **stablecoins** pegged to fiat currencies (e.g., USDT, USDC), enabling low-volatility transaction on the blockchain. &nbsp;  
     &nbsp;  
 

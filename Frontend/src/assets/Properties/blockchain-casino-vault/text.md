@@ -13,14 +13,14 @@ Let's imagine if a crucial function that are required by the contract is run on 
 ## Impact of Unsafe Delegatecall
 The impact may be vary based on what present in the vulnerable contract, but most of the time the imapct an unsafe *delegatecall* can make are: &nbsp;  
 &nbsp;  
-- **Access Control Vulnerabilities**
+- **Access Control Vulnerabilities** &nbsp;  
     An Attacker take ownership of the contract via the insecure delegatecall, not only that since it updating the state of the contract, an attacker could potentially update the state of the contract to their advantages. &nbsp;  
     &nbsp;  
-- **Destruction of State Variables**
+- **Destruction of State Variables** &nbsp;  
     Since the state of the calling contract is manipulated, improperly handled *delegatecall* can corrupt ciritcal data, making the contract unsuable or causing irreversible damage &nbsp;  
     &nbsp;  
-- **Increased Attack Surface**
+- **Increased Attack Surface** &nbsp;  
     Using *delegatecall* introduce additional complexity. If not handled properly, the added complexity provides more opportunities for attackers to exploit vulnerabilities &nbsp;  
     &nbsp;  
-- **Loss of Funds**
+- **Loss of Funds** &nbsp;  
     As mentioned in *Accesss Control Vulnerabilities* above, attacker has the power to change the state of the contract, if the contract is used to hold Ether, there may be a potential loss of fund if a delegatecall vulnerability exist.

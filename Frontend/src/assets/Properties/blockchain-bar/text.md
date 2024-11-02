@@ -11,7 +11,7 @@ Most of the time, the access control vulnerability is just the beginning of the 
 ## What are the causes?
 Here are the common causes of access control vulnerabilities in solidity smart contract &nbsp;  
 &nbsp;  
-1. **Missing *OnlyOwner* or Access Modifiers**
+1. **Missing *OnlyOwner* or Access Modifiers** &nbsp;  
     A function that only restricted to some people need to implement a secure modifier that declares that only that specific people can access it &nbsp;  
     &nbsp;  
     ```solidity
@@ -28,13 +28,13 @@ Here are the common causes of access control vulnerabilities in solidity smart c
     ```
     &nbsp;  
 
-2. **Incorrectly implemented Role-Based Access Control (RBAC)**
+2. **Incorrectly implemented Role-Based Access Control (RBAC)** &nbsp;  
     Misconfigured roles allow unauthorized users access to restricted functions. &nbsp;  
     &nbsp;  
 
-3. **Privilege Escalation**
+3. **Privilege Escalation** &nbsp;  
     It's often a condition where regular users able to escalate their privilege to *admin-level* access such as owner &nbsp;  
-    &nbsp;  
+    &nbsp;   
 
     ```solidity
     function becomeOwner() public {
@@ -43,25 +43,25 @@ Here are the common causes of access control vulnerabilities in solidity smart c
     ```
     &nbsp;  
 
-4. **Hardcoding the Owner Address**
+4. **Hardcoding the Owner Address** &nbsp;  
     If the owner's address is hardcoded and cannot be updated, control can be lost if the owner's private key is compromised or lost &nbsp;  
     &nbsp;  
-5. **Overly Permissive *external* Functions**
+5. **Overly Permissive *external* Functions** &nbsp;  
     Function that declared as *external* are accessible by anyone on-chain and can be mistakenly exposed if not properly secured with access control mechanisms. &nbsp;  
     &nbsp;  
 
-6. **Lack of Proper Checks in Multi-Signature Wallets**
+6. **Lack of Proper Checks in Multi-Signature Wallets** &nbsp;  
     If a multi-signature wallet smart contract lacks strict checks, a malicious actor may exploit the process to gain access to restricted funds &nbsp;  
     &nbsp;  
 ## Impact of Access Control Vulnerabilities
-- **Loss of Funds**
+- **Loss of Funds** &nbsp;  
     Unauthorized users can withdraw or transfer assets from the contract &nbsp;  
     &nbsp;  
-- **Contract Takeover**
+- **Contract Takeover** &nbsp;  
     Attackes may gain ownership or admin access to the contract  &nbsp;  
     &nbsp;  
-- **Disruption of Functionality**
+- **Disruption of Functionality** &nbsp;  
     Attackers may perform restricted actions like minting, freezing, or destroying tokens. &nbsp;  
     &nbsp;  
-- **Damage to Reputation**
+- **Damage to Reputation** &nbsp;  
     Vulnerabilities can erode trust in the protocol or project.

@@ -1,4 +1,4 @@
-We know that from the *Setup.sol* we need to make the *Capitol::isRicher()* bool returns true, in order to do this we need to call the *Capitorl::richerThanOwner()*  
+We know that from the *Setup.sol* we need to make the *Capitol::isRicher()* bool returns true, in order to do this we need to call the *Capitol::richerThanOwner()*  
 &nbsp;  
 ```solidity
 function richerThanOwner() public{

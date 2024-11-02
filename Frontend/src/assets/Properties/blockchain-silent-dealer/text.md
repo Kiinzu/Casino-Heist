@@ -6,7 +6,7 @@ In Solidity, you can either use low-level calls such as *address.call()*, *addre
 ## How can Low-level Call be Unsafe?
 As mentioned above, we need to make sure that the Low-level call we're making are actually secure, so let's learn what make a low-level call unsafe &nbsp;  
 &nbsp;  
-- **Unchecked call return value**
+- **Unchecked call return value** &nbsp;  
     Some function that are used to send ether might return something, in this case is either *send()* or *call()*. As the best practice said, the return value (bool) need to be checked, this is because if the return value not checked, the execution may resume even if the function call throw an error, which maybe intended by an attacker to further exploit the contract &nbsp;  
     &nbsp;  
 
@@ -17,11 +17,11 @@ As mentioned above, we need to make sure that the Low-level call we're making ar
     ```
     &nbsp;  
 
-- **Unauthorized Function Executiont**
+- **Unauthorized Function Executiont** &nbsp;  
     Since *call()* takes raw data (bytes representation), users can potentially trigger any function in the target contract, including private or administrative funtions. &nbsp;  
     &nbsp;  
 
-- **Successful call to non-existend contract**
+- **Successful call to non-existend contract** &nbsp;  
     Quotting from Solidity docs, EVM considers a call to a non-existing contract to always succeed, Solidity uses the *extcodesize* opcode to check whether the contract is exist (containing code) and throw an exception if not. But like always, this check is not implemented in the low-level calls. &nbsp;  
     &nbsp;  
 
