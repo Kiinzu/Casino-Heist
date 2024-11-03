@@ -75,8 +75,8 @@ const Login = () => {
       )}
 
       <div className="signup-container">
-        <h1>Play Casino Heist Now</h1>
-        <p>Outsmart the odds, crack the code—your blockchain skills are the key to escape!</p>
+        <h1>Enter The Heist Now!</h1>
+        <p>Start your journey conquering the Casino.</p>
 
         <form className="signup-form" onSubmit={handleSubmit}>
           <label>

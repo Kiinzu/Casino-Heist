@@ -2,11 +2,9 @@ The Vault stands as the heart of the Casino, filled with treasures beyond imagin
 &nbsp;  
 
 ## DelegateCall to Untrusted Calls
-*Delegatecall* is a special variant of message call, it is almost identical to a regular message call except the target address is executed in the context of calling contract and *msg.sender* and *msg.value* remain the same. In short delegatecall is a call to function outside of the current caller to modify the caller contract, feeling confuse? don't worry, maybe this image will make it a little bit clearer for you! &nbsp;  
+*Delegatecall* is a special variant of message call, it is almost identical to a regular message call except the target address is executed in the context of calling contract and *msg.sender* and *msg.value* remain the same. In short delegatecall is a call to function outside of the current caller to modify the caller contract, feeling confuse? don't worry, maybe this video will help you to undestand&nbsp;  
 &nbsp;  
-<img src="../src/assets/properties/blockchain-casino-vault/delegatecall.png"> &nbsp;  
-
-once, again if you see the image above, let's say we call a function in *Contract A* that has a delegatecall implemented to *Contract B*, then when the function in *Contract B* has finished running, it then make an update to the state of the *Contract A*. This is likely the dangerous part! &nbsp;  
+[Smart Contract Programmer - Delegate Call](https://www.youtube.com/watch?v=uawCDnxFJ-0)&nbsp;  
 &nbsp;  
 Let's imagine if a crucial function that are required by the contract is run on a *delegatecall* to another contract. Well, you guess it right, if the contract is not whitelisted, let's say we can call an contract we want and run a function there (as long the function name is the same), we can modify the state of the vulnerable contract! &nbsp;  
 &nbsp;  

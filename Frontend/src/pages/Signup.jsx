@@ -70,8 +70,8 @@ const Signup = () => {
       )}
 
       <div className="signup-container">
-        <h1>Play Casino Heist Now</h1>
-        <p>Outsmart the odds, crack the code—your blockchain skills are the key to escape!</p>
+        <h1>Register</h1>
+        <p>Create your unique Identity--</p>
 
         <form className="signup-form" onSubmit={handleSubmit}>
           <label>
