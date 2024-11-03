@@ -56,7 +56,7 @@ Running the Entire application (Backend & Frontend) and all Challenges at once
 
 ## Deployment and Usage
 ### Local Challenge-Only Version
-To deploy Casino Heist:
+To deploy Casino Heist Challenges on Local:
 1. Clone this repository
 
 ```bash
