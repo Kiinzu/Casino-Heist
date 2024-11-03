@@ -21,5 +21,6 @@ Miners can maniplate block timestamps only to a certain degree, that degree bein
 1. Miner can set the timestamp to **No Ealier** than the parent block`s timestamp
 2. **No more than 900 seconds (15 minutes)** *relative to the node's clock &nbsp;  
 &nbsp;  
+
 This small window give miners some control over the timestamp, which they can exploit to their advantage.
 

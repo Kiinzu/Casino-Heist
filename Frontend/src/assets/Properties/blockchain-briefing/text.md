@@ -70,7 +70,7 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     &nbsp;  
     The return value of it will always be hex, you can easily translate it to human readable using tools like Cyberchef, etc.&nbsp;   
     &nbsp; 
-- *cast send*
+- *cast send* &nbsp;  
     Unlike the command the we've learned before, cast send are often use when we want to make a change in the state of the contract, like changing the value, sending Ether, etc.&nbsp; 
     Now let's solve 4 of the 5 functions to complete the *Briefing*, first we are going to solve the *verifyCall()* since it is required by all the function below it, since it doesn't require any input, we can just simply call the function&nbsp;  
     &nbsp; 
@@ -143,14 +143,12 @@ SLOT 3| number_three (32 bytes)
 &nbsp;  
 Right now, you maybe have these questions &nbsp;  
 &nbsp;  
-- Why can't *number_three* be stored 3 bytes on the SLOT 2 and the remaining bytes on SLOT 3?&nbsp; 
-    &nbsp; 
-    The rules of the solidity storage system, prevent this type of storage, a storage that is reserved or required for a certain type of variable is absolute and cannot be divided.&nbsp;  
+- Why can't *number_three* be stored 3 bytes on the SLOT 2 and the remaining bytes on SLOT 3?&nbsp;  
+The rules of the solidity storage system, prevent this type of storage, a storage that is reserved or required for a certain type of variable is absolute and cannot be divided.&nbsp;  
     &nbsp;  
 
-- Why the address public immutable player is not stored on the Storage?&nbsp; 
-    &nbsp; 
-    Both constant and immutable; a variable that is always has the same value and cannot be changed, are stored in the contract bytecode instead of the EVM Storage.&nbsp;  
+- Why the address public immutable player is not stored on the Storage?&nbsp;  
+Both constant and immutable; a variable that is always has the same value and cannot be changed, are stored in the contract bytecode instead of the EVM Storage.&nbsp;  
     &nbsp;  
 
 Now that you have learned how storage works in Solidity, let's put this in mind...&nbsp; 
@@ -160,14 +158,14 @@ Now that you have learned how storage works in Solidity, let's put this in mind.
 Now that we know that nothing is private in the blockchain and how storage works in solidity, we can try to get the answer that we need to solve the *Finalize()*, the *secretPhrase*.&nbsp; 
 So, how can we get the location for *secretPhrase*? You have to count it! Just kidding, we can do that too, but there is more easy way to do it, there are several ways,&nbsp;  
 &nbsp; 
-- *solc*
+- *solc* &nbsp;  
     We can use solc to figure out the contract by providing the contract and using the *--storage-layout* command,&nbsp;  
     &nbsp; 
     ```text
     solc --storage-layout
     ```
     &nbsp; 
-- *REMIX IDE*
+- *REMIX IDE* &nbsp;  
     We can also use REMIX to figure out the full storage layout of the contract, simply just compile the contract and choose the *Compilation Detail*, under the storage layout you will find the full layout of the contract storage.&nbsp;  
     &nbsp; 
 

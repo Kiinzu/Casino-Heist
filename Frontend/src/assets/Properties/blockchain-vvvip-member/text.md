@@ -12,7 +12,7 @@ Smart Contract Denial of Service (DoS) can happen when a code has a logic errors
     This type of DoS is mostly caused by the smart contract logic, for an example allowing a contract to loops through a super-long array may consume a huge amount of gas, making the Smart Contract in accessible. &nbsp;  
     &nbsp;  
 2. **External Calls** &nbsp;  
-    Smart Contracts can comunicate with each other, if a smart contract communicate or make a call to another smart contract, in which the call resulting in change of state in the caller contract, if it's unchecked whether the call failed or success, it could possess a DoS threat to the caller Smart Contract. &nbsp;  
+    Smart Contracts can communicate with each other, if a smart contract communicate or make a call to another smart contract, in which the call resulting in change of state in the caller contract, if it's unchecked whether the call failed or success, it could possess a DoS threat to the caller Smart Contract. &nbsp;  
     &nbsp;  
 3. **Operation Management-based DoS** &nbsp;  
     If a smart contract has a privilege or Role-base access control, let's say one is having *owner()* and it's crucial for a function to run, for example *transfer()* that require *owner()* approval, if by any chance the owner lost it's private key, then the function would never be able to be called, thus suspending all the transfer functionality. &nbsp;  

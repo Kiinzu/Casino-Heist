@@ -1,4 +1,4 @@
-Here we have 2 source code, one is *Setup.sol* and another one is *Dealer.sol*, in order to make *Setup.sol::isSolved()* returns true, we mush make the baalnce of *Dealer Contract* become 0 and the *owner* is no longer *Setup Contract*.
+Here we have 2 source code, one is *Setup.sol* and another one is *Dealer.sol*, in order to make *Setup.sol::isSolved()* returns true, we must make the balance of *Dealer Contract* become 0 and the *owner* is no longer *Setup Contract*.
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -93,17 +93,17 @@ contract Dealer{
 &nbsp;  
 We can see that it can receive ether with 2 functions, the *joinGame()* and *receive()*, the only difference is when we use joinGame, it require us to send at least 5 Ether, while the receive function has a logic when the amount is exactly 5 Ether only then it will be added to our balance, else it will be added to the rewardPool. &nbsp;  
 &nbsp;  
-The *bet()* function allow us to put our moneny on the line, while we have the freedom to choose how many money we want to spend, the *owner* seems to go all-in, kinda weird right. Turns out, the next function *startRiggedBet()* will actually make the owner always win since it transfered all the rewardPool to the owner, and after that the owner could call *endWholeGame()* and just get all the money there. &nbsp;  
+The *bet()* function allow us to put our money on the line, while we have the freedom to choose how many money we want to spend, the *owner* seems to go all-in, kinda weird right. Turns out, the next function *startRiggedBet()* will actually make the owner always win since it transfered all the rewardPool to the owner, and after that the owner could call *endWholeGame()* and just get all the money there. &nbsp;  
 &nbsp;  
 We as a player also have an option, but that only available after we *bet()* some of our money, we can just *walkAway* with the money we have left and leave a message... oh well, we can leave a message that is being handled by *call()*, with that we can actually call *changeOwner()* and make ourselves the *owner*, thic could happened because if we parse a bytes that actually a function call, what's a function call? In Ethereum, they call a function by giving a 4 bytes or what often call function selector or signature, it's the first 4 bytes of *keccak256(functionName(args_type))*. &nbsp;  
 &nbsp;  
 So here is what are we going to do: &nbsp;  
 &nbsp;  
-1. We *joingGame()* with 5 Ether
+1. We *joinGame()* with 5 Ether
 2. We *bet()* 3 Ether
 3. We *walkAway()*, current rewardPool is 53 Ether, but we transfering the money to *dealer* by providing his address effectively giving it 2 Ether (our leftAmount) and parse a message containing the call of *changeOwner(address)* with the address pointing to our Exploit Contract
 4. The current owner will be our Exploit Contract, we can just *startRiggedBet()*, taking all the rewardPool
-5. Transfer all money to our pocket by calling *endWholeGame()
+5. Transfer all money to our pocket by calling *endWholeGame()*
 
 &nbsp;  
 The message that we are going to provide will be consisting the btyes of the *changeOwner()* selector and the address of our Exploit contract, it is constructed like this &nbsp;  

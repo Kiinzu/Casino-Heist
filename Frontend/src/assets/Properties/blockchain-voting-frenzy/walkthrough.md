@@ -140,7 +140,7 @@ The Modifier *checkWinner()* will check at the end of a function run, if a candi
 &nbsp;  
 We got 4 functions here, the first one is *addVoter()*, this function seems to check whether someone is already registered or not and after that it will increate the *votersCount()* and push it to the struct of Voter. What we know here the weight of someone vote is determined by the money they put in, and at the end it ensures that we can only register once by changing the *votersExist()* to true. &nbsp;  
 &nbsp;  
-Next up is the *vote()* function, we can see that the modifier *checkWinner()* is implemented here, menaing this function will be the one that trigger the change, it first has 3 check, to check wheter the voter exist, check the if the winner has been selected and the one we voted to be either 1 or 2 only. We can see there it will get our Id and check whether we already vote or not by checking the the *voted* attribute on our struct if it's already *true*, but here is the strange thing, after the check instead of setting the *voted* to true, it reset us to *false*, meaning even if we have a very low weight, we can vote multiple times! Here is the Logic error bug! &nbsp;  
+Next up is the *vote()* function, we can see that the modifier *checkWinner()* is implemented here, meaning this function will be the one that trigger the change, it first has 3 check, to check wheter the voter exist, check the if the winner has been selected and the one we voted to be either 1 or 2 only. We can see there it will get our Id and check whether we already vote or not by checking the the *voted* attribute on our struct if it's already *true*, but here is the strange thing, after the check instead of setting the *voted* to true, it reset us to *false*, meaning even if we have a very low weight, we can vote multiple times! Here is the Logic error bug! &nbsp;  
 &nbsp;  
 The next 2 function are only for getting the state of the vote count anytime and the winner if the winner is selected. So let's wrap up about what we have now. &nbsp;  
 &nbsp;  
@@ -148,8 +148,9 @@ The next 2 function are only for getting the state of the vote count anytime and
 - Party Number 2 (*ALPHA*) has 9 Votes already (5 + 1 +3) from other Participants
 - Party Number 1 (*ENUMA*) has 0 Vote
 - We only have 1.2 Ether (based on *cast balance*)
-- We have a logic error where we can vote unlimitedly.
+- We have a logic error where we can vote unlimitedly. &nbsp;  
 &nbsp;  
+
 We have 2 choices here, we can do it manually by registering via *addVoter()* and send the vote 10 times, or we can make a Smart contract that does that. In this approach I'm going to create a Smart Contract that does just that, and here is the code &nbsp;  
 &nbsp;  
 ```solidity
@@ -187,4 +188,4 @@ forge create src/voting-frenzy/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
 &nbsp;  
-Running the command above, you should've exploited the contract and get your flat.
+Running the command above, you should've exploited the contract and get your flag.

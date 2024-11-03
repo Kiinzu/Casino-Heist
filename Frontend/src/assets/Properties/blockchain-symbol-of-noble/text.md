@@ -2,7 +2,7 @@ Who doesn't want to be called *NOBLE*, respected by people and always look dashi
 &nbsp;  
 
 ## ERC-721 Standard
-ERC-721 is a *Non-Fungible Token (NFT) Standard* on the Ethereum Blockchain. Unlike ERC-20 tokens, ERC-821 tokens are unique and indivisible, meaning no two tokens are the same, and they cannot be split into smaller units. Each token has a unique ID (usually represented as *uint256*) which distinguishes it from every other token. &nbsp;  
+ERC-721 is a *Non-Fungible Token (NFT) Standard* on the Ethereum Blockchain. Unlike ERC-20 tokens, ERC-721 tokens are unique and indivisible, meaning no two tokens are the same, and they cannot be split into smaller units. Each token has a unique ID (usually represented as *uint256*) which distinguishes it from every other token. &nbsp;  
 &nbsp;  
 
 This standard provides the foundation for *NFTs (Non-Fungible Tokens)*-- digital assets that represent ownership of unique items such as art, collectibles or game assets. &nbsp;  
@@ -26,7 +26,7 @@ ERC-721 is used to represent ownership of **unique digital items**.  Some common
     &nbsp;  
 
 ## Common Misimplementations of ERC-721
-Though ERC-721 provides a standard structure, **incorrect implementations** can itroduce bugs, vulnerabilities, or unexpected behaviors. Below are some examples &nbsp;  
+Though ERC-721 provides a standard structure, **incorrect implementations** can introduce bugs, vulnerabilities, or unexpected behaviors. Below are some examples &nbsp;  
 &nbsp;  
 
 - **Missing *safeTransferFrom()* implementation** &nbsp;  

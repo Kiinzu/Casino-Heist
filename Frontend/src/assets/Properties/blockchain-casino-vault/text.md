@@ -2,22 +2,22 @@ The Vault stands as the heart of the Casino, filled with treasures beyond imagin
 &nbsp;  
 
 ## DelegateCall to Untrusted Calls
-*Delegatecall* is a special variant of message call, it is almost identical to a regular message call except the target address is executed in the context of calling contract and *msg.sender* and *msg.value* remain the same. In short delegatecall is a call to function outsite of the current caller to modify the caller contract, feeling confuse? don't worry, maybe this image will make it a little bit clearer for you! &nbsp;  
+*Delegatecall* is a special variant of message call, it is almost identical to a regular message call except the target address is executed in the context of calling contract and *msg.sender* and *msg.value* remain the same. In short delegatecall is a call to function outside of the current caller to modify the caller contract, feeling confuse? don't worry, maybe this image will make it a little bit clearer for you! &nbsp;  
 &nbsp;  
 <img src="../src/assets/properties/blockchain-casino-vault/delegatecall.png"> &nbsp;  
 
 once, again if you see the image above, let's say we call a function in *Contract A* that has a delegatecall implemented to *Contract B*, then when the function in *Contract B* has finished running, it then make an update to the state of the *Contract A*. This is likely the dangerous part! &nbsp;  
 &nbsp;  
-Let's imagine if a crucial function that are required by the contract is run on a *delegatecall* to another contract. Well, you guess it riht, if the contract is not whitelisted, let's say we can call an contract we want and run a function there (as long the function name is the same), we can modify the state of the vulnerable contract! &nbsp;  
+Let's imagine if a crucial function that are required by the contract is run on a *delegatecall* to another contract. Well, you guess it right, if the contract is not whitelisted, let's say we can call an contract we want and run a function there (as long the function name is the same), we can modify the state of the vulnerable contract! &nbsp;  
 &nbsp;  
 ## Impact of Unsafe Delegatecall
-The impact may be vary based on what present in the vulnerable contract, but most of the time the imapct an unsafe *delegatecall* can make are: &nbsp;  
+The impact may be vary based on what present in the vulnerable contract, but most of the time the impact an unsafe *delegatecall* can make are: &nbsp;  
 &nbsp;  
 - **Access Control Vulnerabilities** &nbsp;  
     An Attacker take ownership of the contract via the insecure delegatecall, not only that since it updating the state of the contract, an attacker could potentially update the state of the contract to their advantages. &nbsp;  
     &nbsp;  
 - **Destruction of State Variables** &nbsp;  
-    Since the state of the calling contract is manipulated, improperly handled *delegatecall* can corrupt ciritcal data, making the contract unsuable or causing irreversible damage &nbsp;  
+    Since the state of the calling contract is manipulated, improperly handled *delegatecall* can corrupt critical data, making the contract unusable or causing irreversible damage &nbsp;  
     &nbsp;  
 - **Increased Attack Surface** &nbsp;  
     Using *delegatecall* introduce additional complexity. If not handled properly, the added complexity provides more opportunities for attackers to exploit vulnerabilities &nbsp;  
