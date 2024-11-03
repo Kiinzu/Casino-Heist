@@ -60,8 +60,7 @@ To deploy Casino Heist Challenges on Local:
 1. Clone this repository
 
 ```bash
-git https://github.com/Kiinzu/CASINO-HEIST.git
-cd CASINO-HEIST/Challenges/
+https://github.com/Kiinzu/Casino-Heist.git
 ```
 
 2. You can use the `deploy.sh` file to deploy and remove any Challenge that you like (we do recommend you to only deploy one Challenge at a time).
@@ -195,7 +194,7 @@ For this deployment, you are required to have 2 VPS, one is for the Website serv
 1. On your Website VPS, git clone this repository in that VPS
 
 ```bash
-git clone https://github.com/Kiinzu/CASINO-HEIST.git
+https://github.com/Kiinzu/Casino-Heist.git
 ```
 
 2. Make sure that Nginx is installed and running.
@@ -239,7 +238,7 @@ Enter your challenge server IP: <YOUR_CHALLENGE_VPS_IP>
 1. On your Challenge VPS, git clone this repository
 
 ```bash
-git clone https://github.com/Kiinzu/CASINO-HEIST.git
+https://github.com/Kiinzu/Casino-Heist.git
 ```
 
 2. On `/Casino-Heist`, you'll find `manager.sh`; an interactive deployment helper for the Challenges (refer to this for [usage](#local-Challenge-only-version))
@@ -258,7 +257,7 @@ For a limited time, you can have the Casino Heist Website running in your local 
 1. On your local computer, git clone this repository
 
 ```bash
-git clone https://github.com/Kiinzu/CASINO-HEIST.git
+https://github.com/Kiinzu/Casino-Heist.git
 ``` 
 
 2. On `/Casino-Heist`, you'll find the `manager.sh`, run this script and choose option `3. Deploy HTTP Casino Heist (local)`
