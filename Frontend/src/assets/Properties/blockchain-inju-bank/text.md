@@ -12,6 +12,7 @@ Reentrancy can be executed by the availability of an external call to an attacke
 - ETH Transfer (*call()*, *transfer()*, *send()*)
 - *safeMint()* &nbsp;  
 &nbsp;  
+
 the examples above has their own traits, like *safeMint()*, let's say we are dealing with ERC-721 here, the *safeMint()* will check whether the receiver (most of the time is code--smart contract) is capable of receiving the token by returning a byte4, well if things like that is left unchecked, the attacker just could do something first before returning the required bytes4, here is the code &nbsp;  
 &nbsp;  
 ```solidity
@@ -43,4 +44,5 @@ Reentrancy attack can be categorize into 4 different types, &nbsp;
 3. **Read-Only Reentrancy** &nbsp;  
     This attack is a novel attack vector in which instead of reentering into the same contract which first being our target, we call a function of another call that is using the state of the not-yet-updated target contract. &nbsp;  
     &nbsp;  
+    
 If you want to read more about reentrancy, we recommended you to read about them [here](https://scsfg.io/hackers/reentrancy/)

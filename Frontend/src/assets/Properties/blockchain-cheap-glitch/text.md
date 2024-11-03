@@ -2,7 +2,7 @@ At Inju Casino, wealth wasn’t just admired—it was the only key to the inner 
 &nbsp;  
 ## Arithmetic Underflow / Overflow
 
-Solidity is a language that process integer based on how many bits it can contain, like *uint8* meaning it can only have 8 bits, thus setting the maximum value it can holds to 255 (2^8 - 1). Integer Overflow happens when the uint (unsigned integer) reches its byte size, but then we add something that when added will exceed the max balance and returning to the first variable element, for example if it's an *uint8* the maximum value it can hold is 255, if we add 1 to it it won't become 256, but it will turn into 0 (first variable element). The Underflow is just the oposite, let's say we have the same *uint8* and it's current value is 0, then we substract 1 from it, it won't become -1 since unsigned cannot be negative number, instead it will become 255 (maximum variable element). &nbsp;  
+Solidity is a language that process integer based on how many bits it can contain, like *uint8* meaning it can only have 8 bits, thus setting the maximum value it can holds to 255 (2^8 - 1). Integer Overflow happens when the uint (unsigned integer) reches its byte size, but then we add something that when added will exceed the max balance and returning to the first variable element, for example if it's an *uint8* the maximum value it can hold is 255, if we add 1 to it it won't become 256, but it will turn into 0 (first variable element). The Underflow is just the opposite, let's say we have the same *uint8* and it's current value is 0, then we substract 1 from it, it won't become -1 since unsigned cannot be negative number, instead it will become 255 (maximum variable element). &nbsp;  
 &nbsp;  
 
 ## How can Integer Overflow-Underflow happened?

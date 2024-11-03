@@ -21,5 +21,5 @@ The ERC-20 Standard is widely used for a variety of purposes, including: &nbsp;
     &nbsp;  
 
 ## So, is it vulnerable?
-When implemented correctly, the ERC-20 Standard present no vulnerabilities, but when it got modified to fit some logic or requirmenet of the application or tokens, it may introduce some vulnerabilities if not checked once again. Any *Deviation from ERC-20 Standard* doesn't necessarily introduce a vulnerability, but it can indeed **bring risks** if not carefully designed and implemeted.
+When implemented correctly, the ERC-20 Standard present no vulnerabilities, but when it got modified to fit some logic or requirement of the application or tokens, it may introduce some vulnerabilities if not checked once again. Any *Deviation from ERC-20 Standard* doesn't necessarily introduce a vulnerability, but it can indeed **bring risks** if not carefully designed and implemented.
 

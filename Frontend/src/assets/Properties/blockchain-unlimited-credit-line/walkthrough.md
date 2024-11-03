@@ -62,7 +62,7 @@ interface IBetterERC20 {
 }
 ```
 &nbsp;  
-Turns out it's not a contract, but an Interface and to be prcise, it's ERC20 Interface. Knowing that we are working with an ERC Standard, makes the scope of search much easier, what we need to be focused on here is a misimplementation or override of the ERC20 original function. For this, let's see the *NewBank Contract* &nbsp;  
+Turns out it's not a contract, but an Interface and to be precise, it's ERC20 Interface. Knowing that we are working with an ERC Standard, makes the scope of search much easier, what we need to be focused on here is a misimplementation or override of the ERC20 original function. For this, let's see the *NewBank Contract* &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT

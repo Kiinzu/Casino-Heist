@@ -1,7 +1,7 @@
 In the dimly lit corners of the casino, whispers swirl about a certain game—one that always seems to favor the house. They call it the Silent Dealer’s table, where every bet feels like a trap. "The house never loses," they say. But here’s the twist: what if the game isn’t just rigged for the owner—but with the right sleight of hand, it could be rigged for you? What if, with just the right move, you could flip the script, slip into the dealer’s seat, and call yourself the new owner? Well, the odds may not matter now... because this time, you're playing to take control. &nbsp;  
 &nbsp;  
 ## Low-Level Call
-In Solidity, you can either use low-level calls such as *address.call()*, *address.callcode()*, *address.delegatecall()* and *address.send()* or maybe you are more familiar with this type *contractAddress.function()* since we used it more frequently. Low-Level call can be a good way to efficiently pr arbitrarily make contract calls. However, we always need to be aware of the danger it brings. &nbsp;  
+In Solidity, you can either use low-level calls such as *address.call()*, *address.callcode()*, *address.delegatecall()* and *address.send()* or maybe you are more familiar with this type *contractAddress.function()* since we used it more frequently. Low-Level call can be a good way to efficiently or arbitrarily make contract calls. However, we always need to be aware of the danger it brings. &nbsp;  
 &nbsp;  
 ## How can Low-level Call be Unsafe?
 As mentioned above, we need to make sure that the Low-level call we're making are actually secure, so let's learn what make a low-level call unsafe &nbsp;  
@@ -17,7 +17,7 @@ As mentioned above, we need to make sure that the Low-level call we're making ar
     ```
     &nbsp;  
 
-- **Unauthorized Function Executiont** &nbsp;  
+- **Unauthorized Function Execution** &nbsp;  
     Since *call()* takes raw data (bytes representation), users can potentially trigger any function in the target contract, including private or administrative funtions. &nbsp;  
     &nbsp;  
 

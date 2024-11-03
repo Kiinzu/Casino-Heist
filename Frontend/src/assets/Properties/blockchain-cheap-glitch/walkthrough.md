@@ -50,10 +50,10 @@ contract Capitol{
 }
 ```
 &nbsp;   
-Looking from the solidity version *^0.8.26*, Arithmeetic overflow-underflow is most likely impossible, but wait, there is *unchecked{}* in both *Capitol::depositCredit()* and *Capitol::withdrawCredit()*, this means the input *uint256 _amount* will be process regardless if it's going to overflow or underflow the value of *balanceOf[msg.sender]* by the end of the operation because they are unchecked!
+Looking from the solidity version *^0.8.26*, Arithmetic overflow-underflow is most likely impossible, but wait, there is *unchecked{}* in both *Capitol::depositCredit()* and *Capitol::withdrawCredit()*, this means the input *uint256 _amount* will be process regardless if it's going to overflow or underflow the value of *balanceOf[msg.sender]* by the end of the operation because they are unchecked!
 &nbsp;  
 &nbsp;  
-Furthermore, in *Capitol::withdrawCredit*, there is no check whether the amount that we are ging to withdraw is exceeding our current balance or not, so we don't have to deposit anything to withdraw. Now calculating the correct amount so that our balance is less than *10_000_000_000_000 ether*, in this walkthrough we are going to create a simple function in solidity and run it  
+Furthermore, in *Capitol::withdrawCredit*, there is no check whether the amount that we are going to withdraw is exceeding our current balance or not, so we don't have to deposit anything to withdraw. Now calculating the correct amount so that our balance is less than *10_000_000_000_000 ether*, in this walkthrough we are going to create a simple function in solidity and run it  
 &nbsp;  
 ```solidity
 
