@@ -27,4 +27,4 @@ def replace_url_in_files(base_path, old_url, new_url):
 
 # Run the function with the provided URL
 # Change the middle one, default 127.0.0.1
-replace_url_in_files(base_path, "http://103.222.223.109", new_url)
+replace_url_in_files(base_path, "http://127.0.0.1", new_url)

@@ -1,3 +1,3 @@
 A Game of Roulette is always about luck they said, you cannot predict the future they said, you are just dancing in their palm of their hand the said. But... what if it's really not about luck? What if you CAN predict the future? What if they are the one now dancing in Your palm of hand? We'll just see, which one is right, afterall you are the one that will proof it to us-  
 &nbsp;  
-Start Heist [HERE!](http://103.178.153.113:40004)
+Start Heist [HERE!](http://127.0.0.1:40004)
