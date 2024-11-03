@@ -24,7 +24,7 @@ echo """
 
 WELCOME TO CASINO HEIST!
 HOW MAY WE HELP YOU TODAY?
-1. Deploy Challenges
+1. Manage Challenges
 2. Deploy HTTPS Casino Heist (require Nginx & certbot)
 3. Deploy HTTP Casino Heist (local)
 

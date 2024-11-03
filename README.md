@@ -66,18 +66,42 @@ cd CASINO-HEIST/Challenges/
 
 2. You can use the `deploy.sh` file to deploy and remove any Challenge that you like (we do recommend you to only deploy one Challenge at a time).
 
-3. To deploy a Challenge, you can run the `deploy.sh` and choose the option `1. Deploy Challenge`.
+3. To deploy a Challenge, you can run the `manager.sh` in `/Casino-Heist` and then choose the option `1. Manage Challenges`.
 ```bash
-$ ./deploy.sh 
-
   ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
  / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
 ( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
  \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
 
+WELCOME TO CASINO HEIST!
+HOW MAY WE HELP YOU TODAY?
+1. Manage Challenges
+2. Deploy HTTPS Casino Heist (require Nginx & certbot)
+3. Deploy HTTP Casino Heist (local)
 
+
+>> 1
 Welcome to Casino Heist Challenge Deployer!
 
+We are going to deploy the Challenge for you, 
+Please specify your Challenge VPS IP or default
+of 127.0.0.1 (local) for local deployment
+IP: 
+```
+
+3. Specify the IP for your Challenge, if you are deploying it locally, insert the `127.0.0.1`, else please specify the IP (ex: your Challenge VPS IP). After you insert the IP, the next menu would look like this.
+
+```bash
+Anything we can help?
+1. Deploy Challenge
+2. Stop Challenge
+3. Containers Info
+
+>> 
+```
+4. To Deploy a Challenge, you just need to choose option `1. Deploy Challenge` and this menu will be open
+
+```
 Anything we can help?
 1. Deploy Challenge
 2. Stop Challenge
@@ -86,43 +110,47 @@ Anything we can help?
 >> 1
 
 Please Choose an Option
-    1337 - Deploy All Challenge (Recommended only for Challenge )
-    0 - [BASIC] Briefing
-    1 - [BASIC] Gearing Up
-    2 - [COMMON] Bar
-    3 - [COMMON] Casino Vault
-    4 - [COMMON] Cheap Glitch
-    5 - [COMMON] Entry Point
-    6 - [COMMON] Inju Bank
-    7 - [COMMON] Master of Blackjack
-    8 - [COMMON] Roulette
-    9 - [COMMON] Silent Dealer
-    10 - [COMMON] Singular Identity
-    11 - [COMMON] Symbol of Noble
-    12 - [COMMON] Unlimited Credit Line
-    13 - [COMMON] Voting Frenzy
-    14 - [COMMON] VVVIP Member
+    1337 - Deploy All Challenge (Recommended only for Challenge Server)
+    0  - [BASIC] [Smart Contract Basic] Briefing
+    1  - [BASIC] [Creating Exploit Contract] Gearing Up 
+    2  - [COMMON] [Access Control Vulnerability] Bar
+    3  - [COMMON] [Delegatecall] Casino Vault
+    4  - [COMMON] [Integer Over-underflow] Cheap Glitch
+    5  - [COMMON] [Rounding Error] Entry Point
+    6  - [COMMON] [Reentrancy] Inju Bank
+    7  - [COMMON] [Timestamp Dependence] Master of Blackjack
+    8  - [COMMON] [Insecure Randomness] Roulette
+    9  - [COMMON] [Low-leve call] Silent Dealer
+    10 - [COMMON] [Hash Collision] Singular Identity
+    11 - [COMMON] [ERC721 Reentrancy] Symbol of Noble
+    12 - [COMMON] [ERC20 Misuse] Unlimited Credit Line
+    13 - [COMMON] [Logic Error] Voting Frenzy
+    14 - [COMMON] [DoS] VVVIP Member
     15 - [VIP] Casino Bankbuster
     16 - [VIP] Executive Problems
     17 - [VIP] Inju's Gambit
 
->>
+>> 
 ```
 
-3. You can choose which Challenge you want to deploy, you just need to give the index, for example if you want to deploy `[COMMON] Bar` you just need to input `2`.
+5. You can choose which Challenge you want to deploy, you just need to give the index, for example if you want to deploy `[COMMON] [Access Control Vulnerability] Bar` you just need to input `2`. 
+(**WARNING**: `1337 - Deploy All Challenge` is recommended ONLY if you have the minimum VPS specifications specified [here](#minimum-recommended-specification), because it will consume a lot of CPU to start all Challenges at once.)
 
-4. To Stop the Challenge once you're done, you can run the `deploy.sh` again, this time choosing the option `2. Stop Challenge`
 ```bash
-$ ./deploy.sh 
-
-  ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
- / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
-( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
- \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
+# Success Deployment
+uccessfully tagged blockchain-briefing_launcher:latest
+Creating blockchain-briefing_launcher_1 ... done
+[Briefing] is deployed on 127.0.0.1:30001
 
 
-Welcome to Casino Heist Challenge Deployer!
+Anything we can help?
+1. Deploy Challenge
+2. Stop Challenge
+3. Containers Info
+```
 
+6. To Stop the Challenge once you're done, you can run the `manager.sh` again with the first option `1. Manage Challenge`, this time choosing the next option `2. Stop Challenge`
+```bash
 Anything we can help?
 1. Deploy Challenge
 2. Stop Challenge
@@ -142,15 +170,8 @@ Enter the index of the container to remove:
 ```
 5. To stop specific Challenge, you can choose `2. Remove Specific` and enter the index of the Challenge. To Remove All Challenge, choose option `1. Remove All`
 
-6. To see how many active container, you can run `deploy.sh` and choose option `3. Containers Info`
+6. To see how many active container, you can run `manager.sh` and choose first option `1. Manage Challenge` and then option `3. Containers Info`
 ```bash
- ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
- / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
-( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
- \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
-
-
-Welcome to Casino Heist Challenge Deployer!
 
 Anything we can help?
 1. Deploy Challenge
@@ -162,9 +183,6 @@ Running Docker Containers:
 1b7318ddb948: blockchain-vvvip-member_launcher_1
 ceb5d34a7fa0: blockchain-voting-frenzy_launcher_1
 ```
-
-**WARNING** 
-The option `1337` sometimes doesn't work well since it deployes all Challenge at once, making the VPS CPU consumption skyrocket in a short time.
 
 ### Full Website & Challenges Deployment
 
@@ -192,9 +210,28 @@ $ sudo certbot --nginx -d <YOUR_DOMAIN> -d www.<YOUR_DOMAIN>
 /etc/letsencrypt/live/<YOUR_DOMAIN>/privkey.pem;
 ```
 
-4. On the root (`CASINO-HEIST/`), run the `deploy_https.sh` and fill the requested input, which is your domain name (same domain name for certbot) and the your Challenge VPS IP; This script will automatically configure your nginx and deploy the backend for you. 
+4. On the root (`CASINO-HEIST/`), run the `manager.sh` and fill the requested input, which is your domain name (same domain name for certbot) and the your Challenge VPS IP; This script will automatically configure your nginx and deploy the backend for you. <br>
+```bash
+$ ./manager.sh
 
-**NOTE**: `service nginx restart` inside the `deploy_https.sh` may failed if your VPS require `sudo`. In this case, you may run the command manually `sudo service nginx restart`
+ ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
+/ __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
+( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
+\___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
+
+WELCOME TO CASINO HEIST!
+HOW MAY WE HELP YOU TODAY?
+1. Deploy Challenges
+2. Deploy HTTPS Casino Heist (require Nginx & certbot)
+3. Deploy HTTP Casino Heist (local)
+
+
+>> 2
+Does your VPS Require sudo(yes/no): yes
+Enter your domain name: <YOUR_DOMAIN_NAME>
+Enter your challenge server IP: <YOUR_CHALLENGE_VPS_IP>
+```
+**NOTE**: If you choose `yes` on `Does your VPS Require sudo(yes/no)`, the bash will automatically use `sudo` to restart your Nginx, if your VPS doesn't require it, you can simply choose `no`.
 
 7. By now you should have a working Website, to verify this, just head to your domain.
 
@@ -205,9 +242,9 @@ $ sudo certbot --nginx -d <YOUR_DOMAIN> -d www.<YOUR_DOMAIN>
 git clone https://github.com/Kiinzu/CASINO-HEIST.git
 ```
 
-2. Navigate to `CASINO-HEIST/Challenges`, there you'll find `deploy.sh`; an interactive deployment helper for the Challenges (refer to this for [usage](#local-Challenge-only-version))
+2. On `/Casino-Heist`, you'll find `manager.sh`; an interactive deployment helper for the Challenges (refer to this for [usage](#local-Challenge-only-version))
 
-3. You can choose option `1. Deploy Challenge` for deployment, `2.Stop Challenge` for removing the docker and `3. Containers Info` to see the active docker containers. 
+3. You can choose option `1. Manage Challenges` followed by `1. Deploy Challenge` for deployment, `2.Stop Challenge` for removing the docker and `3. Containers Info` to see the active docker containers. 
 
 4. If your server is above the recommendation, you can choose `1.Deploy Challenge` and then `1337 - Deploy All Challenge (Recommended only for Challenge )` to deploy all Challenge at once. NOTE that this will use a lot of CPUs and will take around `25 minutes` to be fully deployed
 
@@ -224,13 +261,41 @@ For a limited time, you can have the Casino Heist Website running in your local 
 git clone https://github.com/Kiinzu/CASINO-HEIST.git
 ``` 
 
-2. Go to `/Frontend` directory 
-3. Configure the `/Frontend/.env` variable `VITE_BACKEND_API` to point to `casinoheist.xyz/api`
-4. Run the `./start.sh` to run the Website on `dev` mode
-5. Now you have Casino Heist Website running on your Local, with the api from the officail server!
+2. On `/Casino-Heist`, you'll find the `manager.sh`, run this script and choose option `3. Deploy HTTP Casino Heist (local)`
+
+```bash
+$ ./manager.sh
+
+
+  ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
+ / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
+( (__ /    \___ \ )( /    /(  O )  ) __ ( ) _)  )( \___ \  )(  
+ \___)\_/\_/(____/(__)\_)__) \__/   \_)(_/(____)(__)(____/ (__) 
+
+WELCOME TO CASINO HEIST!
+HOW MAY WE HELP YOU TODAY?
+1. Deploy Challenges
+2. Deploy HTTPS Casino Heist (require Nginx & certbot)
+3. Deploy HTTP Casino Heist (local)
+
+
+>> 3
+Casino Heist Official API is available until the end of 2024.
+With the Official API, you don't need to deploy the Challenges
+and Backend, however, if you choose to go without it, you'll have
+to deploy the Challenges and Backend on your localhost.
+
+Do you wish to use Casino Heist official API? (yes/no) 
+```
+
+3. If you choose to use Casino Heist Official API, you won't be required to deploy the Backend and Challenge youself, it will automatically fetch everything from our Official API. (**This option only last until the end of 2024 or until further notice!**)
+
+4. If you choose not to use our Official API, you'll need to deploy the Challenges yourself by following [this](#local-challenge-only-version) deployment, as for the Website (Frontend & Backend), it will be configured by the script to be deployed on `localhost:5173` (Frontend) and `127.0.0.1:5000` (Backend). 
+
+5. Now you have a running Casino Heist Website on your local, you can verify this by navigating to `localhost:5173`
 
 **NOTE** 
-This option of communication directly to our API will end in the end of 2024.
+This option of communication directly to our API will end in the end of 2024 or until further notice.
 
 ## Main Feature
 - **Private Blockchain**  
