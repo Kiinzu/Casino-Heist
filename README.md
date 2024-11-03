@@ -188,7 +188,7 @@ ceb5d34a7fa0: blockchain-voting-frenzy_launcher_1
 We offer 2 types of deployment that you can choose, whether you want HTTP or more secure option HTTPS, we got you!
 
 #### HTTPS Deployment (Production Ready)
-For this deployment, you are required to have 2 VPS, one is for the Website server and another one for the Challenge server. Ensure your CPS meets the [minimum specification](#minimum-recommended-specification) 
+For this deployment, you are required to have 2 VPS, one is for the Website server and another one for the Challenge server. Ensure your VPS meets the [minimum specification](#minimum-recommended-specification) 
 
 ##### Website server(Frontend & Backend)
 1. On your Website VPS, git clone this repository in that VPS
