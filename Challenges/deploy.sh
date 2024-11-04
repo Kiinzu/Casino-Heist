@@ -82,6 +82,8 @@ Please Choose an Option
                     exit 1; 
                 }
                 if [ -f "./build.sh" ]; then
+                    sed -i -e 's/\r$//' ./build.sh
+                    chmod 777 ./build.sh
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
@@ -100,6 +102,8 @@ Please Choose an Option
                     exit 1; 
                 }
                 if [ -f "./build.sh" ]; then
+                    sed -i -e 's/\r$//' ./build.sh
+                    chmod 777 ./build.sh
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
@@ -118,6 +122,8 @@ Please Choose an Option
                     exit 1; 
                 }
                 if [ -f "./build.sh" ]; then
+                    sed -i -e 's/\r$//' ./build.sh
+                    chmod 777 ./build.sh
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
@@ -133,6 +139,8 @@ Please Choose an Option
         0)
             echo "Deploying [BASIC] Briefing"
             cd ./Basic/"B-Briefing"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Briefing] is deployed on $chall_ip:30001"
@@ -140,6 +148,8 @@ Please Choose an Option
         1)
             echo "Deploying [BASIC] Gearing Up"
             cd ./Basic/"B-Gearing Up"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Gearing Up] is deployed on $chall_ip:30002"
@@ -147,6 +157,8 @@ Please Choose an Option
         2)
             echo "Deploying [COMMON] Bar"
             cd ./Common/"C-Bar"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Bar] is deployed on $chall_ip:40003"
@@ -154,6 +166,8 @@ Please Choose an Option
         3)
             echo "Deploying [COMMON] Casino Vault"
             cd ./Common/"C-Casino Vault"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Casino Vault] is deployed on $chall_ip:40013"
@@ -161,6 +175,8 @@ Please Choose an Option
         4)
             echo "Deploying [COMMON] Cheap Glitch"
             cd ./Common/"C-Cheap Glitch"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Cheap Glitch] is deployed on $chall_ip:40001"
@@ -168,6 +184,8 @@ Please Choose an Option
         5)
             echo "Deploying [COMMON] Entry Point"
             cd ./Common/"C-Entry Point"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Entry Point] is deployed on $chall_ip:40002"
@@ -175,6 +193,8 @@ Please Choose an Option
         6)
             echo "Deploying [COMMON] Inju Bank"
             cd ./Common/"C-Inju Bank"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Entry Point] is deployed on $chall_ip:40008"
@@ -182,6 +202,8 @@ Please Choose an Option
         7)
             echo "Deploying [COMMON] Master of Blackjack"
             cd ./Common/"C-Master of Blackjack"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Master of Blackjack] is deployed on $chall_ip:40005"
@@ -189,6 +211,8 @@ Please Choose an Option
         8)
             echo "Deploying [COMMON] Roulette"
             cd ./Common/"C-Roulette"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Roulette] is deployed on $chall_ip:40004"
@@ -196,6 +220,8 @@ Please Choose an Option
         9)
             echo "Deploying [COMMON] Silent Dealer"
             cd ./Common/"C-Silent Dealer"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Silent Dealer] is deployed on $chall_ip:40009"
@@ -203,6 +229,8 @@ Please Choose an Option
         10)
             echo "Deploying [COMMON] Singular Identity"
             cd ./Common/"C-Singular Identity"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Singular Identity] is deployed on $chall_ip:40010"
@@ -210,6 +238,8 @@ Please Choose an Option
         11)
             echo "Deploying [COMMON] Symbol of Noble"
             cd ./Common/"C-Symbol of Noble"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Symbol of Noble] is deployed on $chall_ip:40012"
@@ -217,6 +247,8 @@ Please Choose an Option
         12)
             echo "Deploying [COMMON] Unlimited Credit Line"
             cd ./Common/"C-Unlimited Credit Line"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Unlimited Credit Line] is deployed on $chall_ip:40011"
@@ -224,6 +256,8 @@ Please Choose an Option
         13)
             echo "Deploying [COMMON] Voting Frenzy"
             cd ./Common/"C-Voting Frenzy"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Voting Frenzy] is deployed on $chall_ip:40006"
@@ -231,6 +265,8 @@ Please Choose an Option
         14)
             echo "Deploying [COMMON] VVVIP Member"
             cd ./Common/"C-VVVIP Member"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[VVVIP Member] is deployed on $chall_ip:40007"
@@ -238,6 +274,8 @@ Please Choose an Option
         15)
             echo "Deploying [VIP] Casino Bankbuster"
             cd ./VIP/"V-Casino Bankbuster"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Casino Bankbuster] is deployed on $chall_ip:50002"
@@ -245,6 +283,8 @@ Please Choose an Option
         16)
             echo "Deploying [VIP] Executive Problems"
             cd ./VIP/"V-Executive Problems"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Executive Problems] is deployed on $chall_ip:50003"
@@ -252,6 +292,8 @@ Please Choose an Option
         17)
             echo "Deploying [VIP] Inju's Gambit"
             cd ./VIP/"V-Inju's Gambit"/
+            sed -i -e 's/\r$//' ./build.sh
+            chmod 777 ./build.sh
             ./build.sh
             cd ../../
             echo "[Inju's Gambit] is deployed on $chall_ip:50001"

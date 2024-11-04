@@ -22,4 +22,4 @@ sed -i -e 's/\r$//' ./build.sh
 cd ../
 
 # Deploying the challenge instance
-docker-compose -p blockchain-unlimited-credit-line up  --build -d 
+docker-compose -p blockchain-casino-bankbuster up  --build -d 
