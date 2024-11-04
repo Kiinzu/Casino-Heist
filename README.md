@@ -88,7 +88,7 @@ of 127.0.0.1 (local) for local deployment
 IP: 
 ```
 
-3. Specify the IP for your Challenge, if you are deploying it locally, insert the `127.0.0.1`, else please specify the IP (ex: your Challenge VPS IP). After you insert the IP, the next menu would look like this.
+4. Specify the IP for your Challenge, if you are deploying it locally, insert the `127.0.0.1`, else please specify the IP (ex: your Challenge VPS IP). After you insert the IP, the next menu would look like this.
 
 ```bash
 Anything we can help?
@@ -98,7 +98,7 @@ Anything we can help?
 
 >> 
 ```
-4. To Deploy a Challenge, you just need to choose option `1. Deploy Challenge` and this menu will be open
+5. To Deploy a Challenge, you just need to choose option `1. Deploy Challenge` and this menu will be open
 
 ```
 Anything we can help?
@@ -132,12 +132,12 @@ Please Choose an Option
 >> 
 ```
 
-5. You can choose which Challenge you want to deploy, you just need to give the index, for example if you want to deploy `[COMMON] [Access Control Vulnerability] Bar` you just need to input `2`. 
+6. You can choose which Challenge you want to deploy, you just need to give the index, for example if you want to deploy `[COMMON] [Access Control Vulnerability] Bar` you just need to input `2`. 
 (**WARNING**: `1337 - Deploy All Challenge` is recommended ONLY if you have the minimum VPS specifications specified [here](#minimum-recommended-specification), because it will consume a lot of CPU to start all Challenges at once.)
 
 ```bash
 # Success Deployment
-uccessfully tagged blockchain-briefing_launcher:latest
+Successfully tagged blockchain-briefing_launcher:latest
 Creating blockchain-briefing_launcher_1 ... done
 [Briefing] is deployed on 127.0.0.1:30001
 
@@ -148,7 +148,7 @@ Anything we can help?
 3. Containers Info
 ```
 
-6. To Stop the Challenge once you're done, you can run the `manager.sh` again with the first option `1. Manage Challenge`, this time choosing the next option `2. Stop Challenge`
+7. To Stop the Challenge once you're done, you can run the `manager.sh` again with the first option `1. Manage Challenge`, this time choosing the next option `2. Stop Challenge`
 ```bash
 Anything we can help?
 1. Deploy Challenge
@@ -167,9 +167,9 @@ Which container do you want to remove?
 >> 2
 Enter the index of the container to remove: 
 ```
-5. To stop specific Challenge, you can choose `2. Remove Specific` and enter the index of the Challenge. To Remove All Challenge, choose option `1. Remove All`
+8. To stop specific Challenge, you can choose `2. Remove Specific` and enter the index of the Challenge. To Remove All Challenge, choose option `1. Remove All`
 
-6. To see how many active container, you can run `manager.sh` and choose first option `1. Manage Challenge` and then option `3. Containers Info`
+9. To see how many active container, you can run `manager.sh` and choose first option `1. Manage Challenge` and then option `3. Containers Info`
 ```bash
 
 Anything we can help?
