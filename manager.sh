@@ -14,6 +14,17 @@ chmod 777 ./Frontend/install.sh
 chmod 777 ./Frontend/changer.py
 chmod 777 ./Backend/start_http.sh
 chmod 777 ./Backend/start.sh
+chmod 777 ./Challenges/deploy.sh
+
+# Clearing Header interpreter
+sed -i -e 's/\r$//' ./deploy_http.sh
+sed -i -e 's/\r$//' ./deploy_https.sh
+sed -i -e 's/\r$//' ./Frontend/start.sh
+sed -i -e 's/\r$//' ./Frontend/install.sh
+sed -i -e 's/\r$//' ./Frontend/changer.py
+sed -i -e 's/\r$//' ./Backend/start_http.sh
+sed -i -e 's/\r$//' ./Backend/start.sh 
+sed -i -e 's/\r$//' ./Challenges/deploy.sh
 
 # Print Welcome Message
 echo """
