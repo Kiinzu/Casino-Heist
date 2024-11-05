@@ -77,7 +77,7 @@ const Home = () => {
             <div className='home-fourth-container'>
                 <div className='home-bottom'>
                     <div className='Appreciation'>
-                        <h2>With heartfelt appreciation to the <em>Communities</em></h2>
+                        <h2>With heartfelt appreciation to the <em>communities</em></h2>
                         <h4>this project would not have been possible without your support, collaboration, and inspiration.</h4>
                     </div>
                     <div className='big-thanks'>

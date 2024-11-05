@@ -576,6 +576,10 @@ main {
   background-image: url("./assets/images/front-background.png");
 }
 
+.heist-container h1{
+  color: #fff;
+}
+
 .heist-container span{
   font-size: 14px;
   font-family: 'Lucida Sans' , 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -1798,6 +1802,10 @@ main {
   max-height: auto;
   align-items: center;
   overflow: hidden;
+}
+
+.home-hero-content h1{
+  color: #fff;
 }
 
 .home-first-container{
