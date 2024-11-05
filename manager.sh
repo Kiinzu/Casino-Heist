@@ -9,6 +9,7 @@ fi
 # Chmod 777 for all required script
 chmod 777 ./deploy_http.sh
 chmod 777 ./deploy_https.sh
+chmod 777 ./deploy_quick_start.sh
 chmod 777 ./Frontend/start.sh
 chmod 777 ./Frontend/install.sh
 chmod 777 ./Frontend/changer.py
@@ -19,6 +20,7 @@ chmod 777 ./Challenges/deploy.sh
 # Clearing Header interpreter
 sed -i -e 's/\r$//' ./deploy_http.sh
 sed -i -e 's/\r$//' ./deploy_https.sh
+sed -i -e 's/\r$//' ./deploy_quick_start.sh
 sed -i -e 's/\r$//' ./Frontend/start.sh
 sed -i -e 's/\r$//' ./Frontend/install.sh
 sed -i -e 's/\r$//' ./Frontend/changer.py
@@ -35,6 +37,7 @@ echo """
 
 WELCOME TO CASINO HEIST!
 HOW MAY WE HELP YOU TODAY?
+0. Quick Start - Casino Heist
 1. Manage Challenges
 2. Deploy HTTPS Casino Heist (require Nginx & certbot)
 3. Deploy HTTP Casino Heist (local)
@@ -42,7 +45,9 @@ HOW MAY WE HELP YOU TODAY?
 """
 
 read -p ">> " option
-if [ "$option" -eq 1 ]; then
+if [ "$option" -eq 0 ]; then
+    ./deploy_quick_start.sh
+elif [ "$option" -eq 1 ]; then
     cd ./Challenges
     ./deploy.sh
 elif [ "$option" -eq 2 ]; then
