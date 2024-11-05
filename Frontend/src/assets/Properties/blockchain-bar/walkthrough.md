@@ -1,4 +1,4 @@
-To solve the Lab, we need to make *Setup:;playerSolved()* returns true, here is the code
+To solve the lab, we need to make *Setup::playerSolved()* return true. Here is the code.
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -11,7 +11,7 @@ function isSolved() public view returns(bool){
 }
 ```
 &nbsp;  
-We first need to call the *solvedByPLayer()* function, because that function will update the state of *playerSolved()* bool, after that we can just simply press *Flag* button on the instance. Let's first look for a function that will modify *beerGlass* 
+We first need to call the *solvedByPLayer()* function, because that function will update the state of the *playerSolved()* bool. After that, we can just simply press the *Flag* button on the instance. Let's first look for a function that will modify *beerGlass*.
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -33,7 +33,7 @@ function getDrink() public isHuman onlyMember{
 }
 ```
 &nbsp;  
-We have some options there, *register()*, *addMember()* and *getDrink()*, based on what we need we have to call the *getDrink()* but there is a modifier called *onlyMember* and *isHuman* plus we need our balance to be greater than zero. From the function alone, what we can tell is to become a member the *owner* must add the member manually by calling the *addMember()*, we can still call *register()* with the value 1 ether. Let's look the rest of the code now &nbsp;  
+We have some options. There are *register()*, *addMember()*, and *getDrink()*; based on what we need, we have to call *getDrink()*, but there is a modifier called *onlyMember* and *isHuman*, plus we need our balance to be greater than zero. From the function alone, what we can tell is that to become a member, the *owner* must add the member manually by calling the *addMember()*; we can still call *register()* with the value 1 ether. Let's look at the rest of the code now. &nbsp;  
 &nbsp;  
 ```solidity
 modifier isHuman(){
@@ -56,9 +56,9 @@ receive() external payable{
 }
 ```
 &nbsp;  
-There are 3 modifiers that exist in the contract, the *isHuman()* modifier ensure that the *msg.sender* is same as *tx.origin*, meaning only EOA can interact with the contract. The *onlyOwner()* has 1 parameter which is *_addMember*. Now *onlyMember()* modifier, it is quite different than another modifier, instead of ensuring a condition, it actually set a condition, especially *msg.sender*, it sets the *barMember[msg.sender]* to become true, this is clearly a flaw by the developer. &nbsp;  
+There are 3 modifiers that exist in the contract. The *isHuman()* modifier ensures that the *msg.sender* is the same as *tx.origin*, meaning only EOA can interact with the contract. The *onlyOwner()* has 1 parameter, which is *_addMember*. Now *onlyMember()* modifier is quite different than another modifier, instead of ensuring a condition, it actually sets a condition, especially *msg.sender*; it sets the *barMember[msg.sender]* to become true, this is clearly a flaw by the developer. &nbsp;  
 &nbsp;  
-Earlier we know that the *getDrink()* function use this modifier, this means what lefts now are giving ourselves some balance either by calling the *register()* function or directly send the contract some balance because it has *receive() external payable* defined there and directly add the amount to our balance. Okay then, the solve should be &nbsp;  
+Earlier we knew that the *getDrink()* function used this modifier. This means what left now is giving ourselves some balance either by calling the *register()* function or directly sending the contract some balance because it has *receive() external payable* defined there and directly adds the amount to our balance. Okay then, the solution should be &nbsp;  
 &nbsp;  
 ```bash
 // get the bar contract address
