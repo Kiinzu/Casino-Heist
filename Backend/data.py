@@ -8,9 +8,9 @@ challenges = [
         'challengeCode': 'blockchain-briefing',
         'challengeTag':'smart contract basic',
         'challengeFlag': '4781b653dace2dfbdf3d97ea8081f5e9eeabfd14427b9cafbc6aafafefb94d41',
-        'challengeHintOne': 'PlaceHolder#1',
-        'challengeHintTwo': 'PlaceHolder#2',
-        'challengeHintThree': 'PlaceHolder#3'
+        'challengeHintOne': 'Follow the Story to finish this Challenge!',
+        'challengeHintTwo': 'Follow the Story to finish this Challenge!',
+        'challengeHintThree': 'Follow the Story to finish this Challenge!'
     },
     {
         'challengeId': 30002,
@@ -19,9 +19,9 @@ challenges = [
         'challengeCode': 'blockchain-gearing-up',
         'challengeTag':'Exploit contract',
         'challengeFlag': '4ef87f55f4d274e8d47225bc060784908acd0c026f6fb7f896f55a5d7f5d77f0',
-        'challengeHintOne': 'PlaceHolder#1',
-        'challengeHintTwo': 'PlaceHolder#2',
-        'challengeHintThree': 'PlaceHolder#3'
+        'challengeHintOne': 'Follow the Story to finish this Challenge!',
+        'challengeHintTwo': 'Follow the Story to finish this Challenge!',
+        'challengeHintThree': 'Follow the Story to finish this Challenge!'
     },
     {
         'challengeId': 40001,
@@ -30,9 +30,9 @@ challenges = [
         'challengeCode': 'blockchain-cheap-glitch',
         'challengeTag':'Underflow Overflow',
         'challengeFlag': '3a03eb4dd3e5646ea06fa0f6b8ac88cd94918629bfe41936877d2eaa30362788',
-        'challengeHintOne': 'PlaceHolder#1',
-        'challengeHintTwo': 'PlaceHolder#2',
-        'challengeHintThree': 'PlaceHolder#3'
+        'challengeHintOne': 'Check the Solidity Version, is that secure?',
+        'challengeHintTwo': 'Do you see any unchecked{}?',
+        'challengeHintThree': 'There is no check on withdrawCredit()!'
     },
     {
         'challengeId': 40002,

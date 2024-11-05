@@ -119,7 +119,7 @@ Please Choose an Option
     6  - [COMMON] [Reentrancy] Inju Bank
     7  - [COMMON] [Timestamp Dependence] Master of Blackjack
     8  - [COMMON] [Insecure Randomness] Roulette
-    9  - [COMMON] [Low-leve call] Silent Dealer
+    9  - [COMMON] [Low-level call] Silent Dealer
     10 - [COMMON] [Hash Collision] Singular Identity
     11 - [COMMON] [ERC721 Reentrancy] Symbol of Noble
     12 - [COMMON] [ERC20 Misuse] Unlimited Credit Line
@@ -308,7 +308,7 @@ This option of communication directly to our API will end in the end of 2024 or 
 - **Real-Life Incident Simplified**  
     We’re not here for just the basics. With our VIP category, everyone gets access to real-life hacks that we’ve simplified, which make anyone can feel the thrill of real-world scenarios.
 - **Open for Contribution**  
-    Do you enjoy playing Casino Heist and want to contribtue? We have 2 ways of contribute to our Open-Source Playground! You can either write a walkthrough for the `common` Challenge in your own way, or you can create your own Challenge and submit to us!
+    Do you enjoy playing Casino Heist and want to contribute? We have 2 ways of contribute to our Open-Source Playground! You can either write a walkthrough for the `common` Challenge in your own way, or you can create your own Challenge and submit to us!
 - **Engage with the Community!**  
     Casino Heist is created and backed by [ENUMA ID](https://discord.gg/scwfGkERsj), a community that gathered Smart Contract Security Enthusiast in Indonesia.
 
