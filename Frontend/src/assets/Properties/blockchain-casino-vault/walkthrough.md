@@ -63,7 +63,7 @@ In EVM Assembly, there is a operation called *sstore(location, value)*, we can u
 based on that information, we can see that the owner is stored at SLOT 1, and the length since it's an address must be 20 bytes long. Now that we have the 2 options, we can either put the owner to become ourselves (EOA) or we can write the Exploit Contract Address, this can be done by either providing *origin()* (EOA) or *caller()* (msg.sender, in this case is the Exploit Contract), as the parameter. So if we want to overwrite the storage we can use &nbsp;  
 &nbsp;  
 
-```
+```solidity
 sstore(1, origin()) // for tx.origin / EOA
 // or
 sstore(1, caller()) // for msg.sender 

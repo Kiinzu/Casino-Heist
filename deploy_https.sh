@@ -34,7 +34,7 @@ docker-compose up -d --build
 frontend_env="./Frontend/.env"
 echo "VITE_BACKEND_IP='https://$domain_name/api'" > "$frontend_env"
 cd ./Frontend
-python3 changer.py http://$challenge_ip
+python3 changer.py $challenge_ip
 chmod 777 ./install.sh
 ./install.sh
 cp -r ./dist/* /var/www/$domain_name/html

@@ -60,7 +60,7 @@ Please Choose an Option
     6  - [COMMON] [Reentrancy] Inju Bank
     7  - [COMMON] [Timestamp Dependence] Master of Blackjack
     8  - [COMMON] [Insecure Randomness] Roulette
-    9  - [COMMON] [Low-leve call] Silent Dealer
+    9  - [COMMON] [Low-level call] Silent Dealer
     10 - [COMMON] [Hash Collision] Singular Identity
     11 - [COMMON] [ERC721 Reentrancy] Symbol of Noble
     12 - [COMMON] [ERC20 Misuse] Unlimited Credit Line
@@ -87,6 +87,7 @@ Please Choose an Option
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
+                    sleep 30s
                 else
                     echo "No build.sh found in $dir"
                 fi
@@ -107,6 +108,7 @@ Please Choose an Option
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
+                    sleep 30s
                 else
                     echo "No build.sh found in $dir"
                 fi
@@ -127,6 +129,7 @@ Please Choose an Option
                     ./build.sh || {
                         echo "Error executing build.sh in $dir";
                     }
+                    sleep 30s
                 else
                     echo "No build.sh found in $dir"
                 fi
@@ -135,6 +138,33 @@ Please Choose an Option
                     exit 1; 
                 }
             done
+            echo """
+PLEASE CHECK $chall_ip ON THE FOLLOWING PORTS TO ENSURE YOUR CHALLENGE IS DEPLOYED!
+BASIC (30000)
+ 30001 [] > blockchain-briefing 
+ 30002 [] > blockchain-gearing_up 
+
+COMMON (40000)
+ 40001 [] > blockchain-Cheap Glitch 
+ 40002 [] > blockchain-Entry Point 
+ 40003 [] > blockchain-Bar 
+ 40004 [] > blockchain-Roulette 
+ 40005 [] > blockchain-Master of BlackJack 
+ 40006 [] > blockchain-Voting Frenzy
+ 40007 [] > blockchain-VVVIP Member 
+ 40008 [] > blockchain-INJU Bank 
+ 40009 [] > blockchain-Silent Dealer 
+ 40010 [] > blockchain-Singular Identity 
+ 40011 [] > blockchain-Unlimited Credit line 
+ 40012 [] > blockchain-Symbol of Noble 
+ 40013 [] > blockchain-Casino Vault
+
+VIP (50000)
+ 50001 [] > blockchain-injus_gambit 
+ 50002 [] > blockchain-casino-bankbuster 
+ 50003 [] > blockchain-executive-problems 
+ 50004 [] > blockchain-Double or Delegate 
+"""
             ;;
         0)
             echo "Deploying [BASIC] Briefing"
@@ -143,7 +173,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Briefing] is deployed on $chall_ip:30001"
+            echo "[Briefing] - should be deployed on $chall_ip:30001"
             ;;
         1)
             echo "Deploying [BASIC] Gearing Up"
@@ -152,7 +182,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Gearing Up] is deployed on $chall_ip:30002"
+            echo "[Gearing Up] - should be deployed on $chall_ip:30002"
             ;;
         2)
             echo "Deploying [COMMON] Bar"
@@ -161,7 +191,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Bar] is deployed on $chall_ip:40003"
+            echo "[Bar] - should be deployed on $chall_ip:40003"
             ;;
         3)
             echo "Deploying [COMMON] Casino Vault"
@@ -170,7 +200,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Casino Vault] is deployed on $chall_ip:40013"
+            echo "[Casino Vault] - should be deployed on $chall_ip:40013"
             ;;
         4)
             echo "Deploying [COMMON] Cheap Glitch"
@@ -179,7 +209,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Cheap Glitch] is deployed on $chall_ip:40001"
+            echo "[Cheap Glitch] - should be deployed on $chall_ip:40001"
             ;;
         5)
             echo "Deploying [COMMON] Entry Point"
@@ -188,7 +218,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Entry Point] is deployed on $chall_ip:40002"
+            echo "[Entry Point] - should be deployed on $chall_ip:40002"
             ;;
         6)
             echo "Deploying [COMMON] Inju Bank"
@@ -197,7 +227,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Entry Point] is deployed on $chall_ip:40008"
+            echo "[Entry Point] - should be deployed on $chall_ip:40008"
             ;;
         7)
             echo "Deploying [COMMON] Master of Blackjack"
@@ -206,7 +236,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Master of Blackjack] is deployed on $chall_ip:40005"
+            echo "[Master of Blackjack] - should be deployed on $chall_ip:40005"
             ;;
         8)
             echo "Deploying [COMMON] Roulette"
@@ -215,7 +245,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Roulette] is deployed on $chall_ip:40004"
+            echo "[Roulette] - should be deployed on $chall_ip:40004"
             ;;
         9)
             echo "Deploying [COMMON] Silent Dealer"
@@ -224,7 +254,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Silent Dealer] is deployed on $chall_ip:40009"
+            echo "[Silent Dealer] - should be deployed on $chall_ip:40009"
             ;;
         10)
             echo "Deploying [COMMON] Singular Identity"
@@ -233,7 +263,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Singular Identity] is deployed on $chall_ip:40010"
+            echo "[Singular Identity] - should be deployed on $chall_ip:40010"
             ;;
         11)
             echo "Deploying [COMMON] Symbol of Noble"
@@ -242,7 +272,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Symbol of Noble] is deployed on $chall_ip:40012"
+            echo "[Symbol of Noble] - should be deployed on $chall_ip:40012"
             ;;
         12)
             echo "Deploying [COMMON] Unlimited Credit Line"
@@ -251,7 +281,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Unlimited Credit Line] is deployed on $chall_ip:40011"
+            echo "[Unlimited Credit Line] - should be deployed on $chall_ip:40011"
             ;;
         13)
             echo "Deploying [COMMON] Voting Frenzy"
@@ -260,7 +290,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Voting Frenzy] is deployed on $chall_ip:40006"
+            echo "[Voting Frenzy] - should be deployed on $chall_ip:40006"
             ;;
         14)
             echo "Deploying [COMMON] VVVIP Member"
@@ -269,7 +299,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[VVVIP Member] is deployed on $chall_ip:40007"
+            echo "[VVVIP Member] - should be deployed on $chall_ip:40007"
             ;;
         15)
             echo "Deploying [VIP] Casino Bankbuster"
@@ -278,7 +308,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Casino Bankbuster] is deployed on $chall_ip:50002"
+            echo "[Casino Bankbuster] - should be deployed on $chall_ip:50002"
             ;;
         16)
             echo "Deploying [VIP] Executive Problems"
@@ -287,7 +317,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Executive Problems] is deployed on $chall_ip:50003"
+            echo "[Executive Problems] - should be deployed on $chall_ip:50003"
             ;;
         17)
             echo "Deploying [VIP] Inju's Gambit"
@@ -296,7 +326,7 @@ Please Choose an Option
             chmod 777 ./build.sh
             ./build.sh
             cd ../../
-            echo "[Inju's Gambit] is deployed on $chall_ip:50001"
+            echo "[Inju's Gambit] - should be deployed on $chall_ip:50001"
             ;;
         
     esac

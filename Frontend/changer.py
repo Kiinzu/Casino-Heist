@@ -1,14 +1,15 @@
 import sys
 import os
+import re
 
 if len(sys.argv) < 2:
     print("Usage: python script.py <new_url>")
     sys.exit(1)
 
-new_url = sys.argv[1]  
+new_url = 'http://' +  sys.argv[1]
 base_path = './src/assets/Properties/'
 
-def replace_url_in_files(base_path, old_url, new_url):
+def replace_url_in_files(base_path, new_url):
     for folder_name in os.listdir(base_path):
         folder_path = os.path.join(base_path, folder_name)
         
@@ -17,14 +18,15 @@ def replace_url_in_files(base_path, old_url, new_url):
         if os.path.isfile(description_path):
             with open(description_path, 'r') as file:
                 content = file.read()
-            if old_url in content:
-                content = content.replace(old_url, new_url)
+
+            # Regular expression to find URLs in the markdown links
+            updated_content = re.sub(r'http://[^:]+:', f'{new_url}:', content)
+
+            if content != updated_content:
                 with open(description_path, 'w') as file:
-                    file.write(content)
+                    file.write(updated_content)
                 print(f"Replaced URL in {description_path}")
             else:
                 print(f"No URL to replace in {description_path}")
 
-# Run the function with the provided URL
-# Change the middle one, default 127.0.0.1
-replace_url_in_files(base_path, "http://127.0.0.1", new_url)
+replace_url_in_files(base_path, new_url)
