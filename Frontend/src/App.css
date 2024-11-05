@@ -639,6 +639,11 @@ main {
   margin-left: 20px;
 }
 
+.heist-description-container h1,
+.heist-code-container h1 {
+  color: #fff;
+}
+
 .heist-description-container h2,
 .heist-code-container h2 {
   font-size: 1.5rem;
@@ -945,6 +950,10 @@ main {
   word-wrap: break-word;
   box-sizing: content-box;
   text-align: justify;}
+
+.heist-contributor-container h1{
+  color: #fff;
+}
 
 .walkthrough-boxes {
   display: flex;
