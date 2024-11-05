@@ -1,4 +1,4 @@
-Knowing that the problem is very simple, the modifier *onlyMember()* doesn't actually checking for the *msg.sender* is a member or not, but it just make the *msg.sender* a member this is an example of how logic error could leads to incorrect access control in a smart contract! To fix this issue we can just modify the modifier to become like this &nbsp;  
+Knowing that the problem is very simple, the modifier *onlyMember()* doesn't actually check if the *msg.sender* is a member or not,but it just makes the *msg.sender* a member. This is an example of how a logic error could lead to incorrect access control in a smart contract! To fix this issue, we can just modify the modifier to become like this &nbsp;  
 &nbsp;  
 ```solidity
 pragma solidity ^0.8.25;
@@ -53,4 +53,4 @@ contract Bar{
 }
 ```
 &nbsp;  
-by adding the proper check for *barMember* at *onlyMember()* we can make sure that only the *owner* can approve a member registration and make them a member once it done!
+By adding the proper check for *barMember* at *onlyMember()*, we can make sure that only the *owner* can approve a member registration and make them a member once it is done!
