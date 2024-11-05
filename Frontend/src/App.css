@@ -955,6 +955,10 @@ main {
   color: #fff;
 }
 
+.heist-contributor-container h2{
+  color: #fff;
+}
+
 .walkthrough-boxes {
   display: flex;
   justify-content: space-between;
