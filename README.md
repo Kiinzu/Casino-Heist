@@ -318,9 +318,9 @@ We are open for contribution, you can contribute in 2 ways. If you like to creat
 Just follow the Instruction [here](./Contribution/) to Contribute!
 
 ## Authors
-- [Kiinzu](github.com/kiinzu)
-- [Mewzael](github.com/Mewzael)
-- [fefethecyberclown](github.com/fefethecyberclown)
+- [Kiinzu](https://github.com/kiinzu)
+- [Mewzael](https://github.com/Mewzael)
+- [fefethecyberclown](https://github.com/fefethecyberclown)
 
 ## Feedback
 If you have any feedback, please contact us directly on our [Discord server](https://discord.gg/scwfGkERsj)!
