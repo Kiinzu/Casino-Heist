@@ -12,7 +12,7 @@ frontend_env="./Frontend/.env"
 if [ "$answer" == "yes" ]; then
     echo "VITE_BACKEND_IP='https://casinoheist.xyz/api'" > "$frontend_env"
     cd ./Frontend
-    python3 changer.py http://103.178.153.113
+    python3 changer.py 103.178.153.113
     ./start.sh
 elif [ "$answer" == "no" ]; then
     # STEP 1: Generating SECRET_KEY for Backend
@@ -29,7 +29,7 @@ elif [ "$answer" == "no" ]; then
     # STEP 3: Configuring Frontend
     echo "VITE_BACKEND_IP='http://127.0.0.1:5000/api'" > "$frontend_env"
     cd ../Frontend 
-    python3 changer.py http://127.0.0.1
+    python3 changer.py 127.0.0.1
     ./start.sh &
 
     wait
