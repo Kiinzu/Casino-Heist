@@ -13,7 +13,7 @@ The best solution that we can give if you find anything like this in audits are 
 
 ## Chainlink Verifiable Random Function (VRF)
 
-Chainlink VRF is a provably fair and verifiable random number generator (RNG) made by Chainlink that made random values in smart contract much more secure without compromising security or usability of the smart contract. Currently the latest version is VRF2.5 and you can watch the introduction here, &nbsp;  
+Chainlink VRF is a probably fair and verifiable random number generator (RNG) made by Chainlink that made random values in smart contract much more secure without compromising security or usability of the smart contract. Currently the latest version is VRF2.5 and you can watch the introduction here, &nbsp;  
 &nbsp;  
 - [What is Chainlink VRF?](https://www.youtube.com/watch?v=eRzLNfn4LGc)
 - [Learn VRF v2.5](https://docs.chain.link/vrf/v2-5/overview/subscription)

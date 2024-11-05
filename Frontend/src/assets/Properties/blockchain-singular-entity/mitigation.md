@@ -14,4 +14,4 @@ function getIdentity(string memory _firstName, string memory _lastName) public p
 }
 ```
 &nbsp;  
-While there maybe some other way to mitigate this such aas adding a unique nonce or identifier alongside the *abi.encodePacked()*, or maybe adding a delimiters or length prefixes to encoded data, the best way is of course just to avoid using it and just use *abi.encode()* AND avoid relying on Hashes or bytes alone for Critical security Checks
+While there maybe some other way to mitigate this such as adding a unique nonce or identifier alongside the *abi.encodePacked()*, or maybe adding a delimiters or length prefixes to encoded data, the best way is of course just to avoid using it and just use *abi.encode()* AND avoid relying on Hashes or bytes alone for Critical security Checks

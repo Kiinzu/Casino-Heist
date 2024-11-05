@@ -59,4 +59,4 @@ If you want to try your previous exploit against this new mitigated contract, yo
     }
 ```
 &nbsp;  
-Although most developer takes their time and put into much efforct to ensure that logic, calculation and interactions are functioning as its intended, some times there will be an unexpectd behavior that may be they didn't realize, that often lead to something like DoS.
+Although most developer takes their time and put into much efforct to ensure that logic, calculation and interactions are functioning as its intended, some times there will be an unexpected behavior that may be they didn't realize, that often lead to something like DoS.
