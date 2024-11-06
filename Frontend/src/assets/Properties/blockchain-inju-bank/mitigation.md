@@ -30,7 +30,7 @@ function withdraw(uint256 _amount) public{
 }
 ```
 &nbsp;  
-We can add an extra layer of protection by using *Openzeppelin's Library*, especially the *ReentrancyGuard.sol*. You can find the contract [here](import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Using ReentrancyGuard.sol). How it works is basically to make sure that there is no recursive call to the function that is being protected when an unfinished call is happening, and here is how we can implement it. &nbsp;  
+We can add an extra layer of protection by using *Openzeppelin's Library*, especially the *ReentrancyGuard.sol*. You can find the contract [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol). How it works is basically to make sure that there is no recursive call to the function that is being protected when an unfinished call is happening, and here is how we can implement it. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
