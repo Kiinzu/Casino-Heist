@@ -58,11 +58,11 @@ Running the entire application (backend and frontend) and all challenges at once
 
 You can choose one of the three methods provided to use the application; if you want a quick look at Casino Heist, you can try the [Quick Start Casino Heist](#quick-start).
 
-1. Challenge-Only Version
+1. **Challenge-Only Version**
     If you wish to only play the challenge locally or deploy them in your VPS, this is the perfect version for you! Follow the guide [here](./Documentation/CHALL-ONLY_deployment.md)
-2. HTTPS Full Website & Challenge Server
+2. **HTTPS Full Website & Challenge Server**
     If you have 2 VPS and want a more secure way of deployment, you can choose this option by following the guide [here](./Documentation/HTTPS_deployment.md)
-3. HTTP Version
+3. **HTTP Version**
     If you want to enjoy the UI and and do it locally, you can setup Casino Heist to run locally on your machine, and if you fancy, you can fetch the data from our official API at `https://casinoheist.xyz/api`. Follow the guide [here](./Documentation/HTTP_deployment.md)
 
 > **NOTE**
