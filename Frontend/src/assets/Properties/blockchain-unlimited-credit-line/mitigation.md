@@ -1,4 +1,4 @@
-The *NewBank Contract* use a *BetterERC20*, at least that's what they thought, but no, it's not secure at all. As mentioned in the prologue, that *Any deviation from the standard doesn't necessarily introduce vulnerability, but it could*, this is the perfect case of that, let's compare it &nbsp;  
+The *NewBank Contract* uses a *BetterERC20*, at least that's what they thought, but no, it's not secure at all. As mentioned in the prologue, that *Any deviation from the standard doesn't necessarily introduce vulnerability, but it could*, this is the perfect case of that; let's compare it &nbsp;  
 &nbsp;  
 ```solidity
 // NewBank.sol::burn()
@@ -18,4 +18,4 @@ The *NewBank Contract* use a *BetterERC20*, at least that's what they thought, b
     }
 ```
 &nbsp;  
-Well, there the *mint()* is designed like that so that player would look over another function to begin with, so we are not going to talk about it, instead we are going to talk about the one which could give us the openning to solve the challenge. *burn()* was meant to permanently remove tokens from circulation, but this one, this one could give you token just like *mint()*, that's why to correctly adopt the ERC-20 standard, the implementation must be at least following the original one, or if there are any deviation from the standard, it needs to be checked to make sure it doesn't introduce any vulnerability.
+Well, there the *mint()* is designed like that so that player would look over another function to begin with, so we are not going to talk about it, instead we are going to talk about the one that could give us the opening to solve the challenge. *burn()* was meant to permanently remove tokens from circulation, but this one, this one could give you token just like *mint()*. That's why to correctly adopt the ERC-20 standard, the implementation must be at least following the original one, or if there are any deviations from the standard, it needs to be checked to make sure it doesn't introduce any vulnerability.

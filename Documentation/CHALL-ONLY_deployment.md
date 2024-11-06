@@ -1,10 +1,10 @@
 ### Challenge-Only Version
-Here is how you can deploy and use **Casino Heist Challenge-Only Version**, you can use this guide to manage your local machine or Challenge VPS for challenges deployment. To make it easier for your, we are going to walk you throguh 
+Here is how you can deploy and use **Casino Heist Challenge-Only Version**. You can use this guide to manage your local machine or Challenge VPS for challenge deployment. To make it easier for you, we are going to walk you through
 - Deploy challenge(s)
 - Stop challenge(s)
 - Active challenge(s) information
 
-You first need to clone this repository
+You first need to clone this repository.
 
 ```bash
 https://github.com/Kiinzu/Casino-Heist.git
@@ -12,7 +12,7 @@ https://github.com/Kiinzu/Casino-Heist.git
 
 ## Deploy challenge(s)
 
-1. To deploy a Challenge, you can run the `manager.sh` in `/Casino-Heist` and then choose the option `1. Manage Challenges`. 
+1. To deploy a challenge, you can run the `manager.sh` in `/Casino-Heist` and then choose option `1. Manage Challenges`. 
 ```bash
   ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
  / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
@@ -36,7 +36,7 @@ of 127.0.0.1 (local) for local deployment
 IP: 
 ```
 
-2. Specify the IP for your Challenge, if you are deploying it locally, insert the `127.0.0.1`, else please specify the IP (ex: your Challenge VPS IP). After you insert the IP, the next menu would look like this.
+2. Specify the IP for your Challenge, if you are deploying it locally, insert the `127.0.0.1`; otherwise, please specify the IP (ex: your Challenge VPS IP). After you insert the IP, the next menu would look like this.
 
 ```bash
 Anything we can help?
@@ -47,8 +47,8 @@ Anything we can help?
 >> 
 ```
 
-3. To Deploy a Challenge, you just need to choose option `1. Deploy Challenge` and choose which challenge you want to deploy, you just need to give the index, for example if you want to deploy `[COMMON] [DoS] VVVIP Member` you just need to inpit `14`.  
-> **NOTE**: `1337 - Deploy All Challenge` is recommended **ONLY** if you have the minimum VPS specifications specified [here](../README.md#minimum-recommended-specification), because it will consume a lot of CPU to start all Challenges at once.)
+3. To Deploy a Challenge, you just need to choose option `1. Deploy Challenge` and choose which challenge you want to deploy. You just need to give the index; for example, if you want to deploy `[COMMON] [DoS] VVVIP Member` you just need to input `14`.  
+> **NOTE**: `1337 - Deploy All Challenge` is recommended **ONLY** if you have the minimum VPS specifications specified [here](../README.md#minimum-recommended-specification), because it will consume a lot of CPU to start all Challenges at once.
 
 ```
 Anything we can help?
@@ -82,7 +82,7 @@ Please Choose an Option
 >> 
 ```
 
-4. Your challenge is now deployed, you can verify this by accessing the url on your website.
+4. Your challenge is now deployed; you can verify this by accessing the URL on your website.
 
 ```bash
 # Success Deployment
@@ -99,7 +99,7 @@ Anything we can help?
 
 ## Stop challenge(s)
 
-1. To Stop the Challenge once you're done, you can run the `manager.sh` again with the first option `1. Manage Challenge`, this time choosing the next option `2. Stop Challenge`
+1. To stop the challenge, once you're done, you can run the `manager.sh` again with the first option `1. Manage Challenge`, this time choosing the next option `2. Stop Challenge`
 ```bash
   ___   __   ____  __  __ _   __     _  _  ____  __  ____  ____ 
  / __) / _\ / ___)(  )(  ( \ /  \   / )( \(  __)(  )/ ___)(_  _)
@@ -132,10 +132,10 @@ Which container do you want to remove?
 >> 2
 Enter the index of the container to remove: 
 ```
-2. To stop specific Challenge, you can choose `2. Remove Specific` and enter the index of the Challenge. To Remove All Challenge, choose option `1. Remove All`
+2. To stop a specific challenge, you can choose `2. Remove Specific` and enter the index of the challenge. To remove all challenges, choose option `1. Remove All`
 
 ## Active challenge(s) information
-1. To see how many active container, you can run `manager.sh` and choose first option `1. Manage Challenge` and then option `3. Containers Info`
+1. To see how many active containers, you can run `manager.sh` and choose first option `1. Manage Challenge` and then option `3. Containers Info`
 ```bash
 
 Anything we can help?

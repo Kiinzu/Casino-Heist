@@ -1,4 +1,4 @@
-Becoming a VVVIP Member always has the downside, like how easily you can be replaced by other, but what if we can make ourselves forever a VVVIP member? That's the task that we are going to tackle in this challenge, the *isSolved()* condition as seen below is quite unique &nbsp;  
+Becoming a VVVIP member always has the downside, like how easily you can be replaced by others, but what if we can make ourselves forever a VVVIP member? That's the task that we are going to tackle in this challenge; the *isSolved()* condition, as seen below, is quite unique. &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -36,13 +36,13 @@ contract Setup{
 }
 ```
 &nbsp;  
-initially, the Setup Contract is the current VVVIP Member with 3 Ether worth, but there is a function *TryIfSolve()*, this function will run in order to change the *solved()* value, if the Setup succeed to reclaim his Membership, then we are going to receive our money back and we lost our VVVIP Member status, but if we check our balance using this command &nbsp;  
+Initially, the Setup Contract is the current VVVIP Member with 3 Ether worth, but there is a function *TryIfSolve()*; this function will run in order to change the *solved()* value. If the Setup succeeds to reclaim his Membership, then we are going to receive our money back and we lost our VVVIP Member status, but if we check our balance using this command &nbsp;  
 &nbsp;  
 ```bash
 cast balance -r $RPC_URL $WALLET_ADDR
 ```
 &nbsp;  
-Turns out we only have 7 Ether, so how come we can hold our status as the VVVIP Member if the Setup is going to reclaim it with 7 Ether? Let's see the VVVIP Contract first &nbsp;  
+Turns out we only have 7 Ether, so how come we can hold our status as the VVVIP Member if the setup is going to reclaim it with 7 Ether? Let's see the VVVIP contract first. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -71,9 +71,9 @@ contract VVVIP{
 }
 ```
 &nbsp;  
-There we can see the logic, so the first person to interact with it will automatically become the VVVIP Member, which is the Setup with 3 Ether worth. When someone tries to challenge the VVVIP Member, if the Ether send to challenge is less than the current VVVIP Member worth, it will revert, else it will refund the worth of the previous VVVIP member and set the new VVVIP Member alongside with the Ether worth. &nbsp;  
+There we can see the logic, so the first person to interact with it will automatically become the VVVIP Member, which is the Setup with 3 Ether worth. When someone tries to challenge the VVVIP Member, if the Ether sent to challenge is less than the current VVVIP Member worth, it will revert; otherwise,  it will refund the worth of the previous VVVIP Member and set the new VVVIP Member alongside the Ether worth. &nbsp;  
 &nbsp;  
-The logic there seems flawless, but what if I told you we don't have to be the one to interact with it, we can just create an Exploit Contract that has no way of receiving Ether. Why this would work? Since the way of refund is required to be successful, if we just make it failed everytime, our VVVIP Member status won't be revoked, so here is the Exploit Contract. &nbsp;  
+The logic there seems flawless, but what if I told you we don't have to be the ones to interact with it? We can just create an exploit contract that has no way of receiving Ether. Why would this work? Since the way of refund is required to be successful, if we just make it fail every time, our VVVIP Member status won't be revoked, so here is the exploit contract. &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -100,7 +100,7 @@ contract Exploit{
 }
 ```
 &nbsp;  
-We just need to deploy it and give it 4 Ether to works &nbsp;  
+We just need to deploy it and give it 4 Ether to work. &nbsp;  
 &nbsp;  
 ```bash
 // Deploying the Exploit Contract
@@ -110,4 +110,4 @@ forge create src/vvvip-member/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private-
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
 &nbsp;  
-Running the command above and make the Exploit contract become the forever VVVIP Member will solved the challenge!
+Running the command above and making the exploit contract become the forever VVVIP member will solve the challenge!

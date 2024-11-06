@@ -1,4 +1,4 @@
-This Heist require you to get at least 10 Ether from the NewBank that they create in the mist of Inju Bank fall. &nbsp;  
+This heist requires you to get at least 10 Ether from the NewBank that they create in the mist of Inju Bank fall. &nbsp;  
 &nbsp;  
 ```solidity
 pragma solidity ^0.8.26;
@@ -24,7 +24,7 @@ contract Setup{
 }
 ```
 &nbsp;  
-In the *Setup Contract*, we can know that the *isSolved()* function require us to first *setPlayer()* and it can only be an EOA, meaning we can't use any Exploit Contract here. Now let's see other files that also given to us, *BetterERC20.sol* and *NewBank.sol*, we are going to see the *BetterERC20.sol* first &nbsp;  
+In the *Setup Contract*, we can know that the *isSolved()* function requires us to first *setPlayer()*, and it can only be an EOA, meaning we can't use any Exploit Contract here. Now let's see other files that were also given to us, *BetterERC20.sol* and *NewBank.sol*, We are going to see the *BetterERC20.sol* first. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -62,7 +62,7 @@ interface IBetterERC20 {
 }
 ```
 &nbsp;  
-Turns out it's not a contract, but an Interface and to be precise, it's ERC20 Interface. Knowing that we are working with an ERC Standard, makes the scope of search much easier, what we need to be focused on here is a misimplementation or override of the ERC20 original function. For this, let's see the *NewBank Contract* &nbsp;  
+It turns out it's not a contract but an interface, and to be precise, it's an ERC20 interface. Knowing that we are working with an ERC Standard makes the scope of search much easier. What we need to be focused on here is a misimplementation or override of the ERC20 original function. For this, let's see the *NewBank Contract*. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -118,9 +118,9 @@ contract NewBank is IBetterERC20{
 }
 ```
 &nbsp;  
-After viewing all the function here, it seems almost everything is okay except the *burn()* function. *burn()* usually remove a token from the supply and deduct the balance, but this time it's adding it instead of deducting it, so this is the flaw. &nbsp;  
+After viewing all the functions here, it seems almost everything is okay except the *burn()* function. *burn()* usually removes a token from the supply and deducts the balance, but this time it's adding it instead of deducting it, so this is the flaw. &nbsp;  
 &nbsp;  
-We already found the way to get ourselves some balance, by calling the *burn()* with the value of address pointing to our wallet with the value of 10 Ether, so let's just do that! &nbsp;  
+We already found the way to get ourselves some balance by calling *burn()* with the value of address pointing to our wallet with the value of 10 Ether, so let's just do that! &nbsp;  
 &nbsp;  
 ```bash
 // Getting the NewBank Address
@@ -130,4 +130,4 @@ cast call -r $RPC_URL $SETUP_ADDR "NB()"
 cast send -r $RPC_URL --private-key $PK $NB_ADDR "burn(address,uint256)" $WALLET_ADDR 10000000000000000000
 ```
 &nbsp;  
-By running the commands above in your terminal, you should've solve the lab!
+By running the commands above in your terminal, you should've solved the lab!

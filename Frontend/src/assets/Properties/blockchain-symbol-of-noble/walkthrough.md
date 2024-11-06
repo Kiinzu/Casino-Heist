@@ -1,4 +1,4 @@
-A Symbol of Noble turns out to be an NFT, what a joke right? But it seems that the deal here is a real one, now let's see what we have to do for achieving this "Noble" status. &nbsp;  
+A Symbol of Noble turns out to be an NFT. What a joke, right? But it seems that the deal here is a real one; now let's see what we have to do for achieving this "Noble" status. &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -24,7 +24,7 @@ contract Setup{
 }
 ```
 &nbsp;  
-In the constructor we can see that the *Setup Contract* can call a function *Noble::setAdministrator()*, so it seems that there is a *onlyOwner()* modifier in the *Administrator Contract*. The *isSolved()* condition will be true if the variable in the *Administrator::trueNoble()* has the value of true. Okay, enough information here, let's move to the *Noble Contract* since the *Administrator Contract* also need *Noble* to be deployed first &nbsp;  
+In the constructor, we can see that the *Setup Contract* can call a function *Noble::setAdministrator()*, so it seems that there is a *onlyOwner()* modifier in the *Administrator Contract*. The *isSolved()* condition will be true if the variable in the *Administrator::trueNoble()* has the value of true. Okay, enough information here. Let's move to the *Noble Contract* since the *Administrator Contract* also needs *Noble* to be deployed first. &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -87,7 +87,7 @@ contract Noble is ERC721URIStorage{
 }
 ```
 &nbsp;  
-Based on what we see from top to bottom, this is the Contract that implements the ERC721 Standard with the name of *Nobility* and symbol *NOBLE*, and just like what we've guessed, it has a *onlyOwner()* modifier, plus it also has *onlyAdministrator*, from this information we know that the *Administrator* is the contract that we will have to interact with since *Noble Contract* is the one implement the standard. &nbsp;  
+Based on what we see from top to bottom, this is the contract that implements the ERC721 Standard with the name of *Nobility* and symbol *NOBLE*, and just like what we've guessed, it has a *onlyOwner()* modifier, plus it also has *onlyAdministrator*, From this information, we know that the *Administrator* is the contract that we will have to interact with since *Noble Contract* is the one that implements the standard. &nbsp;  
 &nbsp;  
 The function *mintNobility()* is only accessible by *Administrator Contract* and will give the NFT to the receiver using *_safeMint()*. The other 2 functions only exist to give back the condition of someone NFT and the NFT one owns. Let's move on to the *Administrator Contract* &nbsp;  
 &nbsp;  
@@ -130,7 +130,7 @@ contract Administrator{
 }
 ```
 &nbsp;  
-Starting from the constructor, it seems that 1 Ether that we saw in *Setup::constructor()* was meant to set the *fee()* on *Administrator Contract*. This contract has only 2 function, first is a payable function called *proofNobility()*, by providing 1 Ether, we will received our own NFT because this function will call *Noble::mintNobility()*. The other function, *isTrueNoble()* will modify the *trueNoble()* variable if the *msg.sender* has 10 NFT on its possession, wait... let's look this function closely &nbsp;  
+Starting from the constructor, it seems that 1 Ether that we saw in *Setup::constructor()* was meant to set the *fee()* on *Administrator Contract*. This contract has only 2 functions. The first is a payable function called *proofNobility()*, By providing 1 Ether, we will receive our own NFT because this function will call *Noble::mintNobility()*. The other function, *isTrueNoble()*, will modify the *trueNoble()* variable if the *msg.sender* has 10 NFT in its possession. Wait,  let's look at this function closely. &nbsp;  
 &nbsp;  
 ```solidity
     function proofNobility() public payable{
@@ -141,7 +141,7 @@ Starting from the constructor, it seems that 1 Ether that we saw in *Setup::cons
     }
 ```
 &nbsp;  
-It seems that it doesn't implement the CEI pattern correctly! Instead of changing the status of *joined()* first before minting the NFT, it mints the NFT first to the *msg.sender*, so we have a potential Reentrancy here! The Idea now is calling this *proofNobility()* function 10 times, but there is something that we need to know first &nbsp;  
+It seems that it doesn't implement the CEI pattern correctly! Instead of changing the status of *joined()* first before minting the NFT, it mints the NFT first to the *msg.sender*, so we have a potential reentrancy here! The idea now is calling this *proofNobility()* function 10 times, but there is something that we need to know first. &nbsp;  
 &nbsp;  
 ```solidity
 // Snippet of ERC721 _safeMint
@@ -151,7 +151,7 @@ It seems that it doesn't implement the CEI pattern correctly! Instead of changin
     }
 ```
 &nbsp;  
-So on every mint it will check for the receiver, whether the receiver is able to receive ERC721 transfer, the function that responsible for doing this check is called *onERC721Received()* and it's originated from *ERC721Utils*, it will perform a check of magic number (bytes4) and only when the Receiver can return the correct one then the transfer will be completed. This check however only performend on non-EOA, and here is the code &nbsp;  
+So on every mint, it will check for the receiver, whether the receiver is able to receive an ERC721 transfer. The function that is responsible for doing this check is called *onERC721Received()*, and it's originated from *ERC721Utils*. It will perform a check of magic numbers (bytes4) and only when the receiver can return the correct one will the transfer be completed. This check however only performs on non-EOA, and here is the code. &nbsp;  
 &nbsp;  
 ```solidity
 library ERC721Utils {
@@ -191,7 +191,7 @@ library ERC721Utils {
 }
 ```
 &nbsp;  
-We know what we have to do now, we just need to implement the Exploit, here is the final Exploit Contract &nbsp;  
+We know what we have to do now; we just need to implement the Exploit. Here is the final Exploit Contract. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -240,7 +240,7 @@ contract Exploit is IERC721Receiver {
 }
 ```
 &nbsp;  
-I will explain a little bit about the *onERC721Received()*, like what I've said before, it checks if the Receiver is capable to receiving ERC721 Transfer especially if it's a Smart Contract, this function ensure that it can return the correct selector of *onERC721Received(address,address,uint256,bytes)*, that's why as long we return the correct value there we can put a logic before the return making it controlable just like implementing a logic on *receive()* when we are doing Reentrancy. Here is how we can deploy and solve the Contract &nbsp;  
+I will explain a little bit about the *onERC721Received()*. Like what I've said before, it checks if the receiver is capable of receiving an ERC721 transfer, especially if it's a smart contract. This function ensures that it can return the correct selector of *onERC721Received(address,address,uint256,bytes)*, that's why as long as we return the correct value, we can put a logic before the return, making it controllable, just like implementing a logic on *receive()* when we are doing reentrancy. Here is how we can deploy and solve the contract. &nbsp;  
 &nbsp;  
 ```bash
 // Checking Our Balance Since we need at least 10 Ether

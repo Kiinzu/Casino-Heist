@@ -1,4 +1,4 @@
-The problem with the contract is present due to not following the best practice of CEI in *Administrator.sol::proofNobiliy()*, &nbsp;  
+The problem with the contract is present due to not following the best practice of CEI in *Administrator.sol::proofNobility()*, &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -13,7 +13,7 @@ function proofNobility() public payable{
 }
 ```
 &nbsp;  
-So, the easiest mitigation that we can provide to our "client" here is to modify the code to follow the **CEI** pattern correctly. To add additional security, we can also use *Openzeppelin Library*, especially the *ReentrancyGuard.sol*, you can find the contract [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol) or you can look it directly in your *@openzeppelin/contracts/security/ReentrancyGuard.sol*. Let's try to implement both in this mitigation &nbsp;  
+So, the easiest mitigation that we can provide to our "client" here is to modify the code to follow the **CEI** pattern correctly. To add additional security, we can also use *Openzeppelin Library*, especially *ReentrancyGuard.sol*. You can find the contract [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol) or you can look it directly in your *@openzeppelin/contracts/security/ReentrancyGuard.sol*. Let's try to implement both in this mitigation &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -65,7 +65,7 @@ contract Administrator is ReentrancyGuard{
 }
 ```
 &nbsp;  
-If you are interested to learn more about reentrancy and alternatives way to defend your contract against it, you can check the blog post made by Openzeppelin in the link below &nbsp;  
+If you are interested in learning more about reentrancy and alternative ways to defend your contract against it, you can check the blog post made by Openzeppelin in the link below. &nbsp;  
 &nbsp;  
 
 - https://blog.openzeppelin.com/reentrancy-after-istanbul

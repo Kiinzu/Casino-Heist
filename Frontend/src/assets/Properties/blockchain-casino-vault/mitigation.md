@@ -1,4 +1,4 @@
-In the Heist you just did, you discovered a vulnerability of *delegatecall* because we can put the *address* of our own contract and put some *raw data* to be executed there, we can then just create an Exploit contract that changes the state of the value in the *SLOT 1*, where the *Owner* resides and take over the contract, this can be mitigate by adding a simple whitelist to the contract such as this &nbsp;  
+In the heist you just did, you discovered a vulnerability of *delegatecall* because we can put the *address* of our own contract and put some *raw data* to be executed there. We can then just create an exploit contract that changes the state of the value in *SLOT 1*, where the *owner* resides, and take over the contract. This can be mitigated by adding a simple whitelist to the contract, such as this. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -45,4 +45,4 @@ contract CasinoVault {
 }
 ```
 &nbsp;  
-With the mitigated contract, now we check the *owner* by a modifier called *onlyOwner()* and make sure that only the owner can register address to the *whitelist*. Plus we add a check on *verifyIdentity()* to check whether the *address* input is whitelisted. 
+With the mitigated contract, now we check the *owner* by a modifier called *onlyOwner()* and make sure that only the owner can register an address on the *whitelist*. Plus, we add a check on *verifyIdentity()* to check whether the *address* input is whitelisted.

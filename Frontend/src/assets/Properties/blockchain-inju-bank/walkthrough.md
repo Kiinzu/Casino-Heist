@@ -1,4 +1,4 @@
-This Bank is not as secure as you might think, first let's see what is the *isSolved()* condition on the Setup Contract &nbsp;  
+This bank is not as secure as you might think. First,  let's see what the *isSolved()* condition is on the setup contract.  &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -19,7 +19,7 @@ contract Setup {
 }
 ```
 &nbsp;  
-based on the Setup Contract, the initial balance of the bank is 50 Ether, while the *isSolved()* will return true if it has 0 balance, not let's see the Inju Bank to see what are we dealing with. &nbsp;  
+Based on the setup contract, the initial balance of the bank is 50 Ether, while the *isSolved()* will return true if it has 0 balance, not let's see the Inju Bank to see what we are dealing with. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -53,7 +53,7 @@ contract InjuBank{
 }
 ```
 &nbsp;  
-We only have 2 function to deal with in this contract, yeah let's say the *receive()* is the same as the *deposit()*. So first, the *deposit()* function allow us to deposit some Ether to the bank and add it to our account, it has the minimum deposit of 1 Ether. Next up, is the *withdraw()* that allow us to withdraw our money with the minimum amount of 1 Ether per withdrawal, nothing seems strange until we look more closely &nbsp;  
+We only have 2 functions to deal with in this contract; yeah, let's say the *receive()* is the same as the *deposit()*. So first, the *deposit()* function allows us to deposit some Ether to the bank and add it to our account; it has the minimum deposit of 1 Ether. Next up is the *withdraw()* that allow us to withdraw our money with the minimum amount of 1 Ether per withdrawal. Nothing seems strange until we look more closely &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -70,9 +70,9 @@ We only have 2 function to deal with in this contract, yeah let's say the *recei
     }
 ```
 &nbsp;  
-The best practice of any function is always CEI or **CHECK** - **EFFECT** - **INTERACTIONS**, the *withdraw()* function however doesn't seem to apply this correctly, instead it implements CIE or **CHECK** - **INTERACTIONS** - **EFFECT**, in this case the **INTERACTIONS** is sending the balance to the *msg.sender*, which if it's a smart contract or more explicitly an Exploit Contract, we can control what to do next after receiving any Ether by modifying the *receive()* function on our Exploit Contract. &nbsp;  
+The best practice of any function is always CEI, or **CHECK** - **EFFECT** - **INTERACTIONS**, the *withdraw()* function, however, doesn't seem to apply this correctly; instead it implements CIE, or **CHECK** - **INTERACTIONS** - **EFFECT**, in this case, the **INTERACTIONS** is sending the balance to the *msg.sender*, which, if it's a smart contract or more explicitly an Exploit Contract, we can control what to do next after receiving any Ether by modifying the *receive()* function on our Exploit Contract. &nbsp;  
 &nbsp;  
-The Exploit will have this flow, first we have to deposit some Ether, since the minimum is one an we have 6 Ether, we can give our Exploit 5 Ether and make it deposit all that Ether. Next is calling the withdraw with the value of 5 (our balance), upon receiving the Ether, we can just make it trigger another *withdraw()* of another 5 Ether, this will be repeated until we drain all the balance on the Inju Bank. The Exploit would look like this &nbsp;  
+The Exploit will have this flow; first we have to deposit some Ether; since the minimum is one and we have 6 Ether, we can give our Exploit 5 Ether and make it deposit all that Ether. Next is calling the withdraw with the value of 5 (our balance); upon receiving the Ether, we can just make it trigger another *withdraw()* of another 5 Ether; this will be repeated until we drain all the balance on the Inju Bank. The exploit would look like this &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -106,7 +106,7 @@ contract Exploit{
 }
 ```
 &nbsp;  
-To Deploy the Exploit Contract and run it we can use this command &nbsp;  
+To deploy the exploit contract and run it, we can use this command. &nbsp;  
 &nbsp;  
 ```bash
 // Deploying the Exploit Contract
@@ -116,7 +116,7 @@ forge create src/inju-bank/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private-key
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
 &nbsp;  
-After running the command, if you press the *Flag* button now you should get the flag. By the way if you are curious on like how the attack worked, here is a little flow of the Exploit. &nbsp;  
+After running the command, if you press the *Flag* button now you should get the flag. By the way, if you are curious on like how the attack worked, here is a little flow of the Exploit. &nbsp;  
 &nbsp;  
 ```bash
 ├─ [123849] Exploit::attack()

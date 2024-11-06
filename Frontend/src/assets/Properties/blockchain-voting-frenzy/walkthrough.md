@@ -30,7 +30,7 @@ contract Setup{
 ``` 
 &nbsp;  
 
-Well, the *isSolved()* function only returns true if the winner is the 1st party, we have to look into the *PrizePool Contract* to figure this out, but now let's analyze the constructor. It first deploy the *Prizepool Contract*, and another 3 participans with each 5, 1 and 3 Ether, now that we know that the initial setup is, let's see what the *Participant Contract* is all about. &nbsp;  
+Well, the *isSolved()* function only returns true if the winner is the 1st party; we have to look into the *PrizePool Contract* to figure this out, but now let's analyze the constructor. It first deploys the *Prizepool Contract* and another 3 participants with each 5, 1, and 3 Ether, now that we know what the initial setup is, let's see what the *Participant Contract* is all about. &nbsp;  
 &nbsp;  
 ```solidity
 contract Participant1{
@@ -44,7 +44,7 @@ contract Participant1{
 }
 ```
 &nbsp;  
-We are going to take a look at the first only since the other 2 are similar, it first call the *addVote()* with 5 Ether and "**Michelio**" as name I guess, and it votes for the 2nd Party, oh no our competitor it seems. Well let's see the real deal now, the *Prizepool Contract* &nbsp;  
+We are going to take a look at the first only since the other 2 are similar; it first calls the *addVote()* with 5 Ether and "**Michelio**" as name, I guess, and it votes for the 2nd Party, oh no, our competitor, it seems. Well, let's see the real deal now, the *Prizepool Contract* &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -102,9 +102,9 @@ contract PrizePoolBattle{
 }
 ```
 &nbsp;  
-Let's view it part by part to make it more understandable, the first part of course the constructor, when this contract is deployed, it immediately call the *addCandidate()* function, this function will add a new candidates based on the *Id* as we can see on the *Struct Candidate* on the first few line, the *candidateCounts()* is the one responsible for giving the *Id* and the party can only be either *ENUMA* or *ALPHA*. Based on the constructor, we know that *ENUMA* has the *Id* of 1 and *ALPHA* has the *Id* of 2. &nbsp;  
+Let's view it part by part to make it more understandable. The first part is, of course, the constructor. When this contract is deployed, it immediately calls the *addCandidate()* function. This function will add new candidates based on the *Id*, as we can see on the *Struct Candidate* on the first few lines. The *candidateCounts()* is the one responsible for giving the *Id*, and the party can only be either *ENUMA* or *ALPHA*. Based on the constructor, we know that *ENUMA* has the *Id* of 1 and *ALPHA* has the *Id* of 2. &nbsp;  
 &nbsp;  
-The Modifier *checkWinner()* will check at the end of a function run, if a candidate has a vote of 10, it will declare the *winner*. Let's continue to the rest of the functions &nbsp;  
+The modifier *checkWinner()* will check at the end of a function run; if a candidate has a vote of 10, it will declare the *winner*. Let's continue to the rest of the functions. &nbsp;  
 &nbsp;  
 ```solidity
     function addVoter(string memory _name) public payable{
@@ -138,11 +138,11 @@ The Modifier *checkWinner()* will check at the end of a function run, if a candi
     }
 ```
 &nbsp;  
-We got 4 functions here, the first one is *addVoter()*, this function seems to check whether someone is already registered or not and after that it will increate the *votersCount()* and push it to the struct of Voter. What we know here the weight of someone vote is determined by the money they put in, and at the end it ensures that we can only register once by changing the *votersExist()* to true. &nbsp;  
+We got 4 functions here; the first one is *addVoter()*; this function seems to check whether someone is already registered or not, and after that, it will increase the *votersCount()* and push it to the struct of Voter. What we know here is that the weight of someone's vote is determined by the money they put in, and at the end, it ensures that we can only register once by changing the *votersExist()* to true. &nbsp;  
 &nbsp;  
-Next up is the *vote()* function, we can see that the modifier *checkWinner()* is implemented here, meaning this function will be the one that trigger the change, it first has 3 check, to check wheter the voter exist, check the if the winner has been selected and the one we voted to be either 1 or 2 only. We can see there it will get our Id and check whether we already vote or not by checking the the *voted* attribute on our struct if it's already *true*, but here is the strange thing, after the check instead of setting the *voted* to true, it reset us to *false*, meaning even if we have a very low weight, we can vote multiple times! Here is the Logic error bug! &nbsp;  
+Next up is the *vote()* function. We can see that the modifier *checkWinner()* is implemented here, meaning this function will be the one that triggers the change. It first has 3 checks to check whether the voter exists, check if the winner has been selected, and the one we voted to be either 1 or 2 only. We can see there it will get our ID and check whether we already vote or not by checking the *voted* attribute on our struct if it's already *true*, but here is the strange thing: after the check, instead of setting the *voted* to true, it resets us to *false*, meaning even if we have a very low weight, we can vote multiple times! Here is the logic error bug! &nbsp;  
 &nbsp;  
-The next 2 function are only for getting the state of the vote count anytime and the winner if the winner is selected. So let's wrap up about what we have now. &nbsp;  
+The next 2 functions are only for getting the state of the vote count anytime and the winner if the winner is selected. So let's wrap up about what we have now. &nbsp;  
 &nbsp;  
 
 - Party Number 2 (*ALPHA*) has 9 Votes already (5 + 1 +3) from other Participants
@@ -151,7 +151,7 @@ The next 2 function are only for getting the state of the vote count anytime and
 - We have a logic error where we can vote unlimitedly. &nbsp;  
 &nbsp;  
 
-We have 2 choices here, we can do it manually by registering via *addVoter()* and send the vote 10 times, or we can make a Smart contract that does that. In this approach I'm going to create a Smart Contract that does just that, and here is the code &nbsp;  
+We have 2 choices here: we can do it manually by registering via *addVoter()* and send the vote 10 times, or we can make a smart contract that does that. In this approach, I'm going to create a smart contract that does just that, and here is the code. &nbsp;  
 &nbsp;  
 ```solidity
 pragma solidity ^0.8.25;
@@ -188,4 +188,4 @@ forge create src/voting-frenzy/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "exploit()"
 ```
 &nbsp;  
-Running the command above, you should've exploited the contract and get your flag.
+Running the command above, you should've exploited the contract and gotten your flag.
