@@ -1,11 +1,11 @@
 # CASINO HEIST : Where Blockchain Vulnerabilities Meet the Thrill of the Heist!
 ![Logo](./casino-heist.png)
 # Casino Heist
-**We are an open-source blockchain playground where we provide challenges that featured the OWASP Top 10 Smart Contracts and the Mitigation**
+**We’re an open-source blockchain playground offering challenges that feature not only the OWASP Top 10 vulnerabilities in smart contracts and their mitigations but also other common vulnerabilities and simplified versions of real-world hacks.**
 
 Are you a blockchain developer, auditor, enthusiast, or just starting your journey into the world of blockchain?
 
-**You’re in the right place.**
+**You’re in the right place!** 
 
 The Web3 and blockchain space has grown significantly over the past few years, with many real-world applications of blockchain in areas like finance, voting, and gaming. Advanced technology doesn’t come without security risks. Whether you're looking to gain new skills (such as smart contract security) or explore a career as a smart contract developer or auditor, mastering and understanding security is essential to protecting the ecosystem we're building.
 
@@ -124,9 +124,14 @@ Do you wish to launch Quick Start Casino Heist? (y/n) y
     Casino Heist is created and backed by [ENUMA ID](https://discord.gg/scwfGkERsj), a community that gathered smart contract security enthusiast in Indonesia.
 
 ## How to Contribute
-We are open for contributions; you can contribute in 2 ways. If you like to create a challenge and want others to try it out or If you like to write writeups and walkthroughs and are excited for them to be read by others and featured in our playground, you can do that!
+We have 2 types of contribution available for you to choose:
 
-Just follow the instruction [here](./Contribution/) to contribute!
+- **Challenge Contribution**
+    If you think you got a good challenge and cool concept that others should try, you can contribute a challenge by following the guide [here](./Contribution/README.md#contributing-challenge).
+- **Walkthrough Contribution**
+    We encourage you to write your own writeup or walkthrough, but if you want them featured in **Casino Heist**, feel free to submit a PR by following this guide [here](./Contribution/README.md#walkthrough-contribution)
+
+By contributing to us, we will have your name displayed as either a `Challenge Contributor` or `Walkthrough Contributor` in this Repository!
 
 ## Authors
 - [Kiinzu](https://github.com/kiinzu)

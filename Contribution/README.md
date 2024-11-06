@@ -72,4 +72,3 @@ If your challenge needs to implement a certain ERC, you can either provide the w
 2. On `/Contribution` notice that there is a directory called `/Template/Template-Walkthrough`. Copy the directory and change it to your `walkthrough-contributor_name` format, for example, `walkthrough-mewzaels`.
 3. Update the note.txt and adjust it to your needs.
 4. Finally, make the pull request and we will check it!
-
