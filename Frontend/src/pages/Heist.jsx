@@ -399,7 +399,7 @@ const Heist = () => {
 
     const codeBox = (
       <div className="heist-code-container" key="code">
-        <h2>Code</h2>
+        <h2>Hands-On</h2>
         <div className="heist-code-content">
           <div className="heist-description">
             <ReactMarkdown children={desc} className="heist-codebox-description"/>

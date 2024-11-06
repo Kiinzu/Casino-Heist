@@ -66,7 +66,8 @@ You can choose one of the three methods provided to use the application; if you 
     If you want to enjoy the UI and and do it locally, you can setup Casino Heist to run locally on your machine, and if you fancy, you can fetch the data from our official API at `https://casinoheist.xyz/api`. Follow the guide [here](./Documentation/HTTP_deployment.md)
 
 > **NOTE**
-This option of communicating directly to our API will end at the end of 2024 or until further notice.
+>- This option of communicating directly to our API will end at the end of 2024 or until further notice.
+>- To learn how to use the blockchain infrastructure, please refer [here](./Documentation/PLAY_101.md).
 
 ### Quick Start
 To deliver the experience without much hussle, you can follow this guide to deploy **Quick Start - Casino Heist**. It will deploy the `Frontend` locally in your machine and fetch everything from our official API at `https://casinoheist.xyz/api`
