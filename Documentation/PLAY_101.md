@@ -27,6 +27,13 @@ s.e7F6bpu33y2JEbx39/HcWQcUZgDW/u+K804hG5o3kkVXmLSAKt9oEBo3g0hnNEv8gZJqCmFrcDXRxW
 
 6. Once you're sure that you've solved the challenge, this can be confirmed by viewing the `Setup.sol::isSolved()` function returns; if it returns `1` then it's true, else it's false. Then you can get the flag by pressing the `Flag` button.
 
+```bash
+# EXAMPLE: isSolved() is True
+$ cast call -r http://103.178.153.113:30001/ae1b5ec0-5cf3-4a95-aa02-aaa13eb83b8a 0xd8ed6928026D1d9d16f3b570B2ED9f550E378853 "isSolved()"  
+
+0x0000000000000000000000000000000000000000000000000000000000000001
+```
+
 <img src="./PLAY_101/solved.png">
 
 7. After getting the flag, you can just submit it in the Casino Heist Hands-On Section. 
