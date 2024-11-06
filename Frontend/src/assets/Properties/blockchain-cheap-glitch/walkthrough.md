@@ -1,4 +1,4 @@
-We know that from the *Setup.sol* we need to make the *Capitol::isRicher()* bool returns true, in order to do this we need to call the *Capitol::richerThanOwner()*  
+We know that from the *Setup.sol* we need to make the *Capitol::isRicher()* bool returns true; in order to do this, we need to call the *Capitol::richerThanOwner()*  
 &nbsp;  
 ```solidity
 function richerThanOwner() public{
@@ -9,7 +9,7 @@ function richerThanOwner() public{
 }
 ```
 &nbsp;   
-based on the code, it will make the *Capitol::isRicher()* true if the our balance is greater the owner itself and it's not greater than *10_000_000_000_000 ether*, because it's ether so add another 18 zero. Now let's see the whole code to see where we can make this possible  
+Based on the code, it will make the *Capitol::isRicher()* true if our balance is greater than the owner itself and it's not greater than *10_000_000_000_000 ether*, because it's ether, so add another 18 zero. Now let's see the whole code to see where we can make this possible.  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -50,10 +50,10 @@ contract Capitol{
 }
 ```
 &nbsp;   
-Looking from the solidity version *^0.8.26*, Arithmetic overflow-underflow is most likely impossible, but wait, there is *unchecked{}* in both *Capitol::depositCredit()* and *Capitol::withdrawCredit()*, this means the input *uint256 _amount* will be process regardless if it's going to overflow or underflow the value of *balanceOf[msg.sender]* by the end of the operation because they are unchecked!
+Looking from the Solidity version *^0.8.26*, Arithmetic overflow-underflow is most likely impossible, but wait, there is *unchecked{}* in both *Capitol::depositCredit()* and *Capitol::withdrawCredit()*, this means the input *uint256 _amount* will be processed  regardless if it's going to overflow or underflow the value of *balanceOf[msg.sender]* by the end of the operation because they are unchecked!
 &nbsp;  
 &nbsp;  
-Furthermore, in *Capitol::withdrawCredit*, there is no check whether the amount that we are going to withdraw is exceeding our current balance or not, so we don't have to deposit anything to withdraw. Now calculating the correct amount so that our balance is less than *10_000_000_000_000 ether*, in this walkthrough we are going to create a simple function in solidity and run it  
+Furthermore, in *Capitol::withdrawCredit*, there is no check whether the amount that we are going to withdraw is exceeding our current balance or not, so we don't have to deposit anything to withdraw. Now calculating the correct amount so that our balance is less than *10_000_000_000_000 ether*, in this walkthrough we are going to create a simple function in Solidity and run it.  
 &nbsp;  
 ```solidity
 
@@ -66,4 +66,4 @@ contract Calculate{
 }
 ``` 
 &nbsp;  
-In solidity we can get the max value of a data type using *type(<datatype>).max* just like the code above, to get the max value of uint256. We simply calculate the distance between the max from the target and add 2 at the end, why 2? Notice that our balance start from *0*, meaning we need to *-1* so that our balance become the max number an uint256 can hold, then another *-1* to make sure we are below the *10_000_000_000_000 ether* mark, the function will return a large number that will make our balance *9_999_999_999_999 ether*. 
+In Solidity we can get the max value of a data type using *type(<datatype>).max* just like the code above, to get the max value of uint256. We simply calculate the distance between the max from the target and add 2 at the end, why 2? Notice that our balance start from *0*, meaning we need to *-1* so that our balance becomes the max number an uint256 can hold, then another *-1* to make sure we are below the *10_000_000_000_000 ether* mark, the function will return a large number that will make our balance *9_999_999_999_999 ether*. 

@@ -1,4 +1,4 @@
-In a game of blackjack, the objectives are to get the closest to 21, both the dealer and the player are competing in this, but as you know a this game, here at least, is rigged so that you can win if you know how, let's see how we can always win in this game.
+In a game of blackjack, the objectives are to get the closest to 21, both the dealer and the player are competing in this, but as you know, this game, here at least, is rigged so that you can win if you know how. Let's see how we can always win in this game.
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -7,7 +7,7 @@ function isSolved() external view returns (bool) {
 }
 ```
 &nbsp;  
-The *Setup.sol::isSolved()* will get the *Blackjack.sol::playerWon()* bool, this will return true if the player has won the game, let's move on to the *Blackjack.sol*
+The *Setup.sol::isSolved()* will get the *Blackjack.sol::playerWon()* bool, this will return true if the player has won the game. Let's move on to the *Blackjack.sol*
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -56,7 +56,7 @@ contract Blackjack{
 }
 ```
 &nbsp;  
-We are up against the dealer (which is Setup contract), looking deeper into *playBlackjack()*, we can notice that the randomness there are using *block.timestamp*, this is not recommended for giving a random value to a variable since it is very easy to predict. We can choose whose turn next, of course we want to take the initiative and draw our card, if not, the deealer will win regardless. We only got one chance, so we better make it count, we are not as detail as a smart contract, so to solve this lab, we are going to create an Exploit Contract, that will call the *playBlackjack* with the value of *1* (our move) and only call it when we got *+4* - since it will bring our card to 21 and if it does, we will have *playerWon()*, here is how we can do it
+We are up against the dealer (which is the setup contract); looking deeper into *playBlackjack()*, we can notice that the randomness there are using *block.timestamp*, this is not recommended for giving a random value to a variable since it is very easy to predict. We can choose whose turn next; of course we want to take the initiative and draw our card; if not, the dealer will win regardless. We only got one chance, so we better make it count. We are not as detailed as a smart contract, so to solve this lab, we are going to create an exploit contract that will call the playBlackjack with the value of  *1* (our move) and only call it when we got *+4* - since it will bring our card to 21 and if it does, we will have *playerWon()*, here is how we can do it
 &nbsp;  
 &nbsp;  
 ```solidity
@@ -88,7 +88,7 @@ contract Exploit {
 }
 ```
 &nbsp;  
-you don't have to use a *modifier*, you can also us a simple *if else* statement to check if you win or not, but here I'm using modifier to return a revert message. Now we just have to deploy the contract and solve it.
+You don't have to use a *modifier*, you can also use a simple *if else* statement to check if you win or not, but here I'm using a modifier to return a revert message. Now we just have to deploy the contract and solve it.
 &nbsp;  
 &nbsp;  
 ```bash
@@ -100,4 +100,4 @@ forge create src/$PATH_TO_EXPLOIT:$EXPLOIT_NAME -r $RPC_URL --private-key $PK --
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "solveBlackjack()"
 ```
 &nbsp;  
-Noy you can just click the `Flag` button to get your flag~
+Now you can just click the `Flag` button to get your flag~

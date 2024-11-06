@@ -1,9 +1,9 @@
 ## HTTP Deployment (Local Usage)
 If you prefer not to deploy with HTTPS but still want to experience playing Casino Heist with its UI, you can deploy the website locally and fetch Challenge information and all other data from our official API.
 
-For a limited time, you can have the Casino Heist Website running in your local and fetch the data from our running Website at `casinoheist.xyz/api`, here is how you can deploy your local Casino Heist Website
+For a limited time, you can have the Casino Heist website running in your local and fetch the data from our running website at `casinoheist.xyz/api`.Here is how you can deploy your local Casino Heist website
 
-1. On your local computer, git clone this repository
+1. On your local computer, git clone this repository.
 
 ```bash
 https://github.com/Kiinzu/Casino-Heist.git
@@ -37,11 +37,11 @@ to deploy the Challenges and Backend on your localhost.
 Do you wish to use Casino Heist official API? (yes/no) 
 ```
 
-3. If you choose to use Casino Heist Official API, you won't be required to deploy the Backend and Challenge youself, it will automatically fetch everything from our Official API. (**This option only last until the end of 2024 or until further notice!**)
+3. If you choose to use the Casino Heist official API, you won't be required to deploy the backend and challenge yourself; it will automatically fetch everything from our official API (**This option only lasts until the end of 2024 or until further notice!**)
 
-4. If you choose not to use our Official API, you'll need to deploy the Challenges yourself by following [this](../Documentation/CHALL-ONLY_deployment.md) deployment, as for the Website (Frontend & Backend), it will be configured by the script to be deployed on `localhost:5173` (Frontend) and `127.0.0.1:5000` (Backend). 
+4. If you choose not to use our official API, you'll need to deploy the challenges yourself by following [this](../Documentation/CHALL-ONLY_deployment.md) deployment. As for the website (frontend and backend), it will be configured by the script to be deployed on `localhost:5173` (frontend) and `127.0.0.1:5000` (backend). 
 
-5. Now you have a running Casino Heist Website on your local, you can verify this by navigating to `localhost:5173`
+5. Now you have a running Casino Heist website on your local; you can verify this by navigating to `localhost:5173`
 
 > **NOTE** 
-This option of communication directly to our API will end in the end of 2024 or until further notice.
+This option of communicating directly to our API will end at the end of 2024 or until further notice.

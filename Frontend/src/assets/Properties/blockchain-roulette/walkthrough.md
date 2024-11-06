@@ -1,4 +1,4 @@
-In this Game, we need to have make the *stolenEnough()* bool returns true in order to solve the lab. &nbsp;  
+In this Game, we need to have the *stolenEnough()* bool return true in order to solve the lab. &nbsp;  
 &nbsp;  
 ```solidity
 contract Setup{
@@ -72,14 +72,14 @@ contract Roulette{
 }
 ``` 
 &nbsp;  
-We have 2 modifiers up there, one is *_kickOut()* that will check whether we have scroe of winning about 100 or not, if we are then we can no longer play the game. The second one is *_hasStolenEnough()* this is the one which will check after all the code in the function is complete, if the balance of the player is greeater than 20 Ether, it will change the *stolenEnough* bool to true, so our goal here is to have a Balance greater than 20 Ether. &nbsp;  
+We have 2 modifiers up there; one is *_kickOut()* that will check whether we have a score of winning about 100 or not; if we are, then we can no longer play the game. The second one is *_hasStolenEnough()* this is the one that will check after all the code in the function is complete. If the balance of the player is greater than 20 Ether,it will change the *stolenEnough* bool to true, so our goal here is to have a balance greater than 20 Ether. &nbsp;  
 &nbsp;  
 
-The first 2 functions below the constructor seems to be the generator of the source of the randomness, and it doesn't seem to be that secure since it use a predictable or at least we can also get that variable the *block.timestamp*, the only difference is the modulo. Both of them are used for different function, the *randomGenerator()* is used by *playRoullete()* and the *biggerRandomGenerator()* is used by *playBiggerRoulette()*.  &nbsp;  
+The first 2 functions below the constructor seem to be the generator of the source of the randomness, and it doesn't seem to be that secure since it uses a predictable, or at least we can also get that variable from the *block.timestamp*, the only difference is the modulo. Both of them are used for different functions; the *randomGenerator()* is used by *playRoullete()* and the *biggerRandomGenerator()* is used by *playBiggerRoulette()*.  &nbsp;  
 &nbsp;  
-So we are dealing with an insecure randomness vulnerability here, let's see the *playRoulette()* first, if we manage to guess the correct number we will get 1 Ether and it adds our winning by 1, so we can only play this maximum of 5 times since when we reach 5 it will revert. The other one, *playBiggerRoullete()* seems to give more reward and won counter, but it require us to have at least 5 win already (so we need to play the smaller one first), if we managed to guess right, we will get 10 ether per win and it will add 50 winning point, so we can only play this twice since it has the *_kickedOut()* modifier and it will also validate our balance by the *_hasStolenEnough()* modifier. &nbsp;  
+So we are dealing with an insecure randomness vulnerability here. Let's see the *playRoulette()* first. If we manage to guess the correct number, we will get 1 Ether, and it adds our winning by 1, so we can only play this maximum of 5 times since when we reach 5, it will revert. The other one, *playBiggerRoullete()* seems to give more reward and won counter, but it requires us to have at least 5 wins already (so we need to play the smaller one first). If we managed to guess right, we will get 10 ether per win and it will add 50 winning point, so we can only play this twice since it has the *_kickedOut()* modifier, and it will also validate our balance by the *_hasStolenEnough()* modifier. &nbsp;  
 &nbsp;  
-So the Attack Idea here is to play the *playRoulette()* 5 times and then moving to the *playBiggerRoulette()* 2 times, it will give us 25 Ether in total, more than enough to make the *stolenEnough()* to become true, but we can't just play it since it has *block.timestamp* as the source of randomness, we need to make an Exploit contract here, it will look like this &nbsp;  
+So the attack idea here is to play the *playRoulette()* 5 times and then move to the *playBiggerRoulette()* 2 times; it will give us 25 Ether in total, more than enough to make the *stolenEnough()* become true, but we can't just play it since it has *block.timestamp* as the source of randomness, we need to make an exploit contract here; it will look like this &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -119,7 +119,7 @@ contract exploit{
 }
 ```
 &nbsp;  
-Now we just need to deploy the contract and call the *playRoulette()* on our smart contract to solve it, here is how you can deploy the Exploit contract. &nbsp;  
+Now we just need to deploy the contract and call *playRoulette()* on our smart contract to solve it. Here is how you can deploy the exploit contract. &nbsp;  
 &nbsp;  
 ```bash
 // Deploying the Exploit Contract
@@ -129,4 +129,4 @@ forge create src/roulette/$EXPLOIT_FILE:$EXPLOIT_NAME -r $RPC_URL --private-key 
 cast send -r $RPC_URL --private-key $PK $EXPLOIT_ADDR "playRoulette()"
 ``` 
 &nbsp;  
-By doing the command above, deploying the contract and calling it, you should've solved the lab!
+By doing the command above, deploying the contract, and calling it, you should've solved the lab!

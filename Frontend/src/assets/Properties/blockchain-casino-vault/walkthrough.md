@@ -1,4 +1,4 @@
-The Vault of this Casino can only be opened by the owner, what are we trying to do here is to take everything from the owner, but how? &nbsp;  
+The vault of this casino can only be opened by the owner. What we are trying to do here is take everything from the owner, but how? &nbsp;    
 &nbsp;   
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -20,7 +20,7 @@ contract Setup{
 }
 ```
 &nbsp;  
-it seems the Heist is successful when we managed to empty the Vault, a lot of work to be done here it seems huh? Let's look at what we're dealing with, the *CasinoVault Contract* &nbsp;  
+It seems the heist was successful when we managed to empty the vault. A lot of work to be done here, it seems, huh? Let's look at what we're dealing with *CasinoVault Contract* &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -50,9 +50,9 @@ contract CasinoVault {
 }
 ```
 &nbsp;  
-We can see here that we can verifyIdentify by providing an *address* and a *bytes memory data*, they use deelgatecall there, delegate call are usually used like a "borrowed function", you execute the function in order to modify the state of the caller, in this case if we parse and address an execute the data there it will execute the data and modify the state of the *Casino Vault* itself. Unlinke Silent-Dealer where there is a function to change owner here the option doesn't present. So hwo can we become the Owner and drain the vault? &nbsp;  
+We can see here that we can verifyIdentify by providing an *address* and a *bytes memory data*, they use delegatecall there, delegate calls are usually used like a "borrowed function". You execute the function in order to modify the state of the caller. In this case, if we parse and address and execute the data there, it will execute the data and modify the state of the *Casino Vault* itself. Unlinke Silent-Dealer where there is a function to change owner here the option doesn't present. So how can we become the owner and drain the vault? &nbsp;  
 &nbsp;  
-In EVM Assembly, there is a operation called *sstore(location, value)*, we can use this to overwrite the storage memory, let's see where the *owner* reside, &nbsp;  
+In EVM Assembly, there is an operation called *sstore(location, value)*. We can use this to overwrite the storage memory, let's see where the *owner* resides, &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -60,7 +60,7 @@ In EVM Assembly, there is a operation called *sstore(location, value)*, we can u
     address public owner; // SLOT 1
 ```
 &nbsp;  
-based on that information, we can see that the owner is stored at SLOT 1, and the length since it's an address must be 20 bytes long. Now that we have the 2 options, we can either put the owner to become ourselves (EOA) or we can write the Exploit Contract Address, this can be done by either providing *origin()* (EOA) or *caller()* (msg.sender, in this case is the Exploit Contract), as the parameter. So if we want to overwrite the storage we can use &nbsp;  
+Based on that information, we can see that the owner is stored at SLOT 1, and the length since it's an address must be 20 bytes long. Now that we have the 2 options, we can either put the owner to become ourselves (EOA) or we can write the Exploit Contract Address; this can be done by either providing *origin()* (EOA) or *caller()* (msg.sender, in this case is the Exploit Contract), as the parameter. So if we want to overwrite the storage, we can use &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -69,7 +69,7 @@ sstore(1, origin()) // for tx.origin / EOA
 sstore(1, caller()) // for msg.sender 
 ```
 &nbsp;  
-In this exploitation I choose to overwrite it using my EOA, so we are going to go with this exploit to drain the Vault &nbsp;  
+In this exploitation, I choose to overwrite it using my EOA, so we are going to go with this exploit to drain the vault. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -100,7 +100,7 @@ contract Exploit {
 }
 ```
 &nbsp;  
-Let's deploy it and at last we going to withdraw all the money stored there &nbsp;  
+Let's deploy it, and at last we're going to withdraw all the money stored there. &nbsp;  
 &nbsp;  
 ```bash
 // Deploying the Exploit Contract

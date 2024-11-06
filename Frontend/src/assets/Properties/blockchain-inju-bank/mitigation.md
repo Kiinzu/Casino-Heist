@@ -1,4 +1,4 @@
-Based on the Heist you just did, you must have already noticed that the problem was the incorrect CEI Implementation &nbsp;  
+Based on the heist you just did, you must have already noticed that the problem was the incorrect CEI implementation. &nbsp;  
 &nbsp;  
 ```solidity
 function withdraw(uint256 _amount) public{
@@ -14,7 +14,7 @@ function withdraw(uint256 _amount) public{
 }
 ```
 &nbsp;  
-The first easily mitigation for this problem is implmeneting the correct CEI pattern, so it would prevent reentrancy because the balance is being set before sending the actual Ether &nbsp;  
+The first easy mitigation for this problem is implementing the correct CEI pattern, so it would prevent reentrancy because the balance is being set before sending the actual Ether.  &nbsp;  
 &nbsp;  
 ```solidity
 function withdraw(uint256 _amount) public{
@@ -30,7 +30,7 @@ function withdraw(uint256 _amount) public{
 }
 ```
 &nbsp;  
-We can add an extra layer of protection by using *Openzeppelin's Library* especially the *ReentrancyGuard.sol*, you can find the contract [here](import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Using ReentrancyGuard.sol). How it works is basically make sure that there is no recursive call to the function that being protected when an unfinished call is happening, and here is how we can implement it &nbsp;  
+We can add an extra layer of protection by using *Openzeppelin's Library*, especially the *ReentrancyGuard.sol*. You can find the contract [here](import "@openzeppelin/contracts/security/ReentrancyGuard.sol"; // Using ReentrancyGuard.sol). How it works is basically to make sure that there is no recursive call to the function that is being protected when an unfinished call is happening, and here is how we can implement it. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT

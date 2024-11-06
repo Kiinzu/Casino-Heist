@@ -1,4 +1,4 @@
-Now that you've successfully completed the Heist, we will learn how to fix the problem that you just encountered. First of all we notice that the contract already using Solidity version *0.8.26* and can be compiled with latest version, so the version here is not the problem, the problem seems lies in the *unchecked*, and let's add some more check &nbsp;  
+Now that you've successfully completed the heist, we will learn how to fix the problem that you just encountered. First of all, we notice that the contract is already using Solidity version *0.8.26* and can be compiled with the latest version, so the version here is not the problem; the problem seems to lie in the *unchecked*, and let's add some more check &nbsp;  
 &nbsp;  
 
 ```solidity
@@ -39,7 +39,7 @@ contract Capitol{
 }
 ```
 &nbsp;  
-The mitigation above seems enough to fix the vulnerability, there is also another way to make the operation more secure, we can use the *OpenZeppelin's SafeMath* library, here is a little example for the *depositCredit()* function that also use the *SafeMath* library &nbsp;  
+The mitigation above seems enough to fix the vulnerability. There is also another way to make the operation more secure; we can use *OpenZeppelin's SafeMath* library. Here is a little example for the *depositCredit()* function that also uses the *SafeMath* library. &nbsp;  
 &nbsp;  
 
 ```solidity
