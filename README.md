@@ -1,4 +1,4 @@
-# CASINO HEIST: Where Blockchain Vulnerabilities Meet the Thrill of the Heist!
+# CASINO HEIST: Where Smart Contracts Vulnerabilities Meet the Thrill of the Heist!
 ![Logo](./casino-heist.png)
 # Casino Heist
 **We’re an open-source blockchain playground offering challenges that feature not only the OWASP Top 10 vulnerabilities in smart contracts and their mitigations but also other common vulnerabilities and simplified versions of real-world hacks.**
