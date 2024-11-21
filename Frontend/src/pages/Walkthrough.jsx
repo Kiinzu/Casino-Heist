@@ -150,7 +150,7 @@ const Walkthrough = () => {
             {isConfirmPopupOpen && (
                 <div className="popup-overlay">
                 <div className="popup-content-walkthrough">
-                    <p>Are you sure you want to start this challenge?</p>
+                    <p>Are you sure you want to use the Guide?</p>
                     <button onClick={handleConfirmYes} className='button-one'>Yes</button>
                     <button onClick={handleConfirmNo} className='button-two'>No</button>
                 </div>
