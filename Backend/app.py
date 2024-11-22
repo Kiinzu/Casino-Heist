@@ -3,7 +3,7 @@ from pathlib import Path
 import sqlite3
 import uuid
 import os
-import binascii
+import re
 import hashlib
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -119,53 +119,73 @@ def get_token_expiration(user_id, token):
 def register_user():
     try:
         data = request.json
-        username = data.get('username')
-        email = data.get('email')
+        username = data.get('username', '').strip()
+        email = data.get('email', '').strip().lower()
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
 
         # Validate input
         if not username or not email or not password or not confirm_password:
-            return jsonify({'error': 'Missing fields'}), 400
+            return jsonify({'error': 'All fields are required'}), 400
 
         if password != confirm_password:
             return jsonify({'error': 'Passwords do not match'}), 400
         
-        # Generate a unique UUID for the user
-        user_id = str(uuid.uuid4())
+        username = re.sub(r'[^a-zA-Z0-9_\-]', '', username)
+        if not username:
+            return jsonify({'error': 'Invalid username'}), 400
 
-        # Hash the password for security
+        if len(username) < 4:
+            return jsonify({'error': 'Username must be at least 4 characters long'}), 400
+
+        email_pattern = r'^[^@]+@[^@]+\.[^@]+$'
+        if not re.match(email_pattern, email):
+            return jsonify({'error': 'Invalid email format'}), 400
+
+        if len(password) < 6 or not any(char.isdigit() for char in password) or not any(char.isalpha() for char in password):
+            return jsonify({'error': 'Password must be at least 8 characters long and include letters and numbers'}), 400
+
+        # Generate a unique user ID and hash the password
+        user_id = str(uuid.uuid4())
         hashed_password = generate_password_hash(password)
 
-        # Insert the user into the database
+        # Get database connection
         db = get_db()
-        
-        cursor = db.execute("SELECT challengeId FROM Challenges")
-        challengesId = cursor.fetchall()
-        challenge_ids = [row[0] for row in challengesId]
-        challenge_ids.sort()
 
-        try:
+        # Insert the user into the database
+        with db:
+            # Insert the user
             db.execute(
                 'INSERT INTO User (userId, userHandler, userEmail, userPassword) VALUES (?, ?, ?, ?)',
                 (user_id, username, email, hashed_password)
             )
-            for challenge_id in challenge_ids:
-                try:
-                    cursor.execute('''
-                        INSERT INTO ChallengeCompletion (userId, challengeId)
-                        VALUES (?, ?)
-                    ''', (user_id, challenge_id))
-                except sqlite3.IntegrityError:
-                    print(f"ChallengeCompletion for challengeId {challenge_id} already exists.")
-            db.commit()
-            return jsonify({'message': 'User registered successfully'}), 201
-        except sqlite3.IntegrityError:
-            return jsonify({'error': 'Username or email already exists'}), 400
 
-    except Exception as e:
-        print(f"Error: {e}")
-        return jsonify({'error': 'An error occurred during registration'}), 500
+            # Fetch all challenge IDs
+            cursor = db.execute("SELECT challengeId FROM Challenges")
+            challenge_ids = [row[0] for row in cursor.fetchall()]
+            challenge_ids.sort()
+
+            # Insert challenge completion records
+            for challenge_id in challenge_ids:
+                db.execute(
+                    'INSERT INTO ChallengeCompletion (userId, challengeId) VALUES (?, ?)',
+                    (user_id, challenge_id)
+                )
+
+        return jsonify({'message': 'User registered successfully'}), 201
+
+    except sqlite3.IntegrityError as e:
+        # Handle unique constraint violations
+        if 'userHandler' in str(e):
+            return jsonify({'error': 'Username already exists'}), 400
+        if 'userEmail' in str(e):
+            return jsonify({'error': 'Email already exists'}), 400
+        return jsonify({'error': 'Database integrity error'}), 500
+
+    except Exception:
+        # Generic error response
+        return jsonify({'error': 'Internal server error'}), 500
+
 
 # Route to log in an existing user
 @app.route('/api/login', methods=['POST'])

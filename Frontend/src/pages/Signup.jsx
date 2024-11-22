@@ -23,8 +23,29 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+      showMessage('All fields are required', true);
+      return;
+    }
+
+    if (formData.username.length < 4) {
+      showMessage('Username must be at least 4 characters long', true);
+      return;
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      showMessage('Password must contain at least one letter and one number', true);
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       showMessage('Passwords do not match', true);
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      showMessage('Password must be at least 6 characters long', true);
       return;
     }
 
