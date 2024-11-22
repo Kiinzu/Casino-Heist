@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import time
 from dotenv import load_dotenv
+import re
 
 # //////////////////////////////////
 # /////     Configuration      /////
@@ -119,10 +120,15 @@ def get_token_expiration(user_id, token):
 def register_user():
     try:
         data = request.json
-        username = data.get('username', '').strip()
-        email = data.get('email', '').strip().lower()
+        username = data.get('username')
+        email = data.get('email')
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
+
+        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+            return jsonify({'error': 'Email is not a valid email!'}), 400
+        
+        print(username,email,password)
 
         # Validate input
         if not username or not email or not password or not confirm_password:
@@ -151,10 +157,13 @@ def register_user():
 
         # Get database connection
         db = get_db()
+        
+        cursor = db.execute("SELECT challengeId FROM Challenges")
+        challengesId = cursor.fetchall()
+        challenge_ids = [row[0] for row in challengesId]
+        challenge_ids.sort()
 
-        # Insert the user into the database
-        with db:
-            # Insert the user
+        try:
             db.execute(
                 'INSERT INTO User (userId, userHandler, userEmail, userPassword) VALUES (?, ?, ?, ?)',
                 (user_id, username, email, hashed_password)
@@ -167,25 +176,21 @@ def register_user():
 
             # Insert challenge completion records
             for challenge_id in challenge_ids:
-                db.execute(
-                    'INSERT INTO ChallengeCompletion (userId, challengeId) VALUES (?, ?)',
-                    (user_id, challenge_id)
-                )
+                try:
+                    cursor.execute('''
+                        INSERT INTO ChallengeCompletion (userId, challengeId)
+                        VALUES (?, ?)
+                    ''', (user_id, challenge_id))
+                except sqlite3.IntegrityError:
+                    print(f"ChallengeCompletion for challengeId {challenge_id} already exists.")
+            db.commit()
+            return jsonify({'message': 'User registered successfully'}), 201
+        except sqlite3.IntegrityError:
+            return jsonify({'error': 'Username or email already exists'}), 400
 
-        return jsonify({'message': 'User registered successfully'}), 201
-
-    except sqlite3.IntegrityError as e:
-        # Handle unique constraint violations
-        if 'userHandler' in str(e):
-            return jsonify({'error': 'Username already exists'}), 400
-        if 'userEmail' in str(e):
-            return jsonify({'error': 'Email already exists'}), 400
-        return jsonify({'error': 'Database integrity error'}), 500
-
-    except Exception:
-        # Generic error response
-        return jsonify({'error': 'Internal server error'}), 500
-
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'error': 'An error occurred during registration'}), 500
 
 # Route to log in an existing user
 @app.route('/api/login', methods=['POST'])
