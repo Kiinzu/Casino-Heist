@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import time
 from dotenv import load_dotenv
+import re
 
 # //////////////////////////////////
 # /////     Configuration      /////
@@ -119,10 +120,14 @@ def get_token_expiration(user_id, token):
 def register_user():
     try:
         data = request.json
-        username = data.get('username')
-        email = data.get('email')
+        username = data.get('username', '').strip().replace(' ', '')
+        email = data.get('email', '').strip().replace(' ', '').lower()
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
+
+        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+            return jsonify({'error': 'Email is not a valid email!'}), 400
+        
         print(username,email,password)
 
         # Validate input
