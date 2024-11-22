@@ -19,7 +19,7 @@ cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS User (
     userId TEXT PRIMARY KEY,
-    userHandler TEXT NOT NULL,
+    userHandler TEXT NOT NULL UNIQUE,
     userEmail TEXT NOT NULL UNIQUE,
     userPassword TEXT NOT NULL,
     avatar TEXT

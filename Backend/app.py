@@ -123,6 +123,7 @@ def register_user():
         email = data.get('email')
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
+        print(username,email,password)
 
         # Validate input
         if not username or not email or not password or not confirm_password:
@@ -145,6 +146,19 @@ def register_user():
         challenge_ids = [row[0] for row in challengesId]
         challenge_ids.sort()
 
+        check = db.execute("SELECT * FROM user")
+        list_of_users = [dict(row) for row in check.fetchall()]  
+
+        # Check if the username is already present
+        if any(user['userHandler'] == username for user in list_of_users):
+            print(f"Username '{username}' already exists.")
+            return jsonify({'error': 'Username or email already exists'}), 400
+
+        # Check if the email is already present
+        if any(user['userEmail'] == email for user in list_of_users):
+            print(f"Email '{email}' already exists.")
+            return jsonify({'error': 'Username or email already exists'}), 400
+        
         try:
             db.execute(
                 'INSERT INTO User (userId, userHandler, userEmail, userPassword) VALUES (?, ?, ?, ?)',
@@ -152,7 +166,7 @@ def register_user():
             )
             for challenge_id in challenge_ids:
                 try:
-                    cursor.execute('''
+                    db.execute('''
                         INSERT INTO ChallengeCompletion (userId, challengeId)
                         VALUES (?, ?)
                     ''', (user_id, challenge_id))
@@ -160,9 +174,9 @@ def register_user():
                     print(f"ChallengeCompletion for challengeId {challenge_id} already exists.")
             db.commit()
             return jsonify({'message': 'User registered successfully'}), 201
-        except sqlite3.IntegrityError:
+        except sqlite3.IntegrityError as e:
+            print(f"IntegrityError: {e}")
             return jsonify({'error': 'Username or email already exists'}), 400
-
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'error': 'An error occurred during registration'}), 500
