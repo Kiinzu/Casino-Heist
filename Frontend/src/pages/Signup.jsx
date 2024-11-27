@@ -28,24 +28,14 @@ const Signup = () => {
       return;
     }
 
-    if (formData.username.length < 4) {
-      showMessage('Username must be at least 4 characters long', true);
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    if (!usernameRegex.test(formData.username)) {
+      showMessage('Username must contain only alphanumeric characters', true);
       return;
-    }
-
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!passwordRegex.test(formData.password)) {
-      showMessage('Password must contain at least one letter and one number', true);
-      return;
-    }
+  }
 
     if (formData.password !== formData.confirmPassword) {
       showMessage('Passwords do not match', true);
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      showMessage('Password must be at least 6 characters long', true);
       return;
     }
 

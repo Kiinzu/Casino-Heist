@@ -3,7 +3,7 @@ from pathlib import Path
 import sqlite3
 import uuid
 import os
-import re
+import binascii
 import hashlib
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -120,42 +120,34 @@ def get_token_expiration(user_id, token):
 def register_user():
     try:
         data = request.json
-        username = data.get('username')
-        email = data.get('email')
+        username = data.get('username', '').strip().replace(' ', '')
+        email = data.get('email', '').strip().replace(' ', '').lower()
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
-
-        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
-            return jsonify({'error': 'Email is not a valid email!'}), 400
         
         print(username,email,password)
 
         # Validate input
         if not username or not email or not password or not confirm_password:
-            return jsonify({'error': 'All fields are required'}), 400
+            return jsonify({'error': 'Missing fields'}), 400
+        
+        username = re.sub(r'[^a-zA-Z0-9]', '', username)  # Allow alphanumeric
+        if not username:
+            return jsonify({'error': 'Invalid username'}), 400
+        
+        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+            return jsonify({'error': 'Email is not a valid email!'}), 400
 
         if password != confirm_password:
             return jsonify({'error': 'Passwords do not match'}), 400
         
-        username = re.sub(r'[^a-zA-Z0-9_\-]', '', username)
-        if not username:
-            return jsonify({'error': 'Invalid username'}), 400
-
-        if len(username) < 4:
-            return jsonify({'error': 'Username must be at least 4 characters long'}), 400
-
-        email_pattern = r'^[^@]+@[^@]+\.[^@]+$'
-        if not re.match(email_pattern, email):
-            return jsonify({'error': 'Invalid email format'}), 400
-
-        if len(password) < 6 or not any(char.isdigit() for char in password) or not any(char.isalpha() for char in password):
-            return jsonify({'error': 'Password must be at least 8 characters long and include letters and numbers'}), 400
-
-        # Generate a unique user ID and hash the password
+        # Generate a unique UUID for the user
         user_id = str(uuid.uuid4())
+
+        # Hash the password for security
         hashed_password = generate_password_hash(password)
 
-        # Get database connection
+        # Insert the user into the database
         db = get_db()
         
         cursor = db.execute("SELECT challengeId FROM Challenges")
@@ -163,21 +155,27 @@ def register_user():
         challenge_ids = [row[0] for row in challengesId]
         challenge_ids.sort()
 
+        check = db.execute("SELECT * FROM user")
+        list_of_users = [dict(row) for row in check.fetchall()]  
+
+        # Check if the username is already present
+        if any(user['userHandler'] == username for user in list_of_users):
+            print(f"Username '{username}' already exists.")
+            return jsonify({'error': 'Username or email already exists'}), 400
+
+        # Check if the email is already present
+        if any(user['userEmail'] == email for user in list_of_users):
+            print(f"Email '{email}' already exists.")
+            return jsonify({'error': 'Username or email already exists'}), 400
+        
         try:
             db.execute(
                 'INSERT INTO User (userId, userHandler, userEmail, userPassword) VALUES (?, ?, ?, ?)',
                 (user_id, username, email, hashed_password)
             )
-
-            # Fetch all challenge IDs
-            cursor = db.execute("SELECT challengeId FROM Challenges")
-            challenge_ids = [row[0] for row in cursor.fetchall()]
-            challenge_ids.sort()
-
-            # Insert challenge completion records
             for challenge_id in challenge_ids:
                 try:
-                    cursor.execute('''
+                    db.execute('''
                         INSERT INTO ChallengeCompletion (userId, challengeId)
                         VALUES (?, ?)
                     ''', (user_id, challenge_id))
@@ -185,9 +183,9 @@ def register_user():
                     print(f"ChallengeCompletion for challengeId {challenge_id} already exists.")
             db.commit()
             return jsonify({'message': 'User registered successfully'}), 201
-        except sqlite3.IntegrityError:
+        except sqlite3.IntegrityError as e:
+            print(f"IntegrityError: {e}")
             return jsonify({'error': 'Username or email already exists'}), 400
-
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'error': 'An error occurred during registration'}), 500
