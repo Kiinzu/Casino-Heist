@@ -2,7 +2,7 @@ To solve the lab, we need to make *Setup::playerSolved()* return true. Here is t
 &nbsp;  
 &nbsp;  
 ```solidity
-    function solvedByPlayer() public {
+function solvedByPlayer() public {
     playerSolved = bar.beerGlass(msg.sender) >= 1 ? true : false;
 }
 

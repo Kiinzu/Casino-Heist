@@ -44,7 +44,7 @@ const Home = () => {
             </div>
             <div className='home-filler-layer'>
                 <h1>for <em>EVERYONE.</em></h1>
-                <h4>Whether you are a new or expereienced player,</h4>
+                <h4>Whether you are a new or experienced player,</h4>
                 <h4>There is something for everyone.</h4>
             </div>
             <div className='home-third-container'>
