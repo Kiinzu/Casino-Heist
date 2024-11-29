@@ -151,7 +151,7 @@ The next 2 functions are only for getting the state of the vote count anytime an
 - We have a logic error where we can vote unlimitedly. &nbsp;  
 &nbsp;  
 
-We have 2 choices here: we can do it manually by registering via *addVoter()* and send the vote 10 times, or we can make a smart contract that does that. In this approach, I'm going to create a smart contract that does just that, and here is the code. &nbsp;  
+We have 2 choices here: we can do it manually by registering via *addVoter()* and send the vote 10 times, or we can make a smart contract that does that. In this approach, I'm going to create a smart contract that does just that, and here is the code.
 &nbsp;  
 ```solidity
 pragma solidity ^0.8.25;
