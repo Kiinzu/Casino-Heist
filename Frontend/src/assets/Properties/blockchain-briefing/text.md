@@ -21,15 +21,16 @@ Like always, we need to setup before doing anything, hence the challenge name *B
 To solve *Briefing*, we will utilize both tools that you just discovered, we will use REMIX to see what the contract could do and use Foundry to interact with the real deployed contract on the private blockchain.&nbsp;  
 
 ## 2. Transaction
-A way of communicating in the blockchain is through transactions; we can categorize them by these three different transactions. &nbsp;  
-- *Transaction with/without Ether*&nbsp;  
-    A transaction in blockchain may include transferring Ether to a smart contract or an EOA, but we can also do a transaction that doesn't have any Ether, such as calling a function.&nbsp;  
-    &nbsp;  
-    EOA by default has the ability to receive Ether, but Smart Contract doesn't. A Smart Contract can only receive Ether when they implement either *receive()* or *fallback()* special methods.&nbsp;  
-    &nbsp;  
+A way of communicating in the blockchain is through transactions; we can categorize them by these three different transactions.&nbsp;  
+&nbsp;  
+- *Transaction with/without Ether*&nbsp;  
+    A transaction in blockchain may include transferring Ether to a smart contract or an EOA, but we can also do a transaction that doesn't have any Ether, such as calling a function.&nbsp;  
+    &nbsp;  
+    EOA by default has the ability to receive Ether, but Smart Contract doesn't. A Smart Contract can only receive Ether when they implement either *receive()* or *fallback()* special methods.&nbsp;  
+    &nbsp;  
 - *Transaction with/without Data*&nbsp;  
-    Like all programming languages, some functions might require an input like *uint256*, *address*, *bytes32*, etc. Keep in mind that not all functions require an input to call them, some might just need to be called without any value, some might require value and Ether, and some only Ether and data.&nbsp;  
-    &nbsp;  
+    Like all programming languages, some functions might require an input like *uint256*, *address*, *bytes32*, etc. Keep in mind that not all functions require an input to call them, some might just need to be called without any value, some might require value and Ether, and some only Ether and data.&nbsp;  
+    &nbsp;  
     Transactions that require data and/or some value are usually meant to execute some logic from a function and change the state of the smart contract.&nbsp;  
     &nbsp;  
 - *Transaction between/to EOA (External Owned Account)/Smart Contract*&nbsp;  
@@ -62,8 +63,8 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     ```
     &nbsp;  
     You will get a return of 32 bytes, 20 bytes is the real address while the rest is just some padding to fulfill the 32 bytes standard of a SLOT. We will talk about this later in this same challenge.&nbsp;
-    Now that we have the address of *Briefing Contract*, we can then interact with anything inside it, like its functions and variables. Let's try calling a variable and see its value. Let's call *completedCall*, &nbsp;  
-    &nbsp; 
+    Now that we have the address of *Briefing Contract*, we can then interact with anything inside it, like its functions and variables. Let's try calling a variable and see its value. Let's call *completedCall*,&nbsp;  
+    &nbsp;  
     ```text
     cast call -r $RP_URL $BriefADDR "completedCall()"
     ```
@@ -117,6 +118,7 @@ examples:
 - *string* - based on the size in bytes
 - *array* - based on the data type it stores &nbsp;  
 &nbsp;  
+
 Let's take a look at this example of code &nbsp;  
 &nbsp;  
 ```solidity

@@ -18,7 +18,6 @@ Solidity with Version *0.6.0* to *0.7.0* compiler has the risk of integer underf
 The Solidity *unchecked* keyword can play a crucial role in certain scenarios, offering the advantages of lower gas costs and bypassing certain checks. This keyword should only be used when the developers are sure the operation won't result in any security implication, like in this scenario. &nbsp;  
 &nbsp;  
 ```solidity
-
 function division(uint256 a, uint256 b) public pure returns(uint256){
     require(b < a, "Denominator cannot be smaller than Nominator");
     unchecked{
