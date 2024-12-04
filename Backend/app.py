@@ -124,15 +124,19 @@ def register_user():
         email = data.get('email', '').strip().replace(' ', '').lower()
         password = data.get('password')
         confirm_password = data.get('confirmPassword')
-
-        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
-            return jsonify({'error': 'Email is not a valid email!'}), 400
         
         print(username,email,password)
 
         # Validate input
         if not username or not email or not password or not confirm_password:
             return jsonify({'error': 'Missing fields'}), 400
+        
+        username = re.sub(r'[^a-zA-Z0-9]', '', username)  # Allow alphanumeric
+        if not username:
+            return jsonify({'error': 'Invalid username'}), 400
+        
+        if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+            return jsonify({'error': 'Email is not a valid email!'}), 400
 
         if password != confirm_password:
             return jsonify({'error': 'Passwords do not match'}), 400
