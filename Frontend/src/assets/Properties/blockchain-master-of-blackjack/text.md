@@ -18,7 +18,7 @@ The timestamp can be exploited in some ways depending on how the contract uses i
 
 Miners can manipulate block timestamps only to a certain degree, that degree being: &nbsp;  
 &nbsp;  
-1. Miner can set the timestamp to **No Ealier** than the parent block`s timestamp.
+1. Miner can set the timestamp to **No Earlier** than the parent block`s timestamp.
 2. **No more than 900 seconds (15 minutes)** *relative to the node's clock. &nbsp;  
 &nbsp;  
 

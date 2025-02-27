@@ -2,6 +2,7 @@ Briefing is the starting point of your long journey in Casino Heist. We will wal
 &nbsp;  
 
 - How the Blockchain works
+&nbsp; 
 - Smart Contract Basic  
 &nbsp;  
 
@@ -19,6 +20,7 @@ Like always, we need to setup before doing anything, hence the challenge name *B
 &nbsp;  
 
 To solve *Briefing*, we will utilize both tools that you just discovered, we will use REMIX to see what the contract could do and use Foundry to interact with the real deployed contract on the private blockchain.&nbsp;  
+&nbsp;  
 
 ## 2. Transaction
 A way of communicating in the blockchain is through transactions; we can categorize them by these three different transactions.&nbsp;  
@@ -45,7 +47,7 @@ A way of communicating in the blockchain is through transactions; we can categor
         In SCA exists a function that will send a call to a function in SCB, let's call it *function callB()*. When *C* triggers the function *callB()* from Smart Contract A SCB will be called, and it will have the following value: *msg.sender* since the current interaction is between SCA (sender) and SCB (receiver), SCA will be the *msg.sender*. As for the origin, SCA won't interact with SCB unless the function *callB* is called, the true caller or origin of the transaction is actually and EOA, *C*, thus in this case the *tx.origin* is *C*.&nbsp;  
     &nbsp;  
 
-*Important Note:* smart contracts can call each other using functions, but the initator or the origin (*tx.origin*) will always be an EOA.&nbsp;  
+*Important Note:* smart contracts can call each other using functions, but the initiator or the origin (*tx.origin*) will always be an EOA.&nbsp;  
 &nbsp;  
 
 ## 3. Foundry : cast call & send
@@ -103,22 +105,18 @@ In this introduction, we will try to work with the most basic Foundry Cast comma
     &nbsp; 
 
 ## 4. Storage in Solidity
-Storage, let's learn how Solidity stores their variable values. Solidity Storage is known for its SLOT, every SLOT is 32 bytes long, for each data type, here is the slot required to save them.&nbsp;  
+Storage, let's learn how Solidity stores their variable values. Solidity Storage is known for its SLOT, every SLOT is 32 bytes long, for each data type, here is the slot required to save them.
 &nbsp;  
-- *Address* - 20 bytes
-- *uintX* - X/8 bytes
-        examples:
-        -> uint256 - 32 bytes
-        -> uint32 - 4 bytes
-- *bytesX* - X bytes
-examples:
--> bytes32 - 32 bytes
--> bytes4 - 4 bytes
-- *bool* - 1 byte
-- *string* - based on the size in bytes
-- *array* - based on the data type it stores &nbsp;  
-&nbsp;  
+| Data Type  | Size (in bytes) |
+|------------|----------------|
+| **Address** | 20            |
+| **uintX**   | X/8           |
+| **bytesX**  | X             |
+| **bool**    | 1             |
+| **string**  | Based on size |
+| **array**   | based on the data type it stores |
 
+&nbsp;
 Let's take a look at this example of code &nbsp;  
 &nbsp;  
 ```solidity
@@ -154,8 +152,10 @@ Both constant and immutable variables, a variable that always has the same value
     &nbsp;  
 
 Now that you have learned how storage works in Solidity, let's put this in mind...&nbsp; 
+&nbsp; 
 *EVERYTHING IN BLOCKCHAIN IS PUBLIC, NO VARIABLE IS TRULY PRIVATE*&nbsp; 
 &nbsp; 
+
 ## 5. Reading a Storage Variable (cast storage)
 Now that we know that nothing is private in the blockchain and how storage works in solidity, we can try to get the answer that we need to solve the *Finalize()*, the *secretPhrase*.&nbsp; 
 So, how can we get the location for *secretPhrase*? You have to count it! Just kidding, we can do that too, but there is a more easy way to do it, there are several ways.&nbsp;  

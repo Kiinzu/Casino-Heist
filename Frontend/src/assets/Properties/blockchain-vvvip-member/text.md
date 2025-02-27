@@ -15,7 +15,7 @@ Smart Contract Denial of Service (DoS) can happen when a code has logic errors, 
     Smart Contracts can communicate with each other. If a smart contract communicates or makes a call to another smart contract, in which the call results in a change of state in the caller's contract, if it's unchecked whether the call failed or succeeded, it could pose a DoS threat to the caller's smart contract. &nbsp;  
     &nbsp;  
 3. **Operation Management-based DoS** &nbsp;  
-    If a smart contract has a privilege or role-base access control, let's say one is having *owner()* and it's crucial for a function to run, for example *transfer()* that requires *owner()* approval. If by any chance the owner lost its private key, then the function would never be able to be called, thus suspending all the transfer functionality. &nbsp;  
+    If a smart contract has a privilege or role-based access control, let's say one is having *owner()* and it's crucial for a function to run, for example *transfer()* that requires *owner()* approval. If by any chance the owner lost its private key, then the function would never be able to be called, thus suspending all the transfer functionality. &nbsp;  
     &nbsp;  
 
 Based on what you've read above, the impact of DoS in smart contracts most of the time will be either loss of balance (funds locked, inaccessible) or loss of functionality, or it might be both.

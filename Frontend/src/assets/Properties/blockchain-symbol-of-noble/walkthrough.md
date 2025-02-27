@@ -1,4 +1,4 @@
-A Symbol of Noble turns out to be an NFT. What a joke, right? But it seems that the deal here is a real one; now let's see what we have to do for achieving this "Noble" status. &nbsp;  
+A Symbol of Noble turns out to be an NFT. What a joke, right? But it seems that the deal here is a real one; now let's see what we have to do to achieve this "Noble" status. &nbsp;  
 &nbsp;  
 
 ```solidity
