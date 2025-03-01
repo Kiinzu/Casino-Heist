@@ -74,7 +74,7 @@ To deliver the experience without much hussle, you can follow this guide to depl
 1. Clone this repository
 
 ```bash
-https://github.com/Kiinzu/Casino-Heist.git
+git clone https://github.com/Kiinzu/Casino-Heist.git
 ```
 
 2. On `/Casino-Heist`, you'll find the `manager.sh`, run this script and choose option `0. Quick Start - Casino Heist` and choose `y`.
