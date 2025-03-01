@@ -1,4 +1,4 @@
-In the heist you just did, you discovered a vulnerability of *delegatecall* because we can put the *address* of our own contract and put some *raw data* to be executed there. We can then just create an exploit contract that changes the state of the value in *SLOT 1*, where the *owner* resides, and take over the contract. This can be mitigated by adding a simple whitelist to the contract, such as this. &nbsp;  
+In the heist you just did, you discovered a vulnerability of *delegatecall* because we can put the *address* of our own contract and put some *raw data* to be executed there. We can then just create an exploit contract that changes the state of the value in *SLOT 1*, where the *owner* resides, and takes over the contract. This can be mitigated by adding a simple whitelist to the contract, such as this. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT

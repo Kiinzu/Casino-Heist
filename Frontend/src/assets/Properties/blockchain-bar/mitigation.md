@@ -15,7 +15,7 @@ contract Bar{
     }
 
     function register() public payable isHuman{
-        // You can register here, but still need the Onwer to add you in.
+        // You can register here, but still need the Owner to add you in.
         require(msg.value >= 1e18, "Need 1 ether deposit.");
         balance[msg.sender] += msg.value;
     }

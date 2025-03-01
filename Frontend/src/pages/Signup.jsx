@@ -23,6 +23,17 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+      showMessage('All fields are required', true);
+      return;
+    }
+
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    if (!usernameRegex.test(formData.username)) {
+      showMessage('Username must contain only alphanumeric characters', true);
+      return;
+  }
+
     if (formData.password !== formData.confirmPassword) {
       showMessage('Passwords do not match', true);
       return;

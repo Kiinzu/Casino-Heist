@@ -21,8 +21,8 @@ As mentioned above, we need to make sure that the low-level calls we're making a
     Since *call()* takes raw data (byte representation), users can potentially trigger any function in the target contract, including private or administrative functions. &nbsp;  
     &nbsp;  
 
-- **Successful call to non-existend contract** &nbsp;  
-    Quotting from Solidity docs, EVM considers a call to a non-existing contract to always succeed. Solidity uses the *extcodesize* opcode to check whether the contract exists (containing code) and throw an exception if not. But like always, this check is not implemented in the low-level calls. &nbsp;  
+- **Successful call to non-existent contract** &nbsp;  
+    Quoting from Solidity docs, EVM considers a call to a non-existing contract to always succeed. Solidity uses the *extcodesize* opcode to check whether the contract exists (containing code) and throw an exception if not. But like always, this check is not implemented in the low-level calls. &nbsp;  
     &nbsp;  
 
 ## Impact of Unsafe Low-Level Call

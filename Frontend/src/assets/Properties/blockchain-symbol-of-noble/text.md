@@ -32,7 +32,7 @@ Though ERC-721 provides a standard structure, **incorrect implementations** can 
 - **Missing *safeTransferFrom()* implementation** &nbsp;  
     ERC-721 includes **two types** of token transfers, *transferFrom()* and *safeTransferFrom()*. The *safeTransferFrom()* ensures that the receiver (smart contract, since EOAs are not checked) is able to receive NFTs. If the developer only implements *transferFrom()* and skips *safeTransferFrom()*, tokens might be transferred to a contract that cannot handle them. &nbsp;  
     &nbsp;  
-- **Access Control Issuess (Minting and Burning)** &nbsp;  
+- **Access Control Issues (Minting and Burning)** &nbsp;  
     If access control is not implemented correctly for **minting or burning tokens**, unauthorized users might mint unlimited NFTs or burn tokens owned by others. &nbsp;  
     &nbsp;  
 

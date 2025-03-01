@@ -44,7 +44,7 @@ function register(string memory _firstName, string memory _lastName) public paya
 }
 
 function withdraw(string memory _firstName, string memory _lastName, uint256 _amount) public{
-    require(Member[_firstName][_lastName] == msg.sender, "You cannot withraw other people money!");
+    require(Member[_firstName][_lastName] == msg.sender, "You cannot withdraw other people money!");
     bytes memory code = getIdentity(_firstName, _lastName);
     require(balanceOf[code] - _amount >= 0, "You don't have this kind of money!");
     balanceOf[code] -= _amount;
