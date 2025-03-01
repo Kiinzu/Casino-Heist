@@ -1,4 +1,4 @@
-In the lab you've just done, you know that you can become the FOREVER VVVIP Member by making a smart contract that couldn't receive any Ether in order to make the refund fail, but know we are going to learn hwo to mitigate such vulnerability. The vulnerability lies in here. &nbsp;  
+In the lab you've just done, you know that you can become the FOREVER VVVIP Member by making a smart contract that couldn't receive any Ether in order to make the refund fail, but know we are going to learn how to mitigate such vulnerability. The vulnerability lies in here. &nbsp;  
 &nbsp;  
 
 ```solidity

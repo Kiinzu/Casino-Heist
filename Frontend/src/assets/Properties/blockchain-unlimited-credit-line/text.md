@@ -1,4 +1,4 @@
-Imagine after losing that much when your team fully looted Inju Bank. The casino has to create a new bank to maintain their wealth, so they did just that. **New Bank** is now created with the inovation of one of the oldest blockchain standards, the ERC20. They think they are safe now, but are they? Well, we leave it to you to figure it out! &nbsp;  
+Imagine after losing that much when your team fully looted Inju Bank. The casino has to create a new bank to maintain their wealth, so they did just that. **New Bank** is now created with the innovation of one of the oldest blockchain standards, the ERC20. They think they are safe now, but are they? Well, we leave it to you to figure it out! &nbsp;  
 &nbsp;  
 ## ERC-20 Standard
 

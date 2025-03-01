@@ -5,7 +5,7 @@ At Inju Casino, wealth wasn’t just admired—it was the only key to the inner 
 Solidity is a language that processes integers based on how many bits they can contain, like *uint8*, meaning it can only have 8 bits, thus setting the maximum value it can hold to 255 (2^8 - 1). Integer Overflow happens when the uint (unsigned integer) reaches its byte size, but then we add something that, when added, will exceed the max balance and return to the first variable element, for example if it's an *uint8*, the maximum value it can hold is 255, if we add 1 to it it won't become 256, but it will turn into 0 (first variable element). The underflow is just the opposite, let's say we have the same *uint8* and its current value is 0, then we subtract 1 from it, it won't become -1 since unsigned cannot be a negative number, instead it will become 255 (the maximum variable element). &nbsp;  
 &nbsp;  
 
-## How can Integer Overflow-Underflow happened?
+## How can Integer Overflow-Underflow happen?
 There are many factors how it can happen, here are some of them, ranging from the compiler version to the low-level code like *inline assembly*. &nbsp;  
 &nbsp;  
 
@@ -40,7 +40,7 @@ contract exampleOUInteger{
 }
 ```
 &nbsp;  
-In the example above, we used it in Solidity version *0.8.0*, which should be safe, but no, if the *unchecked* keyword is also used, it tells the compiler not to check the result or possibility in this operation, meaning it tells the compiler not to check for interger underflow and overflow. Let's say we input *61* as the value for the *a*, it will then return *5* because *255* is the max it can hold, it has extra 6, since the overflow starts from 0, so it's like a *6 - 1*, thus returning *5*. &nbsp;  
+In the example above, we used it in Solidity version *0.8.0*, which should be safe, but no, if the *unchecked* keyword is also used, it tells the compiler not to check the result or possibility in this operation, meaning it tells the compiler not to check for integer underflow and overflow. Let's say we input *61* as the value for the *a*, it will then return *5* because *255* is the max it can hold, it has extra 6, since the overflow starts from 0, so it's like a *6 - 1*, thus returning *5*. &nbsp;  
 &nbsp;  
 
 ### Inline Assembly
@@ -62,7 +62,7 @@ Running the code above would return *0* since the maximum for type *uint8* is 25
 &nbsp;  
 
 ### Using Shift Operators
-In solidity, overflow and underflow checks are not performed for shift operations like they are performed for other arithmetic operations. Thus, oveflow and underflow are possible.&nbsp;  
+In solidity, overflow and underflow checks are not performed for shift operations like they are performed for other arithmetic operations. Thus, overflow and underflow are possible.&nbsp;  
 &nbsp;  
 
 ### Typecasting

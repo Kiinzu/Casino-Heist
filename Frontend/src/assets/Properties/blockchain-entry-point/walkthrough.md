@@ -26,7 +26,7 @@ contract EntryPoint{
 } 
 ```
 &nbsp;  
-We can see that only when *coins == 1367*, the *entered()* will be true. There are also 2 restrictions there; the first one is checking whether the *msg.value* is greater than zero, and the second one checks whether the *msg.value* is between 7000 and 8000 wei. The next line is the calculation; however, the calculation seems not to be that right. After going around some number between 7000 and 8000, we found no exact number that will give 1367, but there is one that is close enough, or at least has 1367 in front of the coma. Here is the calculation using Python. &nbsp;  
+We can see that only when *coins == 1367*, the *entered()* will be true. There are also 2 restrictions there; the first one is checking whether the *msg.value* is greater than zero, and the second one checks whether the *msg.value* is between 7000 and 8000 wei. The next line is the calculation; however, the calculation seems not to be that right. After going through some numbers between 7000 and 8000, we found no exact number that will give 1367, but there is one that is close enough, or at least has 1367 in front of the coma. Here is the calculation using Python. &nbsp;  
 &nbsp;  
 ```text
 Formula:

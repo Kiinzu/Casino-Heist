@@ -21,4 +21,4 @@ The impact may vary based on what is present in the vulnerable contract, but mos
     Using *delegatecall* introduces additional complexity. If not handled properly, the added complexity provides more opportunities for attackers to exploit vulnerabilities. &nbsp;  
     &nbsp;  
 - **Loss of Funds** &nbsp;  
-    As mentioned in *Accesss Control Vulnerabilities* above, an attacker has the power to change the state of the contract, if the contract is used to hold Ether, there may be a potential loss of funds if a delegatecall vulnerability exists.
+    As mentioned in *Access Control Vulnerabilities* above, an attacker has the power to change the state of the contract, if the contract is used to hold Ether, there may be a potential loss of funds if a delegatecall vulnerability exists.

@@ -40,7 +40,7 @@ It is better to remove the *Counter.s.sol*, *Counter.sol*, and *Counter.t.sol* s
 ```
 &nbsp;  
 
-## Writing The Prequisite Exploit
+## Writing The Prerequisite Exploit
 Now that we have everything that we need in the */src*, we can start writing the code. First of all we want to import the contract that we are going to exploit. &nbsp;  
 &nbsp;  
 
@@ -74,7 +74,7 @@ You can see above that we can put the address of *Setup* into the constructor an
 &nbsp;  
 &nbsp;
 ## Writing The Exploit
-Now before writting the contract, let's analyze the code, what do we need to make the *Setup::isSolved()* returns true.
+Now before writing the contract, let's analyze the code, what do we need to make the *Setup::isSolved()* returns true.
 &nbsp;  
 &nbsp;  
 1. *GearingUp::callOne()* must be *True*
@@ -201,7 +201,7 @@ As usual, the first check always checks whether the *msg.sender* is an EOA or no
   receive()   fallback()
   ```
     &nbsp;  
-    depends on what your smart contract need, you can either implement one or both of them. Here is an example of implementation. &nbsp;  
+    depending on what your smart contract needs, you can either implement one or both of them. Here is an example of implementation. &nbsp;  
     &nbsp;  
     ```solidity
     receive() external payable{

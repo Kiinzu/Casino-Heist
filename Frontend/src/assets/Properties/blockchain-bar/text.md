@@ -2,7 +2,7 @@ The *Bar* is very exclusive to *member-only*; registering to become one is very 
 &nbsp;  
 ## Access Control Vulnerabilities
 
-Access control vulnerability allow unathorized users to access or modify data or functions through security flaws, the flaw sometimes doesn't need to be extremely hard to find or something, sometimes it's just a tiny little mistake made by the developers, just like in Web2 with loose comparison. In a Solidity Smart Contract, the Access Control Vulnerability means that an unauthorized user may modify or access the contract's data or functions. &nbsp;  
+Access control vulnerability allow unauthorized users to access or modify data or functions through security flaws, the flaw sometimes doesn't need to be extremely hard to find or something, sometimes it's just a tiny little mistake made by the developers, just like in Web2 with loose comparison. In a Solidity Smart Contract, the Access Control Vulnerability means that an unauthorized user may modify or access the contract's data or functions. &nbsp;  
 &nbsp;  
 
 Most of the time, the access control vulnerability is just the beginning of the real disaster, as it acts as the entry point to any other vulnerability such as denial of service, reentrancy, etc. &nbsp;  

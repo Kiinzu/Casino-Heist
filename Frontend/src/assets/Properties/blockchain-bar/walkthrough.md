@@ -16,7 +16,7 @@ We first need to call the *solvedByPLayer()* function, because that function wil
 &nbsp;  
 ```solidity
 function register() public payable isHuman{
-    // You can register here, but still need the Onwer to add you in.
+    // You can register here, but still need the Owner to add you in.
     require(msg.value >= 1e18, "Need 1 ether deposit.");
     balance[msg.sender] += msg.value;
 }
@@ -56,7 +56,7 @@ receive() external payable{
 }
 ```
 &nbsp;  
-There are 3 modifiers that exist in the contract. The *isHuman()* modifier ensures that the *msg.sender* is the same as *tx.origin*, meaning only EOA can interact with the contract. The *onlyOwner()* has 1 parameter, which is *_addMember*. Now *onlyMember()* modifier is quite different than another modifier, instead of ensuring a condition, it actually sets a condition, especially *msg.sender*; it sets the *barMember[msg.sender]* to become true, this is clearly a flaw by the developer. &nbsp;  
+There are 3 modifiers that exist in the contract. The *isHuman()* modifier ensures that the *msg.sender* is the same as *tx.origin*, meaning only EOA can interact with the contract. The *onlyOwner()* has 1 parameter, which is *_addMember*. Now *onlyMember()* modifier is quite different from another modifier, instead of ensuring a condition, it actually sets a condition, especially *msg.sender*; it sets the *barMember[msg.sender]* to become true, this is clearly a flaw by the developer. &nbsp;  
 &nbsp;  
 Earlier we knew that the *getDrink()* function used this modifier. This means what left now is giving ourselves some balance either by calling the *register()* function or directly sending the contract some balance because it has *receive() external payable* defined there and directly adds the amount to our balance. Okay then, the solution should be &nbsp;  
 &nbsp;  
@@ -74,4 +74,4 @@ cast send -r $RPC_URL --private-key $PK $BAR_ADDR "getDrink()"
 cast send -r $RPC_URL --private-key $PK $SETUP_ADDR "solvedByPlayer()"
 ```
 &nbsp;  
-After that we just need to click Flag, and we should've solved the lab.
+After that we just need to click the Flag, and we should've solved the lab.
