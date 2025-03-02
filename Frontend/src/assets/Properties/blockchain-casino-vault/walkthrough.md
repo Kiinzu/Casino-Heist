@@ -50,7 +50,7 @@ contract CasinoVault {
 }
 ```
 &nbsp;  
-We can see here that we can verifyIdentify by providing an *address* and a *bytes memory data*, they use delegatecall there, delegate calls are usually used like a "borrowed function". You execute the function in order to modify the state of the caller. In this case, if we parse and address and execute the data there, it will execute the data and modify the state of the *Casino Vault* itself. Unlike Silent-Dealer where there is a function to change owner here the option doesn't present. So how can we become the owner and drain the vault? &nbsp;  
+We can see here that we can *verifyIdentity* by providing an *address* and a *bytes memory data*, they use delegatecall there, delegate calls are usually used like a "borrowed function". You execute the function in order to modify the state of the caller. In this case, if we parse and address and execute the data there, it will execute the data and modify the state of the *Casino Vault* itself. Unlike Silent-Dealer where there is a function to change owner here the option doesn't present. So how can we become the owner and drain the vault? &nbsp;  
 &nbsp;  
 In EVM Assembly, there is an operation called *sstore(location, value)*. We can use this to overwrite the storage memory, let's see where the *owner* resides, &nbsp;  
 &nbsp;  
