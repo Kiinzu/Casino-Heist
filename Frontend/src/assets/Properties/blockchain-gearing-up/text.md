@@ -344,7 +344,7 @@ contract Exploit{
 
     function solveGearingUp() public {
         GU.callThis();
-        GU.sendMoneyHere{value: msg.value}();
+        GU.sendMoneyHere{value: 5 ether}();
         GU.sendSomeData("GearNumber1", 687221, 0x1a2b3c4d, address(this));
         GU.withdrawReward();
         GU.completedGearingUp();
