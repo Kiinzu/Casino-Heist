@@ -19,7 +19,7 @@ contract Setup {
 }
 ```
 &nbsp;  
-Based on the setup contract, the initial balance of the bank is 50 Ether, while the *isSolved()* will return true if it has 0 balance, not let's see the Inju Bank to see what we are dealing with. &nbsp;  
+Based on the setup contract, the initial balance of the bank is 50 Ether, while the *isSolved()* will return true if it has 0 balance, now let's see the Inju Bank to see what we are dealing with. &nbsp;  
 &nbsp;  
 ```solidity
 // SPDX-License-Identifier: MIT
