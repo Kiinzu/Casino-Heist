@@ -1,3 +1,6 @@
+# NOTE
+Casino Heist v1 (this repository) is deprecated and have been officially moved to [Foundry Casino Heist](https://github.com/Kiinzu/foundry-casino-heist) for the challenges and the reading material can be found on [Enuma Labs - Casino Heist](https://casinoheist.enuma-labs.xyz).
+
 # CASINO HEIST: Where Smart Contracts Vulnerabilities Meet the Thrill of the Heist!
 ![Logo](./casino-heist.png)
 # Casino Heist
